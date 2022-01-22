@@ -20,14 +20,12 @@ public class LexicalAnalyzer {
 			+ "7:4,6:5,7;" + "8:4,11:5,9:6,10:7,10;" + "10:4,11:5,9;" + "11:4,11:5,11;" + "12:9,13;" + "14:9,16:11,15;"
 			+ "17:9,18;" + "19:12,20;" + "21:11,22;" + "27:13,30:14,28;"
 			+ "28:0,28:1,28:2,28:3,28:4,28:5,28:6,28:7,28:8,28:9,28:10,28:11,28:12,28:13,28:14,28:15,28:16,28:17,29;"
-			+ "30:0,30:1,30:2,30:3,30:4,30:5,30:6,30:7,30:8,30:9,30:10,30:11,30:12,30:13,31:14,30:15,30:16,30:17,30;"
-			+ "31:0,30:1,30:2,30:3,30:4,30:5,30:6,30:7,30:8,30:9,30:10,30:11,30:12,30:13,31:14,32:15,30:16,30:17,30;"
 			+ "34:1,34:2,34:3,34:4,34:5,34;" + "35:4,35:5,35";
 	public static int statesNum = 35;
 	public static int symbolsNum = 17;
 	public static String finalStates = "2:id;3:intnum;4:intnum;5:invalidnum;6:floatnum;7:invalidnum;8:invalidnum;9:floatnum;10:invalidnum;11:floatnum;"
 			+ "12:assign;13:eq;14:lt;15:noteq;16:leq;17:gt;18:geq;19:colon;20:coloncolon;21:minus;22:arrow;23:special_char;24:plus;25:mult;26:dot;27:div;"
-			+ "29:inlinecmt;32:blockcmt;33:invalidchar;34:invalidid;35:invalidnum";
+			+ "29:inlinecmt;30:blockcmt;33:invalidchar;34:invalidid;35:invalidnum";
 
 	public static String symbols = "1:abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;" + "2:e;" + "3:_;"
 			+ "4:123456789;" + "5:0;" + "6:+;" + "7:-;" + "8:.;" + "9:=;" + "10:<;" + "11:>;" + "13:*;" + "14:/;"
@@ -56,6 +54,7 @@ public class LexicalAnalyzer {
 	private final int START_STATE = 1;
 	private final int ID_STATE = 2;
 	private final int SPECIAL_SYMBOL_STATE = 23;
+	private final int BLOCK_CMT_STATE = 30;
 	private final Set<Integer> INVALID_CHAR = new HashSet<>(Arrays.asList(33));
 	private final Set<Integer> INVALID_ID = new HashSet<>(Arrays.asList(34));
 	private final Set<Integer> INVALID_NUM = new HashSet<>(Arrays.asList(5, 7, 8, 10, 35));
@@ -142,10 +141,44 @@ public class LexicalAnalyzer {
 				if (currentState != START_STATE) {
 					lexeme += lookup;
 				}
+				if (currentState == BLOCK_CMT_STATE) {
+					return buildBlockCmt(lexeme);
+				}
 			}
 		} while (token == null);
 
 		return token;
+	}
+
+	/**
+	 * Special route to handle block comment
+	 * 
+	 * @param lexeme contains "/*"
+	 * @param line   current line number
+	 * @return
+	 * @throws Exception
+	 */
+	private Token buildBlockCmt(String lexeme) throws Exception {
+		int counter = 1;
+		while (counter != 0) {
+			char next = nextChar();
+			lexeme += next;
+			if (next == '/') {
+				char nextnext = nextChar();
+				lexeme += nextnext;
+				if (nextnext == '*') {
+					counter++;
+				}
+			} else if (next == '*') {
+				char nextnext = nextChar();
+				lexeme += nextnext;
+				if (nextnext == '/') {
+					counter--;
+				}
+			}
+		}
+
+		return createToken(BLOCK_CMT_STATE, lexeme, this.line);
 	}
 
 	private void storeChar(char lookup) throws Exception {

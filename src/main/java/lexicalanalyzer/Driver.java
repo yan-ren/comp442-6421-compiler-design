@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
 public class Driver {
 	public static void main(String[] args) throws Exception {
 //		File f = new File("/Users/yan.ren/github.com/yan.ren/comp6421/src/lexicalanalyzer/input.txt");
-		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexpositivegrading.src");
+//		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexpositivegrading.src");
+		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexnegativegrading.src");
 		String fileName;
 		FileReader fr = null;
 		BufferedReader in = null;
