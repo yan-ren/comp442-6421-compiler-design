@@ -2,9 +2,16 @@ package lexicalanalyzer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
+
+import org.apache.commons.text.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class LexicalAnalyzer {
 
@@ -40,12 +47,18 @@ public class LexicalAnalyzer {
 	public HashMap<Character, Integer> symbolMap;
 	// map special symbol with name
 	public HashMap<String, String> specialSymbolsMap;
-	private Queue<Character> charBuffer;
 
+	private Queue<Character> charBuffer;
+	private ArrayList<String> errors;
+
+	// constants
 	private final int TRAP_STATE = 0;
 	private final int START_STATE = 1;
 	private final int ID_STATE = 2;
 	private final int SPECIAL_SYMBOL_STATE = 23;
+	private final Set<Integer> INVALID_CHAR = new HashSet<>(Arrays.asList(33));
+	private final Set<Integer> INVALID_ID = new HashSet<>(Arrays.asList(34));
+	private final Set<Integer> INVALID_NUM = new HashSet<>(Arrays.asList(5, 7, 8, 10, 35));
 	private final char EOF = (char) 0x04;
 	private final int UNSUPPORTED_SYMBOL = 0;
 
@@ -53,6 +66,7 @@ public class LexicalAnalyzer {
 		this.br = br;
 		line = 1;
 		charBuffer = new LinkedList<>();
+		errors = new ArrayList<>();
 		symbolMap = createSymbolMap();
 		stateMap = createStateMap();
 		createTb();
@@ -146,19 +160,52 @@ public class LexicalAnalyzer {
 		if (!stateMap.containsKey(state)) {
 			throw new Exception("invalid state: " + state + " cannot find state in stateMap");
 		}
-		if (charBuffer.size() != 0 && charBuffer.peek() == '\n') {
-			line--;
-		}
+
+		int lineCalibrated = calculateLineNumber(line, lexeme);
+
+		addErrorIfExists(state, lexeme, lineCalibrated);
 
 		if (state == ID_STATE && keywords.contains(lexeme)) {
-			return new Token(lexeme, lexeme, line);
+			return new Token(lexeme, lexeme, lineCalibrated);
 		} else if (state == SPECIAL_SYMBOL_STATE) {
-			return createSymbolToken(state, lexeme, line);
+			return createSymbolToken(state, lexeme, lineCalibrated);
 		}
 
 		String stateName = stateMap.get(state);
 
-		return new Token(stateName, lexeme, line);
+		return new Token(stateName, lexeme, lineCalibrated);
+	}
+
+	/**
+	 * Recalculate line number consider \n char presented in char buffer and lexeme
+	 * 
+	 * @param line2
+	 * @param lexeme
+	 * @return
+	 */
+	private int calculateLineNumber(int line, String lexeme) {
+		if (charBuffer.size() != 0 && charBuffer.peek() == '\n') {
+			line--;
+		}
+		line -= StringUtils.countMatches(lexeme, "\n");
+		return line;
+	}
+
+	private void addErrorIfExists(int state, String lexeme, int line) {
+		if (INVALID_CHAR.contains(state)) {
+			errors.add("Lexical error: Invalid character: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+					+ "line " + line);
+		}
+
+		if (INVALID_ID.contains(state)) {
+			errors.add("Lexical error: Invalid identifier: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+					+ "line " + line);
+		}
+
+		if (INVALID_NUM.contains(state)) {
+			errors.add("Lexical error: Invalid number: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+					+ "line " + line);
+		}
 	}
 
 	private Token createSymbolToken(int state, String lexeme, int line) throws Exception {
@@ -191,5 +238,13 @@ public class LexicalAnalyzer {
 		}
 
 		return result;
+	}
+
+	public boolean hasErrors() {
+		return errors.size() > 0;
+	}
+
+	public ArrayList<String> getErrors() {
+		return errors;
 	}
 }
