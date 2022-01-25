@@ -17,18 +17,22 @@ public class Driver {
 	public static final String DEFAULT_OUTPUT = "./output/";
 
 	public static void main(String[] args) throws Exception {
-//		File f = new File("/Users/yan.ren/github.com/yan.ren/comp6421/src/lexicalanalyzer/input.txt");
-//		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexpositivegrading.src");
 		String fileDir = DEFAULT_INPUT;
 		if (args.length != 0) {
 			fileDir = args[0];
 		}
 		Files.createDirectories(Paths.get(DEFAULT_OUTPUT));
-		File folder = new File(fileDir);
-		File[] listOfFiles = folder.listFiles();
 
-		for (int i = 0; i < listOfFiles.length; i++) {
-			processFile(listOfFiles[i]);
+		if (fileDir.equals(DEFAULT_INPUT)) {
+			File folder = new File(fileDir);
+			File[] listOfFiles = folder.listFiles();
+
+			for (int i = 0; i < listOfFiles.length; i++) {
+				processFile(listOfFiles[i]);
+			}
+		} else {
+			File input = new File(fileDir);
+			processFile(input);
 		}
 	}
 
