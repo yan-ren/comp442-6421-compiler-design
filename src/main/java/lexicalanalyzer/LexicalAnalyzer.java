@@ -25,7 +25,7 @@ public class LexicalAnalyzer {
 	public static int symbolsNum = 17;
 	public static String finalStates = "2:id;3:intnum;4:intnum;5:invalidnum;6:floatnum;7:invalidnum;8:invalidnum;9:floatnum;10:invalidnum;11:floatnum;"
 			+ "12:assign;13:eq;14:lt;15:noteq;16:leq;17:gt;18:geq;19:colon;20:coloncolon;21:minus;22:arrow;23:special_char;24:plus;25:mult;26:dot;27:div;"
-			+ "29:inlinecmt;30:blockcmt;33:invalidchar;34:invalidid;35:invalidnum";
+			+ "29:inlinecmt;30:blockcmt;31:unterminated_block_cmt;33:invalidchar;34:invalidid;35:invalidnum";
 
 	public static String symbols = "1:abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;" + "2:e;" + "3:_;"
 			+ "4:123456789;" + "5:0;" + "6:+;" + "7:-;" + "8:.;" + "9:=;" + "10:<;" + "11:>;" + "13:*;" + "14:/;"
@@ -55,6 +55,7 @@ public class LexicalAnalyzer {
 	private final int ID_STATE = 2;
 	private final int SPECIAL_SYMBOL_STATE = 23;
 	private final int BLOCK_CMT_STATE = 30;
+	private final int UNTERMINATED_BLOCK_CMT_STATE = 31;
 	private final Set<Integer> INVALID_CHAR = new HashSet<>(Arrays.asList(33));
 	private final Set<Integer> INVALID_ID = new HashSet<>(Arrays.asList(34));
 	private final Set<Integer> INVALID_NUM = new HashSet<>(Arrays.asList(5, 7, 8, 10, 35));
@@ -163,15 +164,24 @@ public class LexicalAnalyzer {
 		while (counter != 0) {
 			char next = nextChar();
 			lexeme += next;
+			if (next == EOF) {
+				return createToken(UNTERMINATED_BLOCK_CMT_STATE, lexeme, this.line);
+			}
 			if (next == '/') {
 				char nextnext = nextChar();
 				lexeme += nextnext;
+				if (next == EOF) {
+					return createToken(UNTERMINATED_BLOCK_CMT_STATE, lexeme, this.line);
+				}
 				if (nextnext == '*') {
 					counter++;
 				}
 			} else if (next == '*') {
 				char nextnext = nextChar();
 				lexeme += nextnext;
+				if (next == EOF) {
+					return createToken(UNTERMINATED_BLOCK_CMT_STATE, lexeme, this.line);
+				}
 				if (nextnext == '/') {
 					counter--;
 				}
@@ -237,6 +247,11 @@ public class LexicalAnalyzer {
 
 		if (INVALID_NUM.contains(state)) {
 			errors.add("Lexical error: Invalid number: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+					+ "line " + line);
+		}
+
+		if (state == UNTERMINATED_BLOCK_CMT_STATE) {
+			errors.add("Lexical error: Invalid block comments: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
 					+ "line " + line);
 		}
 	}

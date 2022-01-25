@@ -6,14 +6,33 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Driver {
+
+	public static final String DEFAULT_INPUT = "./input";
+	public static final String DEFAULT_OUTPUT = "./output/";
+
 	public static void main(String[] args) throws Exception {
 //		File f = new File("/Users/yan.ren/github.com/yan.ren/comp6421/src/lexicalanalyzer/input.txt");
 //		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexpositivegrading.src");
-		File src = new File("/Users/yan.ren/github.com/yan.ren/comp6421/handout/A1/lexnegativegrading.src");
+		String fileDir = DEFAULT_INPUT;
+		if (args.length != 0) {
+			fileDir = args[0];
+		}
+		Files.createDirectories(Paths.get(DEFAULT_OUTPUT));
+		File folder = new File(fileDir);
+		File[] listOfFiles = folder.listFiles();
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+			processFile(listOfFiles[i]);
+		}
+	}
+
+	public static void processFile(File src) throws Exception {
 		String fileName;
 		FileReader fr = null;
 		BufferedReader in = null;
@@ -34,8 +53,8 @@ public class Driver {
 		try {
 			fr = new FileReader(src);
 			in = new BufferedReader(fr);
-			outlextokens = new BufferedWriter(new FileWriter(fileName + ".outlextokens"));
-			outlexerrors = new BufferedWriter(new FileWriter(fileName + ".outlexerrors"));
+			outlextokens = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outlextokens"));
+			outlexerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outlexerrors"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
