@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class LexicalAnalyzer {
 
-	public static String stateTransition = "1:0,33:1,2:2,2:3,34:4,3:5,4:6,24:7,21:8,26:9,12:10,14:11,17:12,19:13,25:14,27:15,23:16,1:17,1;"
+	public static String stateTransitionSeed = "1:0,33:1,2:2,2:3,34:4,3:5,4:6,24:7,21:8,26:9,12:10,14:11,17:12,19:13,25:14,27:15,23:16,1:17,1;"
 			+ "2:1,2:2,2:3,2:4,2:5,2;" + "3:4,3:5,3:8,5;" + "4:4,35:5,35:8,5;" + "5:4,6:5,6;" + "6:2,8:4,6:5,7;"
 			+ "7:4,6:5,7;" + "8:4,11:5,9:6,10:7,10;" + "10:4,11:5,9;" + "11:4,11:5,11;" + "12:9,13;" + "14:9,16:11,15;"
 			+ "17:9,18;" + "19:12,20;" + "21:11,22;" + "27:13,30:14,28;"
@@ -46,6 +46,7 @@ public class LexicalAnalyzer {
 	// map special symbol with name
 	public HashMap<String, String> specialSymbolsMap;
 
+	public Set<String> keywordsSet;
 	private Queue<Character> charBuffer;
 	private ArrayList<String> errors;
 
@@ -71,6 +72,7 @@ public class LexicalAnalyzer {
 		stateMap = createStateMap();
 		createTb();
 		specialSymbolsMap = createSpecialSymbolMap();
+		keywordsSet = new HashSet<>(Arrays.asList(keywords.split(",")));
 	}
 
 	private HashMap<String, String> createSpecialSymbolMap() {
@@ -85,7 +87,7 @@ public class LexicalAnalyzer {
 
 	private void createTb() {
 		this.tb = new int[LexicalAnalyzer.statesNum + 1][LexicalAnalyzer.symbolsNum + 1];
-		String[] trans = stateTransition.split(";");
+		String[] trans = stateTransitionSeed.split(";");
 		for (String t : trans) {
 			String[] items = t.split(":");
 			int start = Integer.parseInt(items[0]);
@@ -208,7 +210,7 @@ public class LexicalAnalyzer {
 
 		addErrorIfExists(state, lexeme, lineCalibrated);
 
-		if (state == ID_STATE && keywords.contains(lexeme)) {
+		if (state == ID_STATE && keywordsSet.contains(lexeme)) {
 			return new Token(lexeme, lexeme, lineCalibrated);
 		} else if (state == SPECIAL_SYMBOL_STATE) {
 			return createSymbolToken(state, lexeme, lineCalibrated);
