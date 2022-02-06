@@ -63,3 +63,8 @@
 [blockcmt, /* this is a single line block comment */, 33]
 [blockcmt, /* this is a \r\nmultiple line\r\nblock comment \r\n*/, 35]
 [blockcmt, /* this is an imbricated \r\n/* block comment\r\n*/\r\n*/, 40]
+[intnum, 1, 45]
+[id, abcd, 45]
+[intnum, 12, 47]
+[id, abc, 47]
+[invalidnum, 0123, 49]

@@ -201,6 +201,15 @@ public class LexicalAnalyzer {
 		charBuffer.add(lookup);
 	}
 
+	/**
+	 * Create token based on state, add error message if exists
+	 * 
+	 * @param state
+	 * @param lexeme
+	 * @param line
+	 * @return
+	 * @throws Exception
+	 */
 	private Token createToken(int state, String lexeme, int line) throws Exception {
 		if (!stateMap.containsKey(state)) {
 			throw new Exception("invalid state: " + state + " cannot find state in stateMap");
