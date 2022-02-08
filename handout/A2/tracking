@@ -1,0 +1,118 @@
+-----1-------
+<arraySize> ::= '[' 'intNum' ']'
+<arraySize> ::= '[' ']'
+Replaced by:
+<arraySize> ::= '[' <arraySize1>
+<arraySize1> ::= 'intNum' ']'
+<arraySize1> ::= ']'
+
+
+<expr> ::= <arithExpr>
+<expr> ::= <relExpr> 		(<relExpr> ::= <arithExpr> <relOp> <arithExpr>)
+Replaced by:
+<expr> ::= <arithExpr> <expr1>
+<expr1> ::= EPSILON
+<expr1> ::= <relOp> <arithExpr>
+
+----2----
+---delete
+<rept-variable2> ::= <indice> <rept-variable2>
+<rept-variable2> ::= EPSILON
+---delete
+<idnest> ::= 'id' <rept-idnest1> '.'
+<idnest> ::= 'id' '(' <aParams> ')' '.'
+---replace with
+<variable> ::= 'id' <variableIdnest>
+<variableIdnest> ::= <rept-idnest1> <variableIdnestTail0>
+<variableIdnest> ::= '(' <aParams> ')' <variableIdnestTail1>
+<variableIdnestTail0> ::= '.' 'id' <variableIdnest>
+<variableIdnestTail0> ::= EPSILON
+<variableIdnestTail1> ::= '.' 'id' <variableIdnest>
+---replace with
+<funcOrVar> ::= 'id' <funcOrVarIdnest>
+<funcOrVarIdnest> ::= <rept-idnest1> <funcOrVarIdnestTail>
+<funcOrVarIdnest> ::= '(' <aParams> ')' <funcOrVarIdnestTail>
+<funcOrVarIdnestTail> ::= '.' 'id' <funcOrVarIdnest>
+<funcOrVarIdnestTail> ::= EPSILON
+
+<functionCall> ::= 'id' <functionCallIdnest>
+<functionCallIdnest> ::= <rept-idnest1> <functionCallIdnestTail0>
+<functionCallIdnest> ::= '(' <aParams> ')' <functionCallIdnestTail1>
+<functionCallIdnestTail1> ::= '.' 'id' <functionCallIdnest>
+<functionCallIdnestTail1> ::= EPSILON
+<functionCallIdnestTail0> ::= '.' 'id' <functionCallIdnest>
+
+---no change---
+<indice> ::= '[' <arithExpr> ']'
+<rept-idnest1> ::= <indice> <rept-idnest1>
+<rept-idnest1> ::= EPSILON
+
+------3-------
+replace with
+<factor> ::= <functionCall>
+
+------4-------
+<statement> ::= <assignStat> ';'
+<statement> ::= <functionCall> ';'
+<assignStat> ::= <variable> <assignOp> <expr>
+replace with:
+<statement> ::= 'id' <s1>
+<s1> ::= <rept-idnest1> <s2>
+<s1> ::= '(' <aParams> ')' <s3>
+<s2> ::= '.' 'id' <s1>
+<s2> ::= <assignOp> <expr> ';'
+<s3> ::= '.' 'id' <s1>
+<s3> ::= ';'
+
+-----------------------
+<functionCall> ::= 'id' <functionCallIdnest>
+<functionCallIdnest> ::= <rept-idnest1> <functionCallIdnestTail0>
+<functionCallIdnest> ::= '(' <aParams> ')' <functionCallIdnestTail1>
+<functionCallIdnestTail1> ::= '.' 'id' <functionCallIdnest>
+<functionCallIdnestTail1> ::= EPSILON
+<functionCallIdnestTail0> ::= '.' 'id' <functionCallIdnest>
+
+<variable> ::= 'id' <variableIdnest>
+<variableIdnest> ::= <rept-idnest1> <variableIdnestTail0>
+<variableIdnest> ::= '(' <aParams> ')' <variableIdnestTail1>
+<variableIdnestTail0> ::= '.' 'id' <variableIdnest>
+<variableIdnestTail0> ::= EPSILON
+<variableIdnestTail1> ::= '.' 'id' <variableIdnest>
+
+----------good---------
+
+-----
+<aParams> ::= <expr> <rept-aParams1>
+<aParams> ::= EPSILON
+<indice> ::= '[' <arithExpr> ']'
+-----
+-----
+<rept-idnest1> ::= <indice> <rept-idnest1>
+<rept-idnest1> ::= EPSILON
+<rept-variable2> ::= <indice> <rept-variable2>
+<rept-variable2> ::= EPSILON
+-----
+-----
+<idnest> ::= 'id' <rept-idnest1> '.'
+<idnest> ::= 'id' '(' <aParams> ')' '.'
+-----
+-----
+<rept-functionCall0> ::= <idnest> <rept-functionCall0>
+<rept-functionCall0> ::= EPSILON
+-----
+-----
+<rept-variable0> ::= <idnest> <rept-variable0>
+<rept-variable0> ::= EPSILON
+-----
+-----
+<variable> ::= <rept-variable0> 'id' <rept-variable2>
+<functionCall> ::= <rept-functionCall0> 'id' '(' <aParams> ')'
+-----
+-----
+<factor> ::= <variable>
+<factor> ::= <functionCall>
+-----
+<variable> ::= <rept-variable0> 'id' <rept-idnest1>
+<rept-variable0> ::= 'id' <rept-idnest1> '.' <rept-variable0>
+<rept-variable0> ::= 'id' '(' <aParams> ')' '.' <rept-variable0>
+<rept-variable0> ::= EPSILON

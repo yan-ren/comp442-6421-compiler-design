@@ -1,13 +1,13 @@
 <START>              ::= <prog>
-<prog>               ::= {{<structOrImplOrfunc>}} 
-<structOrImplOrFunc> ::= <structDecl> | <implDef> | <funcDef>   
+<prog>               ::= {{<structOrImplOrfunc>}}
+<structOrImplOrFunc> ::= <structDecl> | <implDef> | <funcDef>
 <structDecl>         ::= 'struct' 'id' [['inherits' 'id' {{',' 'id'}}]] '{' {{<visibility> <memberDecl>}} '}' ';'
 <implDef>            ::= 'impl' 'id' '{' {{<funcDef>}} '}'
-<funcDef>            ::= <funcHead> <funcBody> 
-<visibility>         ::= 'public' | 'private' 
-<memberDecl>         ::= <funcDecl> | <varDecl>  
-<funcDecl>           ::= <funcHead> ';' 
-<funcHead>           ::= 'func' 'id' '(' <fParams> ')' '->' <returnType> 
+<funcDef>            ::= <funcHead> <funcBody>
+<visibility>         ::= 'public' | 'private'
+<memberDecl>         ::= <funcDecl> | <varDecl>
+<funcDecl>           ::= <funcHead> ';'
+<funcHead>           ::= 'func' 'id' '(' <fParams> ')' 'arrow' <returnType> 
 <funcBody>           ::= '{' {{<varDeclOrStat>}} '}'
 <varDeclOrStat>      ::= <varDecl> | <statement>
 <varDecl>            ::= 'let' 'id' ':' <type> {{<arraySize>}} ';'
@@ -19,10 +19,10 @@
                       |  'return' '(' <expr> ')' ';'
                       |  <functionCall> ';'
 <assignStat>         ::= <variable> <assignOp> <expr>
-<statBlock>          ::= '{' {{<statement>}} '}' | <statement> | EPSILON  
+<statBlock>          ::= '{' {{<statement>}} '}' | <statement> | EPSILON
 <expr>               ::= <arithExpr> | <relExpr>
 <relExpr>            ::= <arithExpr> <relOp> <arithExpr>
-<arithExpr>          ::= <arithExpr> <addOp> <term> | <term> 
+<arithExpr>          ::= <arithExpr> <addOp> <term> | <term>
 <sign>               ::= '+' | '-'
 <term>               ::= <term> <multOp> <factor> | <factor>
 <factor>             ::= <variable>
@@ -39,11 +39,11 @@
 <arraySize>          ::= '[' 'intNum' ']' | '[' ']'
 <type>               ::= 'integer' | 'float' | 'id'
 <returnType>         ::= <type> |  'void'
-<fParams>            ::= 'id' ':' <type> {{<arraySize>}} {{<fParamsTail>}} | EPSILON  
-<aParams>            ::= <expr> {{<aParamsTail>}} | EPSILON 
+<fParams>            ::= 'id' ':' <type> {{<arraySize>}} {{<fParamsTail>}} | EPSILON
+<aParams>            ::= <expr> {{<aParamsTail>}} | EPSILON
 <fParamsTail>        ::= ',' 'id' ':' <type> {{<arraySize>}}
 <aParamsTail>        ::= ',' <expr>
 <assignOp>           ::= '='
-<relOp>              ::= 'eq' | 'neq' | 'lt' | 'gt' | 'leq' | 'geq' 
-<addOp>              ::= '+' | '-' | 'or' 
+<relOp>              ::= 'eq' | 'neq' | 'lt' | 'gt' | 'leq' | 'geq'
+<addOp>              ::= '+' | '-' | 'or'
 <multOp>             ::= '*' | '/' | 'and'

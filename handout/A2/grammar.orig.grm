@@ -40,7 +40,7 @@
 
 <funcDef> ::= <funcHead> <funcBody> 
 
-<funcHead> ::= 'func' 'id' '(' <fParams> ')' '->' <returnType> 
+<funcHead> ::= 'func' 'id' '(' <fParams> ')' 'arrow' <returnType> 
 
 <functionCall> ::= <rept-functionCall0> 'id' '(' <aParams> ')' 
 
