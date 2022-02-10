@@ -1,0 +1,4782 @@
+<!-- saved from url=(4439)https://smlweb.cpsc.ucalgary.ca/ll1-table.php?grammar=ADDOP+-%3E+plus++.+%0AADDOP+-%3E+minus++.+%0AADDOP+-%3E+or++.+%0A%0AAPARAMS+-%3E+EXPR+REPTAPARAMS1++.+%0AAPARAMS+-%3E++.+%0A%0AAPARAMSTAIL+-%3E+comma+EXPR++.+%0A%0AARITHEXPR+-%3E+TERM+RIGHTRECARITHEXPR++.+%0A%0AARRAYSIZE+-%3E+lsqbr+ARRAYSIZE1++.+%0A%0AARRAYSIZE1+-%3E+intlit+rsqbr++.+%0AARRAYSIZE1+-%3E+rsqbr++.+%0A%0AASSIGNOP+-%3E+equal++.+%0A%0AASSIGNSTAT+-%3E+VARIABLE+ASSIGNOP+EXPR++.+%0A%0AEXPR+-%3E+ARITHEXPR+EXPR1++.+%0A%0AEXPR1+-%3E++.+%0AEXPR1+-%3E+RELOP+ARITHEXPR++.+%0A%0AFACTOR+-%3E+FUNCORVAR++.+%0AFACTOR+-%3E+intlit++.+%0AFACTOR+-%3E+floatlit++.+%0AFACTOR+-%3E+lpar+ARITHEXPR+rpar++.+%0AFACTOR+-%3E+not+FACTOR++.+%0AFACTOR+-%3E+SIGN+FACTOR++.+%0A%0AFPARAMS+-%3E+id+colon+TYPE+REPTFPARAMS3+REPTFPARAMS4++.+%0AFPARAMS+-%3E++.+%0A%0AFPARAMSTAIL+-%3E+comma+id+colon+TYPE+REPTFPARAMSTAIL4++.+%0A%0AFUNCBODY+-%3E+lcurbr+REPTFUNCBODY1+rcurbr++.+%0A%0AFUNCDECL+-%3E+FUNCHEAD+semi++.+%0A%0AFUNCDEF+-%3E+FUNCHEAD+FUNCBODY++.+%0A%0AFUNCHEAD+-%3E+func+id+lpar+FPARAMS+rpar+arrow+RETURNTYPE++.+%0A%0AFUNCORVAR+-%3E+id+FUNCORVARIDNEST++.+%0A%0AFUNCORVARIDNEST+-%3E+REPTIDNEST1+FUNCORVARIDNESTTAIL++.+%0AFUNCORVARIDNEST+-%3E+lpar+APARAMS+rpar+FUNCORVARIDNESTTAIL++.+%0A%0AFUNCORVARIDNESTTAIL+-%3E+dot+id+FUNCORVARIDNEST++.+%0AFUNCORVARIDNESTTAIL+-%3E++.+%0A%0AIMPLDEF+-%3E+impl+id+lcurbr+REPTIMPLDEF3+rcurbr++.+%0A%0AINDICE+-%3E+lsqbr+ARITHEXPR+rsqbr++.+%0A%0AMEMBERDECL+-%3E+FUNCDECL++.+%0AMEMBERDECL+-%3E+VARDECL++.+%0A%0AMULTOP+-%3E+mult++.+%0AMULTOP+-%3E+div++.+%0AMULTOP+-%3E+and++.+%0A%0AOPTSTRUCTDECL2+-%3E+inherits+id+REPTOPTSTRUCTDECL22++.+%0AOPTSTRUCTDECL2+-%3E++.+%0A%0APROG+-%3E+REPTPROG0++.+%0A%0ARELEXPR+-%3E+ARITHEXPR+RELOP+ARITHEXPR++.+%0A%0ARELOP+-%3E+eq++.+%0ARELOP+-%3E+neq++.+%0ARELOP+-%3E+lt++.+%0ARELOP+-%3E+gt++.+%0ARELOP+-%3E+leq++.+%0ARELOP+-%3E+geq++.+%0A%0AREPTAPARAMS1+-%3E+APARAMSTAIL+REPTAPARAMS1++.+%0AREPTAPARAMS1+-%3E++.+%0A%0AREPTFPARAMS3+-%3E+ARRAYSIZE+REPTFPARAMS3++.+%0AREPTFPARAMS3+-%3E++.+%0A%0AREPTFPARAMS4+-%3E+FPARAMSTAIL+REPTFPARAMS4++.+%0AREPTFPARAMS4+-%3E++.+%0A%0AREPTFPARAMSTAIL4+-%3E+ARRAYSIZE+REPTFPARAMSTAIL4++.+%0AREPTFPARAMSTAIL4+-%3E++.+%0A%0AREPTFUNCBODY1+-%3E+VARDECLORSTAT+REPTFUNCBODY1++.+%0AREPTFUNCBODY1+-%3E++.+%0A%0AREPTIDNEST1+-%3E+INDICE+REPTIDNEST1++.+%0AREPTIDNEST1+-%3E++.+%0A%0AREPTIMPLDEF3+-%3E+FUNCDEF+REPTIMPLDEF3++.+%0AREPTIMPLDEF3+-%3E++.+%0A%0AREPTOPTSTRUCTDECL22+-%3E+comma+id+REPTOPTSTRUCTDECL22++.+%0AREPTOPTSTRUCTDECL22+-%3E++.+%0A%0AREPTPROG0+-%3E+STRUCTORIMPLORFUNC+REPTPROG0++.+%0AREPTPROG0+-%3E++.+%0A%0AREPTSTATBLOCK1+-%3E+STATEMENT+REPTSTATBLOCK1++.+%0AREPTSTATBLOCK1+-%3E++.+%0A%0AREPTSTRUCTDECL4+-%3E+VISIBILITY+MEMBERDECL+REPTSTRUCTDECL4++.+%0AREPTSTRUCTDECL4+-%3E++.+%0A%0AREPTVARDECL4+-%3E+ARRAYSIZE+REPTVARDECL4++.+%0AREPTVARDECL4+-%3E++.+%0A%0ARETURNTYPE+-%3E+TYPE++.+%0ARETURNTYPE+-%3E+void++.+%0A%0ARIGHTRECARITHEXPR+-%3E++.+%0ARIGHTRECARITHEXPR+-%3E+ADDOP+TERM+RIGHTRECARITHEXPR++.+%0A%0ARIGHTRECTERM+-%3E++.+%0ARIGHTRECTERM+-%3E+MULTOP+FACTOR+RIGHTRECTERM++.+%0A%0AS1+-%3E+REPTIDNEST1+S2++.+%0AS1+-%3E+lpar+APARAMS+rpar+S3++.+%0A%0AS2+-%3E+dot+id+S1++.+%0AS2+-%3E+ASSIGNOP+EXPR+semi++.+%0A%0AS3+-%3E+dot+id+S1++.+%0AS3+-%3E+semi++.+%0A%0ASIGN+-%3E+plus++.+%0ASIGN+-%3E+minus++.+%0A%0ASTART+-%3E+PROG++.+%0A%0ASTATBLOCK+-%3E+lcurbr+REPTSTATBLOCK1+rcurbr++.+%0ASTATBLOCK+-%3E+STATEMENT++.+%0ASTATBLOCK+-%3E++.+%0A%0ASTATEMENT+-%3E+id+S1++.+%0ASTATEMENT+-%3E+if+lpar+RELEXPR+rpar+then+STATBLOCK+else+STATBLOCK+semi++.+%0ASTATEMENT+-%3E+while+lpar+RELEXPR+rpar+STATBLOCK+semi++.+%0ASTATEMENT+-%3E+read+lpar+VARIABLE+rpar+semi++.+%0ASTATEMENT+-%3E+write+lpar+EXPR+rpar+semi++.+%0ASTATEMENT+-%3E+return+lpar+EXPR+rpar+semi++.+%0A%0ASTRUCTDECL+-%3E+struct+id+OPTSTRUCTDECL2+lcurbr+REPTSTRUCTDECL4+rcurbr+semi++.+%0A%0ASTRUCTORIMPLORFUNC+-%3E+STRUCTDECL++.+%0ASTRUCTORIMPLORFUNC+-%3E+IMPLDEF++.+%0ASTRUCTORIMPLORFUNC+-%3E+FUNCDEF++.+%0A%0ATERM+-%3E+FACTOR+RIGHTRECTERM++.+%0A%0ATYPE+-%3E+integer++.+%0ATYPE+-%3E+float++.+%0ATYPE+-%3E+id++.+%0A%0AVARDECL+-%3E+let+id+colon+TYPE+REPTVARDECL4+semi++.+%0A%0AVARDECLORSTAT+-%3E+VARDECL++.+%0AVARDECLORSTAT+-%3E+STATEMENT++.+%0A%0AVARIABLE+-%3E+id+VARIABLEIDNEST++.+%0A%0AVARIABLEIDNEST+-%3E+REPTIDNEST1+VARIABLEIDNESTTAIL++.+%0AVARIABLEIDNEST+-%3E+lpar+APARAMS+rpar+dot+id+VARIABLEIDNEST++.+%0A%0AVARIABLEIDNESTTAIL+-%3E+dot+id+VARIABLEIDNEST++.+%0AVARIABLEIDNESTTAIL+-%3E++.+%0A%0AVISIBILITY+-%3E+public++.+%0AVISIBILITY+-%3E+private++.+%0A%0A%0A&substs= -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="./LL(1) Parsing Table_files/default.css" title="default" rel="stylesheet" type="text/css">
+	<title>LL(1) Parsing Table</title>
+</head>
+
+<body style="cursor: auto;">
+
+	<table class="grammar" align="left">
+		<caption class="grammar"><a target="_top"
+				href="https://smlweb.cpsc.ucalgary.ca/raw-grammar.php?grammar=ADDOP+-%3E+plus++.+%0AADDOP+-%3E+minus++.+%0AADDOP+-%3E+or++.+%0A%0AAPARAMS+-%3E+EXPR+REPTAPARAMS1++.+%0AAPARAMS+-%3E++.+%0A%0AAPARAMSTAIL+-%3E+comma+EXPR++.+%0A%0AARITHEXPR+-%3E+TERM+RIGHTRECARITHEXPR++.+%0A%0AARRAYSIZE+-%3E+lsqbr+ARRAYSIZE1++.+%0A%0AARRAYSIZE1+-%3E+intlit+rsqbr++.+%0AARRAYSIZE1+-%3E+rsqbr++.+%0A%0AASSIGNOP+-%3E+equal++.+%0A%0AASSIGNSTAT+-%3E+VARIABLE+ASSIGNOP+EXPR++.+%0A%0AEXPR+-%3E+ARITHEXPR+EXPR1++.+%0A%0AEXPR1+-%3E++.+%0AEXPR1+-%3E+RELOP+ARITHEXPR++.+%0A%0AFACTOR+-%3E+FUNCORVAR++.+%0AFACTOR+-%3E+intlit++.+%0AFACTOR+-%3E+floatlit++.+%0AFACTOR+-%3E+lpar+ARITHEXPR+rpar++.+%0AFACTOR+-%3E+not+FACTOR++.+%0AFACTOR+-%3E+SIGN+FACTOR++.+%0A%0AFPARAMS+-%3E+id+colon+TYPE+REPTFPARAMS3+REPTFPARAMS4++.+%0AFPARAMS+-%3E++.+%0A%0AFPARAMSTAIL+-%3E+comma+id+colon+TYPE+REPTFPARAMSTAIL4++.+%0A%0AFUNCBODY+-%3E+lcurbr+REPTFUNCBODY1+rcurbr++.+%0A%0AFUNCDECL+-%3E+FUNCHEAD+semi++.+%0A%0AFUNCDEF+-%3E+FUNCHEAD+FUNCBODY++.+%0A%0AFUNCHEAD+-%3E+func+id+lpar+FPARAMS+rpar+arrow+RETURNTYPE++.+%0A%0AFUNCORVAR+-%3E+id+FUNCORVARIDNEST++.+%0A%0AFUNCORVARIDNEST+-%3E+REPTIDNEST1+FUNCORVARIDNESTTAIL++.+%0AFUNCORVARIDNEST+-%3E+lpar+APARAMS+rpar+FUNCORVARIDNESTTAIL++.+%0A%0AFUNCORVARIDNESTTAIL+-%3E+dot+id+FUNCORVARIDNEST++.+%0AFUNCORVARIDNESTTAIL+-%3E++.+%0A%0AIMPLDEF+-%3E+impl+id+lcurbr+REPTIMPLDEF3+rcurbr++.+%0A%0AINDICE+-%3E+lsqbr+ARITHEXPR+rsqbr++.+%0A%0AMEMBERDECL+-%3E+FUNCDECL++.+%0AMEMBERDECL+-%3E+VARDECL++.+%0A%0AMULTOP+-%3E+mult++.+%0AMULTOP+-%3E+div++.+%0AMULTOP+-%3E+and++.+%0A%0AOPTSTRUCTDECL2+-%3E+inherits+id+REPTOPTSTRUCTDECL22++.+%0AOPTSTRUCTDECL2+-%3E++.+%0A%0APROG+-%3E+REPTPROG0++.+%0A%0ARELEXPR+-%3E+ARITHEXPR+RELOP+ARITHEXPR++.+%0A%0ARELOP+-%3E+eq++.+%0ARELOP+-%3E+neq++.+%0ARELOP+-%3E+lt++.+%0ARELOP+-%3E+gt++.+%0ARELOP+-%3E+leq++.+%0ARELOP+-%3E+geq++.+%0A%0AREPTAPARAMS1+-%3E+APARAMSTAIL+REPTAPARAMS1++.+%0AREPTAPARAMS1+-%3E++.+%0A%0AREPTFPARAMS3+-%3E+ARRAYSIZE+REPTFPARAMS3++.+%0AREPTFPARAMS3+-%3E++.+%0A%0AREPTFPARAMS4+-%3E+FPARAMSTAIL+REPTFPARAMS4++.+%0AREPTFPARAMS4+-%3E++.+%0A%0AREPTFPARAMSTAIL4+-%3E+ARRAYSIZE+REPTFPARAMSTAIL4++.+%0AREPTFPARAMSTAIL4+-%3E++.+%0A%0AREPTFUNCBODY1+-%3E+VARDECLORSTAT+REPTFUNCBODY1++.+%0AREPTFUNCBODY1+-%3E++.+%0A%0AREPTIDNEST1+-%3E+INDICE+REPTIDNEST1++.+%0AREPTIDNEST1+-%3E++.+%0A%0AREPTIMPLDEF3+-%3E+FUNCDEF+REPTIMPLDEF3++.+%0AREPTIMPLDEF3+-%3E++.+%0A%0AREPTOPTSTRUCTDECL22+-%3E+comma+id+REPTOPTSTRUCTDECL22++.+%0AREPTOPTSTRUCTDECL22+-%3E++.+%0A%0AREPTPROG0+-%3E+STRUCTORIMPLORFUNC+REPTPROG0++.+%0AREPTPROG0+-%3E++.+%0A%0AREPTSTATBLOCK1+-%3E+STATEMENT+REPTSTATBLOCK1++.+%0AREPTSTATBLOCK1+-%3E++.+%0A%0AREPTSTRUCTDECL4+-%3E+VISIBILITY+MEMBERDECL+REPTSTRUCTDECL4++.+%0AREPTSTRUCTDECL4+-%3E++.+%0A%0AREPTVARDECL4+-%3E+ARRAYSIZE+REPTVARDECL4++.+%0AREPTVARDECL4+-%3E++.+%0A%0ARETURNTYPE+-%3E+TYPE++.+%0ARETURNTYPE+-%3E+void++.+%0A%0ARIGHTRECARITHEXPR+-%3E++.+%0ARIGHTRECARITHEXPR+-%3E+ADDOP+TERM+RIGHTRECARITHEXPR++.+%0A%0ARIGHTRECTERM+-%3E++.+%0ARIGHTRECTERM+-%3E+MULTOP+FACTOR+RIGHTRECTERM++.+%0A%0AS1+-%3E+REPTIDNEST1+S2++.+%0AS1+-%3E+lpar+APARAMS+rpar+S3++.+%0A%0AS2+-%3E+dot+id+S1++.+%0AS2+-%3E+ASSIGNOP+EXPR+semi++.+%0A%0AS3+-%3E+dot+id+S1++.+%0AS3+-%3E+semi++.+%0A%0ASIGN+-%3E+plus++.+%0ASIGN+-%3E+minus++.+%0A%0ASTART+-%3E+PROG++.+%0A%0ASTATBLOCK+-%3E+lcurbr+REPTSTATBLOCK1+rcurbr++.+%0ASTATBLOCK+-%3E+STATEMENT++.+%0ASTATBLOCK+-%3E++.+%0A%0ASTATEMENT+-%3E+id+S1++.+%0ASTATEMENT+-%3E+if+lpar+RELEXPR+rpar+then+STATBLOCK+else+STATBLOCK+semi++.+%0ASTATEMENT+-%3E+while+lpar+RELEXPR+rpar+STATBLOCK+semi++.+%0ASTATEMENT+-%3E+read+lpar+VARIABLE+rpar+semi++.+%0ASTATEMENT+-%3E+write+lpar+EXPR+rpar+semi++.+%0ASTATEMENT+-%3E+return+lpar+EXPR+rpar+semi++.+%0A%0ASTRUCTDECL+-%3E+struct+id+OPTSTRUCTDECL2+lcurbr+REPTSTRUCTDECL4+rcurbr+semi++.+%0A%0ASTRUCTORIMPLORFUNC+-%3E+STRUCTDECL++.+%0ASTRUCTORIMPLORFUNC+-%3E+IMPLDEF++.+%0ASTRUCTORIMPLORFUNC+-%3E+FUNCDEF++.+%0A%0ATERM+-%3E+FACTOR+RIGHTRECTERM++.+%0A%0ATYPE+-%3E+integer++.+%0ATYPE+-%3E+float++.+%0ATYPE+-%3E+id++.+%0A%0AVARDECL+-%3E+let+id+colon+TYPE+REPTVARDECL4+semi++.+%0A%0AVARDECLORSTAT+-%3E+VARDECL++.+%0AVARDECLORSTAT+-%3E+STATEMENT++.+%0A%0AVARIABLE+-%3E+id+VARIABLEIDNEST++.+%0A%0AVARIABLEIDNEST+-%3E+REPTIDNEST1+VARIABLEIDNESTTAIL++.+%0AVARIABLEIDNEST+-%3E+lpar+APARAMS+rpar+dot+id+VARIABLEIDNEST++.+%0A%0AVARIABLEIDNESTTAIL+-%3E+dot+id+VARIABLEIDNEST++.+%0AVARIABLEIDNESTTAIL+-%3E++.+%0A%0AVISIBILITY+-%3E+public++.+%0AVISIBILITY+-%3E+private++.+%0A%0A%0A&amp;substs=">Grammar</a>
+		</caption>
+		<tbody>
+			<tr>
+				<td>
+					ADDOP →</td>
+				<td> plus .</td>
+			</tr>
+			<tr>
+				<td>
+					ADDOP →</td>
+				<td> minus .</td>
+			</tr>
+			<tr>
+				<td>
+					ADDOP →</td>
+				<td> or .</td>
+			</tr>
+			<tr>
+				<td>
+
+					APARAMS →</td>
+				<td> EXPR REPTAPARAMS1 .</td>
+			</tr>
+			<tr>
+				<td>
+					APARAMS →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					APARAMSTAIL →</td>
+				<td> comma EXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					ARITHEXPR →</td>
+				<td> TERM RIGHTRECARITHEXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					ARRAYSIZE →</td>
+				<td> lsqbr ARRAYSIZE1 .</td>
+			</tr>
+			<tr>
+				<td>
+
+					ARRAYSIZE1 →</td>
+				<td> intlit rsqbr .</td>
+			</tr>
+			<tr>
+				<td>
+					ARRAYSIZE1 →</td>
+				<td> rsqbr .</td>
+			</tr>
+			<tr>
+				<td>
+
+					ASSIGNOP →</td>
+				<td> equal .</td>
+			</tr>
+			<tr>
+				<td>
+
+					ASSIGNSTAT →</td>
+				<td> VARIABLE ASSIGNOP EXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					EXPR →</td>
+				<td> ARITHEXPR EXPR1 .</td>
+			</tr>
+			<tr>
+				<td>
+
+					EXPR1 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+					EXPR1 →</td>
+				<td> RELOP ARITHEXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FACTOR →</td>
+				<td> FUNCORVAR .</td>
+			</tr>
+			<tr>
+				<td>
+					FACTOR →</td>
+				<td> intlit .</td>
+			</tr>
+			<tr>
+				<td>
+					FACTOR →</td>
+				<td> floatlit .</td>
+			</tr>
+			<tr>
+				<td>
+					FACTOR →</td>
+				<td> lpar ARITHEXPR rpar .</td>
+			</tr>
+			<tr>
+				<td>
+					FACTOR →</td>
+				<td> not FACTOR .</td>
+			</tr>
+			<tr>
+				<td>
+					FACTOR →</td>
+				<td> SIGN FACTOR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FPARAMS →</td>
+				<td> id colon TYPE REPTFPARAMS3 REPTFPARAMS4 .</td>
+			</tr>
+			<tr>
+				<td>
+					FPARAMS →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FPARAMSTAIL →</td>
+				<td> comma id colon TYPE REPTFPARAMSTAIL4 .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCBODY →</td>
+				<td> lcurbr REPTFUNCBODY1 rcurbr .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCDECL →</td>
+				<td> FUNCHEAD semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCDEF →</td>
+				<td> FUNCHEAD FUNCBODY .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCHEAD →</td>
+				<td> func id lpar FPARAMS rpar arrow RETURNTYPE .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCORVAR →</td>
+				<td> id FUNCORVARIDNEST .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCORVARIDNEST →</td>
+				<td> REPTIDNEST1 FUNCORVARIDNESTTAIL .</td>
+			</tr>
+			<tr>
+				<td>
+					FUNCORVARIDNEST →</td>
+				<td> lpar APARAMS rpar FUNCORVARIDNESTTAIL .</td>
+			</tr>
+			<tr>
+				<td>
+
+					FUNCORVARIDNESTTAIL →</td>
+				<td> dot id FUNCORVARIDNEST .</td>
+			</tr>
+			<tr>
+				<td>
+					FUNCORVARIDNESTTAIL →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					IMPLDEF →</td>
+				<td> impl id lcurbr REPTIMPLDEF3 rcurbr .</td>
+			</tr>
+			<tr>
+				<td>
+
+					INDICE →</td>
+				<td> lsqbr ARITHEXPR rsqbr .</td>
+			</tr>
+			<tr>
+				<td>
+
+					MEMBERDECL →</td>
+				<td> FUNCDECL .</td>
+			</tr>
+			<tr>
+				<td>
+					MEMBERDECL →</td>
+				<td> VARDECL .</td>
+			</tr>
+			<tr>
+				<td>
+
+					MULTOP →</td>
+				<td> mult .</td>
+			</tr>
+			<tr>
+				<td>
+					MULTOP →</td>
+				<td> div .</td>
+			</tr>
+			<tr>
+				<td>
+					MULTOP →</td>
+				<td> and .</td>
+			</tr>
+			<tr>
+				<td>
+
+					OPTSTRUCTDECL2 →</td>
+				<td> inherits id REPTOPTSTRUCTDECL22 .</td>
+			</tr>
+			<tr>
+				<td>
+					OPTSTRUCTDECL2 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					PROG →</td>
+				<td> REPTPROG0 .</td>
+			</tr>
+			<tr>
+				<td>
+
+					RELEXPR →</td>
+				<td> ARITHEXPR RELOP ARITHEXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					RELOP →</td>
+				<td> eq .</td>
+			</tr>
+			<tr>
+				<td>
+					RELOP →</td>
+				<td> neq .</td>
+			</tr>
+			<tr>
+				<td>
+					RELOP →</td>
+				<td> lt .</td>
+			</tr>
+			<tr>
+				<td>
+					RELOP →</td>
+				<td> gt .</td>
+			</tr>
+			<tr>
+				<td>
+					RELOP →</td>
+				<td> leq .</td>
+			</tr>
+			<tr>
+				<td>
+					RELOP →</td>
+				<td> geq .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTAPARAMS1 →</td>
+				<td> APARAMSTAIL REPTAPARAMS1 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTAPARAMS1 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTFPARAMS3 →</td>
+				<td> ARRAYSIZE REPTFPARAMS3 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTFPARAMS3 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTFPARAMS4 →</td>
+				<td> FPARAMSTAIL REPTFPARAMS4 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTFPARAMS4 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTFPARAMSTAIL4 →</td>
+				<td> ARRAYSIZE REPTFPARAMSTAIL4 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTFPARAMSTAIL4 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTFUNCBODY1 →</td>
+				<td> VARDECLORSTAT REPTFUNCBODY1 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTFUNCBODY1 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTIDNEST1 →</td>
+				<td> INDICE REPTIDNEST1 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTIDNEST1 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTIMPLDEF3 →</td>
+				<td> FUNCDEF REPTIMPLDEF3 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTIMPLDEF3 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTOPTSTRUCTDECL22 →</td>
+				<td> comma id REPTOPTSTRUCTDECL22 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTOPTSTRUCTDECL22 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTPROG0 →</td>
+				<td> STRUCTORIMPLORFUNC REPTPROG0 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTPROG0 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTSTATBLOCK1 →</td>
+				<td> STATEMENT REPTSTATBLOCK1 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTSTATBLOCK1 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTSTRUCTDECL4 →</td>
+				<td> VISIBILITY MEMBERDECL REPTSTRUCTDECL4 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTSTRUCTDECL4 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					REPTVARDECL4 →</td>
+				<td> ARRAYSIZE REPTVARDECL4 .</td>
+			</tr>
+			<tr>
+				<td>
+					REPTVARDECL4 →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					RETURNTYPE →</td>
+				<td> TYPE .</td>
+			</tr>
+			<tr>
+				<td>
+					RETURNTYPE →</td>
+				<td> void .</td>
+			</tr>
+			<tr>
+				<td>
+
+					RIGHTRECARITHEXPR →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+					RIGHTRECARITHEXPR →</td>
+				<td> ADDOP TERM RIGHTRECARITHEXPR .</td>
+			</tr>
+			<tr>
+				<td>
+
+					RIGHTRECTERM →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+					RIGHTRECTERM →</td>
+				<td> MULTOP FACTOR RIGHTRECTERM .</td>
+			</tr>
+			<tr>
+				<td>
+
+					S1 →</td>
+				<td> REPTIDNEST1 S2 .</td>
+			</tr>
+			<tr>
+				<td>
+					S1 →</td>
+				<td> lpar APARAMS rpar S3 .</td>
+			</tr>
+			<tr>
+				<td>
+
+					S2 →</td>
+				<td> dot id S1 .</td>
+			</tr>
+			<tr>
+				<td>
+					S2 →</td>
+				<td> ASSIGNOP EXPR semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					S3 →</td>
+				<td> dot id S1 .</td>
+			</tr>
+			<tr>
+				<td>
+					S3 →</td>
+				<td> semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					SIGN →</td>
+				<td> plus .</td>
+			</tr>
+			<tr>
+				<td>
+					SIGN →</td>
+				<td> minus .</td>
+			</tr>
+			<tr>
+				<td>
+
+					START →</td>
+				<td> PROG .</td>
+			</tr>
+			<tr>
+				<td>
+
+					STATBLOCK →</td>
+				<td> lcurbr REPTSTATBLOCK1 rcurbr .</td>
+			</tr>
+			<tr>
+				<td>
+					STATBLOCK →</td>
+				<td> STATEMENT .</td>
+			</tr>
+			<tr>
+				<td>
+					STATBLOCK →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					STATEMENT →</td>
+				<td> id S1 .</td>
+			</tr>
+			<tr>
+				<td>
+					STATEMENT →</td>
+				<td> if lpar RELEXPR rpar then STATBLOCK else STATBLOCK semi .</td>
+			</tr>
+			<tr>
+				<td>
+					STATEMENT →</td>
+				<td> while lpar RELEXPR rpar STATBLOCK semi .</td>
+			</tr>
+			<tr>
+				<td>
+					STATEMENT →</td>
+				<td> read lpar VARIABLE rpar semi .</td>
+			</tr>
+			<tr>
+				<td>
+					STATEMENT →</td>
+				<td> write lpar EXPR rpar semi .</td>
+			</tr>
+			<tr>
+				<td>
+					STATEMENT →</td>
+				<td> return lpar EXPR rpar semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					STRUCTDECL →</td>
+				<td> struct id OPTSTRUCTDECL2 lcurbr REPTSTRUCTDECL4 rcurbr semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					STRUCTORIMPLORFUNC →</td>
+				<td> STRUCTDECL .</td>
+			</tr>
+			<tr>
+				<td>
+					STRUCTORIMPLORFUNC →</td>
+				<td> IMPLDEF .</td>
+			</tr>
+			<tr>
+				<td>
+					STRUCTORIMPLORFUNC →</td>
+				<td> FUNCDEF .</td>
+			</tr>
+			<tr>
+				<td>
+
+					TERM →</td>
+				<td> FACTOR RIGHTRECTERM .</td>
+			</tr>
+			<tr>
+				<td>
+
+					TYPE →</td>
+				<td> integer .</td>
+			</tr>
+			<tr>
+				<td>
+					TYPE →</td>
+				<td> float .</td>
+			</tr>
+			<tr>
+				<td>
+					TYPE →</td>
+				<td> id .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VARDECL →</td>
+				<td> let id colon TYPE REPTVARDECL4 semi .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VARDECLORSTAT →</td>
+				<td> VARDECL .</td>
+			</tr>
+			<tr>
+				<td>
+					VARDECLORSTAT →</td>
+				<td> STATEMENT .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VARIABLE →</td>
+				<td> id VARIABLEIDNEST .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VARIABLEIDNEST →</td>
+				<td> REPTIDNEST1 VARIABLEIDNESTTAIL .</td>
+			</tr>
+			<tr>
+				<td>
+					VARIABLEIDNEST →</td>
+				<td> lpar APARAMS rpar dot id VARIABLEIDNEST .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VARIABLEIDNESTTAIL →</td>
+				<td> dot id VARIABLEIDNEST .</td>
+			</tr>
+			<tr>
+				<td>
+					VARIABLEIDNESTTAIL →</td>
+				<td> .</td>
+			</tr>
+			<tr>
+				<td>
+
+					VISIBILITY →</td>
+				<td> public .</td>
+			</tr>
+			<tr>
+				<td>
+					VISIBILITY →</td>
+				<td> private .</td>
+			</tr>
+			<tr>
+				<td>
+
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="parse_table" border="1">
+		<tbody>
+			<tr>
+				<td></td>
+				<th>
+					<terminal>$</terminal>
+				</th>
+				<th>
+					<terminal>private</terminal>
+				</th>
+				<th>
+					<terminal>public</terminal>
+				</th>
+				<th>
+					<terminal>id</terminal>
+				</th>
+				<th>
+					<terminal>dot</terminal>
+				</th>
+				<th>
+					<terminal>rpar</terminal>
+				</th>
+				<th>
+					<terminal>lpar</terminal>
+				</th>
+				<th>
+					<terminal>semi</terminal>
+				</th>
+				<th>
+					<terminal>colon</terminal>
+				</th>
+				<th>
+					<terminal>let</terminal>
+				</th>
+				<th>
+					<terminal>float</terminal>
+				</th>
+				<th>
+					<terminal>integer</terminal>
+				</th>
+				<th>
+					<terminal>rcurbr</terminal>
+				</th>
+				<th>
+					<terminal>lcurbr</terminal>
+				</th>
+				<th>
+					<terminal>struct</terminal>
+				</th>
+				<th>
+					<terminal>return</terminal>
+				</th>
+				<th>
+					<terminal>write</terminal>
+				</th>
+				<th>
+					<terminal>read</terminal>
+				</th>
+				<th>
+					<terminal>while</terminal>
+				</th>
+				<th>
+					<terminal>else</terminal>
+				</th>
+				<th>
+					<terminal>then</terminal>
+				</th>
+				<th>
+					<terminal>if</terminal>
+				</th>
+				<th>
+					<terminal>minus</terminal>
+				</th>
+				<th>
+					<terminal>plus</terminal>
+				</th>
+				<th>
+					<terminal>void</terminal>
+				</th>
+				<th>
+					<terminal>comma</terminal>
+				</th>
+				<th>
+					<terminal>geq</terminal>
+				</th>
+				<th>
+					<terminal>leq</terminal>
+				</th>
+				<th>
+					<terminal>gt</terminal>
+				</th>
+				<th>
+					<terminal>lt</terminal>
+				</th>
+				<th>
+					<terminal>neq</terminal>
+				</th>
+				<th>
+					<terminal>eq</terminal>
+				</th>
+				<th>
+					<terminal>inherits</terminal>
+				</th>
+				<th>
+					<terminal>and</terminal>
+				</th>
+				<th>
+					<terminal>div</terminal>
+				</th>
+				<th>
+					<terminal>mult</terminal>
+				</th>
+				<th>
+					<terminal>rsqbr</terminal>
+				</th>
+				<th>
+					<terminal>lsqbr</terminal>
+				</th>
+				<th>
+					<terminal>impl</terminal>
+				</th>
+				<th>
+					<terminal>arrow</terminal>
+				</th>
+				<th>
+					<terminal>func</terminal>
+				</th>
+				<th>
+					<terminal>not</terminal>
+				</th>
+				<th>
+					<terminal>floatlit</terminal>
+				</th>
+				<th>
+					<terminal>intlit</terminal>
+				</th>
+				<th>
+					<terminal>equal</terminal>
+				</th>
+				<th>
+					<terminal>or</terminal>
+				</th>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ADDOP</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ADDOP</nonterm> → <term>minus</term>
+				</td>
+				<td>
+					<nonterm>ADDOP</nonterm> → <term>plus</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ADDOP</nonterm> → <term>or</term>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>APARAMS</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>
+					<nonterm>APARAMS</nonterm> → <nonterm>EXPR</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>APARAMSTAIL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>APARAMSTAIL</nonterm> → <term>comma</term>
+					<nonterm>EXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ARITHEXPR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>ARITHEXPR</nonterm> → <nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ARRAYSIZE</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARRAYSIZE</nonterm> → <term>lsqbr</term>
+					<nonterm>ARRAYSIZE1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ARRAYSIZE1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARRAYSIZE1</nonterm> → <term>rsqbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ARRAYSIZE1</nonterm> → <term>intlit</term>
+					<term>rsqbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ASSIGNOP</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ASSIGNOP</nonterm> → <term>equal</term>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>ASSIGNSTAT</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>ASSIGNSTAT</nonterm> → <nonterm>VARIABLE</nonterm>
+					<nonterm>ASSIGNOP</nonterm>
+					<nonterm>EXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>EXPR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>EXPR1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>EXPR1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>EXPR1</nonterm> → <nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FACTOR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <nonterm>FUNCORVAR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <term>lpar</term>
+					<nonterm>ARITHEXPR</nonterm>
+					<term>rpar</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <nonterm>SIGN</nonterm>
+					<nonterm>FACTOR</nonterm>
+				</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <nonterm>SIGN</nonterm>
+					<nonterm>FACTOR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <term>not</term>
+					<nonterm>FACTOR</nonterm>
+				</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <term>floatlit</term>
+				</td>
+				<td>
+					<nonterm>FACTOR</nonterm> → <term>intlit</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FPARAMS</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FPARAMS</nonterm> → <term>id</term>
+					<term>colon</term>
+					<nonterm>TYPE</nonterm>
+					<nonterm>REPTFPARAMS3</nonterm>
+					<nonterm>REPTFPARAMS4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FPARAMS</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FPARAMSTAIL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FPARAMSTAIL</nonterm> → <term>comma</term>
+					<term>id</term>
+					<term>colon</term>
+					<nonterm>TYPE</nonterm>
+					<nonterm>REPTFPARAMSTAIL4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCBODY</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCBODY</nonterm> → <term>lcurbr</term>
+					<nonterm>REPTFUNCBODY1</nonterm>
+					<term>rcurbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCDECL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCDECL</nonterm> → <nonterm>FUNCHEAD</nonterm>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCDEF</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCDEF</nonterm> → <nonterm>FUNCHEAD</nonterm>
+					<nonterm>FUNCBODY</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCHEAD</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCHEAD</nonterm> → <term>func</term>
+					<term>id</term>
+					<term>lpar</term>
+					<nonterm>FPARAMS</nonterm>
+					<term>rpar</term>
+					<term>arrow</term>
+					<nonterm>RETURNTYPE</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCORVAR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVAR</nonterm> → <term>id</term>
+					<nonterm>FUNCORVARIDNEST</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCORVARIDNEST</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <term>lpar</term>
+					<nonterm>APARAMS</nonterm>
+					<term>rpar</term>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → <term>dot</term>
+					<term>id</term>
+					<nonterm>FUNCORVARIDNEST</nonterm>
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>FUNCORVARIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>IMPLDEF</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>IMPLDEF</nonterm> → <term>impl</term>
+					<term>id</term>
+					<term>lcurbr</term>
+					<nonterm>REPTIMPLDEF3</nonterm>
+					<term>rcurbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>INDICE</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>INDICE</nonterm> → <term>lsqbr</term>
+					<nonterm>ARITHEXPR</nonterm>
+					<term>rsqbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>MEMBERDECL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>MEMBERDECL</nonterm> → <nonterm>VARDECL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>MEMBERDECL</nonterm> → <nonterm>FUNCDECL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>MULTOP</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>MULTOP</nonterm> → <term>and</term>
+				</td>
+				<td>
+					<nonterm>MULTOP</nonterm> → <term>div</term>
+				</td>
+				<td>
+					<nonterm>MULTOP</nonterm> → <term>mult</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>OPTSTRUCTDECL2</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>OPTSTRUCTDECL2</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>OPTSTRUCTDECL2</nonterm> → <term>inherits</term>
+					<term>id</term>
+					<nonterm>REPTOPTSTRUCTDECL22</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>PROG</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>PROG</nonterm> → <nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>PROG</nonterm> → <nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>PROG</nonterm> → <nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>RELEXPR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>RELEXPR</nonterm> → <nonterm>ARITHEXPR</nonterm>
+					<nonterm>RELOP</nonterm>
+					<nonterm>ARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>RELOP</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>geq</term>
+				</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>leq</term>
+				</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>gt</term>
+				</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>lt</term>
+				</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>neq</term>
+				</td>
+				<td>
+					<nonterm>RELOP</nonterm> → <term>eq</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTAPARAMS1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTAPARAMS1</nonterm> → <nonterm>APARAMSTAIL</nonterm>
+					<nonterm>REPTAPARAMS1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTFPARAMS3</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMS3</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMS3</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMS3</nonterm> → <nonterm>ARRAYSIZE</nonterm>
+					<nonterm>REPTFPARAMS3</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTFPARAMS4</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMS4</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMS4</nonterm> → <nonterm>FPARAMSTAIL</nonterm>
+					<nonterm>REPTFPARAMS4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTFPARAMSTAIL4</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMSTAIL4</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMSTAIL4</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFPARAMSTAIL4</nonterm> → <nonterm>ARRAYSIZE</nonterm>
+					<nonterm>REPTFPARAMSTAIL4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTFUNCBODY1</nonterm> → <nonterm>VARDECLORSTAT</nonterm>
+					<nonterm>REPTFUNCBODY1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTIDNEST1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → <nonterm>INDICE</nonterm>
+					<nonterm>REPTIDNEST1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>REPTIDNEST1</nonterm> → &amp;epsilon
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTIMPLDEF3</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIMPLDEF3</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTIMPLDEF3</nonterm> → <nonterm>FUNCDEF</nonterm>
+					<nonterm>REPTIMPLDEF3</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTOPTSTRUCTDECL22</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTOPTSTRUCTDECL22</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTOPTSTRUCTDECL22</nonterm> → <term>comma</term>
+					<term>id</term>
+					<nonterm>REPTOPTSTRUCTDECL22</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTPROG0</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTPROG0</nonterm> → <nonterm>STRUCTORIMPLORFUNC</nonterm>
+					<nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTPROG0</nonterm> → <nonterm>STRUCTORIMPLORFUNC</nonterm>
+					<nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTPROG0</nonterm> → <nonterm>STRUCTORIMPLORFUNC</nonterm>
+					<nonterm>REPTPROG0</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTATBLOCK1</nonterm> → <nonterm>STATEMENT</nonterm>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTSTRUCTDECL4</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTRUCTDECL4</nonterm> → <nonterm>VISIBILITY</nonterm>
+					<nonterm>MEMBERDECL</nonterm>
+					<nonterm>REPTSTRUCTDECL4</nonterm>
+				</td>
+				<td>
+					<nonterm>REPTSTRUCTDECL4</nonterm> → <nonterm>VISIBILITY</nonterm>
+					<nonterm>MEMBERDECL</nonterm>
+					<nonterm>REPTSTRUCTDECL4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTSTRUCTDECL4</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>REPTVARDECL4</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTVARDECL4</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>REPTVARDECL4</nonterm> → <nonterm>ARRAYSIZE</nonterm>
+					<nonterm>REPTVARDECL4</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>RETURNTYPE</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RETURNTYPE</nonterm> → <nonterm>TYPE</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RETURNTYPE</nonterm> → <nonterm>TYPE</nonterm>
+				</td>
+				<td>
+					<nonterm>RETURNTYPE</nonterm> → <nonterm>TYPE</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RETURNTYPE</nonterm> → <term>void</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → <nonterm>ADDOP</nonterm>
+					<nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → <nonterm>ADDOP</nonterm>
+					<nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECARITHEXPR</nonterm> → <nonterm>ADDOP</nonterm>
+					<nonterm>TERM</nonterm>
+					<nonterm>RIGHTRECARITHEXPR</nonterm>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → <nonterm>MULTOP</nonterm>
+					<nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → <nonterm>MULTOP</nonterm>
+					<nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → <nonterm>MULTOP</nonterm>
+					<nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>RIGHTRECTERM</nonterm> → &amp;epsilon
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>S1</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S1</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>S2</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S1</nonterm> → <term>lpar</term>
+					<nonterm>APARAMS</nonterm>
+					<term>rpar</term>
+					<nonterm>S3</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S1</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>S2</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S1</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>S2</nonterm>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>S2</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S2</nonterm> → <term>dot</term>
+					<term>id</term>
+					<nonterm>S1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S2</nonterm> → <nonterm>ASSIGNOP</nonterm>
+					<nonterm>EXPR</nonterm>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>S3</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S3</nonterm> → <term>dot</term>
+					<term>id</term>
+					<nonterm>S1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>S3</nonterm> → <term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>SIGN</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>SIGN</nonterm> → <term>minus</term>
+				</td>
+				<td>
+					<nonterm>SIGN</nonterm> → <term>plus</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>START</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>START</nonterm> → <nonterm>PROG</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>START</nonterm> → <nonterm>PROG</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>START</nonterm> → <nonterm>PROG</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>STATBLOCK</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <term>lcurbr</term>
+					<nonterm>REPTSTATBLOCK1</nonterm>
+					<term>rcurbr</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATBLOCK</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>STATEMENT</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>id</term>
+					<nonterm>S1</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>return</term>
+					<term>lpar</term>
+					<nonterm>EXPR</nonterm>
+					<term>rpar</term>
+					<term>semi</term>
+				</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>write</term>
+					<term>lpar</term>
+					<nonterm>EXPR</nonterm>
+					<term>rpar</term>
+					<term>semi</term>
+				</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>read</term>
+					<term>lpar</term>
+					<nonterm>VARIABLE</nonterm>
+					<term>rpar</term>
+					<term>semi</term>
+				</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>while</term>
+					<term>lpar</term>
+					<nonterm>RELEXPR</nonterm>
+					<term>rpar</term>
+					<nonterm>STATBLOCK</nonterm>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STATEMENT</nonterm> → <term>if</term>
+					<term>lpar</term>
+					<nonterm>RELEXPR</nonterm>
+					<term>rpar</term>
+					<term>then</term>
+					<nonterm>STATBLOCK</nonterm>
+					<term>else</term>
+					<nonterm>STATBLOCK</nonterm>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>STRUCTDECL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STRUCTDECL</nonterm> → <term>struct</term>
+					<term>id</term>
+					<nonterm>OPTSTRUCTDECL2</nonterm>
+					<term>lcurbr</term>
+					<nonterm>REPTSTRUCTDECL4</nonterm>
+					<term>rcurbr</term>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>STRUCTORIMPLORFUNC</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STRUCTORIMPLORFUNC</nonterm> → <nonterm>STRUCTDECL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STRUCTORIMPLORFUNC</nonterm> → <nonterm>IMPLDEF</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>STRUCTORIMPLORFUNC</nonterm> → <nonterm>FUNCDEF</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>TERM</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>
+					<nonterm>TERM</nonterm> → <nonterm>FACTOR</nonterm>
+					<nonterm>RIGHTRECTERM</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>TYPE</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TYPE</nonterm> → <term>id</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>TYPE</nonterm> → <term>float</term>
+				</td>
+				<td>
+					<nonterm>TYPE</nonterm> → <term>integer</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VARDECL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARDECL</nonterm> → <term>let</term>
+					<term>id</term>
+					<term>colon</term>
+					<nonterm>TYPE</nonterm>
+					<nonterm>REPTVARDECL4</nonterm>
+					<term>semi</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VARDECLORSTAT</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>VARDECL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARDECLORSTAT</nonterm> → <nonterm>STATEMENT</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VARIABLE</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLE</nonterm> → <term>id</term>
+					<nonterm>VARIABLEIDNEST</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VARIABLEIDNEST</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLEIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>VARIABLEIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm>
+				</td>
+				<td>
+					<nonterm>VARIABLEIDNEST</nonterm> → <term>lpar</term>
+					<nonterm>APARAMS</nonterm>
+					<term>rpar</term>
+					<term>dot</term>
+					<term>id</term>
+					<nonterm>VARIABLEIDNEST</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLEIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLEIDNEST</nonterm> → <nonterm>REPTIDNEST1</nonterm>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm> → <term>dot</term>
+					<term>id</term>
+					<nonterm>VARIABLEIDNEST</nonterm>
+				</td>
+				<td>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VARIABLEIDNESTTAIL</nonterm> → &amp;epsilon
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>
+					<nonterm>VISIBILITY</nonterm>
+				</th>
+				<td>&nbsp;</td>
+				<td>
+					<nonterm>VISIBILITY</nonterm> → <term>private</term>
+				</td>
+				<td>
+					<nonterm>VISIBILITY</nonterm> → <term>public</term>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+
+	Return home to <a target="_top" href="https://smlweb.cpsc.ucalgary.ca/start.html">enter a new grammar</a>.
+
+
+
+</body>
+<div id="vidcor-container">
+	<link rel="stylesheet" href="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/css/cadcom.css" type="text/css">
+	<link rel="stylesheet" href="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/css/style.css" type="text/css">
+	<link href="./LL(1) Parsing Table_files/css" rel="stylesheet">
+
+	<!--Action frame start--->
+	<div id="cc-recording-web" class="recording-option-popup-container">
+		<!-- <iframe src="about:blank" style="visibility:hidden;" allowtransparency="true" application="yes" allow="microphone;camera;speaker;" id="cc-recording-web"
+            frameBorder="0" style=""></iframe> -->
+	</div>
+	<!---End-->
+
+
+	<!--Toster for message show dynamic--->
+	<div id="fde-add-brading-logo">
+	</div>
+	<!---End-->
+
+	<!--Toster for message show dynamic--->
+	<div id="fde-add-toster-web">
+	</div>
+	<!---End-->
+
+	<!--Gmail frame add Start-->
+	<div id="cc-video-search"
+		style="z-index: 1000000004;display: none;position: fixed;top:0;width: 100vw;height: 100vh;background: rgba(0,0,0, 0.5);">
+	</div>
+	<!--End-->
+	<!--2f Login frame add Start-->
+	<div id="fde-2flogin-frame" style="z-index: 1000000003;position: fixed;top: 5%;left:30%;">
+
+	</div>
+	<!--End-->
+	<!--Video frame start--->
+	<div id="cc-recording-block" style="display: none;z-index: 1000000002;bottom: 20px; left: 100px;">
+		<div class="cc-personal-recorder-view show" id="vcc-ffcam-container">
+			<table>
+				<tbody>
+					<tr>
+						<td id="vcc-left-position"></td>
+						<td>
+							<!--<div class="timer_count" id="vcc-timer-elem"></div>-->
+							<!-- <div class="timer_count" id="vcc-timer-elem" style="display: none;"></div> -->
+							<div class="cc-ffcam-view-wrap cc-round-shadow" style="display: inline-block;">
+								<div class="cc-ffcam-view size-1 cc-round" id="vcc-video-frame">
+									<div class="cc-ffcam-iframe-container" id="vidcor-video-frame">
+										<div class="fl-loader-bg" id="fde-video-loader" style="opacity: 0;">
+											<div class="fl-loading-bar-spinner fl-spinner sml">
+												<div class="fl-spinner-icon sml"></div>
+											</div>
+										</div>
+										<!-- <img id="vidcor-ff-img" style="width:100%;	object-fit:cover; height:100%;"
+									onerror="this.onerror=null;this.src='chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/user.jpeg';" /> -->
+										<div id="vidcor-ff-img"
+											style="width:100%;	object-fit:cover; height:100%; display: none;">
+											<div
+												style="text-align: center;padding-top: 40px;font-weight: bold;font-family: &#39;Circular-Loom&#39;;">
+												Close other apps</div>
+											<div
+												style="padding-top: 25px;font-size: 13px;text-align: center;font-family: &#39;Circular-Loom&#39;;">
+												It looks like some other app is <br> already using your camera.
+											</div>
+											<div style="text-align: center;pointer-events: all;padding-top: 10px;">
+												<button id="retryVideoFrmae"
+													style="cursor: pointer;background-color: #1e51c39c;color: #fff;border: black;border-radius: 10px;width: 70px;height: 25px;">Retry</button>
+											</div>
+										</div>
+										<iframe src="./LL(1) Parsing Table_files/iframe.html" id="vidcor-ff-cam"
+											class="cc-zoom1" allow="camera;microphone"></iframe>
+									</div>
+
+
+
+									<div class="cc-camera-type-blk" style="display: none;">
+										<div class="cc-camera-type">
+											<div class="c-shape-sqr cc-tt" id="fde-square-click">
+												<span class="cc-tt-hint">Click to change the shape<br>to square</span>
+											</div>
+											<div class="c-shape-cir cc-tt act" id="fde-rount-click">
+												<span class="cc-tt-hint">Click to change the shape<br>to circle</span>
+											</div>
+										</div>
+										<div class="shape-size">
+											<div class="size-button size-3 vcc-cam-zoom3"></div>
+											<div class="size-button size-2 vcc-cam-zoom2"></div>
+											<div class="size-button size-1 vcc-cam-zoom1 active"></div>
+										</div>
+									</div>
+
+
+
+									<!-- <div class="cc-camera-size-tooltip">
+								<div class="size-button size-1 vcc-cam-zoom1 active"></div>
+								<div class="size-button size-2 vcc-cam-zoom2"></div>
+								<div class="size-button size-3 vcc-cam-zoom3"></div>
+							</div> -->
+
+									<!-- <span class="cc-ffcam-close size-1"></span> -->
+									<div class="cc-tt">
+										<span class="cc-flipcamera" id="vcc-flip-camera"></span>
+										<span class="cc-tt-hint hint-camera" style="height:14px!important;">Mirror
+											Camera</span>
+									</div>
+									<!-- <span class="cc-bg-setting" id="fde-bg-blur-click"></span> -->
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!------------Tools Start---------------->
+	<section class="cc-tools-container" valign="bottom" id="fde-action-menu-items"
+		style="display: none;top: 144px; left: 0px;">
+		<div style="position: relative;bottom: 0px; left:-10px; top:10px; display: flex;">
+			<img id="drag-elem-id" class="cc-drag"
+				src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/drag.png">
+			<div class="cc-tools">
+				<div>
+					<strong class="recording-duration" id="vcc-timer-elem" style="display: none;">0:00:00</strong>
+				</div>
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-pause-ico.png"
+					id="vcc-pause-btn" style="display: none;" title="Pause Recording">
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-play-ico.png"
+					id="vcc-resume-btn" style="display: none;" title="Resume Recording">
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-play-ico.png"
+					id="vcc-init-btn" title="Start Recording" style="display: none;">
+				<span class="pos-rel" style="height:36px;">
+					<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-close-ico.png"
+						id="open-cancel-option" title="Cancel Recording">
+					<div class="cls-rec" id="cancel-option-list" style="display: none;">
+						<ul>
+							<li id="vcc-cancel-btn">Cancel recording</li>
+							<li id="fde-restart">Restart recording</li>
+						</ul>
+					</div>
+				</span>
+
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-finish-rc.png"
+					id="vcc-stop-btn" style="display: none;" title="Finish Recording">
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-camera-on-ico.png"
+					id="vcc-cam-setting-btn" title="Camera ON">
+				<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-camera-off-ico.png"
+					id="vcc-cam-hide-setting-btn" title="Camera OFF">
+				<div id="vcc-draw-elem" style="display: none;"></div>
+			</div>
+
+		</div>
+	</section>
+	<!------------Tools Ends----------------->
+
+	<!--End-->
+
+	<!--Message popup --->
+	<div id="fde-popup-message"></div>
+	<div id="fde-common-popup-message"></div>
+	<!---End-->
+
+	<!-- ---------------------------------------------------------------------------------- -->
+</div>
+
+</html>

@@ -36,7 +36,7 @@
 <idnest>             ::= 'id' {{<indice>}} '.'
                       |  'id' '(' <aParams> ')' '.'
 <indice>             ::= '[' <arithExpr> ']'
-<arraySize>          ::= '[' 'intNum' ']' | '[' ']'
+<arraySize>          ::= '[' 'intLit' ']' | '[' ']'
 <type>               ::= 'integer' | 'float' | 'id'
 <returnType>         ::= <type> |  'void'
 <fParams>            ::= 'id' ':' <type> {{<arraySize>}} {{<fParamsTail>}} | EPSILON
