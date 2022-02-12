@@ -2,6 +2,7 @@ package parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,19 +20,23 @@ public class Parser {
 	HashMap<String, Set<String>> firstSet = new HashMap<>();
 	HashMap<String, Set<String>> followSet = new HashMap<>();
 
-	public Parser(LexicalAnalyzer lexer) {
-		this.lexer = lexer;
-	}
+	// e.g. key: APARAMS-id, value: EXPR REPTAPARAMS1
+	// APARAMS with id transite to grammar EXPR REPTAPARAMS1
+	HashMap<String, ArrayList<String>> parseTable = new HashMap<>();
 
 	public Parser() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Parser(LexicalAnalyzer lexer) {
+		this.lexer = lexer;
 	}
 
 	public void parse() {
 
 	}
 
-	public void parseFirstFollowSet() throws IOException {
+	public void initFirstFollowSet() throws IOException {
 		File input = new File("./input/first-follow-set.html");
 		Document doc = Jsoup.parse(input, "UTF-8", "https://smlweb.cpsc.ucalgary.ca/start.html");
 		Element table = doc.select("table[class=stats]").first();
@@ -50,8 +55,38 @@ public class Parser {
 		}
 	}
 
+	public void initParseTable() throws IOException {
+		File input = new File("./input/parse-table.html");
+		Document doc = Jsoup.parse(input, "UTF-8", "https://smlweb.cpsc.ucalgary.ca/start.html");
+		Element table = doc.select("table[class=parse_table]").first();
+		Elements rows = table.select("tr");
+		Element firstRow = rows.get(0);
+		ArrayList<String> terminals = new ArrayList<>();
+		for (Element th : firstRow.select("th")) {
+			terminals.add(th.getElementsByTag("terminal").first().text());
+		}
+
+		for (int i = 1; i < rows.size(); i++) {
+			Element tr = rows.get(i);
+			String nonTermial = tr.select("th").first().child(0).text();
+			Elements td = tr.select("td");
+			for (int j = 0; j < td.size(); j++) {
+				if (td.get(j).childrenSize() > 0) {
+					ArrayList<String> terms = new ArrayList<>();
+					for (Element term : td.get(j).children()) {
+						if (!term.text().equals(nonTermial)) {
+							terms.add(term.text());
+						}
+					}
+					parseTable.put(nonTermial + "::" + terminals.get(j), terms);
+				}
+			}
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
-		new Parser().parseFirstFollowSet();
+		new Parser().initFirstFollowSet();
+		// new Parser().initParseTable();
 	}
 
 }

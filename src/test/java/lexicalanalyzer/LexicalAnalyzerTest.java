@@ -14,7 +14,7 @@ class LexicalAnalyzerTest {
 		assertEquals(la.symbolMap.get('\n'), 17);
 		assertEquals(la.symbolMap.get('|'), 15);
 		assertEquals(la.stateMap.get(33), "invalidchar");
-		assertEquals(la.tb[30][3], 30);
+		assertEquals(la.tb[30][3], 0);
 	}
 
 }
