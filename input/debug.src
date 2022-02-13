@@ -1,5 +1,7 @@
 func bubbleSort() -> void
 {
-  let n: integer;
-  let i: integer;
-} 
+  let j: integer;
+}
+/*
+eof comments
+*/

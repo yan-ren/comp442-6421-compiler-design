@@ -29,7 +29,7 @@ public class LexicalAnalyzer {
 			+ "12:assign;13:eq;14:lt;15:noteq;16:leq;17:gt;18:geq;19:colon;20:coloncolon;21:minus;22:arrow;23:special_char;24:plus;25:mult;26:dot;27:div;"
 			+ "29:inlinecmt;30:blockcmt;31:unterminated_block_cmt;33:invalidchar;34:invalidid;35:invalidnum";
 
-	public static String symbols = "1:abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;" + "2:e;" + "3:_;"
+	public static String symbols = "1:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;" + "2:e;" + "3:_;"
 			+ "4:123456789;" + "5:0;" + "6:+;" + "7:-;" + "8:.;" + "9:=;" + "10:<;" + "11:>;" + "13:*;" + "14:/;"
 			+ "15:|&!(){}[],;" + "16: \t\r;" + "17:\n";
 

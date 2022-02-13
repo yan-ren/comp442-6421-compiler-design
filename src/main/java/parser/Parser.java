@@ -75,13 +75,20 @@ public class Parser {
 
 	private Token skipErrors(Token lookahead) throws Exception {
 		System.out.println("syntax error at: " + lookahead.getLocation() + " Token: " + lookahead.toString());
-		if (lookahead.getType().equals(END_OF_STACK) || followSet.get(stack.peek()).contains(lookahead.getType())) {
+		if (lookahead.getType().equals(END_OF_STACK)
+				|| (followSet.get(stack.peek()) != null && followSet.get(stack.peek()).contains(lookahead.getType()))) {
 			stack.pop();
 		} else {
-			while (!firstSet.get(stack.peek()).contains(lookahead.getType())
-					|| (firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD)
+			while ((firstSet.get(stack.peek()) != null && !firstSet.get(stack.peek()).contains(lookahead.getType()))
+					|| (firstSet.get(stack.peek()) != null
+							&& firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD)
+							&& followSet.get(stack.peek()) != null
 							&& !followSet.get(stack.peek()).contains(lookahead.getType()))) {
 				lookahead = lexer.nextToken();
+				// edge case: skipping error until end of file
+				if (lookahead.getType().equals(END_OF_STACK)) {
+					return lookahead;
+				}
 			}
 		}
 
