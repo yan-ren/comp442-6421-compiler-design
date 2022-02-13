@@ -11,10 +11,12 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Driver {
+import parser.Parser;
 
-	public static final String DEFAULT_INPUT = "./input";
-	public static final String DEFAULT_OUTPUT = "./output/";
+public class LexerDriver {
+
+	public static final String DEFAULT_INPUT = "./input-lexer";
+	public static final String DEFAULT_OUTPUT = "./output-lexer/";
 
 	public static void main(String[] args) throws Exception {
 		String fileDir = DEFAULT_INPUT;
@@ -63,17 +65,10 @@ public class Driver {
 			e.printStackTrace();
 		}
 
-		LexicalAnalyzer la = new LexicalAnalyzer(in);
+		LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
 		Token token = la.nextToken();
-		while (token != null) {
-			outlextokens.write(token + "\n");
+		while (token.getType() != Parser.END_OF_STACK) {
 			token = la.nextToken();
-		}
-
-		if (la.hasErrors()) {
-			for (String error : la.getErrors()) {
-				outlexerrors.write(error + "\n");
-			}
 		}
 
 		in.close();

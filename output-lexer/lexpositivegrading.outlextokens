@@ -68,3 +68,4 @@
 [intnum, 12, 47]
 [id, abc, 47]
 [invalidnum, 0123, 49]
+[$, $, 51]

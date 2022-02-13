@@ -8,7 +8,7 @@ class LexicalAnalyzerTest {
 
 	@Test
 	void testLexicalAnalyzerInit() {
-		LexicalAnalyzer la = new LexicalAnalyzer(null);
+		LexicalAnalyzer la = new LexicalAnalyzer(null, null, null);
 		assertEquals(la.symbolMap.get(' '), 16);
 		assertEquals(la.symbolMap.get('\t'), 16);
 		assertEquals(la.symbolMap.get('\n'), 17);

@@ -30,3 +30,4 @@
 [intnum, 1, 19]
 [id, abc, 19]
 [invalidid, _1abc, 20]
+[$, $, 22]

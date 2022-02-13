@@ -1,8 +1,8 @@
 package lexicalanalyzer;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,8 +10,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
+
+import parser.Parser;
 
 public class LexicalAnalyzer {
 
@@ -48,7 +50,9 @@ public class LexicalAnalyzer {
 
 	public Set<String> keywordsSet;
 	private Queue<Character> charBuffer;
-	private ArrayList<String> errors;
+
+	BufferedWriter tokenLogger;
+	BufferedWriter errorLogger;
 
 	// constants
 	private final int TRAP_STATE = 0;
@@ -63,11 +67,16 @@ public class LexicalAnalyzer {
 	private final char EOF = (char) 0x04;
 	private final int UNSUPPORTED_SYMBOL = 0;
 
-	public LexicalAnalyzer(BufferedReader br) {
+	public LexicalAnalyzer(BufferedReader br, BufferedWriter outlextokens, BufferedWriter outlexerrors) {
 		this.br = br;
+		this.tokenLogger = outlextokens;
+		this.errorLogger = outlexerrors;
+		init();
+	}
+
+	public void init() {
 		line = 1;
 		charBuffer = new LinkedList<>();
-		errors = new ArrayList<>();
 		symbolMap = createSymbolMap();
 		stateMap = createStateMap();
 		createTb();
@@ -133,7 +142,9 @@ public class LexicalAnalyzer {
 		do {
 			char lookup = nextChar();
 			if (lookup == EOF) {
-				return null;
+				Token newToken = new Token(Parser.END_OF_STACK, Parser.END_OF_STACK, this.line);
+				tokenLogger.write(newToken.toString() + "\n");
+				return newToken;
 			}
 			nextState = tb[currentState][getSymbolNum(lookup)];
 			if (nextState == TRAP_STATE) {
@@ -145,11 +156,14 @@ public class LexicalAnalyzer {
 					lexeme += lookup;
 				}
 				if (currentState == BLOCK_CMT_STATE) {
-					return buildBlockCmt(lexeme);
+					Token newToken = buildBlockCmt(lexeme);
+					tokenLogger.write(newToken.toString() + "\n");
+					return newToken;
 				}
 			}
 		} while (token == null);
 
+		tokenLogger.write(token.toString() + "\n");
 		return token;
 	}
 
@@ -245,25 +259,28 @@ public class LexicalAnalyzer {
 		return line;
 	}
 
-	private void addErrorIfExists(int state, String lexeme, int line) {
+	private void addErrorIfExists(int state, String lexeme, int line) throws IOException {
 		if (INVALID_CHAR.contains(state)) {
-			errors.add("Lexical error: Invalid character: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
-					+ "line " + line);
+			errorLogger.write(
+					"Lexical error: Invalid character: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+							+ "line " + line + "\n");
 		}
 
 		if (INVALID_ID.contains(state)) {
-			errors.add("Lexical error: Invalid identifier: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
-					+ "line " + line);
+			errorLogger
+					.write("Lexical error: Invalid identifier: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+							+ "line " + line + "\n");
 		}
 
 		if (INVALID_NUM.contains(state)) {
-			errors.add("Lexical error: Invalid number: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
-					+ "line " + line);
+			errorLogger.write("Lexical error: Invalid number: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+					+ "line " + line + "\n");
 		}
 
 		if (state == UNTERMINATED_BLOCK_CMT_STATE) {
-			errors.add("Lexical error: Invalid block comments: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
-					+ "line " + line);
+			errorLogger.write(
+					"Lexical error: Invalid block comments: " + "\"" + StringEscapeUtils.escapeJava(lexeme) + "\": "
+							+ "line " + line + "\n");
 		}
 	}
 
@@ -297,13 +314,5 @@ public class LexicalAnalyzer {
 		}
 
 		return result;
-	}
-
-	public boolean hasErrors() {
-		return errors.size() > 0;
-	}
-
-	public ArrayList<String> getErrors() {
-		return errors;
 	}
 }
