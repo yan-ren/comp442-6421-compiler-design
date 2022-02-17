@@ -1,5 +1,6 @@
 package parser;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import lexicalanalyzer.Token;
 public class Parser {
 
 	LexicalAnalyzer lexer;
+	BufferedWriter derivationLogger;
+	BufferedWriter errorLogger;
 	HashMap<String, Set<String>> firstSet = new HashMap<>();
 	HashMap<String, Set<String>> followSet = new HashMap<>();
 
@@ -30,12 +33,17 @@ public class Parser {
 
 	Stack<String> stack = new Stack<>();
 
+	String derivation = "";
+
 	// constants
 	public static String END_OF_STACK = "$";
 	public static String STARTING_SYMBOL = "START";
 
-	public Parser(LexicalAnalyzer lexer) throws IOException {
+	public Parser(LexicalAnalyzer lexer, BufferedWriter outderivation, BufferedWriter outsyntaxerrors)
+			throws IOException {
 		this.lexer = lexer;
+		this.derivationLogger = outderivation;
+		this.errorLogger = outsyntaxerrors;
 		initFirstFollowSet();
 		initParseTable();
 	}
@@ -44,13 +52,19 @@ public class Parser {
 		boolean error = false;
 		stack.push(END_OF_STACK);
 		stack.push(STARTING_SYMBOL);
-		Token a = lexer.nextToken();
+		derivation = STARTING_SYMBOL;
+		Token a = nextToken();
+		derivationLogger.write(derivation + "\n");
 		while (!stack.peek().equals(END_OF_STACK)) {
+			// edge case, when run out of token but stack has value
+			if (a.getType().equals(END_OF_STACK)) {
+				break;
+			}
 			String x = stack.peek();
 			if (isTerminal(x)) {
 				if (x.equals(a.getType())) {
 					stack.pop();
-					a = lexer.nextToken();
+					a = nextToken();
 				} else {
 					a = skipErrors(a);
 					error = true;
@@ -59,6 +73,15 @@ public class Parser {
 				if (parseTableLookup(x, a) != null) {
 					stack.pop();
 					inverseRHSMultiplePush(parseTableLookup(x, a));
+					// logging
+					String d = parseTableLookup(x, a).stream().collect(Collectors.joining(" "));
+					derivation = derivation.replaceFirst(x, d);
+					// formatting
+					derivation = derivation.replaceAll("  ", " ");
+					// derivationLogger.write(
+					// "|| rule: " + x + "::=" + d
+					// + "\n");
+					derivationLogger.write("START => " + derivation + "\n");
 				} else {
 					a = skipErrors(a);
 					error = true;
@@ -74,17 +97,19 @@ public class Parser {
 	}
 
 	private Token skipErrors(Token lookahead) throws Exception {
-		System.out.println("syntax error at: " + lookahead.getLocation() + " Token: " + lookahead.toString());
+		String errorMsg = "syntax error at: " + lookahead.getLocation() + " Token: " + lookahead.toString();
+		System.out.println(errorMsg);
+		errorLogger.write(errorMsg + "\n");
 		if (lookahead.getType().equals(END_OF_STACK)
 				|| (followSet.get(stack.peek()) != null && followSet.get(stack.peek()).contains(lookahead.getType()))) {
 			stack.pop();
 		} else {
-			while ((firstSet.get(stack.peek()) != null && !firstSet.get(stack.peek()).contains(lookahead.getType()))
+			while ((firstSet.get(stack.peek()) == null || !firstSet.get(stack.peek()).contains(lookahead.getType()))
 					|| (firstSet.get(stack.peek()) != null
 							&& firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD)
-							&& followSet.get(stack.peek()) != null
+							&& followSet.get(stack.peek()) == null
 							&& !followSet.get(stack.peek()).contains(lookahead.getType()))) {
-				lookahead = lexer.nextToken();
+				lookahead = nextToken();
 				// edge case: skipping error until end of file
 				if (lookahead.getType().equals(END_OF_STACK)) {
 					return lookahead;
@@ -93,6 +118,21 @@ public class Parser {
 		}
 
 		return lookahead;
+	}
+
+	/**
+	 * Get next token from lexical analyzer by ignoring commet token
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	private Token nextToken() throws Exception {
+		Token t = lexer.nextToken();
+		while (t.getType().equals(Constants.LA_TYPE.INLINECMT) || t.getType().equals(Constants.LA_TYPE.BLOCKCMT)) {
+			t = lexer.nextToken();
+		}
+
+		return t;
 	}
 
 	private void inverseRHSMultiplePush(ArrayList<String> terms) {
