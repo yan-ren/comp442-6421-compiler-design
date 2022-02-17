@@ -56,10 +56,6 @@ public class Parser {
 		Token a = nextToken();
 		derivationLogger.write(derivation + "\n");
 		while (!stack.peek().equals(END_OF_STACK)) {
-			// edge case, when run out of token but stack has value
-			if (a.getType().equals(END_OF_STACK)) {
-				break;
-			}
 			String x = stack.peek();
 			if (isTerminal(x)) {
 				if (x.equals(a.getType())) {
@@ -74,14 +70,7 @@ public class Parser {
 					stack.pop();
 					inverseRHSMultiplePush(parseTableLookup(x, a));
 					// logging
-					String d = parseTableLookup(x, a).stream().collect(Collectors.joining(" "));
-					derivation = derivation.replaceFirst(x, d);
-					// formatting
-					derivation = derivation.replaceAll("  ", " ");
-					// derivationLogger.write(
-					// "|| rule: " + x + "::=" + d
-					// + "\n");
-					derivationLogger.write("START => " + derivation + "\n");
+					logDerivation(a, x);
 				} else {
 					a = skipErrors(a);
 					error = true;
@@ -96,14 +85,36 @@ public class Parser {
 		}
 	}
 
+	private void logDerivation(Token a, String x) throws IOException {
+		String d = parseTableLookup(x, a).stream().collect(Collectors.joining(" "));
+		derivation = derivation.replaceFirst(x, d);
+		// formatting
+		derivation = derivation.replaceAll("  ", " ");
+		// derivationLogger.write(
+		// "|| rule: " + x + "::=" + d
+		// + "\n");
+		derivationLogger.write("START => " + derivation + "\n");
+	}
+
 	private Token skipErrors(Token lookahead) throws Exception {
 		String errorMsg = "syntax error at: " + lookahead.getLocation() + " Token: " + lookahead.toString();
 		System.out.println(errorMsg);
 		errorLogger.write(errorMsg + "\n");
+		/*
+		 * if ( lookahead is $ or in FOLLOW( top() ) )
+		 * pop()
+		 * pop - equivalent to A → ε
+		 */
 		if (lookahead.getType().equals(END_OF_STACK)
 				|| (followSet.get(stack.peek()) != null && followSet.get(stack.peek()).contains(lookahead.getType()))) {
 			stack.pop();
 		} else {
+			/*
+			 * while ( lookahead ∉ FIRST( top() ) or
+			 * ε ∈ FIRST( top() ) and lookahead ∉ FOLLOW( top() ) )
+			 * 
+			 * lookahead = nextToken()
+			 */
 			while ((firstSet.get(stack.peek()) == null || !firstSet.get(stack.peek()).contains(lookahead.getType()))
 					|| (firstSet.get(stack.peek()) != null
 							&& firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD)

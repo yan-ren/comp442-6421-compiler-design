@@ -59,7 +59,7 @@ public class Driver {
 
         LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
         Parser parser = new Parser(la, outderivation, outsyntaxerrors);
-        parser.parse();
+        System.out.println(parser.parse());
 
         in.close();
         outlextokens.close();

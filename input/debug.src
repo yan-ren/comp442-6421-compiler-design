@@ -1,5 +1,2 @@
 struct QUADRATIC {
-	private let float a;
-	private let float b;
-	private let float c;
 };
