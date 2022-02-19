@@ -16,4 +16,14 @@ public class DriverTest {
     void test3() throws Exception {
         Driver.main(new String[] { "./input/polynomial.src" });
     }
+
+    @Test
+    void test4() throws Exception {
+        Driver.main(new String[] { "./input/idnest.src" });
+    }
+
+    @Test
+    void test5() throws Exception {
+        Driver.main(new String[] { "./input/supplement.src" });
+    }
 }

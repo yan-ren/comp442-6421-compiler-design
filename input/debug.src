@@ -1,2 +1,4 @@
-struct QUADRATIC {
-};
+func test() -> void 
+{
+    id(id).id[id][id] = id(id).id[id][id];
+}
