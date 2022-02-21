@@ -1,0 +1,21 @@
+START
+START => PROG
+START => REPTPROG0
+START => STRUCTORIMPLORFUNC REPTPROG0
+START => FUNCDEF REPTPROG0
+START => FUNCHEAD FUNCBODY REPTPROG0
+START => func id openpar FPARAMS closepar arrow RETURNTYPE FUNCBODY REPTPROG0
+START => func id openpar closepar arrow RETURNTYPE FUNCBODY REPTPROG0
+START => func id openpar closepar arrow void FUNCBODY REPTPROG0
+START => func id openpar closepar arrow void opencubr REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr VARDECLORSTAT REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr VARDECL REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon TYPE REPTVARDECL4 semi REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon TYPE semi REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon TYPE semi VARDECLORSTAT REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon TYPE semi VARDECL REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon TYPE semi let id colon TYPE REPTVARDECL4 semi REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon integer semi let id colon TYPE REPTVARDECL4 semi REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon integer semi let id colon TYPE semi REPTFUNCBODY1 closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon integer semi let id colon TYPE semi closecubr REPTPROG0
+START => func id openpar closepar arrow void opencubr let id colon integer semi let id colon TYPE semi closecubr 

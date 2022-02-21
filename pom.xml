@@ -34,7 +34,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-	                        lexicalanalyzer.Driver
+	                        Driver
 	                    </mainClass>
 								</manifest>
 							</archive>
