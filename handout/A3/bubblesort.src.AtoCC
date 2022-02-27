@@ -1,0 +1,51 @@
+func id ( id : integer [ ] , id : integer ) arrow void 
+{
+  let id : integer ;
+  let id : integer ;
+  let id : integer ;
+  let id : integer ; 
+  id = id ;
+  id = intLit ;
+  id = intLit ;
+  id = intLit ;
+  while ( id lt id - intLit ) { 
+    while ( id lt id - id - intLit ) {
+      if (id [ id ] gt id [ id + intLit ] ) 
+        then {
+          id = id [ id ] ;
+          id [ id ] = id [ id + intLit ] ;
+          id [ id + intLit ] = id ;
+        } else ;
+        id = id + intLit ;
+      };
+    id = id + intLit ;
+  };
+}
+   
+func id ( id : integer [ ] , id : integer ) arrow void 
+{
+  let id : integer ;
+  let id : integer ; 
+  id = id;
+  id = intLit; 
+  while ( id lt id ) { 
+    write ( id [ id ] ) ;
+      id = id + intLit ;
+  };
+} 
+
+func id ( ) arrow void
+{
+  let id : integer [ intLit ] ; 
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id [ intLit ] = intLit ;
+  id ( id , intLit ) ; 
+  id ( id , intLit ) ;
+  id ( id , intLit ) ; 
+}
+

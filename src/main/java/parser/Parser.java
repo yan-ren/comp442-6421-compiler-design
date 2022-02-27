@@ -116,10 +116,10 @@ public class Parser {
 			 * lookahead = nextToken()
 			 */
 			while ((firstSet.get(stack.peek()) == null || !firstSet.get(stack.peek()).contains(lookahead.getType()))
-					|| ((firstSet.get(stack.peek()) != null
+					&& !((firstSet.get(stack.peek()) != null
 							&& firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD))
-							&& (followSet.get(stack.peek()) == null
-									|| !followSet.get(stack.peek()).contains(lookahead.getType())))) {
+							&& (followSet.get(stack.peek()) != null
+									&& followSet.get(stack.peek()).contains(lookahead.getType())))) {
 				lookahead = nextToken();
 				// edge case: skipping error until end of file
 				if (lookahead.getType().equals(END_OF_STACK)) {
