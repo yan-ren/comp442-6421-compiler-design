@@ -3,12 +3,19 @@ package parser;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,9 +36,10 @@ public class Parser {
 
 	// e.g. key: APARAMS-id, value: EXPR REPTAPARAMS1
 	// APARAMS with id transite to grammar EXPR REPTAPARAMS1
-	HashMap<String, ArrayList<String>> parseTable = new HashMap<>();
+	Map<String, ArrayList<String>> parseTable = new TreeMap<>();
 
-	Stack<String> stack = new Stack<>();
+	Stack<String> parsingStack = new Stack<>();
+	Set<String> nonTermials = new HashSet<>();
 
 	String derivation = "";
 
@@ -45,29 +53,37 @@ public class Parser {
 		this.derivationLogger = outderivation;
 		this.errorLogger = outsyntaxerrors;
 		initFirstFollowSet();
-		initParseTable();
+		// initParseTable();
+		initParseTableFromJson();
+		// special case: end of program
+		this.parseTable.put("REPTPROG0::$", new ArrayList<>());
+		createNonTerminalsFromParseTable();
+
+		System.out.println(this.parseTable);
 	}
 
 	public boolean parse() throws Exception {
 		boolean error = false;
-		stack.push(END_OF_STACK);
-		stack.push(STARTING_SYMBOL);
+		parsingStack.push(END_OF_STACK);
+		parsingStack.push(STARTING_SYMBOL);
 		derivation = STARTING_SYMBOL;
-		Token a = nextToken();
 		derivationLogger.write(derivation + "\n");
-		while (!stack.peek().equals(END_OF_STACK)) {
-			String x = stack.peek();
+
+		Token a = nextToken();
+
+		while (!parsingStack.peek().equals(END_OF_STACK)) {
+			String x = parsingStack.peek();
 			if (isTerminal(x)) {
 				if (x.equals(a.getType())) {
-					stack.pop();
+					parsingStack.pop();
 					a = nextToken();
 				} else {
 					a = skipErrors(a);
 					error = true;
 				}
-			} else {
+			} else if (isNonTerminal(x)) {
 				if (parseTableLookup(x, a) != null) {
-					stack.pop();
+					parsingStack.pop();
 					inverseRHSMultiplePush(parseTableLookup(x, a));
 					// logging
 					logDerivation(a, x);
@@ -75,6 +91,10 @@ public class Parser {
 					a = skipErrors(a);
 					error = true;
 				}
+			}
+			// x ∈ SemanticActions
+			else {
+
 			}
 		}
 
@@ -106,8 +126,9 @@ public class Parser {
 		 * pop - equivalent to A → ε
 		 */
 		if (lookahead.getType().equals(END_OF_STACK)
-				|| (followSet.get(stack.peek()) != null && followSet.get(stack.peek()).contains(lookahead.getType()))) {
-			stack.pop();
+				|| (followSet.get(parsingStack.peek()) != null
+						&& followSet.get(parsingStack.peek()).contains(lookahead.getType()))) {
+			parsingStack.pop();
 		} else {
 			/*
 			 * while ( lookahead ∉ FIRST( top() ) or
@@ -115,11 +136,12 @@ public class Parser {
 			 * 
 			 * lookahead = nextToken()
 			 */
-			while ((firstSet.get(stack.peek()) == null || !firstSet.get(stack.peek()).contains(lookahead.getType()))
-					&& !((firstSet.get(stack.peek()) != null
-							&& firstSet.get(stack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD))
-							&& (followSet.get(stack.peek()) != null
-									&& followSet.get(stack.peek()).contains(lookahead.getType())))) {
+			while ((firstSet.get(parsingStack.peek()) == null
+					|| !firstSet.get(parsingStack.peek()).contains(lookahead.getType()))
+					&& !((firstSet.get(parsingStack.peek()) != null
+							&& firstSet.get(parsingStack.peek()).contains(Constants.UC_TYPE.EPSILON_WORD))
+							&& (followSet.get(parsingStack.peek()) != null
+									&& followSet.get(parsingStack.peek()).contains(lookahead.getType())))) {
 				lookahead = nextToken();
 				// edge case: skipping error until end of file
 				if (lookahead.getType().equals(END_OF_STACK)) {
@@ -153,7 +175,7 @@ public class Parser {
 		ArrayList<String> newTerms = new ArrayList<>(terms);
 		Collections.reverse(newTerms);
 		for (String s : newTerms) {
-			stack.push(s);
+			parsingStack.push(s);
 		}
 	}
 
@@ -163,6 +185,10 @@ public class Parser {
 
 	private boolean isTerminal(String x) {
 		return Constants.SYNTACTIC_ANALYZER_TERMINAL.contains(x);
+	}
+
+	private boolean isNonTerminal(String x) {
+		return this.nonTermials.contains(x);
 	}
 
 	public void initFirstFollowSet() throws IOException {
@@ -205,6 +231,7 @@ public class Parser {
 		for (int i = 1; i < rows.size(); i++) {
 			Element tr = rows.get(i);
 			String nonTermial = tr.select("th").first().child(0).text();
+			this.nonTermials.add(nonTermial);
 			Elements td = tr.select("td");
 			for (int j = 0; j < td.size(); j++) {
 				if (td.get(j).childrenSize() > 0) {
@@ -224,8 +251,17 @@ public class Parser {
 				}
 			}
 		}
+	}
 
-		// special case: end of program
-		parseTable.put("REPTPROG0::$", new ArrayList<>());
+	private void initParseTableFromJson() throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		String parseTableJson = new String(Files.readAllBytes(Paths.get("./input/parse_table.json")));
+		this.parseTable = mapper.readValue(parseTableJson, Map.class);
+	}
+
+	private void createNonTerminalsFromParseTable() {
+		for (String key : this.parseTable.keySet()) {
+			this.nonTermials.add(key.split("::")[0]);
+		}
 	}
 }

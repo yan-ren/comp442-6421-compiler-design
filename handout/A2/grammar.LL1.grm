@@ -98,7 +98,7 @@
 <rept-opt-structDecl22> ::= ',' 'id' <rept-opt-structDecl22>
 <rept-opt-structDecl22> ::= EPSILON
 
-<rept-prog0> ::= <structOrImplOrfunc> <rept-prog0>
+<rept-prog0> ::= <structOrImplOrFunc> <rept-prog0>
 <rept-prog0> ::= EPSILON
 
 <rept-statBlock1> ::= <statement> <rept-statBlock1>
