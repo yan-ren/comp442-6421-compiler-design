@@ -56,7 +56,7 @@
 
 <statement-Id-nest> ::= '.' 'id' <statement-Id-nest>   
 <statement-Id-nest> ::= '(' <aParams> ')' <statement-Id-nest2>  
-<statement-Id-nest> ::= <indice> <rept-idnest1> <statement-Id-nest3>  
+<statement-Id-nest> ::= <rept-idnest1> <statement-Id-nest3>  
 <statement-Id-nest> ::= <assignOp>  <expr>   
 
 <statement-Id-nest2> ::= EPSILON

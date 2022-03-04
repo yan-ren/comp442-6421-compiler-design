@@ -2,7 +2,7 @@ package lexicalanalyzer;
 
 import org.apache.commons.text.StringEscapeUtils;
 
-public class Token {
+public class Token implements Cloneable {
 
 	private String type;
 	private String lexeme;
@@ -41,6 +41,10 @@ public class Token {
 
 	public void setLocation(int location) {
 		this.location = location;
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	@Override

@@ -22,6 +22,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import ast.Node;
+import ast.SemanticAction;
 import lexicalanalyzer.Constants;
 import lexicalanalyzer.LexicalAnalyzer;
 import lexicalanalyzer.Token;
@@ -39,9 +41,15 @@ public class Parser {
 	Map<String, ArrayList<String>> parseTable = new TreeMap<>();
 
 	Stack<String> parsingStack = new Stack<>();
+	Stack<Node> semanticStack = new Stack<>();
 	Set<String> nonTermials = new HashSet<>();
 
 	String derivation = "";
+
+	// always cache the previous token
+	Token tokenCache = null;
+	// global variable tracks the token currently being used
+	Token currentToken = null;
 
 	// constants
 	public static String END_OF_STACK = "$";
@@ -58,8 +66,6 @@ public class Parser {
 		// special case: end of program
 		this.parseTable.put("REPTPROG0::$", new ArrayList<>());
 		createNonTerminalsFromParseTable();
-
-		System.out.println(this.parseTable);
 	}
 
 	public boolean parse() throws Exception {
@@ -94,14 +100,50 @@ public class Parser {
 			}
 			// x ∈ SemanticActions
 			else {
-
+				semanticActions(x);
+				parsingStack.pop();
 			}
 		}
 
 		if (!a.getType().equals(END_OF_STACK) || error) {
 			return false;
 		} else {
+			Node.printTree(this.semanticStack.peek());
 			return true;
+		}
+	}
+
+	private void semanticActions(String action) throws Exception {
+		if (!SemanticAction.SEMANTIC_ACTION_TABLE.containsKey(action)) {
+			throw new Exception("invalid semantic action symbol: " + action);
+		}
+		switch (SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(0)) {
+			case "makeNode": {
+				SemanticAction.makeNode(this.semanticStack, this.tokenCache);
+				break;
+			}
+			case "pushNull": {
+				SemanticAction.makeNode(this.semanticStack, null);
+				break;
+			}
+			case "makeFamilyUntil": {
+				SemanticAction.makeFamilyUntil(this.semanticStack,
+						SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(1));
+				break;
+			}
+			case "makeFamily": {
+				SemanticAction.makeFamily(this.semanticStack,
+						SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(1),
+						Integer.parseInt(SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(2)));
+				break;
+			}
+			case "makeNodeEmptySizeArray": {
+				SemanticAction.makeNodeEmptySizeArray(this.semanticStack, "emptySizeArray");
+				break;
+			}
+			default:
+				throw new Exception("invalid semantic action symbol-function map: " + action + "->"
+						+ SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(0));
 		}
 	}
 
@@ -164,7 +206,10 @@ public class Parser {
 		while (t.getType().equals(Constants.LA_TYPE.INLINECMT) || t.getType().equals(Constants.LA_TYPE.BLOCKCMT)) {
 			t = lexer.nextToken();
 		}
-
+		if (currentToken != null) {
+			tokenCache = (Token) currentToken.clone();
+		}
+		currentToken = t;
 		return t;
 	}
 
@@ -255,7 +300,7 @@ public class Parser {
 
 	private void initParseTableFromJson() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		String parseTableJson = new String(Files.readAllBytes(Paths.get("./input/parse_table.json")));
+		String parseTableJson = new String(Files.readAllBytes(Paths.get("./input/parse_table_attribute.json")));
 		this.parseTable = mapper.readValue(parseTableJson, Map.class);
 	}
 

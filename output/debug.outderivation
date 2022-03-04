@@ -1,13 +1,37 @@
 START
 START => PROG
-START => REPTPROG0
-START => STRUCTORIMPLORFUNC REPTPROG0
-START => STRUCTDECL REPTPROG0
-START => struct id OPTSTRUCTDECL2 opencubr REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr VISIBILITY MEMBERDECL REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr private MEMBERDECL REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr private VARDECL REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr private let id colon TYPE REPTVARDECL4 semi REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr private let id colon float REPTVARDECL4 semi REPTSTRUCTDECL4 closecubr semi REPTPROG0
-START => struct id opencubr private let id colon float REPTVARDECL4 semi REPTSTRUCTDECL4 closecubr semi 
+START => sa2 REPTPROG0 sa24
+START => sa2 STRUCTORIMPLORFUNC REPTPROG0 sa24
+START => sa2 FUNCDEF REPTPROG0 sa24
+START => sa2 FUNCHEAD FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar FPARAMS closepar arrow RETURNTYPE sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow RETURNTYPE sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 VARDECLORSTAT REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 STATEMENT REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 S1 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 REPTIDNEST1 sa4 sa11 S2 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 S2 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 S1 sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 REPTIDNEST1 sa4 sa11 S2 sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 S2 sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 ASSIGNOP EXPR sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign EXPR sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign ARITHEXPR EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 TERM RIGHTRECARITHEXPR EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 FACTOR RIGHTRECTERM RIGHTRECARITHEXPR EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 RIGHTRECTERM RIGHTRECARITHEXPR EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 sa10 RIGHTRECARITHEXPR EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 sa10 sa8 EXPR1 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 sa10 sa8 sa6 sa22 sa17 semi sa12 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 sa10 sa8 sa6 sa22 sa17 semi sa12 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 assign sa2 sa2 intnum sa1 sa10 sa8 sa6 sa22 sa17 semi sa12 sa30 closecubr sa31 sa24
+
+
+
+<statement> ::= 'id' sa1 <s1>
+<s1> ::= sa2 <rept-idnest1> sa4 sa11 <s2> <ss2>
+<s2> ::= '.' 'id' sa1 <s1> sa12
+<s2> := epsilon
+<ss2> ::= <assignOp> <expr> sa22 sa17 ';'

@@ -1,0 +1,1135 @@
+{
+    "ADDOP::minus": [
+        "minus",
+        "sa1"
+    ],
+    "ADDOP::or": [
+        "or",
+        "sa1"
+    ],
+    "ADDOP::plus": [
+        "plus",
+        "sa1"
+    ],
+    "APARAMS::closepar": [],
+    "APARAMS::floatnum": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::id": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::intnum": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::minus": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::not": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::openpar": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMS::plus": [
+        "EXPR",
+        "REPTAPARAMS1"
+    ],
+    "APARAMSTAIL::comma": [
+        "comma",
+        "EXPR"
+    ],
+    "ARITHEXPR::floatnum": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::id": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::intnum": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::minus": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::not": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::openpar": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARITHEXPR::plus": [
+        "sa2",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "ARRAYSIZE1::closesqbr": [
+        "sa36",
+        "closesqbr"
+    ],
+    "ARRAYSIZE1::intnum": [
+        "intnum",
+        "sa1",
+        "closesqbr"
+    ],
+    "ARRAYSIZE::opensqbr": [
+        "opensqbr",
+        "ARRAYSIZE1"
+    ],
+    "ASSIGNOP::assign": [
+        "assign"
+    ],
+    "ASSIGNSTAT::id": [
+        "VARIABLE",
+        "ASSIGNOP",
+        "EXPR"
+    ],
+    "EXPR1::closepar": [
+        "sa6"
+    ],
+    "EXPR1::comma": [
+        "sa6"
+    ],
+    "EXPR1::eq": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::geq": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::gt": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::leq": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::lt": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::noteq": [
+        "RELOP",
+        "ARITHEXPR",
+        "sa7"
+    ],
+    "EXPR1::semi": [
+        "sa6"
+    ],
+    "EXPR::floatnum": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::id": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::intnum": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::minus": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::not": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::openpar": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "EXPR::plus": [
+        "ARITHEXPR",
+        "EXPR1"
+    ],
+    "FACTOR::floatnum": [
+        "floatnum",
+        "sa1"
+    ],
+    "FACTOR::id": [
+        "FUNCORVAR",
+        "sa14"
+    ],
+    "FACTOR::intnum": [
+        "intnum",
+        "sa1"
+    ],
+    "FACTOR::minus": [
+        "sa2",
+        "SIGN",
+        "FACTOR",
+        "sa15"
+    ],
+    "FACTOR::not": [
+        "sa2",
+        "not",
+        "FACTOR",
+        "sa15"
+    ],
+    "FACTOR::openpar": [
+        "openpar",
+        "ARITHEXPR",
+        "sa14",
+        "closepar"
+    ],
+    "FACTOR::plus": [
+        "sa2",
+        "SIGN",
+        "FACTOR",
+        "sa15"
+    ],
+    "FPARAMS::closepar": [
+        "sa2",
+        "sa28"
+    ],
+    "FPARAMS::id": [
+        "sa2",
+        "id",
+        "sa1",
+        "colon",
+        "TYPE",
+        "sa2",
+        "REPTFPARAMS3",
+        "sa3",
+        "sa27",
+        "REPTFPARAMS4",
+        "sa28"
+    ],
+    "FPARAMSTAIL::comma": [
+        "comma",
+        "id",
+        "sa1",
+        "colon",
+        "TYPE",
+        "sa2",
+        "REPTFPARAMSTAIL4",
+        "sa3",
+        "sa27"
+    ],
+    "FUNCBODY::opencubr": [
+        "opencubr",
+        "sa2",
+        "REPTFUNCBODY1",
+        "sa30",
+        "closecubr"
+    ],
+    "FUNCDECL::func": [
+        "FUNCHEAD",
+        "semi"
+    ],
+    "FUNCDEF::func": [
+        "FUNCHEAD",
+        "FUNCBODY",
+        "sa31"
+    ],
+    "FUNCHEAD::func": [
+        "func",
+        "id",
+        "sa1",
+        "openpar",
+        "FPARAMS",
+        "closepar",
+        "arrow",
+        "RETURNTYPE",
+        "sa29"
+    ],
+    "FUNCORVAR::id": [
+        "id",
+        "sa1",
+        "FUNCORVARIDNEST"
+    ],
+    "FUNCORVARIDNEST::and": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::closepar": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::closesqbr": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::comma": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::div": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::dot": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::eq": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::geq": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::gt": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::leq": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::lt": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::minus": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::mult": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::noteq": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::openpar": [
+        "openpar",
+        "sa2",
+        "APARAMS",
+        "sa5",
+        "closepar",
+        "sa13",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::opensqbr": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::or": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::plus": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNEST::semi": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "FUNCORVARIDNESTTAIL"
+    ],
+    "FUNCORVARIDNESTTAIL::and": [],
+    "FUNCORVARIDNESTTAIL::closepar": [],
+    "FUNCORVARIDNESTTAIL::closesqbr": [],
+    "FUNCORVARIDNESTTAIL::comma": [],
+    "FUNCORVARIDNESTTAIL::div": [],
+    "FUNCORVARIDNESTTAIL::dot": [
+        "dot",
+        "id",
+        "sa1",
+        "FUNCORVARIDNEST",
+        "sa12"
+    ],
+    "FUNCORVARIDNESTTAIL::eq": [],
+    "FUNCORVARIDNESTTAIL::geq": [],
+    "FUNCORVARIDNESTTAIL::gt": [],
+    "FUNCORVARIDNESTTAIL::leq": [],
+    "FUNCORVARIDNESTTAIL::lt": [],
+    "FUNCORVARIDNESTTAIL::minus": [],
+    "FUNCORVARIDNESTTAIL::mult": [],
+    "FUNCORVARIDNESTTAIL::noteq": [],
+    "FUNCORVARIDNESTTAIL::or": [],
+    "FUNCORVARIDNESTTAIL::plus": [],
+    "FUNCORVARIDNESTTAIL::semi": [],
+    "IMPLDEF::impl": [
+        "impl",
+        "id",
+        "sa1",
+        "opencubr",
+        "sa2",
+        "REPTIMPLDEF3",
+        "sa34",
+        "sa35",
+        "closecubr"
+    ],
+    "INDICE::opensqbr": [
+        "opensqbr",
+        "ARITHEXPR",
+        "closesqbr"
+    ],
+    "MEMBERDECL::func": [
+        "FUNCDECL"
+    ],
+    "MEMBERDECL::let": [
+        "VARDECL"
+    ],
+    "MULTOP::and": [
+        "and",
+        "sa1"
+    ],
+    "MULTOP::div": [
+        "div",
+        "sa1"
+    ],
+    "MULTOP::mult": [
+        "mult",
+        "sa1"
+    ],
+    "OPTSTRUCTDECL2::inherits": [
+        "inherits",
+        "id",
+        "sa1",
+        "REPTOPTSTRUCTDECL22"
+    ],
+    "OPTSTRUCTDECL2::opencubr": [],
+    "PROG::func": [
+        "sa2",
+        "REPTPROG0",
+        "sa24"
+    ],
+    "PROG::impl": [
+        "sa2",
+        "REPTPROG0",
+        "sa24"
+    ],
+    "PROG::struct": [
+        "sa2",
+        "REPTPROG0",
+        "sa24"
+    ],
+    "RELEXPR::floatnum": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::id": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::intnum": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::minus": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::not": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::openpar": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELEXPR::plus": [
+        "ARITHEXPR",
+        "RELOP",
+        "ARITHEXPR",
+        "sa9"
+    ],
+    "RELOP::eq": [
+        "eq",
+        "sa1"
+    ],
+    "RELOP::geq": [
+        "geq",
+        "sa1"
+    ],
+    "RELOP::gt": [
+        "gt",
+        "sa1"
+    ],
+    "RELOP::leq": [
+        "leq",
+        "sa1"
+    ],
+    "RELOP::lt": [
+        "lt",
+        "sa1"
+    ],
+    "RELOP::noteq": [
+        "noteq",
+        "sa1"
+    ],
+    "REPTAPARAMS1::closepar": [],
+    "REPTAPARAMS1::comma": [
+        "APARAMSTAIL",
+        "REPTAPARAMS1"
+    ],
+    "REPTFPARAMS3::closepar": [],
+    "REPTFPARAMS3::comma": [],
+    "REPTFPARAMS3::opensqbr": [
+        "ARRAYSIZE",
+        "REPTFPARAMS3"
+    ],
+    "REPTFPARAMS4::closepar": [],
+    "REPTFPARAMS4::comma": [
+        "FPARAMSTAIL",
+        "REPTFPARAMS4"
+    ],
+    "REPTFPARAMSTAIL4::closepar": [],
+    "REPTFPARAMSTAIL4::comma": [],
+    "REPTFPARAMSTAIL4::opensqbr": [
+        "ARRAYSIZE",
+        "REPTFPARAMSTAIL4"
+    ],
+    "REPTFUNCBODY1::closecubr": [],
+    "REPTFUNCBODY1::id": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::if": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::let": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::read": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::return": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::while": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTFUNCBODY1::write": [
+        "VARDECLORSTAT",
+        "REPTFUNCBODY1"
+    ],
+    "REPTIDNEST1::and": [],
+    "REPTIDNEST1::assign": [],
+    "REPTIDNEST1::closepar": [],
+    "REPTIDNEST1::closesqbr": [],
+    "REPTIDNEST1::comma": [],
+    "REPTIDNEST1::div": [],
+    "REPTIDNEST1::dot": [],
+    "REPTIDNEST1::eq": [],
+    "REPTIDNEST1::geq": [],
+    "REPTIDNEST1::gt": [],
+    "REPTIDNEST1::leq": [],
+    "REPTIDNEST1::lt": [],
+    "REPTIDNEST1::minus": [],
+    "REPTIDNEST1::mult": [],
+    "REPTIDNEST1::noteq": [],
+    "REPTIDNEST1::opensqbr": [
+        "INDICE",
+        "REPTIDNEST1"
+    ],
+    "REPTIDNEST1::or": [],
+    "REPTIDNEST1::plus": [],
+    "REPTIDNEST1::semi": [],
+    "REPTIMPLDEF3::closecubr": [],
+    "REPTIMPLDEF3::func": [
+        "FUNCDEF",
+        "REPTIMPLDEF3"
+    ],
+    "REPTOPTSTRUCTDECL22::comma": [
+        "comma",
+        "id",
+        "sa1",
+        "REPTOPTSTRUCTDECL22"
+    ],
+    "REPTOPTSTRUCTDECL22::opencubr": [],
+    "REPTPROG0::$": [],
+    "REPTPROG0::func": [
+        "STRUCTORIMPLORFUNC",
+        "REPTPROG0"
+    ],
+    "REPTPROG0::impl": [
+        "STRUCTORIMPLORFUNC",
+        "REPTPROG0"
+    ],
+    "REPTPROG0::struct": [
+        "STRUCTORIMPLORFUNC",
+        "REPTPROG0"
+    ],
+    "REPTSTATBLOCK1::closecubr": [],
+    "REPTSTATBLOCK1::id": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTATBLOCK1::if": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTATBLOCK1::read": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTATBLOCK1::return": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTATBLOCK1::while": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTATBLOCK1::write": [
+        "STATEMENT",
+        "REPTSTATBLOCK1"
+    ],
+    "REPTSTRUCTDECL4::closecubr": [],
+    "REPTSTRUCTDECL4::private": [
+        "VISIBILITY",
+        "MEMBERDECL",
+        "REPTSTRUCTDECL4"
+    ],
+    "REPTSTRUCTDECL4::public": [
+        "VISIBILITY",
+        "MEMBERDECL",
+        "REPTSTRUCTDECL4"
+    ],
+    "REPTVARDECL4::opensqbr": [
+        "ARRAYSIZE",
+        "REPTVARDECL4"
+    ],
+    "REPTVARDECL4::semi": [],
+    "RETURNTYPE::float": [
+        "TYPE"
+    ],
+    "RETURNTYPE::id": [
+        "TYPE"
+    ],
+    "RETURNTYPE::integer": [
+        "TYPE"
+    ],
+    "RETURNTYPE::void": [
+        "void",
+        "sa1"
+    ],
+    "RIGHTRECARITHEXPR::closepar": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::closesqbr": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::comma": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::eq": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::geq": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::gt": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::leq": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::lt": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::minus": [
+        "ADDOP",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "RIGHTRECARITHEXPR::noteq": [
+        "sa8"
+    ],
+    "RIGHTRECARITHEXPR::or": [
+        "ADDOP",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "RIGHTRECARITHEXPR::plus": [
+        "ADDOP",
+        "TERM",
+        "RIGHTRECARITHEXPR"
+    ],
+    "RIGHTRECARITHEXPR::semi": [
+        "sa8"
+    ],
+    "RIGHTRECTERM::and": [
+        "MULTOP",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "RIGHTRECTERM::closepar": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::closesqbr": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::comma": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::div": [
+        "MULTOP",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "RIGHTRECTERM::eq": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::geq": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::gt": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::leq": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::lt": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::minus": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::mult": [
+        "MULTOP",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "RIGHTRECTERM::noteq": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::or": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::plus": [
+        "sa10"
+    ],
+    "RIGHTRECTERM::semi": [
+        "sa10"
+    ],
+    "S1::assign": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "S2"
+    ],
+    "S1::dot": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "S2"
+    ],
+    "S1::openpar": [
+        "openpar",
+        "sa2",
+        "APARAMS",
+        "sa5",
+        "closepar",
+        "sa13",
+        "S3"
+    ],
+    "S1::opensqbr": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "S2"
+    ],
+    "S2::assign": [
+        "ASSIGNOP",
+        "EXPR",
+        "sa22",
+        "sa17",
+        "semi"
+    ],
+    "S2::dot": [
+        "dot",
+        "id",
+        "sa1",
+        "S1",
+        "sa12"
+    ],
+    "S3::dot": [
+        "dot",
+        "id",
+        "sa1",
+        "S1",
+        "sa12"
+    ],
+    "S3::semi": [
+        "sa17",
+        "semi"
+    ],
+    "SIGN::minus": [
+        "minus",
+        "sa1"
+    ],
+    "SIGN::plus": [
+        "plus",
+        "sa1"
+    ],
+    "START::func": [
+        "PROG"
+    ],
+    "START::impl": [
+        "PROG"
+    ],
+    "START::struct": [
+        "PROG"
+    ],
+    "STATBLOCK::else": [
+        "sa2",
+        "sa23"
+    ],
+    "STATBLOCK::id": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATBLOCK::if": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATBLOCK::opencubr": [
+        "opencubr",
+        "sa2",
+        "REPTSTATBLOCK1",
+        "sa23",
+        "closecubr"
+    ],
+    "STATBLOCK::read": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATBLOCK::return": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATBLOCK::semi": [
+        "sa2",
+        "sa23"
+    ],
+    "STATBLOCK::while": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATBLOCK::write": [
+        "sa2",
+        "STATEMENT",
+        "sa23"
+    ],
+    "STATEMENT::id": [
+        "id",
+        "sa1",
+        "S1"
+    ],
+    "STATEMENT::if": [
+        "if",
+        "openpar",
+        "RELEXPR",
+        "closepar",
+        "then",
+        "STATBLOCK",
+        "else",
+        "STATBLOCK",
+        "sa21",
+        "sa17",
+        "semi"
+    ],
+    "STATEMENT::read": [
+        "read",
+        "openpar",
+        "VARIABLE",
+        "sa16",
+        "sa17",
+        "closepar",
+        "semi"
+    ],
+    "STATEMENT::return": [
+        "return",
+        "openpar",
+        "EXPR",
+        "sa19",
+        "sa17",
+        "closepar",
+        "semi"
+    ],
+    "STATEMENT::while": [
+        "while",
+        "openpar",
+        "RELEXPR",
+        "closepar",
+        "STATBLOCK",
+        "sa20",
+        "sa17",
+        "semi"
+    ],
+    "STATEMENT::write": [
+        "write",
+        "openpar",
+        "EXPR",
+        "sa18",
+        "sa17",
+        "closepar",
+        "semi"
+    ],
+    "STRUCTDECL::struct": [
+        "struct",
+        "id",
+        "sa1",
+        "sa2",
+        "OPTSTRUCTDECL2",
+        "sa25",
+        "opencubr",
+        "sa2",
+        "REPTSTRUCTDECL4",
+        "sa32",
+        "closecubr",
+        "sa33",
+        "semi"
+    ],
+    "STRUCTORIMPLORFUNC::func": [
+        "FUNCDEF"
+    ],
+    "STRUCTORIMPLORFUNC::impl": [
+        "IMPLDEF"
+    ],
+    "STRUCTORIMPLORFUNC::struct": [
+        "STRUCTDECL"
+    ],
+    "TERM::floatnum": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::id": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::intnum": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::minus": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::not": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::openpar": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TERM::plus": [
+        "sa2",
+        "FACTOR",
+        "RIGHTRECTERM"
+    ],
+    "TYPE::float": [
+        "float",
+        "sa1"
+    ],
+    "TYPE::id": [
+        "id",
+        "sa1"
+    ],
+    "TYPE::integer": [
+        "integer",
+        "sa1"
+    ],
+    "VARDECL::let": [
+        "let",
+        "id",
+        "sa1",
+        "colon",
+        "TYPE",
+        "sa2",
+        "REPTVARDECL4",
+        "sa3",
+        "sa26",
+        "semi"
+    ],
+    "VARDECLORSTAT::id": [
+        "STATEMENT"
+    ],
+    "VARDECLORSTAT::if": [
+        "STATEMENT"
+    ],
+    "VARDECLORSTAT::let": [
+        "VARDECL"
+    ],
+    "VARDECLORSTAT::read": [
+        "STATEMENT"
+    ],
+    "VARDECLORSTAT::return": [
+        "STATEMENT"
+    ],
+    "VARDECLORSTAT::while": [
+        "STATEMENT"
+    ],
+    "VARDECLORSTAT::write": [
+        "STATEMENT"
+    ],
+    "VARIABLE::id": [
+        "id",
+        "sa1",
+        "VARIABLEIDNEST"
+    ],
+    "VARIABLEIDNEST::assign": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "VARIABLEIDNESTTAIL"
+    ],
+    "VARIABLEIDNEST::closepar": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "VARIABLEIDNESTTAIL"
+    ],
+    "VARIABLEIDNEST::dot": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "VARIABLEIDNESTTAIL"
+    ],
+    "VARIABLEIDNEST::openpar": [
+        "openpar",
+        "sa2",
+        "APARAMS",
+        "sa5",
+        "closepar",
+        "sa13",
+        "dot",
+        "id",
+        "sa1",
+        "VARIABLEIDNEST"
+    ],
+    "VARIABLEIDNEST::opensqbr": [
+        "sa2",
+        "REPTIDNEST1",
+        "sa4",
+        "sa11",
+        "VARIABLEIDNESTTAIL"
+    ],
+    "VARIABLEIDNESTTAIL::assign": [],
+    "VARIABLEIDNESTTAIL::closepar": [],
+    "VARIABLEIDNESTTAIL::dot": [
+        "dot",
+        "id",
+        "sa1",
+        "VARIABLEIDNEST",
+        "sa12"
+    ],
+    "VISIBILITY::private": [
+        "private",
+        "sa1"
+    ],
+    "VISIBILITY::public": [
+        "public",
+        "sa1"
+    ]
+}
