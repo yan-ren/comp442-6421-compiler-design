@@ -33,6 +33,8 @@ public class Parser {
 	LexicalAnalyzer lexer;
 	BufferedWriter derivationLogger;
 	BufferedWriter errorLogger;
+	BufferedWriter astLogger;
+	BufferedWriter outdot;
 	HashMap<String, Set<String>> firstSet = new HashMap<>();
 	HashMap<String, Set<String>> followSet = new HashMap<>();
 
@@ -55,11 +57,14 @@ public class Parser {
 	public static String END_OF_STACK = "$";
 	public static String STARTING_SYMBOL = "START";
 
-	public Parser(LexicalAnalyzer lexer, BufferedWriter outderivation, BufferedWriter outsyntaxerrors)
+	public Parser(LexicalAnalyzer lexer, BufferedWriter outderivation, BufferedWriter outsyntaxerrors,
+			BufferedWriter outast, BufferedWriter outdot)
 			throws IOException {
 		this.lexer = lexer;
 		this.derivationLogger = outderivation;
 		this.errorLogger = outsyntaxerrors;
+		this.astLogger = outast;
+		this.outdot = outdot;
 		initFirstFollowSet();
 		// initParseTable();
 		initParseTableFromJson();
@@ -105,10 +110,11 @@ public class Parser {
 			}
 		}
 
+		Node.printTreeToFile(semanticStack.peek(), astLogger);
+		Node.createDotFile(semanticStack.peek(), outdot);
 		if (!a.getType().equals(END_OF_STACK) || error) {
 			return false;
 		} else {
-			Node.printTree(this.semanticStack.peek());
 			return true;
 		}
 	}
@@ -217,6 +223,34 @@ public class Parser {
 		if (terms.size() < 1) {
 			return;
 		}
+		// Semantic Special Case
+		/**
+		 * (id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 <<special>> ASSIGNOP EXPR sa22
+		 * sa17 semi sa12)
+		 */
+		if (terms.get(0).equals("SPECIAL_ASSIGN")) {
+			int count = 0;
+
+			if (parsingStack.peek().equals("sa12")) {
+				while (parsingStack.peek().equals("sa12")) {
+					count++;
+					parsingStack.pop();
+				}
+			}
+			ArrayList<String> newTerms = new ArrayList<>(terms.subList(1, terms.size()));
+			Collections.reverse(newTerms);
+			for (String s : newTerms) {
+				parsingStack.push(s);
+			}
+
+			while (count > 0) {
+				parsingStack.push("sa12");
+				count--;
+			}
+
+			return;
+		}
+		// Normal case, reverse push
 		ArrayList<String> newTerms = new ArrayList<>(terms);
 		Collections.reverse(newTerms);
 		for (String s : newTerms) {

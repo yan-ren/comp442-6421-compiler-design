@@ -34,6 +34,8 @@ public class Driver {
         BufferedWriter outlexerrors = null;
         BufferedWriter outderivation = null;
         BufferedWriter outsyntaxerrors = null;
+        BufferedWriter outast = null;
+        BufferedWriter outdot = null;
 
         if (!src.getName().endsWith(".src")) {
             throw new Exception("invalid input file: " + src.getName() + ", should end with .src");
@@ -53,12 +55,14 @@ public class Driver {
             outlexerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outlexerrors"));
             outderivation = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outderivation"));
             outsyntaxerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsyntaxerrors"));
+            outast = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".ast.outsat"));
+            outdot = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".dot.outsat"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
-        Parser parser = new Parser(la, outderivation, outsyntaxerrors);
+        Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
         System.out.println(parser.parse());
 
         in.close();
@@ -66,5 +70,7 @@ public class Driver {
         outlexerrors.close();
         outderivation.close();
         outsyntaxerrors.close();
+        outast.close();
+        outdot.close();
     }
 }

@@ -1,12 +1,12 @@
 func debug() -> void 
 {
-	//let v : integer[2][3];
-	//let v : integer[2][3];
-	//a.b[c].d = 1;
-	a.b = 1;
+	a.b[c].d = 1;
+	a.b.c = 1;
 }
 
 
+	//let v : integer[2][3];
+	//let v : integer[2][3];
 /*
 struct LINEAR {
 	private let a: float;

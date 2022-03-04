@@ -95,11 +95,6 @@
     "ASSIGNOP::assign": [
         "assign"
     ],
-    "ASSIGNSTAT::id": [
-        "VARIABLE",
-        "ASSIGNOP",
-        "EXPR"
-    ],
     "EXPR1::closepar": [
         "sa6"
     ],
@@ -825,6 +820,7 @@
         "S2"
     ],
     "S2::assign": [
+        "SPECIAL_ASSIGN",
         "ASSIGNOP",
         "EXPR",
         "sa22",

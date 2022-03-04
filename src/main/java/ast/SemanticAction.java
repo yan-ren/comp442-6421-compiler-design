@@ -41,19 +41,24 @@ public class SemanticAction {
         stack.push(newNode);
     }
 
+    /**
+     * 
+     * dataMem -> var
+     * rept-idnest -> indiceList
+     */
     public static final HashMap<String, List<String>> SEMANTIC_ACTION_TABLE = new HashMap<>() {
         {
             put("sa1", Arrays.asList("makeNode"));
             put("sa2", Arrays.asList("pushNull"));
             put("sa3", Arrays.asList("makeFamilyUntil", "arraySize"));
-            put("sa4", Arrays.asList("makeFamilyUntil", "rept-idnest"));
+            put("sa4", Arrays.asList("makeFamilyUntil", "indiceList"));
             put("sa5", Arrays.asList("makeFamilyUntil", "aParams"));
             put("sa6", Arrays.asList("makeFamily", "expr", "1"));
             put("sa7", Arrays.asList("makeFamily", "expr", "3"));
             put("sa8", Arrays.asList("makeFamilyUntil", "arithExpr"));
             put("sa9", Arrays.asList("makeFamily", "relExpr", "3"));
             put("sa10", Arrays.asList("makeFamilyUntil", "term"));
-            put("sa11", Arrays.asList("makeFamily", "dataMem", "2"));
+            put("sa11", Arrays.asList("makeFamily", "var", "2"));
             put("sa12", Arrays.asList("makeFamily", "dot", "2"));
             put("sa13", Arrays.asList("makeFamily", "fCall", "2"));
             put("sa14", Arrays.asList("makeFamily", "factor", "1"));
