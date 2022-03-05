@@ -2,7 +2,9 @@ package ast;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 import lexicalanalyzer.Token;
@@ -10,10 +12,6 @@ import lexicalanalyzer.Token;
 public class SemanticAction {
 
     public static void makeNode(Stack<Node> stack, Token t) {
-        if (t == null) {
-            stack.push(null);
-            return;
-        }
         stack.push(new Node(t));
     }
 
@@ -42,6 +40,7 @@ public class SemanticAction {
     }
 
     /**
+     * name change
      * 
      * dataMem -> var
      * rept-idnest -> indiceList
@@ -79,11 +78,23 @@ public class SemanticAction {
             put("sa29", Arrays.asList("makeFamily", "funcHead", "3"));
             put("sa30", Arrays.asList("makeFamilyUntil", "funcBody"));
             put("sa31", Arrays.asList("makeFamily", "funcDef", "2"));
-            put("sa32", Arrays.asList("makeFamilyUntil", "rept-structDecl"));
+            put("sa32", Arrays.asList("makeFamilyUntil", "rept-structDecl4"));
             put("sa33", Arrays.asList("makeFamily", "structDecl", "3"));
-            put("sa34", Arrays.asList("makeFamilyUntil", "rept-implDef"));
+            put("sa34", Arrays.asList("makeFamilyUntil", "rept-implDef3"));
             put("sa35", Arrays.asList("makeFamily", "implDef", "2"));
             put("sa36", Arrays.asList("makeNodeEmptySizeArray"));
+        }
+    };
+
+    public static final Set<String> EXTRA_INTERMEDIATE_NODE = new HashSet<>() {
+        {
+            add("expr");
+            add("stat");
+            add("arithExpr");
+            add("term");
+            add("factor");
+            add("rept-implDef3");
+            add("rept-structDecl4");
         }
     };
 }

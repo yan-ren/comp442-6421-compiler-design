@@ -22,7 +22,7 @@
 [dot, ., 4]
 [id, c, 4]
 [assign, =, 4]
-[intnum, 1, 4]
+[intnum, 2, 4]
 [semi, ;, 4]
 [closecubr, }, 5]
 [inlinecmt, //let v : integer[2][3];\n, 8]

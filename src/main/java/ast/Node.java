@@ -28,12 +28,6 @@ public class Node {
 		this.children = new ArrayList<>();
 	}
 
-	public Node(String name, Token token) {
-		this.name = name;
-		this.token = token;
-		this.children = new ArrayList<>();
-	}
-
 	public void addChild(Node child) {
 		child.parent = this;
 		this.children.add(child);
@@ -58,6 +52,21 @@ public class Node {
 	@Override
 	public String toString() {
 		return "Node [name=" + name + ", token=" + token + ", parent=" + parent + ", children=" + children + "]";
+	}
+
+	public static void printTree(Node root) {
+		traverseTree(root, "", "");
+	}
+
+	public static void traverseTree(Node root, String padding, String pointer) {
+		System.out.println(padding + pointer + root.getName());
+		for (int i = root.children.size() - 1; i >= 0; i--) {
+			if (i == 0) {
+				traverseTree(root.children.get(i), padding + "|   ", "└──");
+			} else {
+				traverseTree(root.children.get(i), padding + "|   ", "├──");
+			}
+		}
 	}
 
 	public static void printTreeToFile(Node root, BufferedWriter br) throws IOException {
@@ -86,24 +95,13 @@ public class Node {
 	}
 
 	private static void traversTree(BufferedWriter br, Node root) throws IOException {
-		// String label = "\"" + root.name;
-		// if (root.getToken() != null) {
-		// label += " | " + root.getToken().getLexeme() + "\"";
-		// } else {
-		// label += "\"";
-		// }
-		// br.write(counter + "[label=" + label + "];\n");
-		// for (Node child : root.children) {
-		// br.write(counter + "->" + (++counter) + ";\n");
-		// traversTree(br, child);
-		// }
 		Queue<Node> queue = new LinkedList<>();
 		root.index = counter++;
 		queue.add(root);
 		while (!queue.isEmpty()) {
 			Node node = queue.remove();
 			String label = "\"" + node.name;
-			if (node.getToken() != null) {
+			if (node.getToken() != null && node.getToken().getLexeme().matches("^[a-zA-Z0-9]+$")) {
 				label += " | " + node.getToken().getLexeme() + "\"";
 			} else {
 				label += "\"";
@@ -118,4 +116,62 @@ public class Node {
 			}
 		}
 	}
+
+	public static void postProcessing(Node current) {
+		if (current == null || current.children == null) {
+			return;
+		}
+		// remove each child in the removal list
+		int i = 0;
+		while (i < current.children.size()) {
+			if (SemanticAction.EXTRA_INTERMEDIATE_NODE.contains(current.children.get(i).getName())) {
+				current.children.get(i).parent = null;
+				ArrayList<Node> grandchildren = current.children.get(i).children;
+				if (grandchildren != null) {
+					for (Node n : grandchildren) {
+						n.parent = current;
+					}
+					// level up grandchildren
+					current.children = replaceChildren(current.children, i, grandchildren);
+				} else {
+					current.children = replaceChildren(current.children, i, new ArrayList<>());
+				}
+				i = 0; // remove one child and place grandchildren in the same place, need to rescan
+						// the children
+			} else {
+				i++;
+			}
+		}
+
+		for (Node c : current.children) {
+			postProcessing(c);
+		}
+	}
+
+	/**
+	 * Insert grandchildren into children at index i and return the new list
+	 * 
+	 * @param children
+	 * @param i
+	 * @param grandchildren
+	 * @return
+	 */
+	private static ArrayList<Node> replaceChildren(ArrayList<Node> children, int i, ArrayList<Node> grandchildren) {
+		ArrayList<Node> result = new ArrayList<>();
+		int index = 0;
+		while (index < i) {
+			result.add(children.get(index));
+			index++;
+		}
+		index = i + 1;
+		for (Node g : grandchildren) {
+			result.add(g);
+		}
+		while (index < children.size()) {
+			result.add(children.get(index));
+			index++;
+		}
+		return result;
+	}
+
 }

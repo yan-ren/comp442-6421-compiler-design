@@ -110,6 +110,7 @@ public class Parser {
 			}
 		}
 
+		Node.postProcessing(semanticStack.peek());
 		Node.printTreeToFile(semanticStack.peek(), astLogger);
 		Node.createDotFile(semanticStack.peek(), outdot);
 		if (!a.getType().equals(END_OF_STACK) || error) {
@@ -129,7 +130,7 @@ public class Parser {
 				break;
 			}
 			case "pushNull": {
-				SemanticAction.makeNode(this.semanticStack, null);
+				this.semanticStack.push(null);
 				break;
 			}
 			case "makeFamilyUntil": {
@@ -158,9 +159,6 @@ public class Parser {
 		derivation = derivation.replaceFirst(x, d);
 		// formatting
 		derivation = derivation.replaceAll("  ", " ");
-		// derivationLogger.write(
-		// "|| rule: " + x + "::=" + d
-		// + "\n");
 		derivationLogger.write("START => " + derivation + "\n");
 	}
 

@@ -5,43 +5,32 @@ prog
 |   |   |   ├──fparamList
 |   |   |   └──void
 |   |   └──funcBody
-|   |   |   ├──stat
-|   |   |   |   └──assignStat
-|   |   |   |   |   ├──dot
+|   |   |   ├──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──dot
 |   |   |   |   |   |   ├──var
 |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──dot
-|   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   └──arithExpr
-|   |   |   |   |   |   |   |   |   |   └──term
-|   |   |   |   |   |   |   |   |   |   |   └──factor
-|   |   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──expr
-|   |   |   |   |   |   └──arithExpr
-|   |   |   |   |   |   |   └──term
-|   |   |   |   |   |   |   |   └──intnum
-|   |   |   └──stat
-|   |   |   |   └──assignStat
-|   |   |   |   |   ├──dot
+|   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   └──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──dot
 |   |   |   |   |   |   ├──var
 |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──dot
-|   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──expr
-|   |   |   |   |   |   └──arithExpr
-|   |   |   |   |   |   |   └──term
-|   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum

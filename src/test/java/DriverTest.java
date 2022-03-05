@@ -27,8 +27,8 @@ public class DriverTest {
         Driver.main(new String[] { "./input/supplement.src" });
     }
 
-    @Test
-    void test6() throws Exception {
-        Driver.main(new String[] { "./input/skiperrors.src" });
-    }
+    // @Test
+    // void test6() throws Exception {
+    // Driver.main(new String[] { "./input/skiperrors.src" });
+    // }
 }
