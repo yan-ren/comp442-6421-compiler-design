@@ -223,8 +223,8 @@ public class Parser {
 		}
 		// Semantic Special Case
 		/**
-		 * (id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 <<special>> ASSIGNOP EXPR sa22
-		 * sa17 semi sa12)
+		 * (id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 [<<special>> ASSIGNOP EXPR sa22
+		 * sa17 semi] sa12)
 		 */
 		if (terms.get(0).equals("SPECIAL_ASSIGN")) {
 			int count = 0;

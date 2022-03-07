@@ -47,7 +47,7 @@
 <funcHead> ::= 'func' 'id' '(' <fParams> ')' 'arrow' <returnType>   
 
 <statement> ::= 'id' <statement-Id-nest> ';'  
-<statement> ::= 'if' '(' <relExpr> ')' then <statBlock> else <statBlock> ';'   
+<statement> ::= 'if' '(' <relExpr> ')' 'then' <statBlock> 'else' <statBlock> ';'   
 <statement> ::= 'while' '(' <relExpr> ')' <statBlock> ';'   
 <statement> ::= 'read' '(' <variable> ')' ';'   
 <statement> ::= 'write' '(' <expr> ')' ';'   
