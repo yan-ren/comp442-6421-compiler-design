@@ -68,6 +68,7 @@ public class Parser {
 		initFirstFollowSet();
 		// initParseTable();
 		initParseTableFromJson();
+
 		// special case: end of program
 		this.parseTable.put("REPTPROG0::$", new ArrayList<>());
 		createNonTerminalsFromParseTable();
@@ -105,7 +106,7 @@ public class Parser {
 			}
 			// x ∈ SemanticActions
 			else {
-				semanticActions(x);
+				takeSemanticActions(x);
 				parsingStack.pop();
 			}
 		}
@@ -120,7 +121,14 @@ public class Parser {
 		}
 	}
 
-	private void semanticActions(String action) throws Exception {
+	/**
+	 * Based on the semantic action id (sa1), call the corresponding semantic action
+	 * function
+	 * 
+	 * @param action
+	 * @throws Exception
+	 */
+	private void takeSemanticActions(String action) throws Exception {
 		if (!SemanticAction.SEMANTIC_ACTION_TABLE.containsKey(action)) {
 			throw new Exception("invalid semantic action symbol: " + action);
 		}
@@ -293,6 +301,12 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Old parse table generation function used in A2, which is using html as
+	 * source, deprecated in A3
+	 * 
+	 * @throws IOException
+	 */
 	public void initParseTable() throws IOException {
 		File input = new File("./input/parse-table.html");
 		Document doc = Jsoup.parse(input, "UTF-8", "https://smlweb.cpsc.ucalgary.ca/start.html");
@@ -330,6 +344,11 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Parse table generation function use json as source
+	 * 
+	 * @throws IOException
+	 */
 	private void initParseTableFromJson() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String parseTableJson = new String(Files.readAllBytes(Paths.get("./input/parse_table_attribute.json")));

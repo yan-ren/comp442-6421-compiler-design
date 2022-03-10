@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import lexicalanalyzer.Token;
+import symboltable.SymbolTable;
+import symboltable.SymbolTableEntry;
+import visitor.Visitor;
 
 public class Node {
 	private String name;
@@ -16,6 +19,9 @@ public class Node {
 
 	public Node parent;
 	public ArrayList<Node> children;
+
+	public SymbolTableEntry symbolTableEntry;
+	public SymbolTable symbolTable;
 
 	public Node(String name) {
 		this.name = name;
@@ -174,4 +180,7 @@ public class Node {
 		return result;
 	}
 
+	public void accept(Visitor visitor) {
+		// visitor.visit(this);
+	}
 }
