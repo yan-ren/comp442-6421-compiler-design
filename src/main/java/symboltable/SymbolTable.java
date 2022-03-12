@@ -46,7 +46,7 @@ public class SymbolTable {
     public String toString() {
         String result = "Table: " + this.name + ", Object id: " + this.hashCode() + "\n";
         result += "name,kind,type,link";
-        result += "\n______________________________________________\n";
+        result += "\n_________________________________________\n";
         for (SymbolTableEntry entry : this.entries) {
             result += entry.name + "," + entry.kind + ",";
             if (entry.type != null) {
@@ -73,7 +73,7 @@ public class SymbolTable {
             if (entry.link != null) {
                 result += "," + entry.link.hashCode();
             }
-            result += "\n______________________________________________\n";
+            result += "\n_________________________________________\n";
         }
 
         return result;

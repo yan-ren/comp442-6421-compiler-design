@@ -81,7 +81,7 @@ public class SymbolTableCreationVisitor implements Visitor {
             // assign local table to the node
             node.symbolTable = localSymbolTable;
 
-            // pass visitoir to funcHead -> fparamList
+            // pass visitor to funcHead -> fparamList
             for (Node child : node.children.get(1).children.get(1).children) {
                 child.symbolTable = node.symbolTable;
                 child.accept(this);
@@ -164,9 +164,9 @@ public class SymbolTableCreationVisitor implements Visitor {
             SymbolTableEntry fEntry = new SymbolTableEntry(funcName, Kind.function, null);
             fEntry.funcOutputType = new SymbolTableEntryType(node.children.get(0).getToken().getLexeme());
 
-            // pass visitoir to fparamList
+            // pass visitor to fparamList
             for (Node child : fparamList) {
-                child.symbolTable = node.symbolTable;
+                // child.symbolTable = node.symbolTable;
                 child.accept(this);
             }
 
@@ -300,7 +300,9 @@ public class SymbolTableCreationVisitor implements Visitor {
             node.symbolTableEntry = new SymbolTableEntry(entryName, Kind.parameter, null);
             node.symbolTableEntry.type = type;
             // add entry to parent table
-            node.symbolTable.addEntry(node.symbolTableEntry);
+            if (node.symbolTable != null) {
+                node.symbolTable.addEntry(node.symbolTableEntry);
+            }
         }
         /**
          * All other semantic action, don't need to add symbol table

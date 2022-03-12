@@ -2,7 +2,9 @@ package visitor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import ast.Node;
@@ -13,15 +15,15 @@ import symboltable.SymbolTableEntry;
 
 public class Helper {
 
-    public static void postProcess(Node node, BufferedWriter logger) throws IOException {
+    public static void postProcess(Node root, BufferedWriter logger) throws IOException {
 
-        if (node.getName().equals(SemanticAction.PROG)) {
+        if (root.getName().equals(SemanticAction.PROG)) {
             /**
              * 1. associate impl function with struct
              */
-            for (SymbolTableEntry entry : node.symbolTable.getEntries()) {
+            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
                 if (entry.kind == Kind.struct) {
-                    SymbolTableEntry implEntry = node.symbolTable.getEntryByNameKind(entry.name, Kind.impl);
+                    SymbolTableEntry implEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.impl);
                     if (implEntry != null) {
                         SymbolTable structSymbolTable = entry.link;
                         SymbolTable implSymbolTable = implEntry.link;
@@ -44,28 +46,37 @@ public class Helper {
                 }
             }
             // add inherited struct to the struct scope
-            int entryNum = node.symbolTable.getEntries().size();
+            int entryNum = root.symbolTable.getEntries().size();
             for (int i = 0; i < entryNum; i++) {
-                SymbolTableEntry entry = node.symbolTable.getEntries().get(i);
-                if (entry.kind == Kind.struct) {
-                    for (String inherited : entry.inherits) {
-                        SymbolTableEntry inheritedEntry = node.symbolTable.getEntryByNameKind(inherited, Kind.struct);
+                SymbolTableEntry structEntry = root.symbolTable.getEntries().get(i);
+                if (structEntry.kind == Kind.struct) {
+                    for (String inherited : structEntry.inherits) {
+                        SymbolTableEntry inheritedEntry = root.symbolTable.getEntryByNameKind(inherited, Kind.struct);
                         if (inheritedEntry != null) {
                             for (SymbolTableEntry e : inheritedEntry.link.getEntries()) {
-                                if (node.symbolTable.getEntryByNameKind(e.name, e.kind) == null) {
-                                    node.symbolTable.addEntry(e);
+                                if (structEntry.link.getEntryByNameKind(e.name, e.kind) == null) {
+                                    structEntry.link.addEntry(e);
                                 } else {
                                     logger.write("[warn][semantic] " + e.kind + " : " + e.name + " in struct "
                                             + inheritedEntry.name +
-                                            " is shadowed by struct " + entry.kind + "\n");
+                                            " is shadowed by struct " + structEntry.name + "\n");
                                 }
                             }
                         } else {
                             logger.write(
-                                    "[warn][semantic] struct " + entry.name + " inherits " + inherited
+                                    "[warn][semantic] struct " + structEntry.name + " inherits " + inherited
                                             + " not found\n");
                         }
                     }
+                }
+            }
+            // remove impl from prog
+            List<SymbolTableEntry> rootEntries = root.symbolTable.getEntries();
+            Iterator<SymbolTableEntry> iterator = rootEntries.iterator();
+            while (iterator.hasNext()) {
+                SymbolTableEntry entry = iterator.next();
+                if (entry.kind == Kind.impl) {
+                    iterator.remove();
                 }
             }
         }
