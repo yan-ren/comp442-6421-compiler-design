@@ -1,36 +1,36 @@
 prog
 |   └──funcDef
-|   |   ├──funcHead
-|   |   |   ├──id
-|   |   |   ├──fparamList
-|   |   |   └──void
-|   |   └──funcBody
+|   |   ├──funcBody
 |   |   |   ├──assignStat
-|   |   |   |   ├──dot
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──dot
+|   |   |   |   ├──intnum
+|   |   |   |   └──dot
+|   |   |   |   |   ├──dot
 |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
 |   |   |   └──assignStat
-|   |   |   |   ├──dot
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──dot
+|   |   |   |   ├──intnum
+|   |   |   |   └──dot
+|   |   |   |   |   ├──dot
 |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   └──funcHead
+|   |   |   ├──void
+|   |   |   ├──fparamList
+|   |   |   └──id

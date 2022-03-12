@@ -74,6 +74,10 @@ public class Parser {
 		createNonTerminalsFromParseTable();
 	}
 
+	public Node getASTRoot() {
+		return this.semanticStack.peek();
+	}
+
 	public boolean parse() throws Exception {
 		boolean error = false;
 		parsingStack.push(END_OF_STACK);

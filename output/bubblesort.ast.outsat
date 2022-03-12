@@ -1,291 +1,291 @@
 prog
 |   ├──funcDef
-|   |   ├──funcHead
-|   |   |   ├──id
+|   |   ├──funcBody
+|   |   |   ├──fCall
+|   |   |   |   ├──aParams
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   |   └──id
+|   |   |   ├──fCall
+|   |   |   |   ├──aParams
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   |   └──id
+|   |   |   ├──fCall
+|   |   |   |   ├──aParams
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   └──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   |   └──intnum
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   └──funcHead
+|   |   |   ├──void
+|   |   |   ├──fparamList
+|   |   |   └──id
+|   ├──funcDef
+|   |   ├──funcBody
+|   |   |   ├──whileStat
+|   |   |   |   ├──statBlock
+|   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   ├──plus
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   └──writeStat
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   └──id
+|   |   |   |   └──relExpr
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   |   |   ├──lt
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   ├──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   |   └──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   └──funcHead
+|   |   |   ├──void
 |   |   |   ├──fparamList
 |   |   |   |   ├──fparam
-|   |   |   |   |   ├──id
+|   |   |   |   |   ├──arraySize
 |   |   |   |   |   ├──integer
-|   |   |   |   |   └──arraySize
-|   |   |   |   |   |   └──emptySizeArray
+|   |   |   |   |   └──id
 |   |   |   |   └──fparam
-|   |   |   |   |   ├──id
+|   |   |   |   |   ├──arraySize
+|   |   |   |   |   |   └──emptySizeArray
 |   |   |   |   |   ├──integer
-|   |   |   |   |   └──arraySize
-|   |   |   └──void
-|   |   └──funcBody
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   └──whileStat
-|   |   |   |   ├──relExpr
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   ├──lt
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   ├──minus
-|   |   |   |   |   └──intnum
-|   |   |   |   └──statBlock
-|   |   |   |   |   ├──whileStat
-|   |   |   |   |   |   ├──relExpr
-|   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   ├──lt
-|   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   ├──minus
-|   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   ├──minus
-|   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   |   └──statBlock
-|   |   |   |   |   |   |   ├──ifStat
-|   |   |   |   |   |   |   |   ├──relExpr
-|   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   ├──gt
-|   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──id
+|   |   |   └──id
+|   └──funcDef
+|   |   ├──funcBody
+|   |   |   ├──whileStat
+|   |   |   |   ├──statBlock
+|   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   ├──plus
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   └──id
+|   |   |   |   |   └──whileStat
+|   |   |   |   |   |   ├──statBlock
+|   |   |   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   |   ├──plus
+|   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   └──ifStat
+|   |   |   |   |   |   |   |   ├──statBlock
 |   |   |   |   |   |   |   |   ├──statBlock
 |   |   |   |   |   |   |   |   |   ├──assignStat
 |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   |   |   |   |   |   ├──plus
 |   |   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   |   |   |   ├──assignStat
 |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   ├──intnum
 |   |   |   |   |   |   |   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   |   |   |   └──assignStat
 |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   |   └──id
 |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   └──statBlock
-|   |   |   |   |   |   |   └──assignStat
-|   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   └──assignStat
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   └──intnum
-|   ├──funcDef
-|   |   ├──funcHead
-|   |   |   ├──id
-|   |   |   ├──fparamList
-|   |   |   |   ├──fparam
-|   |   |   |   |   ├──id
-|   |   |   |   |   ├──integer
-|   |   |   |   |   └──arraySize
-|   |   |   |   |   |   └──emptySizeArray
-|   |   |   |   └──fparam
-|   |   |   |   |   ├──id
-|   |   |   |   |   ├──integer
-|   |   |   |   |   └──arraySize
-|   |   |   └──void
-|   |   └──funcBody
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──varDecl
-|   |   |   |   ├──id
-|   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   └──whileStat
-|   |   |   |   ├──relExpr
+|   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   └──relExpr
+|   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   |   |   |   |   ├──plus
+|   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   ├──gt
+|   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   └──relExpr
+|   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   ├──minus
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   ├──minus
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   └──id
+|   |   |   |   |   |   |   ├──lt
+|   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   |   |   └──id
+|   |   |   |   └──relExpr
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   ├──minus
 |   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
 |   |   |   |   |   ├──lt
 |   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   └──statBlock
-|   |   |   |   |   ├──writeStat
-|   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──assignStat
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   ├──plus
-|   |   |   |   |   |   └──intnum
-|   └──funcDef
-|   |   ├──funcHead
-|   |   |   ├──id
-|   |   |   ├──fparamList
-|   |   |   └──void
-|   |   └──funcBody
+|   |   |   |   |   |   ├──indiceList
+|   |   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
+|   |   |   |   └──var
+|   |   |   |   |   ├──indiceList
+|   |   |   |   |   └──id
 |   |   |   ├──varDecl
-|   |   |   |   ├──id
+|   |   |   |   ├──arraySize
 |   |   |   |   ├──integer
-|   |   |   |   └──arraySize
-|   |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──intnum
-|   |   |   ├──fCall
-|   |   |   |   ├──id
-|   |   |   |   └──aParams
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──intnum
-|   |   |   ├──fCall
-|   |   |   |   ├──id
-|   |   |   |   └──aParams
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──intnum
-|   |   |   └──fCall
-|   |   |   |   ├──id
-|   |   |   |   └──aParams
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──intnum
+|   |   |   |   └──id
+|   |   |   ├──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   |   ├──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   |   └──varDecl
+|   |   |   |   ├──arraySize
+|   |   |   |   ├──integer
+|   |   |   |   └──id
+|   |   └──funcHead
+|   |   |   ├──void
+|   |   |   ├──fparamList
+|   |   |   |   ├──fparam
+|   |   |   |   |   ├──arraySize
+|   |   |   |   |   ├──integer
+|   |   |   |   |   └──id
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──arraySize
+|   |   |   |   |   |   └──emptySizeArray
+|   |   |   |   |   ├──integer
+|   |   |   |   |   └──id
+|   |   |   └──id

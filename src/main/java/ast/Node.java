@@ -64,10 +64,10 @@ public class Node {
 		traverseTree(root, "", "");
 	}
 
-	public static void traverseTree(Node root, String padding, String pointer) {
+	private static void traverseTree(Node root, String padding, String pointer) {
 		System.out.println(padding + pointer + root.getName());
-		for (int i = root.children.size() - 1; i >= 0; i--) {
-			if (i == 0) {
+		for (int i = 0; i < root.children.size(); i++) {
+			if (i == root.children.size() - 1) {
 				traverseTree(root.children.get(i), padding + "|   ", "└──");
 			} else {
 				traverseTree(root.children.get(i), padding + "|   ", "├──");
@@ -81,8 +81,8 @@ public class Node {
 
 	private static void traverseTree(BufferedWriter br, Node root, String padding, String pointer) throws IOException {
 		br.write(padding + pointer + root.getName() + "\n");
-		for (int i = root.children.size() - 1; i >= 0; i--) {
-			if (i == 0) {
+		for (int i = 0; i < root.children.size(); i++) {
+			if (i == root.children.size() - 1) {
 				traverseTree(br, root.children.get(i), padding + "|   ", "└──");
 			} else {
 				traverseTree(br, root.children.get(i), padding + "|   ", "├──");
@@ -181,6 +181,6 @@ public class Node {
 	}
 
 	public void accept(Visitor visitor) {
-		// visitor.visit(this);
+		visitor.visit(this);
 	}
 }

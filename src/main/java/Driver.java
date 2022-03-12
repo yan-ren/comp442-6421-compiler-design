@@ -9,8 +9,12 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ast.Node;
 import lexicalanalyzer.LexicalAnalyzer;
 import parser.Parser;
+import visitor.Helper;
+import visitor.SymbolTableCreationVisitor;
+import visitor.Visitor;
 
 public class Driver {
     public static final String DEFAULT_OUTPUT = "./output/";
@@ -36,6 +40,8 @@ public class Driver {
         BufferedWriter outsyntaxerrors = null;
         BufferedWriter outast = null;
         BufferedWriter outdot = null;
+        BufferedWriter outsemanticerrors = null;
+        BufferedWriter outsymboltables = null;
 
         if (!src.getName().endsWith(".src")) {
             throw new Exception("invalid input file: " + src.getName() + ", should end with .src");
@@ -57,13 +63,20 @@ public class Driver {
             outsyntaxerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsyntaxerrors"));
             outast = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".ast.outsat"));
             outdot = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".dot.outsat"));
+            outsemanticerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsemanticerrors"));
+            outsymboltables = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsymboltables"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
         Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
-        System.out.println(parser.parse());
+        System.out.println("[debug] parser success: " + parser.parse());
+        Visitor visitor = new SymbolTableCreationVisitor();
+        Node astRoot = parser.getASTRoot();
+        visitor.visit(astRoot);
+        Helper.postProcess(astRoot, outsemanticerrors);
+        Helper.printSymbolTableToFile(astRoot, outsymboltables);
 
         in.close();
         outlextokens.close();
@@ -72,5 +85,7 @@ public class Driver {
         outsyntaxerrors.close();
         outast.close();
         outdot.close();
+        outsemanticerrors.close();
+        outsymboltables.close();
     }
 }
