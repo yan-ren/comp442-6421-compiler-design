@@ -16,4 +16,9 @@ public class SymanticAnalysisTest {
     void test3() throws Exception {
         Driver.main(new String[] { "./input/polynomial.src" });
     }
+
+    @Test
+    void test4() throws Exception {
+        Driver.main(new String[] { "./input/polynomialsemanticerrors.src" });
+    }
 }

@@ -1,0 +1,12 @@
+[error][semantic] multiple declaration for variable: counter in scope: main
+[error][semantic] multiple declaration for variable: b in scope: LINEAR
+[error][semantic] multiple declaration for struct: POLYNOMIAL in scope: global
+[warn][semantic] unimplemented struct, cannot find impl for strcut E
+[warn][semantic] unimplemented struct, cannot find impl for strcut D
+[warn][semantic] unimplemented struct, cannot find impl for strcut C
+[error][semantic] undefined member function declaration evaluate2 in impl POLYNOMIAL
+[error][semantic] undeclared member function definition build2 in impl QUADRATIC
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR

@@ -22,4 +22,12 @@ public class SymbolTableEntry {
         this.inherits = new ArrayList<>();
         this.funcInputType = new ArrayList<>();
     }
+
+    public boolean isSameFuncInputType(List<SymbolTableEntryType> funcInputType2) {
+        if (funcInputType.size() != funcInputType2.size()) {
+            return false;
+        }
+
+        return funcInputType.equals(funcInputType2);
+    }
 }

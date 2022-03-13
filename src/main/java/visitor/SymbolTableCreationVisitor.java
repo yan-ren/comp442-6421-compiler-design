@@ -1,5 +1,7 @@
 package visitor;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.List;
 
 import ast.Node;
@@ -11,8 +13,14 @@ import symboltable.SymbolTableEntryType;
 
 public class SymbolTableCreationVisitor implements Visitor {
 
+    BufferedWriter logger;
+
+    public SymbolTableCreationVisitor(BufferedWriter logger) {
+        this.logger = logger;
+    }
+
     @Override
-    public void visit(Node node) {
+    public void visit(Node node) throws IOException {
 
         /**
          * prog
@@ -72,7 +80,7 @@ public class SymbolTableCreationVisitor implements Visitor {
          * | | | └──id
          */
         else if (node.getName().equals(SemanticAction.FUNC_DEF)) {
-            SymbolTable parent = node.symbolTable;
+            SymbolTable parentTable = node.symbolTable;
 
             // make symbol table entry for the funcDel node
             Node funcHead = node.children.get(1);
@@ -87,6 +95,7 @@ public class SymbolTableCreationVisitor implements Visitor {
                 child.accept(this);
             }
 
+            // create current entry
             SymbolTableEntry fEntry = new SymbolTableEntry(funcName, Kind.function, localSymbolTable);
             fEntry.funcOutputType = new SymbolTableEntryType(funcHead.children.get(0).getToken().getLexeme());
 
@@ -96,8 +105,18 @@ public class SymbolTableCreationVisitor implements Visitor {
             }
             node.symbolTableEntry = fEntry;
 
-            // add local entry to parent table
-            parent.addEntry(fEntry);
+            // add current entry to parent table
+            if (parentTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
+                // same funcDel found, compare the input field
+                if (fEntry.funcInputType.equals(parentTable.getEntryByNameKind(node.symbolTableEntry.name,
+                        node.symbolTableEntry.kind).funcInputType)) {
+                    logger.write(
+                            "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
+                                    + node.symbolTableEntry.name + " in scope: "
+                                    + parentTable.getName() + "\n");
+                }
+            }
+            parentTable.addEntry(fEntry);
 
             // propagate accepting the same visitor to all the children
             // this effectively achieves Depth-First AST Traversal
@@ -140,6 +159,12 @@ public class SymbolTableCreationVisitor implements Visitor {
             }
 
             // add current symbol table entry to parent table
+            if (node.symbolTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
+                logger.write(
+                        "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
+                                + node.symbolTableEntry.name + " in scope: "
+                                + node.symbolTable.getName() + "\n");
+            }
             node.symbolTable.addEntry(node.symbolTableEntry);
             node.symbolTable = localSymbolTable;
 
@@ -169,12 +194,12 @@ public class SymbolTableCreationVisitor implements Visitor {
                 // child.symbolTable = node.symbolTable;
                 child.accept(this);
             }
-
+            // use fparamList to populate current entry
             for (Node fParam : fparamList) {
                 fEntry.funcInputType.add(fParam.symbolTableEntry.type);
             }
             node.symbolTableEntry = fEntry;
-            // add local entry to parent table
+            // add current entry to parent table
             node.symbolTable.addEntry(fEntry);
         }
         /**
@@ -275,6 +300,12 @@ public class SymbolTableCreationVisitor implements Visitor {
             node.symbolTableEntry = new SymbolTableEntry(entryName, Kind.variable, null);
             node.symbolTableEntry.type = type;
             // add entry to parent table
+            if (node.symbolTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
+                logger.write(
+                        "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
+                                + node.symbolTableEntry.name + " in scope: "
+                                + node.symbolTable.getName() + "\n");
+            }
             node.symbolTable.addEntry(node.symbolTableEntry);
         }
         /**

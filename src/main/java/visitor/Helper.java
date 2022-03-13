@@ -34,14 +34,40 @@ public class Helper {
                                 if (implFuncEntry != null) {
                                     structEntry.link = implFuncEntry.link;
                                 } else {
-                                    logger.write("[warn][semantic] cannot find func " + structEntry.name + " in impl "
+                                    logger.write("[error][semantic] undefined member function declaration "
+                                            + structEntry.name + " in impl "
                                             + implSymbolTable.getName() + "\n");
 
                                 }
                             }
                         }
                     } else {
-                        logger.write("[warn][semantic] cannot find impl for strcut" + entry.name + "\n");
+                        logger.write("[warn][semantic] unimplemented struct, cannot find impl for strcut " + entry.name
+                                + "\n");
+                    }
+                }
+            }
+            // check for each impl if a struct exists and func in impl is defined in struct
+            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
+                if (entry.kind == Kind.impl) {
+                    SymbolTableEntry structEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.struct);
+                    if (structEntry != null) {
+                        SymbolTable implSymbolTable = entry.link;
+                        SymbolTable structSymbolTable = structEntry.link;
+                        for (SymbolTableEntry implEntry : implSymbolTable.getEntries()) {
+                            if (implEntry.kind == Kind.function) {
+                                SymbolTableEntry structFuncEntry = structSymbolTable.getEntryByNameKind(implEntry.name,
+                                        implEntry.kind);
+                                if (structFuncEntry == null) {
+                                    logger.write("[error][semantic] undeclared member function definition "
+                                            + implEntry.name + " in impl "
+                                            + implSymbolTable.getName() + "\n");
+
+                                }
+                            }
+                        }
+                    } else {
+                        logger.write("[warn][semantic] unknown impl " + entry.name + " cannot find struct for impl \n");
                     }
                 }
             }
@@ -57,7 +83,7 @@ public class Helper {
                                 if (structEntry.link.getEntryByNameKind(e.name, e.kind) == null) {
                                     structEntry.link.addEntry(e);
                                 } else {
-                                    logger.write("[warn][semantic] " + e.kind + " : " + e.name + " in struct "
+                                    logger.write("[warn][semantic] " + e.kind + ": " + e.name + " in struct "
                                             + inheritedEntry.name +
                                             " is shadowed by struct " + structEntry.name + "\n");
                                 }

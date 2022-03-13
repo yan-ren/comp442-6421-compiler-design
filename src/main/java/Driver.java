@@ -69,23 +69,27 @@ public class Driver {
             e.printStackTrace();
         }
 
-        LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
-        Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
-        System.out.println("[debug] parser success: " + parser.parse());
-        Visitor visitor = new SymbolTableCreationVisitor();
-        Node astRoot = parser.getASTRoot();
-        visitor.visit(astRoot);
-        Helper.postProcess(astRoot, outsemanticerrors);
-        Helper.printSymbolTableToFile(astRoot, outsymboltables);
-
-        in.close();
-        outlextokens.close();
-        outlexerrors.close();
-        outderivation.close();
-        outsyntaxerrors.close();
-        outast.close();
-        outdot.close();
-        outsemanticerrors.close();
-        outsymboltables.close();
+        try {
+            LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
+            Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
+            System.out.println("[debug] parser success: " + parser.parse());
+            Visitor visitor = new SymbolTableCreationVisitor(outsemanticerrors);
+            Node astRoot = parser.getASTRoot();
+            visitor.visit(astRoot);
+            Helper.postProcess(astRoot, outsemanticerrors);
+            Helper.printSymbolTableToFile(astRoot, outsymboltables);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            in.close();
+            outlextokens.close();
+            outlexerrors.close();
+            outderivation.close();
+            outsyntaxerrors.close();
+            outast.close();
+            outdot.close();
+            outsemanticerrors.close();
+            outsymboltables.close();
+        }
     }
 }

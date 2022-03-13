@@ -1,17 +1,17 @@
-Table: global, Object id: 484589713
+Table: global, Object id: 1178587240
 name,kind,type,link
 _________________________________________
-main,function,():void,1574598287
+main,function,():void,144040807
 _________________________________________
-QUADRATIC,struct,,2056031695
+QUADRATIC,struct,,455501890
 _________________________________________
-LINEAR,struct,,606508809
+LINEAR,struct,,2050462663
 _________________________________________
-POLYNOMIAL,struct,,718187988
+POLYNOMIAL,struct,,1119072377
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1574598287
+Table: main, Object id: 144040807
 name,kind,type,link
 _________________________________________
 counter,variable,integer
@@ -22,12 +22,12 @@ f1,variable,LINEAR
 _________________________________________
 
 ==============================================
-Table: QUADRATIC, Object id: 2056031695
+Table: QUADRATIC, Object id: 455501890
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float,615438348
+evaluate,function,(float,):float,1696263571
 _________________________________________
-build,function,(float,float,float,):QUADRATIC,978508707
+build,function,(float,float,float,):QUADRATIC,1305935114
 _________________________________________
 c,variable,float
 _________________________________________
@@ -37,12 +37,12 @@ a,variable,float
 _________________________________________
 
 ==============================================
-Table: LINEAR, Object id: 606508809
+Table: LINEAR, Object id: 2050462663
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float,710708543
+evaluate,function,(float,):float,196732636
 _________________________________________
-build,function,(float,float,):LINEAR,1965237677
+build,function,(float,float,):LINEAR,1414967210
 _________________________________________
 b,variable,float
 _________________________________________
@@ -50,14 +50,14 @@ a,variable,float
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 718187988
+Table: POLYNOMIAL, Object id: 1119072377
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float,664792509
+evaluate,function,(float,):float,1720891078
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 615438348
+Table: evaluate, Object id: 1696263571
 name,kind,type,link
 _________________________________________
 x,parameter,float
@@ -66,7 +66,7 @@ result,variable,float
 _________________________________________
 
 ==============================================
-Table: build, Object id: 978508707
+Table: build, Object id: 1305935114
 name,kind,type,link
 _________________________________________
 C,parameter,float
@@ -79,7 +79,7 @@ new_function,variable,QUADRATIC
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 710708543
+Table: evaluate, Object id: 196732636
 name,kind,type,link
 _________________________________________
 x,parameter,float
@@ -88,7 +88,7 @@ result,variable,float
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1965237677
+Table: build, Object id: 1414967210
 name,kind,type,link
 _________________________________________
 B,parameter,float
@@ -99,7 +99,7 @@ new_function,variable,LINEAR
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 664792509
+Table: evaluate, Object id: 1720891078
 name,kind,type,link
 _________________________________________
 x,parameter,float

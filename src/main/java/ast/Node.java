@@ -180,7 +180,7 @@ public class Node {
 		return result;
 	}
 
-	public void accept(Visitor visitor) {
+	public void accept(Visitor visitor) throws IOException {
 		visitor.visit(this);
 	}
 }
