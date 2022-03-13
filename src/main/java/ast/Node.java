@@ -3,6 +3,7 @@ package ast;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -123,7 +124,12 @@ public class Node {
 		}
 	}
 
-	public static void postProcessing(Node current) {
+	public static void postProcess(Node root) {
+		removeNodes(root);
+		reverseChildren(root);
+	}
+
+	private static void removeNodes(Node current) {
 		if (current == null || current.children == null) {
 			return;
 		}
@@ -150,7 +156,17 @@ public class Node {
 		}
 
 		for (Node c : current.children) {
-			postProcessing(c);
+			removeNodes(c);
+		}
+	}
+
+	private static void reverseChildren(Node node) {
+		if (node.children != null) {
+			Collections.reverse(node.children);
+		}
+
+		for (Node c : node.children) {
+			reverseChildren(c);
 		}
 	}
 

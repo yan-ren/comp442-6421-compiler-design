@@ -115,7 +115,7 @@ public class Parser {
 			}
 		}
 
-		Node.postProcessing(semanticStack.peek());
+		Node.postProcess(semanticStack.peek());
 		Node.printTreeToFile(semanticStack.peek(), astLogger);
 		Node.createDotFile(semanticStack.peek(), outdot);
 		if (!a.getType().equals(END_OF_STACK) || error) {

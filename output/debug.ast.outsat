@@ -1,36 +1,36 @@
 prog
 |   └──funcDef
-|   |   ├──funcBody
-|   |   |   ├──assignStat
-|   |   |   |   ├──intnum
-|   |   |   |   └──dot
-|   |   |   |   |   ├──dot
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   |   └──id
-|   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   |   └──id
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   └──id
-|   |   |   └──assignStat
-|   |   |   |   ├──intnum
-|   |   |   |   └──dot
-|   |   |   |   |   ├──dot
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   |   └──id
-|   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   |   |   |   └──id
-|   |   |   |   |   |   |   └──id
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──indiceList
-|   |   |   |   |   |   └──id
-|   |   └──funcHead
-|   |   |   ├──void
+|   |   ├──funcHead
+|   |   |   ├──id
 |   |   |   ├──fparamList
-|   |   |   └──id
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──dot
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   └──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──dot
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum

@@ -42,62 +42,69 @@ public class SymbolTableCreationVisitor implements Visitor {
         }
         /**
          * | ├──funcDef
-         * | | ├──funcBody
-         * | | | ├──fCall
-         * | | | | ├──aParams
-         * | | | | | ├──intnum
-         * | | | | | └──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | └──id
-         * | | | ├──fCall
-         * | | | | ├──aParams
-         * | | | | | ├──intnum
-         * | | | | | └──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | └──id
-         * | | | ├──assignStat
-         * | | | | ├──intnum
-         * | | | | └──var
-         * | | | | | ├──indiceList
-         * | | | | | | └──intnum
-         * | | | | | └──id
-         * | | | ├──assignStat
-         * | | | | ├──intnum
-         * | | | | └──var
-         * | | | | | ├──indiceList
-         * | | | | | | └──intnum
-         * | | | | | └──id
-         * | | | └──varDecl
-         * | | | | ├──arraySize
-         * | | | | | └──intnum
-         * | | | | ├──integer
-         * | | | | └──id
-         * | | └──funcHead
-         * | | | ├──void
+         * | | ├──funcHead
+         * | | | ├──id
          * | | | ├──fparamList
+         * | | | | ├──fparam
+         * | | | | | ├──id
+         * | | | | | ├──float
+         * | | | | | └──arraySize
+         * | | | | └──fparam
+         * | | | | | ├──id
+         * | | | | | ├──float
+         * | | | | | └──arraySize
          * | | | └──id
+         * | | └──funcBody
+         * | | | ├──varDecl
+         * | | | | ├──id
+         * | | | | ├──id
+         * | | | | └──arraySize
+         * | | | ├──assignStat
+         * | | | | ├──dot
+         * | | | | | ├──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | └──var
+         * | | | | | ├──id
+         * | | | | | └──indiceList
+         * | | | ├──assignStat
+         * | | | | ├──dot
+         * | | | | | ├──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | └──var
+         * | | | | | ├──id
+         * | | | | | └──indiceList
+         * | | | └──returnStat
+         * | | | | └──var
+         * | | | | | ├──id
+         * | | | | | └──indiceList
          */
         else if (node.getName().equals(SemanticAction.FUNC_DEF)) {
             SymbolTable parentTable = node.symbolTable;
 
             // make symbol table entry for the funcDel node
-            Node funcHead = node.children.get(1);
-            String funcName = funcHead.children.get(2).getToken().getLexeme();
+            Node funcHead = node.children.get(0);
+            String funcName = funcHead.children.get(0).getToken().getLexeme();
             SymbolTable localSymbolTable = new SymbolTable(funcName, node.symbolTable);
             // assign local table to the node
             node.symbolTable = localSymbolTable;
 
             // pass visitor to funcHead -> fparamList
-            for (Node child : node.children.get(1).children.get(1).children) {
+            for (Node child : funcHead.children.get(1).children) {
                 child.symbolTable = node.symbolTable;
                 child.accept(this);
             }
 
             // create current entry
             SymbolTableEntry fEntry = new SymbolTableEntry(funcName, Kind.function, localSymbolTable);
-            fEntry.funcOutputType = new SymbolTableEntryType(funcHead.children.get(0).getToken().getLexeme());
+            fEntry.funcOutputType = new SymbolTableEntryType(funcHead.children.get(2).getToken().getLexeme());
 
             List<Node> fparamList = funcHead.children.get(1).children;
             for (Node fParam : fparamList) {
@@ -113,7 +120,9 @@ public class SymbolTableCreationVisitor implements Visitor {
                     logger.write(
                             "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
                                     + node.symbolTableEntry.name + " in scope: "
-                                    + parentTable.getName() + "\n");
+                                    + parentTable.getName() + ", line "
+                                    + funcHead.children.get(0).getToken().getLocation() +
+                                    "\n");
                 }
             }
             parentTable.addEntry(fEntry);
@@ -121,8 +130,8 @@ public class SymbolTableCreationVisitor implements Visitor {
             // propagate accepting the same visitor to all the children
             // this effectively achieves Depth-First AST Traversal
             // pass to funcBody
-            node.children.get(0).symbolTable = node.symbolTable;
-            node.children.get(0).accept(this);
+            node.children.get(1).symbolTable = node.symbolTable;
+            node.children.get(1).accept(this);
         }
         /**
          * struct QUADRATIC inherits POLYNOMIAL {
@@ -133,27 +142,26 @@ public class SymbolTableCreationVisitor implements Visitor {
          * public func evaluate(x: float) -> float;
          * };
          * 
-         * | └──structDecl
-         * | | ├──funcHead
-         * | | | ├──float
+         * | ├──structDecl
+         * | | ├──id
+         * | | ├──inherlist
+         * | | ├──public
+         * | | └──funcHead
+         * | | | ├──id
          * | | | ├──fparamList
          * | | | | └──fparam
-         * | | | | | ├──arraySize
+         * | | | | | ├──id
          * | | | | | ├──float
-         * | | | | | └──id
-         * | | | └──id
-         * | | ├──public
-         * | | ├──inherlist
-         * | | | └──id
-         * | | └──id
+         * | | | | | └──arraySize
+         * | | | └──float
          */
         else if (node.getName().equals(SemanticAction.STRUCT_DECL)) {
-            String structName = node.children.get(node.children.size() - 1).getToken().getLexeme();
+            String structName = node.children.get(0).getToken().getLexeme();
             SymbolTable localSymbolTable = new SymbolTable(structName, null);
             node.symbolTableEntry = new SymbolTableEntry(structName, Kind.struct, localSymbolTable);
 
             // add inherits
-            List<Node> inherlist = node.children.get(node.children.size() - 2).children;
+            List<Node> inherlist = node.children.get(1).children;
             for (Node i : inherlist) {
                 node.symbolTableEntry.inherits.add(i.getToken().getLexeme());
             }
@@ -163,7 +171,8 @@ public class SymbolTableCreationVisitor implements Visitor {
                 logger.write(
                         "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
                                 + node.symbolTableEntry.name + " in scope: "
-                                + node.symbolTable.getName() + "\n");
+                                + node.symbolTable.getName() + ", line "
+                                + node.children.get(0).getToken().getLocation() + "\n");
             }
             node.symbolTable.addEntry(node.symbolTableEntry);
             node.symbolTable = localSymbolTable;
@@ -174,20 +183,20 @@ public class SymbolTableCreationVisitor implements Visitor {
             }
         }
         /**
-         * | | ├──funcHead
-         * | | | ├──float
+         * | | └──funcHead
+         * | | | ├──id
          * | | | ├──fparamList
          * | | | | └──fparam
-         * | | | | | ├──arraySize
+         * | | | | | ├──id
          * | | | | | ├──float
-         * | | | | | └──id
-         * | | | └──id
+         * | | | | | └──arraySize
+         * | | | └──float
          */
         else if (node.getName().equals(SemanticAction.FUNC_HEAD)) {
-            String funcName = node.children.get(2).getToken().getLexeme();
+            String funcName = node.children.get(0).getToken().getLexeme();
             List<Node> fparamList = node.children.get(1).children;
             SymbolTableEntry fEntry = new SymbolTableEntry(funcName, Kind.function, null);
-            fEntry.funcOutputType = new SymbolTableEntryType(node.children.get(0).getToken().getLexeme());
+            fEntry.funcOutputType = new SymbolTableEntryType(node.children.get(2).getToken().getLexeme());
 
             // pass visitor to fparamList
             for (Node child : fparamList) {
@@ -222,49 +231,74 @@ public class SymbolTableCreationVisitor implements Visitor {
          * return (new_function);
          * }
          * }
-         * 
+         * *
          * | ├──implDef
+         * | | ├──id
          * | | ├──funcDef
-         * | | | ├──funcBody
-         * | | | | ├──returnStat
-         * | | | | | └──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | ├──assignStat
-         * | | | | | ├──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | | ├──plus
-         * | | | | | ├──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | | ├──mult
-         * | | | | | ├──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | | └──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | ├──assignStat
-         * | | | | | ├──floatnum
-         * | | | | | └──var
-         * | | | | | | ├──indiceList
-         * | | | | | | └──id
-         * | | | | └──varDecl
-         * | | | | | ├──arraySize
-         * | | | | | ├──float
-         * | | | | | └──id
-         * | | | └──funcHead
-         * | | | | ├──float
+         * | | | ├──funcHead
+         * | | | | ├──id
          * | | | | ├──fparamList
          * | | | | | └──fparam
-         * | | | | | | ├──arraySize
+         * | | | | | | ├──id
          * | | | | | | ├──float
-         * | | | | | | └──id
+         * | | | | | | └──arraySize
+         * | | | | └──float
+         * | | | └──funcBody
+         * | | | | ├──varDecl
+         * | | | | | ├──id
+         * | | | | | ├──float
+         * | | | | | └──arraySize
+         * | | | | ├──assignStat
+         * | | | | | ├──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | └──returnStat
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | └──funcDef
+         * | | | ├──funcHead
+         * | | | | ├──id
+         * | | | | ├──fparamList
+         * | | | | | ├──fparam
+         * | | | | | | ├──id
+         * | | | | | | ├──float
+         * | | | | | | └──arraySize
+         * | | | | | ├──fparam
+         * | | | | | | ├──id
+         * | | | | | | ├──float
+         * | | | | | | └──arraySize
+         * | | | | | └──fparam
+         * | | | | | | ├──id
+         * | | | | | | ├──float
+         * | | | | | | └──arraySize
          * | | | | └──id
+         * | | | └──funcBody
+         * | | | | ├──varDecl
+         * | | | | | ├──id
+         * | | | | | ├──id
+         * | | | | | └──arraySize
+         * | | | | ├──assignStat
+         * | | | | | ├──dot
+         * | | | | | | ├──var
+         * | | | | | | | ├──id
+         * | | | | | | | └──indiceList
+         * | | | | | | └──var
+         * | | | | | | | ├──id
+         * | | | | | | | └──indiceList
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
+         * | | | | └──returnStat
+         * | | | | | └──var
+         * | | | | | | ├──id
+         * | | | | | | └──indiceList
          */
         else if (node.getName().equals(SemanticAction.IMPL_DEF)) {
-            String implName = node.children.get(node.children.size() - 1).getToken().getLexeme();
+            String implName = node.children.get(0).getToken().getLexeme();
             SymbolTable localSymbolTable = new SymbolTable(implName, node.symbolTable);
             node.symbolTableEntry = new SymbolTableEntry(implName, Kind.impl, localSymbolTable);
 
@@ -279,14 +313,14 @@ public class SymbolTableCreationVisitor implements Visitor {
         }
         /**
          * ├──varDecl
-         * | ├──arraySize
+         * | ├──id
          * | ├──integer
-         * | └──id
+         * | └──arraySize
          */
         else if (node.getName().equals(SemanticAction.VAR_DECL)) {
-            String entryName = node.children.get(2).getToken().getLexeme();
+            String entryName = node.children.get(0).getToken().getLexeme();
             SymbolTableEntryType type = new SymbolTableEntryType(node.children.get(1).getToken().getLexeme());
-            Node arraySize = node.children.get(0);
+            Node arraySize = node.children.get(2);
             if (arraySize.children.size() > 0) {
                 for (Node n : arraySize.children) {
                     if (n.getName().equals("emptySizeArray")) {
@@ -304,20 +338,21 @@ public class SymbolTableCreationVisitor implements Visitor {
                 logger.write(
                         "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
                                 + node.symbolTableEntry.name + " in scope: "
-                                + node.symbolTable.getName() + "\n");
+                                + node.symbolTable.getName() + ", line " + node.children.get(0).getToken().getLocation()
+                                + "\n");
             }
             node.symbolTable.addEntry(node.symbolTableEntry);
         }
         /**
          * | ├──fparam
-         * | | ├──arraySize
+         * | | ├──id
          * | | ├──integer
-         * | | └──id
+         * | | └──arraySize
          */
         else if (node.getName().equals(SemanticAction.FPARAM)) {
-            String entryName = node.children.get(2).getToken().getLexeme();
+            String entryName = node.children.get(0).getToken().getLexeme();
             SymbolTableEntryType type = new SymbolTableEntryType(node.children.get(1).getToken().getLexeme());
-            Node arraySize = node.children.get(0);
+            Node arraySize = node.children.get(2);
             if (arraySize.children.size() > 0) {
                 for (Node n : arraySize.children) {
                     if (n.getName().equals("emptySizeArray")) {

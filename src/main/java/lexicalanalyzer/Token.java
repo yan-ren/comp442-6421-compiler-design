@@ -8,11 +8,6 @@ public class Token implements Cloneable {
 	private String lexeme;
 	private int location;
 
-	public Token(String type, String lexeme) {
-		this.type = type;
-		this.lexeme = lexeme;
-	}
-
 	public Token(String type, String lexeme, int location) {
 		this.type = type;
 		this.lexeme = lexeme;

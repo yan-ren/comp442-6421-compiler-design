@@ -1,48 +1,48 @@
 Table: global, Object id: 2106900153
 name,kind,type,link
 _________________________________________
-main,function,():void,1443055846
+bubbleSort,function,(integer[0],integer,):void,1443055846
 _________________________________________
-printArray,function,(integer,integer[0],):void,502838712
+printArray,function,(integer[0],integer,):void,502838712
 _________________________________________
-bubbleSort,function,(integer,integer[0],):void,589311950
+main,function,():void,589311950
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1443055846
+Table: bubbleSort, Object id: 1443055846
 name,kind,type,link
 _________________________________________
-arr,variable,integer[7]
+arr,parameter,integer[0]
+_________________________________________
+size,parameter,integer
+_________________________________________
+n,variable,integer
+_________________________________________
+i,variable,integer
+_________________________________________
+j,variable,integer
+_________________________________________
+temp,variable,integer
 _________________________________________
 
 ==============================================
 Table: printArray, Object id: 502838712
 name,kind,type,link
 _________________________________________
-size,parameter,integer
-_________________________________________
 arr,parameter,integer[0]
 _________________________________________
-i,variable,integer
+size,parameter,integer
 _________________________________________
 n,variable,integer
+_________________________________________
+i,variable,integer
 _________________________________________
 
 ==============================================
-Table: bubbleSort, Object id: 589311950
+Table: main, Object id: 589311950
 name,kind,type,link
 _________________________________________
-size,parameter,integer
-_________________________________________
-arr,parameter,integer[0]
-_________________________________________
-temp,variable,integer
-_________________________________________
-j,variable,integer
-_________________________________________
-i,variable,integer
-_________________________________________
-n,variable,integer
+arr,variable,integer[7]
 _________________________________________
 
 ==============================================
