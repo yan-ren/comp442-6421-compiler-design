@@ -1,5 +1,0 @@
-func test() -> void 
-{
-    let i: ;
-    let j: integer;
-}

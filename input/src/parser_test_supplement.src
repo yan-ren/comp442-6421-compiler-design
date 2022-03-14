@@ -1,0 +1,130 @@
+/*
+All supplement test for parser
+*/
+
+/*
+class declaration
+multiple class declarations
+no main function definition
+*/
+struct A {
+	public func aFunc(x: float) -> float;
+};
+
+struct B {
+	public func bFunc(x: float) -> float;
+};
+
+struct C inherits A, B {
+	private let a: float;
+	private let b: float;
+	public  func build(x: float, y: float) -> integer;
+	public  func evaluate(z: float) -> float;
+};
+
+// no member function declaration
+// no local variable declarations
+// no statement
+func emptyFunc() -> void 
+{
+  
+}
+
+// no member
+struct emptyStruct {
+
+};
+
+/*
+return type: integer
+*/
+func sum(a: integer, b: integer) -> integer
+{
+    return (a+b);
+}
+
+/*
+type: id
+type: n-dim array
+type: array (with size)
+*/
+func formalParameter(in: integer[1][1], size: A) -> void 
+{
+  let arr: integer[7][7]; 
+}
+
+/*
+parameters:0
+array parameter - n-dim
+array parameter - with size
+array parameter - without size
+expression as parameter
+*/
+func functionCalls(n1: integer[][], n2: integer[2][2]) -> void 
+{
+  emptyFunc();
+  functionCalls(n1, n2);
+  sum(a+b);
+}
+
+/*
+variable declaration
+
+type: float
+type: string
+type: 1-dim array 
+type: n-dim array
+type: array (without size)
+*/
+func variableDeclaration() -> void 
+{
+    let a: float;
+    let b: string;
+    let c: integer[];
+    let d: integer[][];
+    let e: integer[1][1];
+}
+
+/*
+if: 1-statement then or else blocks
+while: empty block
+while: 1-statement block
+*/
+func functionBody(a: integer, b: integer) -> void
+{
+    if (a > b) 
+        then {
+            a=b;
+        } else ;
+
+    while(a>b)
+    {
+        
+    };
+
+    while(a>b)
+    {
+        read(b);
+    };
+}
+
+func expression() -> void
+{
+    let a: integer;
+    let b: integer;
+    let c: integer;
+    let d: boolean;
+    a = 1;
+    b = 2;
+    c = a*b;
+    if (a+b*a > b) 
+        then {
+            a=b;
+        } else ;
+
+    c = (a+b)*b;
+    c = (a+(a+b))*b;
+    c = -1*a;
+    write(!(a+b));
+    write((sum(a, b) + a * b) > sum(a, b));
+}

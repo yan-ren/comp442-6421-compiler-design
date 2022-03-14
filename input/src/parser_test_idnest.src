@@ -1,0 +1,17 @@
+/*
+Test parser to handle idnest cases
+*/
+
+func test() -> void 
+{
+    id(id).id = 1;
+    id(id).id();
+    id.id[id] = 1;
+    id[id].id = 1;
+    id[id].id[id] = 1;
+    id.id[id][id] = 1;
+    id[id][id].id = 1;
+    id[id][id].id[id][id] = 1;
+    id(id).id[id] = 1;
+    id(id).id[id][id] = id(id).id[id][id];
+}

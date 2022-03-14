@@ -29,4 +29,12 @@ public class SymbolTableEntryType {
         return Objects.hash(name, dimension);
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                " name='" + name + "'" +
+                ", dimension='" + dimension + "'" +
+                "}";
+    }
+
 }

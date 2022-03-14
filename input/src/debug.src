@@ -1,0 +1,24 @@
+func debug() -> void
+{
+	a.b[c][2].d = 1;
+	a.b.c = 2;
+}
+
+	//let v : integer[2][3];
+	//let v : integer[2][3];
+/*
+struct LINEAR {
+	private let a: float;
+	private let b: float[];
+	public  func build(A: float, B: float) -> LINEAR;
+	public  func evaluate(x: float) -> float;
+};
+*/
+/*
+struct LINEAR {
+	private let a: float;
+	private let b: float;
+	public  func build(A: float, B: float) -> LINEAR;
+	public  func evaluate(x: float) -> float;
+};
+*/

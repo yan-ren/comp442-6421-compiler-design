@@ -5,6 +5,5 @@ public enum Kind {
     struct,
     impl,
     parameter,
-    variable,
-    varRef
+    variable
 }
