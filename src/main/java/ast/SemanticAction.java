@@ -39,6 +39,30 @@ public class SemanticAction {
         stack.push(newNode);
     }
 
+    public static void makeAddOpNode(Stack<Node> semanticStack) {
+        Node right = semanticStack.pop();
+        Node op = semanticStack.pop();
+        Node left = semanticStack.pop();
+
+        Node newNode = new Node(ADD_OP);
+        newNode.setToken(op.getToken());
+        newNode.addChild(right);
+        newNode.addChild(left);
+        semanticStack.push(newNode);
+    }
+
+    public static void makeMultOpNode(Stack<Node> semanticStack) {
+        Node right = semanticStack.pop();
+        Node op = semanticStack.pop();
+        Node left = semanticStack.pop();
+
+        Node newNode = new Node(MULT_OP);
+        newNode.setToken(op.getToken());
+        newNode.addChild(right);
+        newNode.addChild(left);
+        semanticStack.push(newNode);
+    }
+
     /**
      * name change
      * 
@@ -76,6 +100,8 @@ public class SemanticAction {
     public static final String STRUCT_DECL = "structDecl";
     public static final String REPT_IMPL_DEF_3 = "rept-implDef3";
     public static final String IMPL_DEF = "implDef";
+    public static final String ADD_OP = "addOp";
+    public static final String MULT_OP = "multOp";
 
     public static final HashMap<String, List<String>> SEMANTIC_ACTION_TABLE = new HashMap<>() {
         {
@@ -86,9 +112,9 @@ public class SemanticAction {
             put("sa5", Arrays.asList("makeFamilyUntil", APARAMS));
             put("sa6", Arrays.asList("makeFamily", EXPR, "1"));
             put("sa7", Arrays.asList("makeFamily", EXPR, "3"));
-            put("sa8", Arrays.asList("makeFamilyUntil", ARITH_EXPR));
+            put("sa8", Arrays.asList("makeAddOpNode", ADD_OP));
             put("sa9", Arrays.asList("makeFamily", REL_EXPR, "3"));
-            put("sa10", Arrays.asList("makeFamilyUntil", TERM));
+            put("sa10", Arrays.asList("makeMultOpNode", MULT_OP));
             put("sa11", Arrays.asList("makeFamily", VAR, "2"));
             put("sa12", Arrays.asList("makeFamily", DOT, "2"));
             put("sa13", Arrays.asList("makeFamily", FCALL, "2"));

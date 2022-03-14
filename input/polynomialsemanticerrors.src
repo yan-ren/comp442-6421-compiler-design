@@ -114,7 +114,7 @@ func main() -> void
   c.b = 1;                                                          // 11.2
   counter = c.f();                                                  // 11.3
   undefined();                                                      // 11.4
-  counter = a;                                                      // 11.1
+  counter = d;                                                      // 11.1
   f(1,1,1);                                                         // 12.1
   f(1.2,1);                                                         // 12.2
   i[2] = 1;                                                         // 13.1
@@ -130,35 +130,35 @@ func main() -> void
 }
 
 /*
-1.   |X| global symbol table
-2.   |X| class symbol table
-3.1  |X| class data member
-3.2  |X| function's local variable
-4.1  |X| free function
-4.2  |X| member function
-6.1  |X| undeclared member function definition
-6.2  |X| undefined member function declaration
-8.1  |X| multiply declared class
-8.2  |X| multiply defined free function
-8.3  |X| multiply declared identifier in class
-8.4  |X| multiply declared identifier in function
-8.5  |X| shadowed inherited data member
+-1.   |X| global symbol table
+-2.   |X| class symbol table
+-3.1  |X| class data member
+-3.2  |X| function's local variable
+-4.1  |X| free function
+-4.2  |X| member function
+-6.1  |X| undeclared member function definition
+-6.2  |X| undefined member function declaration
+-8.1  |X| multiply declared class
+-8.2  |X| multiply defined free function
+-8.3  |X| multiply declared identifier in class
+-8.4  |X| multiply declared identifier in function
+-8.5  |X| shadowed inherited data member
 9.1  |X| Overloaded free function
 9.2  |X| Overloaded member function
-9.3  |X| Overridden inherited member function
+-9.3  |X| Overridden inherited member function
 10.1 |X| Type error in expression
 10.2 |X| Type error in assignment statement
 10.3 |X| Type error in return statement
-11.1 |X| Undeclared local variable
+-11.1 |X| Undeclared local variable
 11.2 |X| Undeclared data member
 11.3 |X| Undeclared member function
-11.4 |X| Undeclared free function
-11.5 |X| Undeclared class
+-11.4 |X| Undeclared free function
+-11.5 |X| Undeclared class
 12.1 |X| Function call with wrong number of parameters
 12.2 |X| Function call with wrong type of parameters
 13.1 |X| Use of array with wrong number of dimensions
 13.2 |X| Array index is not an integer
 13.3 |X| Array parameter using wrong number of dimensions
 14.1 |X| Circular class dependency
-15.1 |X| "." operator used on non-class type
+-15.1 |X| "." operator used on non-class type
 */

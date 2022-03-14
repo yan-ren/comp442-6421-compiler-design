@@ -12,10 +12,10 @@
 <addOp> ::= '-' sa1
 <addOp> ::= 'or' sa1
 
-<arithExpr> ::= sa2 <term> <rightrec-arithExpr>
+<arithExpr> ::= <term> <rightrec-arithExpr>
 
-<rightrec-arithExpr> ::= <addOp> <term> <rightrec-arithExpr>
-<rightrec-arithExpr> ::= EPSILON sa8
+<rightrec-arithExpr> ::= <addOp> <term> <rightrec-arithExpr> sa8
+<rightrec-arithExpr> ::= EPSILON
 
 <arraySize> ::= '[' <arraySize1>
 <arraySize1> ::= 'intLit' sa1 ']'
@@ -145,9 +145,9 @@
 <structOrImplOrFunc> ::= <implDef>
 <structOrImplOrFunc> ::= <funcDef>
 
-<term> ::= sa2 <factor> <rightrec-term>
-<rightrec-term> ::= EPSILON sa10
-<rightrec-term> ::= <multOp> <factor> <rightrec-term>
+<term> ::= <factor> <rightrec-term>
+<rightrec-term> ::= EPSILON
+<rightrec-term> ::= <multOp> <factor> <rightrec-term> sa10
 
 <type> ::= 'integer' sa1
 <type> ::= 'float' sa1

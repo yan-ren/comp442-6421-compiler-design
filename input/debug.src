@@ -1,6 +1,6 @@
 func debug() -> void 
 {
-	a.b[c].d = 1;
+	a.b[c][2].d = 1;
 	a.b.c = 2;
 }
 

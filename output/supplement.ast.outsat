@@ -84,13 +84,13 @@ prog
 |   |   |   └──integer
 |   |   └──funcBody
 |   |   |   └──returnStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
+|   |   |   |   └──addOp
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
 |   ├──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id
@@ -146,13 +146,13 @@ prog
 |   |   |   └──fCall
 |   |   |   |   ├──id
 |   |   |   |   └──aParams
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   ├──plus
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──addOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
 |   ├──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id
@@ -276,26 +276,26 @@ prog
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──mult
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
+|   |   |   |   └──multOp
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
 |   |   |   ├──ifStat
 |   |   |   |   ├──relExpr
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   ├──plus
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   ├──mult
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   ├──addOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──multOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   ├──gt
 |   |   |   |   |   └──var
 |   |   |   |   |   |   ├──id
@@ -313,72 +313,72 @@ prog
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──mult
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──mult
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──minus
-|   |   |   |   ├──intnum
-|   |   |   |   ├──mult
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   ├──writeStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   └──writeStat
-|   |   |   |   ├──fCall
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──aParams
+|   |   |   |   └──multOp
+|   |   |   |   |   ├──addOp
 |   |   |   |   |   |   ├──var
 |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   └──var
 |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   ├──plus
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   ├──assignStat
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   ├──mult
+|   |   |   |   └──multOp
+|   |   |   |   |   ├──addOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   ├──assignStat
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
+|   |   |   |   └──multOp
+|   |   |   |   |   ├──minus
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   ├──writeStat
+|   |   |   |   └──addOp
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   └──writeStat
+|   |   |   |   ├──addOp
+|   |   |   |   |   ├──fCall
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──aParams
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──multOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
 |   |   |   |   ├──gt
 |   |   |   |   └──fCall
 |   |   |   |   |   ├──id

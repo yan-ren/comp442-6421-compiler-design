@@ -160,6 +160,14 @@ public class Parser {
 				SemanticAction.makeNodeEmptySizeArray(this.semanticStack, "emptySizeArray");
 				break;
 			}
+			case "makeAddOpNode": {
+				SemanticAction.makeAddOpNode(this.semanticStack);
+				break;
+			}
+			case "makeMultOpNode": {
+				SemanticAction.makeMultOpNode(this.semanticStack);
+				break;
+			}
 			default:
 				throw new Exception("invalid semantic action symbol-function map: " + action + "->"
 						+ SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(0));

@@ -45,37 +45,30 @@
         "EXPR"
     ],
     "ARITHEXPR::floatnum": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::id": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::intnum": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::minus": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::not": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::openpar": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
     "ARITHEXPR::plus": [
-        "sa2",
         "TERM",
         "RIGHTRECARITHEXPR"
     ],
@@ -690,105 +683,65 @@
         "void",
         "sa1"
     ],
-    "RIGHTRECARITHEXPR::closepar": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::closesqbr": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::comma": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::eq": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::geq": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::gt": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::leq": [
-        "sa8"
-    ],
-    "RIGHTRECARITHEXPR::lt": [
-        "sa8"
-    ],
+    "RIGHTRECARITHEXPR::closepar": [],
+    "RIGHTRECARITHEXPR::closesqbr": [],
+    "RIGHTRECARITHEXPR::comma": [],
+    "RIGHTRECARITHEXPR::eq": [],
+    "RIGHTRECARITHEXPR::geq": [],
+    "RIGHTRECARITHEXPR::gt": [],
+    "RIGHTRECARITHEXPR::leq": [],
+    "RIGHTRECARITHEXPR::lt": [],
     "RIGHTRECARITHEXPR::minus": [
         "ADDOP",
         "TERM",
-        "RIGHTRECARITHEXPR"
-    ],
-    "RIGHTRECARITHEXPR::noteq": [
+        "RIGHTRECARITHEXPR",
         "sa8"
     ],
+    "RIGHTRECARITHEXPR::noteq": [],
     "RIGHTRECARITHEXPR::or": [
         "ADDOP",
         "TERM",
-        "RIGHTRECARITHEXPR"
+        "RIGHTRECARITHEXPR",
+        "sa8"
     ],
     "RIGHTRECARITHEXPR::plus": [
         "ADDOP",
         "TERM",
-        "RIGHTRECARITHEXPR"
-    ],
-    "RIGHTRECARITHEXPR::semi": [
+        "RIGHTRECARITHEXPR",
         "sa8"
     ],
+    "RIGHTRECARITHEXPR::semi": [],
     "RIGHTRECTERM::and": [
         "MULTOP",
         "FACTOR",
-        "RIGHTRECTERM"
-    ],
-    "RIGHTRECTERM::closepar": [
+        "RIGHTRECTERM",
         "sa10"
     ],
-    "RIGHTRECTERM::closesqbr": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::comma": [
-        "sa10"
-    ],
+    "RIGHTRECTERM::closepar": [],
+    "RIGHTRECTERM::closesqbr": [],
+    "RIGHTRECTERM::comma": [],
     "RIGHTRECTERM::div": [
         "MULTOP",
         "FACTOR",
-        "RIGHTRECTERM"
-    ],
-    "RIGHTRECTERM::eq": [
+        "RIGHTRECTERM",
         "sa10"
     ],
-    "RIGHTRECTERM::geq": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::gt": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::leq": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::lt": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::minus": [
-        "sa10"
-    ],
+    "RIGHTRECTERM::eq": [],
+    "RIGHTRECTERM::geq": [],
+    "RIGHTRECTERM::gt": [],
+    "RIGHTRECTERM::leq": [],
+    "RIGHTRECTERM::lt": [],
+    "RIGHTRECTERM::minus": [],
     "RIGHTRECTERM::mult": [
         "MULTOP",
         "FACTOR",
-        "RIGHTRECTERM"
-    ],
-    "RIGHTRECTERM::noteq": [
+        "RIGHTRECTERM",
         "sa10"
     ],
-    "RIGHTRECTERM::or": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::plus": [
-        "sa10"
-    ],
-    "RIGHTRECTERM::semi": [
-        "sa10"
-    ],
+    "RIGHTRECTERM::noteq": [],
+    "RIGHTRECTERM::or": [],
+    "RIGHTRECTERM::plus": [],
+    "RIGHTRECTERM::semi": [],
     "S1::assign": [
         "sa2",
         "REPTIDNEST1",
@@ -987,37 +940,30 @@
         "STRUCTDECL"
     ],
     "TERM::floatnum": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::id": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::intnum": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::minus": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::not": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::openpar": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],
     "TERM::plus": [
-        "sa2",
         "FACTOR",
         "RIGHTRECTERM"
     ],

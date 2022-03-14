@@ -66,8 +66,10 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 24->32;
 33[label="var"];
 26->33;
-34[label="id | c"];
-33->34;
-35[label="indiceList"];
+34[label="intnum | 2"];
+26->34;
+35[label="id | c"];
 33->35;
+36[label="indiceList"];
+33->36;
 }
