@@ -168,16 +168,15 @@
         "sa1"
     ],
     "FACTOR::minus": [
-        "sa2",
         "SIGN",
         "FACTOR",
-        "sa15"
+        "sa38"
     ],
     "FACTOR::not": [
-        "sa2",
         "not",
+        "sa1",
         "FACTOR",
-        "sa15"
+        "sa37"
     ],
     "FACTOR::openpar": [
         "openpar",
@@ -186,10 +185,9 @@
         "closepar"
     ],
     "FACTOR::plus": [
-        "sa2",
         "SIGN",
         "FACTOR",
-        "sa15"
+        "sa38"
     ],
     "FPARAMS::closepar": [
         "sa2",
@@ -773,7 +771,7 @@
         "S2"
     ],
     "S2::assign": [
-        "SPECIAL_ASSIGN",
+        "SP#",
         "ASSIGNOP",
         "EXPR",
         "sa22",

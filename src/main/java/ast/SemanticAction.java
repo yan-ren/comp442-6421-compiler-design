@@ -63,6 +63,25 @@ public class SemanticAction {
         semanticStack.push(newNode);
     }
 
+    public static void makeNotNode(Stack<Node> semanticStack) {
+        Node factor = semanticStack.pop();
+        semanticStack.pop();
+
+        Node newNode = new Node(NOT);
+        newNode.addChild(factor);
+        semanticStack.push(newNode);
+    }
+
+    public static void makeSignNode(Stack<Node> semanticStack) {
+        Node factor = semanticStack.pop();
+        Node sign = semanticStack.pop();
+
+        Node newNode = new Node(SIGN);
+        newNode.setToken(sign.getToken());
+        newNode.addChild(factor);
+        semanticStack.push(newNode);
+    }
+
     /**
      * name change
      * 
@@ -102,6 +121,8 @@ public class SemanticAction {
     public static final String IMPL_DEF = "implDef";
     public static final String ADD_OP = "addOp";
     public static final String MULT_OP = "multOp";
+    public static final String SIGN = "sign";
+    public static final String NOT = "not";
 
     public static final HashMap<String, List<String>> SEMANTIC_ACTION_TABLE = new HashMap<>() {
         {
@@ -141,6 +162,8 @@ public class SemanticAction {
             put("sa34", Arrays.asList("makeFamilyUntil", REPT_IMPL_DEF_3));
             put("sa35", Arrays.asList("makeFamily", IMPL_DEF, "2"));
             put("sa36", Arrays.asList("makeNodeEmptySizeArray"));
+            put("sa37", Arrays.asList("makeNotNode", NOT));
+            put("sa38", Arrays.asList("makeSignNode", SIGN));
         }
     };
 

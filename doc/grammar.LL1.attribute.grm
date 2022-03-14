@@ -42,8 +42,8 @@
 <factor> ::= 'intLit' sa1
 <factor> ::= 'floatLit' sa1
 <factor> ::= '(' <arithExpr> sa14 ')'
-<factor> ::= sa2 'not' sa1 <factor> sa15
-<factor> ::= sa2 <sign> <factor> sa15
+<factor> ::= 'not' sa1 <factor> sa37
+<factor> ::= <sign> <factor> sa38
 
 <funcOrVar> ::= 'id' sa1 <funcOrVarIdnest>
 <funcOrVarIdnest> ::= sa2 <rept-idnest1> sa4 sa11 <funcOrVarIdnestTail>

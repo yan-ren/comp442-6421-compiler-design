@@ -348,19 +348,20 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──multOp
-|   |   |   |   |   ├──minus
-|   |   |   |   |   ├──intnum
+|   |   |   |   |   ├──sign
+|   |   |   |   |   |   └──intnum
 |   |   |   |   |   └──var
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──indiceList
 |   |   |   ├──writeStat
-|   |   |   |   └──addOp
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──not
+|   |   |   |   |   └──addOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
 |   |   |   └──writeStat
 |   |   |   |   ├──addOp
 |   |   |   |   |   ├──fCall

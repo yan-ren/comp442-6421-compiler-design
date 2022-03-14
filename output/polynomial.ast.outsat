@@ -348,8 +348,8 @@ prog
 |   |   |   |   |   └──fCall
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──aParams
-|   |   |   |   |   |   |   ├──minus
-|   |   |   |   |   |   |   ├──floatnum
+|   |   |   |   |   |   |   ├──sign
+|   |   |   |   |   |   |   |   └──floatnum
 |   |   |   |   |   |   |   ├──floatnum
 |   |   |   |   |   |   |   └──floatnum
 |   |   |   ├──assignStat

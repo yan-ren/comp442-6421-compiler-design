@@ -1,9 +1,8 @@
-func debug() -> void 
+func debug() -> void
 {
 	a.b[c][2].d = 1;
 	a.b.c = 2;
 }
-
 
 	//let v : integer[2][3];
 	//let v : integer[2][3];

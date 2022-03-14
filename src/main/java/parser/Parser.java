@@ -168,6 +168,14 @@ public class Parser {
 				SemanticAction.makeMultOpNode(this.semanticStack);
 				break;
 			}
+			case "makeNotNode": {
+				SemanticAction.makeNotNode(this.semanticStack);
+				break;
+			}
+			case "makeSignNode": {
+				SemanticAction.makeSignNode(this.semanticStack);
+				break;
+			}
 			default:
 				throw new Exception("invalid semantic action symbol-function map: " + action + "->"
 						+ SemanticAction.SEMANTIC_ACTION_TABLE.get(action).get(0));
@@ -246,7 +254,7 @@ public class Parser {
 		 * (id sa1 sa2 sa4 sa11 dot id sa1 sa2 sa4 sa11 [<<special>> ASSIGNOP EXPR sa22
 		 * sa17 semi] sa12)
 		 */
-		if (terms.get(0).equals("SPECIAL_ASSIGN")) {
+		if (terms.get(0).equals("SP#")) {
 			int count = 0;
 
 			if (parsingStack.peek().equals("sa12")) {
