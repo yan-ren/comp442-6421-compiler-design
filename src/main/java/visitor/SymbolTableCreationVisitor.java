@@ -157,7 +157,7 @@ public class SymbolTableCreationVisitor implements Visitor {
          */
         else if (node.getName().equals(SemanticAction.STRUCT_DECL)) {
             String structName = node.children.get(0).getToken().getLexeme();
-            SymbolTable localSymbolTable = new SymbolTable(structName, null);
+            SymbolTable localSymbolTable = new SymbolTable(structName, node.symbolTable);
             node.symbolTableEntry = new SymbolTableEntry(structName, Kind.struct, localSymbolTable);
 
             // add inherits

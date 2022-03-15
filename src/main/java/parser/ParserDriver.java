@@ -1,3 +1,5 @@
+package parser;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,15 +11,12 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ast.Node;
 import lexicalanalyzer.LexicalAnalyzer;
-import parser.Parser;
-import visitor.Util;
-import visitor.SemanticCheckingVisitor;
-import visitor.SymbolTableCreationVisitor;
-import visitor.Visitor;
 
-public class Driver {
+/**
+ * This driver only executes until AST generation part
+ */
+public class ParserDriver {
     public static final String DEFAULT_OUTPUT = "./output/";
 
     public static void main(String[] args) throws Exception {
@@ -64,8 +63,10 @@ public class Driver {
             outsyntaxerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsyntaxerrors"));
             outast = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".ast.outsat"));
             outdot = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".dot.outsat"));
-            outsemanticerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsemanticerrors"));
-            outsymboltables = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsymboltables"));
+            // outsemanticerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT +
+            // fileName + ".outsemanticerrors"));
+            // outsymboltables = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName
+            // + ".outsymboltables"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -74,14 +75,17 @@ public class Driver {
             LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
             Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
             System.out.println("[debug] parser success: " + parser.parse());
-            Visitor symbolTableCreationVisitor = new SymbolTableCreationVisitor(outsemanticerrors);
-            Node astRoot = parser.getASTRoot();
-            symbolTableCreationVisitor.visit(astRoot);
-            Util.processSymbolTable(astRoot, outsemanticerrors);
-            Util.printSymbolTableToFile(astRoot, outsymboltables);
 
-            Visitor semanticCheckingVisitor = new SemanticCheckingVisitor(outsemanticerrors);
-            semanticCheckingVisitor.visit(astRoot);
+            // Visitor symbolTableCreationVisitor = new
+            // SymbolTableCreationVisitor(outsemanticerrors);
+            // Node astRoot = parser.getASTRoot();
+            // symbolTableCreationVisitor.visit(astRoot);
+            // Util.processSymbolTable(astRoot, outsemanticerrors);
+            // Util.printSymbolTableToFile(astRoot, outsymboltables);
+
+            // Visitor semanticCheckingVisitor = new
+            // SemanticCheckingVisitor(outsemanticerrors);
+            // semanticCheckingVisitor.visit(astRoot);
         } catch (Exception e) {
             throw e;
         } finally {
@@ -92,8 +96,8 @@ public class Driver {
             outsyntaxerrors.close();
             outast.close();
             outdot.close();
-            outsemanticerrors.close();
-            outsymboltables.close();
+            // outsemanticerrors.close();
+            // outsymboltables.close();
         }
     }
 }

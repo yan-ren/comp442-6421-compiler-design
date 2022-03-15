@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 
 import parser.Parser;
 
+/**
+ * This Driver only executes Lexical Analyzer part
+ */
 public class LexerDriver {
 
 	public static final String DEFAULT_INPUT = "./input-lexer";

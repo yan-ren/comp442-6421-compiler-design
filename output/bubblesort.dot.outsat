@@ -196,7 +196,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 40->97;
 98[label="intnum | 90"];
 40->98;
-99[label="id | printarray"];
+99[label="id | printArray"];
 41->99;
 100[label="aParams"];
 41->100;
@@ -204,7 +204,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 42->101;
 102[label="aParams"];
 42->102;
-103[label="id | printarray"];
+103[label="id | printArray"];
 43->103;
 104[label="aParams"];
 43->104;

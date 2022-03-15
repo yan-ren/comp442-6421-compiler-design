@@ -13,13 +13,16 @@ import symboltable.Kind;
 import symboltable.SymbolTable;
 import symboltable.SymbolTableEntry;
 
-public class Helper {
+public class Util {
 
-    public static void postProcess(Node root, BufferedWriter logger) throws IOException {
+    public static void processSymbolTable(Node root, BufferedWriter logger) throws IOException {
 
         if (root.getName().equals(SemanticAction.PROG)) {
             /**
              * 1. associate impl function with struct
+             * 
+             * 6.2 undefined member function declaration, e.g impl doesn't implement the
+             * function declared in strct
              */
             for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
                 if (entry.kind == Kind.struct) {
@@ -33,11 +36,11 @@ public class Helper {
                                         structEntry.kind);
                                 if (implFuncEntry != null) {
                                     structEntry.link = implFuncEntry.link;
+                                    structEntry.link.upperTable = structSymbolTable;
                                 } else {
                                     logger.write("[error][semantic] undefined member function declaration "
                                             + structEntry.name + " in impl "
                                             + implSymbolTable.getName() + "\n");
-
                                 }
                             }
                         }
@@ -47,7 +50,12 @@ public class Helper {
                     }
                 }
             }
-            // check for each impl if a struct exists and func in impl is defined in struct
+            /**
+             * check for each impl if a struct exists and func in impl is defined in struct
+             * 
+             * 6.1 undeclared member function definition, e.g. impl has function that is not
+             * declared in struct
+             */
             for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
                 if (entry.kind == Kind.impl) {
                     SymbolTableEntry structEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.struct);
@@ -71,7 +79,11 @@ public class Helper {
                     }
                 }
             }
-            // add inherited struct to the struct scope
+            /**
+             * add inherited struct to the struct scope
+             * 
+             * 8.5 shadowed inherited data member
+             */
             int entryNum = root.symbolTable.getEntries().size();
             for (int i = 0; i < entryNum; i++) {
                 SymbolTableEntry structEntry = root.symbolTable.getEntries().get(i);

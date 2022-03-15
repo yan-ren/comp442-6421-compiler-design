@@ -29,6 +29,7 @@ public class Node {
 		this.children = new ArrayList<>();
 	}
 
+	// sa1 uses this constructor, token type is node name, e.g. LA_TYPE
 	public Node(Token token) {
 		this.name = token.getType();
 		this.token = token;

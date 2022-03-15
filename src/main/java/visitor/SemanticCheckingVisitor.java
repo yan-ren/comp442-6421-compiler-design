@@ -21,7 +21,17 @@ public class SemanticCheckingVisitor implements Visitor {
     @Override
     public void visit(Node node) throws IOException {
         if (node.getName().equals(SemanticAction.ADD_OP) || node.getName().equals(SemanticAction.MULT_OP)) {
-
+            // first pass visitor to children
+            for (Node child : node.children) {
+                child.accept(this);
+            }
+        }
+        /**
+         * intnum, floatnum
+         */
+        else if (node.getName().equals(LA_TYPE.INTNUM) || node.getName().equals(LA_TYPE.FLOATNUM)) {
+            node.symbolTableEntry = new SymbolTableEntry(node.getName(), null, null);
+            node.symbolTableEntry.type = new SymbolTableEntryType(node.getName());
         }
         /**
          * check var exists
@@ -31,20 +41,29 @@ public class SemanticCheckingVisitor implements Visitor {
             // if var is under dot, don't check var
             if (!node.parent.getName().equals(SemanticAction.DOT)) {
                 SymbolTable table = node.symbolTable;
+                String varName = node.children.get(0).getToken().getLexeme();
+                // var found in table is either varialbe or parameter
                 while (table != null
-                        && table.getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
-                                Kind.variable) == null) {
+                        && (table.getEntryByNameKind(varName,
+                                Kind.variable) == null
+                                && table.getEntryByNameKind(varName,
+                                        Kind.parameter) == null)) {
                     table = table.upperTable;
                 }
                 if (table == null) {
                     logger.write(
                             "[error][semantic] Undeclared local variable "
-                                    + node.children.get(0).getToken().getLexeme() + " line: "
+                                    + varName + " line: "
                                     + node.children.get(0).getToken().getLocation() + "\n");
                 } else {
                     // find var, write type into the var node
-                    SymbolTableEntry varEntry = table.getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                    // var is either a variable or a parameter
+                    SymbolTableEntry varEntry = table.getEntryByNameKind(varName,
                             Kind.variable);
+                    if (varEntry == null) {
+                        varEntry = table.getEntryByNameKind(varName,
+                                Kind.parameter);
+                    }
                     node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                     node.symbolTableEntry.type = varEntry.type;
                 }
@@ -55,21 +74,33 @@ public class SemanticCheckingVisitor implements Visitor {
             }
         }
         /**
+         * | ├──varDecl
+         * | | ├──id
+         * | | ├──id
+         * | | └──arraySize
+         * 
+         * | ├──varDecl
+         * | | ├──id
+         * | | ├──float
+         * | | └──arraySize
+         * 
          * 11.5 Undeclared class
          */
         else if (node.getName().equals(SemanticAction.VAR_DECL)) {
-            if (node.children.get(1).getToken().getType().equals(LA_TYPE.ID)) {
+            // when varDecl type is id
+            Node varDeclType = node.children.get(1);
+            if (varDeclType.getToken().getType().equals(LA_TYPE.ID)) {
                 SymbolTable table = node.symbolTable;
                 while (table != null
-                        && table.getEntryByNameKind(node.children.get(1).getToken().getLexeme(),
+                        && table.getEntryByNameKind(varDeclType.getToken().getLexeme(),
                                 Kind.struct) == null) {
                     table = table.upperTable;
                 }
                 if (table == null) {
                     logger.write(
                             "[error][semantic] Undeclared class "
-                                    + node.children.get(1).getToken().getLexeme() + " line: "
-                                    + node.children.get(1).getToken().getLocation() + "\n");
+                                    + varDeclType.getToken().getLexeme() + " line: "
+                                    + varDeclType.getToken().getLocation() + "\n");
                 }
             }
         }
@@ -96,8 +127,11 @@ public class SemanticCheckingVisitor implements Visitor {
             // if fCall is under dot, don't check free function declaretion
             if (!node.parent.getName().equals(SemanticAction.DOT)) {
                 SymbolTable table = node.symbolTable;
-                Node fCall = node.children.get(0);
-                String fCallName = fCall.getToken().getLexeme();
+                Node fCallId = node.children.get(0);
+                node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
+                node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
+
+                String fCallName = fCallId.getToken().getLexeme();
                 while (table != null
                         && table.getEntryByNameKind(fCallName,
                                 Kind.function) == null) {
@@ -113,18 +147,42 @@ public class SemanticCheckingVisitor implements Visitor {
                     SymbolTableEntry funcDefEntry = table.getEntryByNameKind(fCallName,
                             Kind.function);
                     // funcDef.funcInputType compares with fCall.aParams
-                    if (funcDefEntry.funcInputType.size() != fCall.symbolTableEntry.funcInputType.size()) {
+                    if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
                         logger.write(
                                 "[error][semantic] Function call with wrong number of parameters, expected: "
                                         + funcDefEntry.funcInputType.toString() + " actual: "
-                                        + fCall.symbolTableEntry.toString() + " line: "
-                                        + node.getToken().getLocation() + "\n");
-                    } else if (!funcDefEntry.funcInputType.equals(fCall.symbolTableEntry.funcInputType)) {
-                        logger.write(
-                                "[error][semantic] Function call with wrong type of parameters "
-                                        + funcDefEntry.funcInputType.toString() + " actual: "
-                                        + fCall.symbolTableEntry.toString() + " line: "
-                                        + node.getToken().getLocation() + "\n");
+                                        + node.symbolTableEntry.toString() + " line: "
+                                        + fCallId.getToken().getLocation() + "\n");
+                    } else {
+                        boolean inputTypeError = false;
+                        // !funcDefEntry.funcInputType.equals(node.symbolTableEntry.funcInputType)
+                        // compare funcDefEntry.funcInputType with node.symbolTableEntry.funcInputType
+                        for (int i = 0; i < funcDefEntry.funcInputType.size(); i++) {
+                            SymbolTableEntryType fparam = funcDefEntry.funcInputType.get(i);
+                            SymbolTableEntryType aparam = node.symbolTableEntry.funcInputType.get(i);
+                            if (!fparam.name.equals(aparam.name)) {
+                                inputTypeError = true;
+                                continue;
+                            }
+                            if (fparam.dimension.size() != aparam.dimension.size()) {
+                                inputTypeError = true;
+                                continue;
+                            }
+                            for (int j = 0; j < fparam.dimension.size(); j++) {
+                                if (!fparam.dimension.get(j).equals(aparam.dimension.get(j))
+                                        && !fparam.dimension.get(j).equals("0")) {
+                                    inputTypeError = true;
+                                    continue;
+                                }
+                            }
+                        }
+                        if (inputTypeError) {
+                            logger.write(
+                                    "[error][semantic] Function call with wrong type of parameters "
+                                            + funcDefEntry.funcInputType.toString() + " actual: "
+                                            + node.symbolTableEntry.funcInputType.toString() + " line: "
+                                            + fCallId.getToken().getLocation() + "\n");
+                        }
                     }
                 }
             }
@@ -139,12 +197,14 @@ public class SemanticCheckingVisitor implements Visitor {
 
             node.symbolTableEntry = new SymbolTableEntry(node.getName(), null, null);
             for (Node child : node.children) {
-                if (child.getToken().getType().equals(LA_TYPE.FLOATNUM)) {
+                if (child.getName().equals(SemanticAction.VAR) || child.getName().equals(SemanticAction.SIGN)) {
+                    if (child.symbolTableEntry.type != null) {
+                        node.symbolTableEntry.funcInputType.add(child.symbolTableEntry.type);
+                    }
+                } else if (child.getToken().getType().equals(LA_TYPE.FLOATNUM)) {
                     node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.FLOAT));
                 } else if (child.getToken().getType().equals(LA_TYPE.INTNUM)) {
                     node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.INTEGER));
-                } else {
-                    node.symbolTableEntry.funcInputType.add(child.symbolTableEntry.type);
                 }
             }
         }
@@ -166,17 +226,40 @@ public class SemanticCheckingVisitor implements Visitor {
         else if (node.getName().equals(SemanticAction.DOT)) {
             // first child of DOT should be var with type id
             String varName = node.children.get(0).children.get(0).getToken().getLexeme();
+            // find dot var type
             SymbolTable table = node.symbolTable;
+            // var found in table is either varialbe or parameter
             while (table != null
-                    && table.getEntryByNameKind(varName,
-                            Kind.struct) == null) {
+                    && (table.getEntryByNameKind(varName,
+                            Kind.variable) == null
+                            && table.getEntryByNameKind(varName,
+                                    Kind.parameter) == null)) {
                 table = table.upperTable;
             }
             if (table == null) {
                 logger.write(
-                        "[error][semantic] dot operator used on non-class type "
+                        "[error][semantic] Undeclared local variable "
                                 + varName + " line: "
-                                + node.children.get(0).children.get(0).getToken().getLocation() + "\n");
+                                + node.children.get(0).getToken().getLocation() + "\n");
+            } else {
+                // find var, write type into the dot node
+                // var is either a variable or a parameter
+                SymbolTableEntry varEntry = table.getEntryByNameKind(varName,
+                        Kind.variable);
+                if (varEntry == null) {
+                    varEntry = table.getEntryByNameKind(varName,
+                            Kind.parameter);
+                }
+                node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
+                node.symbolTableEntry.type = varEntry.type;
+                // dot var type needs to be ID, which means struct
+                if (node.symbolTableEntry.type.name.equals(LA_TYPE.INTEGER)
+                        || node.symbolTableEntry.type.name.equals(LA_TYPE.FLOAT)) {
+                    logger.write(
+                            "[error][semantic] dot operator used on non-class type "
+                                    + varName + " type: " + node.symbolTableEntry.type.toString() + " line: "
+                                    + node.children.get(0).children.get(0).getToken().getLocation() + "\n");
+                }
             }
 
             for (Node child : node.children) {

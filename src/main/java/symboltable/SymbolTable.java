@@ -44,7 +44,11 @@ public class SymbolTable {
 
     @Override
     public String toString() {
-        String result = "Table: " + this.name + ", Object id: " + this.hashCode() + "\n";
+        String result = "Table: " + this.name + ", Object id: " + this.hashCode();
+        if (this.upperTable != null) {
+            result += ", Upper table: " + this.upperTable.hashCode();
+        }
+        result += "\n";
         result += "name,kind,type,link";
         result += "\n_________________________________________\n";
         for (SymbolTableEntry entry : this.entries) {
