@@ -2,6 +2,8 @@ package visitor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import ast.Node;
 import ast.SemanticAction;
@@ -20,10 +22,30 @@ public class SemanticCheckingVisitor implements Visitor {
 
     @Override
     public void visit(Node node) throws IOException {
+        /**
+         * 10.1 Type error in expression
+         */
         if (node.getName().equals(SemanticAction.ADD_OP) || node.getName().equals(SemanticAction.MULT_OP)) {
             // first pass visitor to children
             for (Node child : node.children) {
                 child.accept(this);
+            }
+
+            String firstOperandTypeName = node.children.get(0).symbolTableEntry.type.name;
+            String secondOperandTypeName = node.children.get(1).symbolTableEntry.type.name;
+            if (!isSameTypeOperand(firstOperandTypeName, secondOperandTypeName)) {
+                logger.write("[error][semantic] type error in expression: " + node.getToken().getLexeme() + ", line: "
+                        + node.getToken().getLocation() + "\n");
+            } else {
+                node.symbolTableEntry = new SymbolTableEntry(node.getName(), null, null);
+                if (firstOperandTypeName.equals(LA_TYPE.INTEGER) || firstOperandTypeName.equals(LA_TYPE.INTNUM)) {
+                    node.symbolTableEntry.type = new SymbolTableEntryType(LA_TYPE.INTNUM);
+                } else if (firstOperandTypeName.equals(LA_TYPE.FLOAT)
+                        || firstOperandTypeName.equals(LA_TYPE.FLOATNUM)) {
+                    node.symbolTableEntry.type = new SymbolTableEntryType(LA_TYPE.FLOATNUM);
+                } else {
+                    node.symbolTableEntry.type = node.children.get(0).symbolTableEntry.type;
+                }
             }
         }
         /**
@@ -35,7 +57,9 @@ public class SemanticCheckingVisitor implements Visitor {
         }
         /**
          * check var exists
+         * 
          * 11.1 Undeclared local variable
+         * 13.1 Use of array with wrong number of dimensions
          */
         else if (node.getName().equals(SemanticAction.VAR)) {
             // if var is under dot, don't check var
@@ -66,6 +90,15 @@ public class SemanticCheckingVisitor implements Visitor {
                     }
                     node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                     node.symbolTableEntry.type = varEntry.type;
+                }
+            }
+            // whenever use a variable, need to use with correct array dimension
+            if (node.symbolTableEntry != null && node.parent.getName().equals(SemanticAction.ASSIGN_STAT)) {
+                if (node.symbolTableEntry.type.dimension.size() != node.children.get(1).children.size()) {
+                    logger.write(
+                            "[error][semantic] use of array with wrong number of dimensions "
+                                    + node.children.get(0).getToken().getLexeme() + ", line: "
+                                    + node.children.get(0).getToken().getLocation() + "\n");
                 }
             }
 
@@ -109,7 +142,7 @@ public class SemanticCheckingVisitor implements Visitor {
          * 
          * 12.1 Function call with wrong number of parameters
          * 12.2 Function call with wrong type of parameters
-         * 
+         * 13.3 Array parameter using wrong number of dimensions
          * 
          * | | | ├──fCall
          * | | | | ├──id
@@ -267,6 +300,31 @@ public class SemanticCheckingVisitor implements Visitor {
             }
         }
         /**
+         * | └──indiceList
+         * | | ├──intnum
+         * | | └──var
+         * | | | ├──id
+         * | | | └──indiceList
+         * 
+         * 13.1 Use of array with wrong number of dimensions
+         * 13.2 Array index is not an integer
+         */
+        else if (node.getName().equals(SemanticAction.INDICE_LIST)) {
+            // pass to all children
+            for (Node child : node.children) {
+                child.accept(this);
+            }
+
+            for (Node child : node.children) {
+                if (!child.symbolTableEntry.type.name.equals(LA_TYPE.INTEGER)
+                        && !child.symbolTableEntry.type.name.equals(LA_TYPE.INTNUM)) {
+                    logger.write(
+                            "[error][semantic] array index is not an integer, line: "
+                                    + node.parent.children.get(0).getToken().getLocation() + "\n");
+                }
+            }
+        }
+        /**
          * Default case
          */
         else {
@@ -274,6 +332,32 @@ public class SemanticCheckingVisitor implements Visitor {
                 child.accept(this);
             }
         }
+    }
+
+    public static Set<String> intGroup = new HashSet<>() {
+        {
+            add(LA_TYPE.INTEGER);
+            add(LA_TYPE.INTNUM);
+        }
+    };
+
+    public static Set<String> floatGroup = new HashSet<>() {
+        {
+            add(LA_TYPE.FLOATNUM);
+            add(LA_TYPE.FLOAT);
+        }
+    };
+
+    public boolean isSameTypeOperand(String firstOperandType, String secondOperandType) {
+        if (firstOperandType.equals(secondOperandType)) {
+            return true;
+        } else if (intGroup.contains(firstOperandType) && intGroup.contains(secondOperandType)) {
+            return true;
+        } else if (floatGroup.contains(firstOperandType) && floatGroup.contains(secondOperandType)) {
+            return true;
+        }
+
+        return false;
     }
 
 }

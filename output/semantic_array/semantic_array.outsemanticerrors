@@ -1,0 +1,4 @@
+[error][semantic] use of array with wrong number of dimensions i, line: 10
+[error][semantic] array index is not an integer, line: 11
+[error][semantic] array index is not an integer, line: 12
+[error][semantic] array index is not an integer, line: 13

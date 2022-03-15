@@ -1,6 +1,0 @@
-[warn][semantic] unimplemented struct, cannot find impl for strcut C
-[warn][semantic] unimplemented struct, cannot find impl for strcut D
-[warn][semantic] unimplemented struct, cannot find impl for strcut E
-[error][semantic] Circular class dependency C
-[error][semantic] Circular class dependency D
-[error][semantic] Circular class dependency E

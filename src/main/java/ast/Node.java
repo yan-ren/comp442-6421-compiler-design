@@ -59,7 +59,8 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "Node [name=" + name + ", token=" + token + ", parent=" + parent + ", children=" + children + "]";
+		return "Node [name=" + name + ", token=" + token + ", parent=" + parent.name + ", children=" + children.size()
+				+ "]";
 	}
 
 	public static void printTree(Node root) {

@@ -1,0 +1,22 @@
+START
+START => PROG
+START => sa2 REPTPROG0 sa24
+START => sa2 STRUCTORIMPLORFUNC REPTPROG0 sa24
+START => sa2 STRUCTDECL REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 OPTSTRUCTDECL2 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 REPTOPTSTRUCTDECL22 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi STRUCTORIMPLORFUNC REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi STRUCTDECL REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 OPTSTRUCTDECL2 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 REPTOPTSTRUCTDECL22 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi STRUCTORIMPLORFUNC REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi STRUCTDECL REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 OPTSTRUCTDECL2 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 REPTOPTSTRUCTDECL22 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 REPTSTRUCTDECL4 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi REPTPROG0 sa24
+START => sa2 struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi struct id sa1 sa2 inherits id sa1 sa25 opencubr sa2 sa32 closecubr sa33 semi sa24

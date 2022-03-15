@@ -1,0 +1,32 @@
+prog
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   ├──private
+|   |   ├──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize
+|   |   ├──private
+|   |   └──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   |   └──id
+|   |   ├──private
+|   |   └──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize
+|   └──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   |   └──id
+|   |   ├──private
+|   |   └──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize

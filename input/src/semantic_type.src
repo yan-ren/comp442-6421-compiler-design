@@ -1,0 +1,33 @@
+/*
+-10.1 |X| Type error in expression
+10.2 |X| Type error in assignment statement
+10.3 |X| Type error in return statement
+*/
+struct QUADRATIC {
+	private let a: float;                                         
+	private let b: float;                                         
+	private let c: float;
+
+	public func build(A: float, B: float, C: float) -> QUADRATIC;
+	public func evaluate(x: float) -> float;                      
+};
+
+impl QUADRATIC {
+  func evaluate(x: float) -> float
+  {
+    let result: float;
+    //Using Horner's method
+    result = a;
+    result = result * x + b;
+    result = result * x + c;
+    return (result);
+  }
+  func build(A: float, B: float, C: float) -> QUADRATIC
+  {
+    let new_function: QUADRATIC ;
+    new_function.a = A + B * 3;                                       // 10.1
+    new_function.b = B;
+    new_function.c = 1;                                               // 10.2
+    return (1);                                                       // 10.3
+  }
+}

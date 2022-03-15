@@ -25,8 +25,6 @@ public class Driver {
             throw new Exception("Missing input file");
         }
         String inputFilePath = args[0];
-        Files.createDirectories(Paths.get(DEFAULT_OUTPUT));
-
         File input = new File(inputFilePath);
         processFile(input);
     }
@@ -55,17 +53,20 @@ public class Driver {
             throw new Exception("invalid input file: " + src.getName() + ", check the file name again");
         }
 
+        String directory = DEFAULT_OUTPUT + fileName + "/";
+        Files.createDirectories(Paths.get(directory));
+
         try {
             fr = new FileReader(src);
             in = new BufferedReader(fr);
-            outlextokens = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outlextokens"));
-            outlexerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outlexerrors"));
-            outderivation = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outderivation"));
-            outsyntaxerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsyntaxerrors"));
-            outast = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".ast.outsat"));
-            outdot = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".dot.outsat"));
-            outsemanticerrors = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsemanticerrors"));
-            outsymboltables = new BufferedWriter(new FileWriter(DEFAULT_OUTPUT + fileName + ".outsymboltables"));
+            outlextokens = new BufferedWriter(new FileWriter(directory + fileName + ".outlextokens"));
+            outlexerrors = new BufferedWriter(new FileWriter(directory + fileName + ".outlexerrors"));
+            outderivation = new BufferedWriter(new FileWriter(directory + fileName + ".outderivation"));
+            outsyntaxerrors = new BufferedWriter(new FileWriter(directory + fileName + ".outsyntaxerrors"));
+            outast = new BufferedWriter(new FileWriter(directory + fileName + ".ast.outsat"));
+            outdot = new BufferedWriter(new FileWriter(directory + fileName + ".dot.outsat"));
+            outsemanticerrors = new BufferedWriter(new FileWriter(directory + fileName + ".outsemanticerrors"));
+            outsymboltables = new BufferedWriter(new FileWriter(directory + fileName + ".outsymboltables"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,13 @@
+prog
+|   ├──structDecl
+|   |   ├──id
+|   |   └──inherlist
+|   |   |   └──id
+|   ├──structDecl
+|   |   ├──id
+|   |   └──inherlist
+|   |   |   └──id
+|   └──structDecl
+|   |   ├──id
+|   |   └──inherlist
+|   |   |   └──id

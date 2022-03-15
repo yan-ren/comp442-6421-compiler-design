@@ -1,0 +1,48 @@
+prog
+|   └──funcDef
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──intnum
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──float
+|   |   |   |   └──arraySize
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   └──floatnum
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   ├──addOp
+|   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   └──floatnum
+|   |   |   |   └──intnum
+|   |   |   └──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum

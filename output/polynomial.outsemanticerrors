@@ -1,2 +1,0 @@
-[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR
-[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC

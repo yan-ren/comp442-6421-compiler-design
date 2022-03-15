@@ -1,0 +1,16 @@
+/*
+8.5 shadowed inherited data member
+*/
+
+struct C {
+   	private let a: integer;
+    private let b: integer;
+};
+
+struct D inherits C {
+    private let b: integer;
+};
+
+struct E inherits D {                                                 // 14.1
+	private let a: integer;
+};
