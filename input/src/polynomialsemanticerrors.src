@@ -159,6 +159,6 @@ func main() -> void
 13.1 |X| Use of array with wrong number of dimensions
 13.2 |X| Array index is not an integer
 13.3 |X| Array parameter using wrong number of dimensions
-14.1 |X| Circular class dependency
+--14.1 |X| Circular class dependency
 -15.1 |X| "." operator used on non-class type
 */

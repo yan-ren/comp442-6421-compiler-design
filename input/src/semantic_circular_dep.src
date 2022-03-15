@@ -1,0 +1,12 @@
+/*
+14.1 |X| Circular class dependency
+*/
+
+struct C inherits E {
+};
+
+struct D inherits C {
+};
+
+struct E inherits D {                                                 // 14.1
+};

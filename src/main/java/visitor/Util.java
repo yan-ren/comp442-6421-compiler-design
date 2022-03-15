@@ -2,6 +2,7 @@ package visitor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -108,13 +109,43 @@ public class Util {
                     }
                 }
             }
-            // remove impl from prog
+            /**
+             * remove impl from prog symbol table
+             */
             List<SymbolTableEntry> rootEntries = root.symbolTable.getEntries();
             Iterator<SymbolTableEntry> iterator = rootEntries.iterator();
             while (iterator.hasNext()) {
                 SymbolTableEntry entry = iterator.next();
                 if (entry.kind == Kind.impl) {
                     iterator.remove();
+                }
+            }
+            /**
+             * 14.1 Circular class dependency
+             */
+            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
+                if (entry.kind == Kind.struct) {
+                    Queue<SymbolTableEntry> entryQueue = new LinkedList<>();
+                    entryQueue.add(entry);
+
+                    ArrayList<String> inherits = new ArrayList<>();
+                    while (entryQueue.size() != 0) {
+                        SymbolTableEntry current = entryQueue.remove();
+                        for (String parent : current.inherits) {
+                            SymbolTableEntry parentEntry = root.symbolTable.getEntryByNameKind(parent, Kind.struct);
+                            if (parentEntry == null) {
+                                logger.write(
+                                        "[error][semantic] inherited struct " + parent + " is not founded for struct "
+                                                + current.name + "\n");
+                            } else if (inherits.contains(parentEntry.name)) {
+                                logger.write("[error][semantic] Circular class dependency " + current.name + "\n");
+                            } else {
+                                inherits.add(parentEntry.name);
+                                entryQueue.add(parentEntry);
+                            }
+                        }
+                    }
+
                 }
             }
         }

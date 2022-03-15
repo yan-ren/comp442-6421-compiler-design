@@ -53,10 +53,22 @@ public class SymbolTableSemanticCheckingTest {
                 "polynomial.src should contain 2 semantic warn");
     }
 
+    // @Test
+    // void test4() throws Exception {
+    // assertDoesNotThrow(() -> {
+    // Driver.main(new String[] { "./input/src/polynomialsemanticerrors.src" });
+    // });
+    // }
+
+    /**
+     * 14.1 Circular class dependency
+     * 
+     * @throws Exception
+     */
     @Test
     void test4() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/polynomialsemanticerrors.src" });
+            Driver.main(new String[] { "./input/src/semantic_circular_dep.src" });
         });
     }
 }

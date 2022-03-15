@@ -1,0 +1,27 @@
+digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=true splines=spline rankdir =LR 
+0[label="prog"];
+1[label="structDecl"];
+0->1;
+2[label="structDecl"];
+0->2;
+3[label="structDecl"];
+0->3;
+4[label="id | C"];
+1->4;
+5[label="inherlist"];
+1->5;
+6[label="id | D"];
+2->6;
+7[label="inherlist"];
+2->7;
+8[label="id | E"];
+3->8;
+9[label="inherlist"];
+3->9;
+10[label="id | E"];
+5->10;
+11[label="id | C"];
+7->11;
+12[label="id | D"];
+9->12;
+}

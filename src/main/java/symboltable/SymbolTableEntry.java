@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SymbolTableEntry {
-    public String name; // name of the entry, e.g f1, f2, MyClass1
+    // name of the entry, e.g f1, f2, MyClass1
+    public String name;
+    // used for struct
     public List<String> inherits;
     public Kind kind;
 
