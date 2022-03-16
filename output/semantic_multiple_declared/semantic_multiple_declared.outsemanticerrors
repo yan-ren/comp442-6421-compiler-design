@@ -1,0 +1,8 @@
+[error][semantic] multiple declaration for struct: POLYNOMIAL in scope: global, line 15
+[error][semantic] multiple declaration for variable: b in scope: LINEAR, line 23
+[error][semantic] multiple declaration for function: f in scope: global, line 30
+[error][semantic] multiple declaration for variable: counter in scope: main, line 35
+[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL
+[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL
+[warn][semantic] unimplemented struct, cannot find impl for strcut LINEAR
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR

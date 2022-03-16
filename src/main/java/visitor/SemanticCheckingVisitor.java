@@ -76,8 +76,8 @@ public class SemanticCheckingVisitor implements Visitor {
                 }
                 if (table == null) {
                     logger.write(
-                            "[error][semantic] Undeclared local variable "
-                                    + varName + " line: "
+                            "[error][semantic] Undeclared local variable: "
+                                    + varName + ", line: "
                                     + node.children.get(0).getToken().getLocation() + "\n");
                 } else {
                     // find var, write type into the var node
@@ -131,8 +131,8 @@ public class SemanticCheckingVisitor implements Visitor {
                 }
                 if (table == null) {
                     logger.write(
-                            "[error][semantic] Undeclared class "
-                                    + varDeclType.getToken().getLexeme() + " line: "
+                            "[error][semantic] Undeclared class: "
+                                    + varDeclType.getToken().getLexeme() + ", line: "
                                     + varDeclType.getToken().getLocation() + "\n");
                 }
             }
@@ -172,8 +172,8 @@ public class SemanticCheckingVisitor implements Visitor {
                 }
                 if (table == null) {
                     logger.write(
-                            "[error][semantic] Undeclared free function "
-                                    + node.children.get(0).getToken().getLexeme() + " line: "
+                            "[error][semantic] Undeclared free function: "
+                                    + node.children.get(0).getToken().getLexeme() + ", line: "
                                     + node.children.get(0).getToken().getLocation() + "\n");
                 } else {
                     // fCall is defined, check parameters

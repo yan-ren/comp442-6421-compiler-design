@@ -1,0 +1,20 @@
+/*
+6.1  undeclared member function definition
+6.2  undefined member function declaration
+*/
+struct POLYNOMIAL {
+	public func evaluate(x: float) -> float;
+	public func evaluate2(x: float) -> float;                     // 6.2
+};
+
+impl POLYNOMIAL {
+  func evaluate(x: float) -> float
+  {
+    return (0);
+  }
+
+  func build2(A: float, B: float, C: float) -> void               // 6.1
+  {
+
+  }
+}

@@ -136,16 +136,17 @@ func main() -> void
 -3.2  |X| function's local variable
 -4.1  |X| free function
 -4.2  |X| member function
--6.1  |X| undeclared member function definition
--6.2  |X| undefined member function declaration
--8.1  |X| multiply declared class
--8.2  |X| multiply defined free function
--8.3  |X| multiply declared identifier in class
--8.4  |X| multiply declared identifier in function
+
+--6.1  |X| undeclared member function definition
+--6.2  |X| undefined member function declaration
+--8.1  |X| multiply declared class
+--8.2  |X| multiply defined free function
+--8.3  |X| multiply declared identifier in class
+--8.4  |X| multiply declared identifier in function
 --8.5  |X| shadowed inherited data member
 9.1  |X| Overloaded free function
 9.2  |X| Overloaded member function
--9.3  |X| Overridden inherited member function
+--9.3  |X| Overridden inherited member function
 --10.1 |X| Type error in expression
 10.2 |X| Type error in assignment statement
 10.3 |X| Type error in return statement

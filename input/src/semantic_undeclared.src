@@ -1,0 +1,13 @@
+/*
+11.1 Undeclared local variable
+11.4 Undeclared free function
+11.5 Undeclared class
+*/
+
+func main() -> void
+{
+  let a: a;                                                         // 11.5
+
+  undefined();                                                      // 11.4
+  counter = d;                                                      // 11.1
+}

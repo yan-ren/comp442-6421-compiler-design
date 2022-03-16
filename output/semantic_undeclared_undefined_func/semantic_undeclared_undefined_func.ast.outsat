@@ -1,0 +1,54 @@
+prog
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   ├──public
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   └──float
+|   |   ├──public
+|   |   └──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   └──float
+|   └──implDef
+|   |   ├──id
+|   |   ├──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──float
+|   |   |   └──funcBody
+|   |   |   |   └──returnStat
+|   |   |   |   |   └──intnum
+|   |   └──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   ├──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   |   ├──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──void
+|   |   |   └──funcBody

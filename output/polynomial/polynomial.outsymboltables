@@ -1,37 +1,37 @@
-Table: global, Object id: 765242091
+Table: global, Object id: 669284403
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,1117871068
+POLYNOMIAL,struct,,1869039062
 _________________________________________
-LINEAR,struct,,1151704483
+LINEAR,struct,,659590237
 _________________________________________
-QUADRATIC,struct,,669284403
+QUADRATIC,struct,,1332757905
 _________________________________________
-main,function,():void,1869039062
+main,function,():void,1263634860
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1117871068, Upper table: 765242091
+Table: POLYNOMIAL, Object id: 1869039062, Upper table: 669284403
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float,659590237
+evaluate,function,(float,):float,508378341
 _________________________________________
 
 ==============================================
-Table: LINEAR, Object id: 1151704483, Upper table: 765242091
+Table: LINEAR, Object id: 659590237, Upper table: 669284403
 name,kind,type,link
 _________________________________________
 a,variable,float
 _________________________________________
 b,variable,float
 _________________________________________
-build,function,(float,float,):LINEAR,1332757905
+build,function,(float,float,):LINEAR,1037854997
 _________________________________________
-evaluate,function,(float,):float,1263634860
+evaluate,function,(float,):float,1884155890
 _________________________________________
 
 ==============================================
-Table: QUADRATIC, Object id: 669284403, Upper table: 765242091
+Table: QUADRATIC, Object id: 1332757905, Upper table: 669284403
 name,kind,type,link
 _________________________________________
 a,variable,float
@@ -40,13 +40,13 @@ b,variable,float
 _________________________________________
 c,variable,float
 _________________________________________
-build,function,(float,float,float,):QUADRATIC,508378341
+build,function,(float,float,float,):QUADRATIC,932582590
 _________________________________________
-evaluate,function,(float,):float,1037854997
+evaluate,function,(float,):float,1078705341
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1869039062, Upper table: 765242091
+Table: main, Object id: 1263634860, Upper table: 669284403
 name,kind,type,link
 _________________________________________
 f1,variable,LINEAR
@@ -57,14 +57,14 @@ counter,variable,integer
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 659590237, Upper table: 1117871068
+Table: evaluate, Object id: 508378341, Upper table: 1869039062
 name,kind,type,link
 _________________________________________
 x,parameter,float
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1332757905, Upper table: 1151704483
+Table: build, Object id: 1037854997, Upper table: 659590237
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -75,7 +75,7 @@ new_function,variable,LINEAR
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1263634860, Upper table: 1151704483
+Table: evaluate, Object id: 1884155890, Upper table: 659590237
 name,kind,type,link
 _________________________________________
 x,parameter,float
@@ -84,7 +84,7 @@ result,variable,float
 _________________________________________
 
 ==============================================
-Table: build, Object id: 508378341, Upper table: 669284403
+Table: build, Object id: 932582590, Upper table: 1332757905
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -97,7 +97,7 @@ new_function,variable,QUADRATIC
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1037854997, Upper table: 669284403
+Table: evaluate, Object id: 1078705341, Upper table: 1332757905
 name,kind,type,link
 _________________________________________
 x,parameter,float

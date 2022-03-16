@@ -1,0 +1,36 @@
+/*
+8.1 multiply declared class
+8.2 multiply defined free function
+8.3 multiply declared identifier in class
+8.4 multiply declared identifier in function
+
+9.3  Overridden inherited member function
+*/
+
+struct POLYNOMIAL {
+	public func evaluate(x: float) -> float;
+	public func evaluate2(x: float) -> float;                     
+};
+
+struct POLYNOMIAL {                                                 // 8.1
+	public func evaluate(x: float) -> float;
+	public func evaluate2(x: float) -> float;                     
+};
+
+struct LINEAR inherits POLYNOMIAL {
+	private let a: float;
+	private let b: float;
+	private let b: integer;                                       // 8.3
+
+	public func build(A: float, B: float) -> LINEAR;
+	public func evaluate(x: float) -> float;                      // 9.3
+};
+
+func f(i: integer) -> void {}
+func f(i: integer) -> void {}                                       // 8.2
+
+func main() -> void 
+{
+  let counter: integer;
+  let counter: float;                                               // 8.4
+}
