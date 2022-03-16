@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 public class SymbolTableSemanticCheckingTest {
 
     String encoding = null;
-    String semanticError = "[error][semantic]";
-    String semanticWarning = "[warn][semantic]";
+    String semanticErrorTag = "[error][semantic]";
+    String semanticWarningTag = "[warn][semantic]";
 
     @Test
     void test1() throws Exception {
@@ -27,14 +27,16 @@ public class SymbolTableSemanticCheckingTest {
             Driver.main(new String[] { "./input/src/bubblesort.src" });
         });
         assertEquals(false,
-                FileUtils.readFileToString(new File("./output/bubblesort/bubblesort.outsemanticerrors"), encoding)
-                        .contains(semanticError),
+                FileUtils.readFileToString(new File("./output/bubblesort/bubblesort.outsemanticerrors"),
+                        encoding)
+                        .contains(semanticErrorTag),
                 "bubblesort.outsemanticerrors should not contain semantic error");
         assertEquals(0,
                 StringUtils.countMatches(
-                        FileUtils.readFileToString(new File("./output/bubblesort/bubblesort.outsemanticerrors"),
+                        FileUtils.readFileToString(new File(
+                                "./output/bubblesort/bubblesort.outsemanticerrors"),
                                 encoding),
-                        semanticWarning),
+                        semanticWarningTag),
                 "bubblesort.outsemanticerrors should not contain semantic warn");
     }
 
@@ -45,14 +47,16 @@ public class SymbolTableSemanticCheckingTest {
         });
 
         assertEquals(false,
-                FileUtils.readFileToString(new File("./output/polynomial/polynomial.outsemanticerrors"), encoding)
-                        .contains(semanticError),
+                FileUtils.readFileToString(new File("./output/polynomial/polynomial.outsemanticerrors"),
+                        encoding)
+                        .contains(semanticErrorTag),
                 "polynomial.outsemanticerrors should not contain semantic errors");
         assertEquals(2,
                 StringUtils.countMatches(
-                        FileUtils.readFileToString(new File("./output/polynomial/polynomial.outsemanticerrors"),
+                        FileUtils.readFileToString(new File(
+                                "./output/polynomial/polynomial.outsemanticerrors"),
                                 encoding),
-                        semanticWarning),
+                        semanticWarningTag),
                 "polynomial.outsemanticerrors should contain 2 semantic warn");
     }
 
@@ -106,13 +110,15 @@ public class SymbolTableSemanticCheckingTest {
 
         assertEquals(3,
                 StringUtils.countMatches(
-                        FileUtils.readFileToString(new File("./output/semantic_array/semantic_array.outsemanticerrors"),
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_array/semantic_array.outsemanticerrors"),
                                 encoding),
                         "array index is not an integer"),
                 "semantic_array.outsemanticerrors should contain 3 semantic errors: array index is not an integers");
         assertEquals(1,
                 StringUtils.countMatches(
-                        FileUtils.readFileToString(new File("./output/semantic_array/semantic_array.outsemanticerrors"),
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_array/semantic_array.outsemanticerrors"),
                                 encoding),
                         "use of array with wrong number of dimensions"),
                 "semantic_array.outsemanticerrors should contain 1 semantic error: use of array with wrong number of dimensions");
@@ -136,7 +142,8 @@ public class SymbolTableSemanticCheckingTest {
         });
         assertEquals(1,
                 StringUtils.countMatches(
-                        FileUtils.readFileToString(new File("./output/semantic_type/semantic_type.outsemanticerrors"),
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_type/semantic_type.outsemanticerrors"),
                                 encoding),
                         "type error in expression: *, line"),
                 "semantic_type.outsemanticerrors should contain 1 semantic error: [error][semantic] type error in expression: *");
@@ -223,7 +230,7 @@ public class SymbolTableSemanticCheckingTest {
                                 "./output/semantic_multiple_declared/semantic_multiple_declared.outsemanticerrors"),
                                 encoding),
                         "unimplemented struct"),
-                "semantic_multiple_declared.outsemanticerrors should contain 3 semantic error");
+                "semantic_multiple_declared.outsemanticerrors should contain 3 semantic errors");
 
         assertEquals(1,
                 StringUtils.countMatches(
@@ -278,5 +285,82 @@ public class SymbolTableSemanticCheckingTest {
                                 encoding),
                         "Undeclared local variable: d"),
                 "semantic_undeclared.outsemanticerrors should contain 1 semantic error");
+    }
+
+    /**
+     * 12.1 Function call with wrong number of parameters
+     * 12.2 Function call with wrong type of parameters
+     * 
+     * 13.3 Array parameter using wrong number of dimensions
+     * 
+     * @throws Exception
+     */
+    @Test
+    void test11() throws Exception {
+        assertDoesNotThrow(() -> {
+            Driver.main(new String[] { "./input/src/semantic_fcall.src" });
+        });
+        assertEquals(2,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_fcall/semantic_fcall.outsemanticerrors"),
+                                encoding),
+                        "Function call with wrong number of parameters"),
+                "semantic_fcall.outsemanticerrors should contain 2 semantic errors");
+
+        assertEquals(2,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_fcall/semantic_fcall.outsemanticerrors"),
+                                encoding),
+                        "Function call with wrong type of parameters"),
+                "semantic_fcall.outsemanticerrors should contain 2 semantic errors");
+    }
+
+    /**
+     * 8.6 multiply declared function in class
+     * 
+     * 9.1 Overloaded free function
+     * 9.2 Overloaded member function
+     * 
+     * @throws Exception
+     */
+    @Test
+    void test12() throws Exception {
+        assertDoesNotThrow(() -> {
+            Driver.main(new String[] { "./input/src/semantic_overloaded_func.src" });
+        });
+
+        assertEquals(1,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                encoding),
+                        "[error][semantic] multiple declaration for function: f in scope: POLYNOMIAL"),
+                "semantic_overloaded_func.outsemanticerrors should contain 1 semantic error");
+
+        assertEquals(1,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                encoding),
+                        "[warn][semantic] Overloaded function for function: evaluate in scope: POLYNOMIAL"),
+                "semantic_overloaded_func.outsemanticerrors should contain 1 semantic warn");
+
+        assertEquals(1,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                encoding),
+                        "[warn][semantic] Overloaded function for function: f in scope: global"),
+                "semantic_overloaded_func.outsemanticerrors should contain 1 semantic warn");
+
+        assertEquals(1,
+                StringUtils.countMatches(
+                        FileUtils.readFileToString(new File(
+                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                encoding),
+                        "[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL"),
+                "semantic_overloaded_func.outsemanticerrors should contain 1 semantic warn");
     }
 }

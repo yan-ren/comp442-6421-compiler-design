@@ -184,7 +184,7 @@ public class SemanticCheckingVisitor implements Visitor {
                         logger.write(
                                 "[error][semantic] Function call with wrong number of parameters, expected: "
                                         + funcDefEntry.funcInputType.toString() + " actual: "
-                                        + node.symbolTableEntry.toString() + " line: "
+                                        + node.symbolTableEntry.funcInputType.toString() + ", line: "
                                         + fCallId.getToken().getLocation() + "\n");
                     } else {
                         boolean inputTypeError = false;

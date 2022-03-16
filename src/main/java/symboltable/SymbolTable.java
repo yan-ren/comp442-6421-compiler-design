@@ -42,6 +42,22 @@ public class SymbolTable {
         return null;
     }
 
+    // return the first found symbol table entry index based on name and kind
+    public int getEntryIndexByNameKind(String name, Kind kind) {
+        for (int i = 0; i < this.entries.size(); i++) {
+            if (this.entries.get(i).name.equals(name) && this.entries.get(i).kind == kind) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // replace entry with specific index
+    public void replaceEntry(int index, SymbolTableEntry newEntry) {
+        this.entries.set(index, newEntry);
+    }
+
     @Override
     public String toString() {
         String result = "Table: " + this.name + ", Object id: " + this.hashCode();

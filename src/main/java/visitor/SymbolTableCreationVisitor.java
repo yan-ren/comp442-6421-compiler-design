@@ -92,7 +92,7 @@ public class SymbolTableCreationVisitor implements Visitor {
             // make symbol table entry for the funcDel node
             Node funcHead = node.children.get(0);
             String funcName = funcHead.children.get(0).getToken().getLexeme();
-            SymbolTable localSymbolTable = new SymbolTable(funcName, node.symbolTable);
+            SymbolTable localSymbolTable = new SymbolTable(funcName, parentTable);
             // assign local table to the node
             node.symbolTable = localSymbolTable;
 
@@ -112,7 +112,7 @@ public class SymbolTableCreationVisitor implements Visitor {
             }
             node.symbolTableEntry = fEntry;
 
-            // add current entry to parent table
+            // check function multiple defined and overload
             if (parentTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
                 // same funcDel found, compare the input field
                 if (fEntry.funcInputType.equals(parentTable.getEntryByNameKind(node.symbolTableEntry.name,
@@ -124,11 +124,23 @@ public class SymbolTableCreationVisitor implements Visitor {
                                     + funcHead.children.get(0).getToken().getLocation() +
                                     "\n");
                 }
+                // input field is different, overload
+                else {
+                    logger.write(
+                            "[warn][semantic] Overloaded function for " + node.symbolTableEntry.kind + ": "
+                                    + node.symbolTableEntry.name + " in scope: "
+                                    + parentTable.getName() + ", line "
+                                    + funcHead.children.get(0).getToken().getLocation() +
+                                    "\n");
+                    int index = parentTable.getEntryIndexByNameKind(node.symbolTableEntry.name,
+                            node.symbolTableEntry.kind);
+                    parentTable.replaceEntry(index, fEntry);
+                }
+            } else {
+                // add current entry to parent table
+                parentTable.addEntry(fEntry);
             }
-            parentTable.addEntry(fEntry);
 
-            // propagate accepting the same visitor to all the children
-            // this effectively achieves Depth-First AST Traversal
             // pass to funcBody
             node.children.get(1).symbolTable = node.symbolTable;
             node.children.get(1).accept(this);
@@ -156,8 +168,9 @@ public class SymbolTableCreationVisitor implements Visitor {
          * | | | └──float
          */
         else if (node.getName().equals(SemanticAction.STRUCT_DECL)) {
+            SymbolTable parentTable = node.symbolTable;
             String structName = node.children.get(0).getToken().getLexeme();
-            SymbolTable localSymbolTable = new SymbolTable(structName, node.symbolTable);
+            SymbolTable localSymbolTable = new SymbolTable(structName, parentTable);
             node.symbolTableEntry = new SymbolTableEntry(structName, Kind.struct, localSymbolTable);
 
             // add inherits
@@ -167,14 +180,14 @@ public class SymbolTableCreationVisitor implements Visitor {
             }
 
             // add current symbol table entry to parent table
-            if (node.symbolTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
+            if (parentTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
                 logger.write(
                         "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
                                 + node.symbolTableEntry.name + " in scope: "
                                 + node.symbolTable.getName() + ", line "
                                 + node.children.get(0).getToken().getLocation() + "\n");
             }
-            node.symbolTable.addEntry(node.symbolTableEntry);
+            parentTable.addEntry(node.symbolTableEntry);
             node.symbolTable = localSymbolTable;
 
             for (Node child : node.children) {
@@ -197,10 +210,10 @@ public class SymbolTableCreationVisitor implements Visitor {
             List<Node> fparamList = node.children.get(1).children;
             SymbolTableEntry fEntry = new SymbolTableEntry(funcName, Kind.function, null);
             fEntry.funcOutputType = new SymbolTableEntryType(node.children.get(2).getToken().getLexeme());
+            SymbolTable parentTable = node.symbolTable;
 
             // pass visitor to fparamList
             for (Node child : fparamList) {
-                // child.symbolTable = node.symbolTable;
                 child.accept(this);
             }
             // use fparamList to populate current entry
@@ -208,8 +221,35 @@ public class SymbolTableCreationVisitor implements Visitor {
                 fEntry.funcInputType.add(fParam.symbolTableEntry.type);
             }
             node.symbolTableEntry = fEntry;
-            // add current entry to parent table
-            node.symbolTable.addEntry(fEntry);
+
+            // check function multiple defined and overload
+            if (parentTable.getEntryByNameKind(node.symbolTableEntry.name, node.symbolTableEntry.kind) != null) {
+                // same funcDel found, compare the input field
+                if (fEntry.funcInputType.equals(parentTable.getEntryByNameKind(node.symbolTableEntry.name,
+                        node.symbolTableEntry.kind).funcInputType)) {
+                    logger.write(
+                            "[error][semantic] multiple declaration for " + node.symbolTableEntry.kind + ": "
+                                    + node.symbolTableEntry.name + " in scope: "
+                                    + parentTable.getName() + ", line "
+                                    + node.children.get(0).getToken().getLocation() +
+                                    "\n");
+                }
+                // input field is different, overload
+                else {
+                    logger.write(
+                            "[warn][semantic] Overloaded function for " + node.symbolTableEntry.kind + ": "
+                                    + node.symbolTableEntry.name + " in scope: "
+                                    + parentTable.getName() + ", line "
+                                    + node.children.get(0).getToken().getLocation() +
+                                    "\n");
+                    int index = parentTable.getEntryIndexByNameKind(node.symbolTableEntry.name,
+                            node.symbolTableEntry.kind);
+                    parentTable.replaceEntry(index, fEntry);
+                }
+            } else {
+                // add current entry to parent table
+                parentTable.addEntry(fEntry);
+            }
         }
         /**
          * impl QUADRATIC {

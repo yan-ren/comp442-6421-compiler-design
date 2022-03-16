@@ -1,0 +1,17 @@
+/*
+8.6 multiply declared function in class
+
+9.1 Overloaded free function
+9.2 Overloaded member function
+*/
+
+struct POLYNOMIAL {
+  public func f(i: integer) -> void;
+  public func f(i: integer) -> void;
+
+  public func evaluate(x: float) -> float;
+  public func evaluate(x: integer) -> integer;                  // 9.2
+};
+
+func f(i: integer) -> void {}
+func f(i: integer, j: integer) -> integer {}                    // 9.1

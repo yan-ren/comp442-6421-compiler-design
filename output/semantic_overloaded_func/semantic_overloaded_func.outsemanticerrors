@@ -1,0 +1,4 @@
+[error][semantic] multiple declaration for function: f in scope: POLYNOMIAL, line 10
+[warn][semantic] Overloaded function for function: evaluate in scope: POLYNOMIAL, line 13
+[warn][semantic] Overloaded function for function: f in scope: global, line 17
+[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL

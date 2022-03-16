@@ -1,0 +1,23 @@
+/*
+12.1 Function call with wrong number of parameters
+12.2 Function call with wrong type of parameters
+
+13.3 Array parameter using wrong number of dimensions
+*/
+
+func f(i: integer) -> void {}
+
+func f3(p1: integer[2][3]) -> integer {}
+
+func main() -> void
+{
+  let j: integer[1][2][3];
+
+  f(1,1,1);                                                         // 12.1
+  f(1.2,1);                                                         // 12.2
+  
+  f(1.2);                                                           // 12.2
+
+  f3(j);                                                            // 13.3
+}
+

@@ -1,30 +1,19 @@
-Table: global, Object id: 1333041165
+Table: global, Object id: 1664598529
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,1815556070
+POLYNOMIAL,struct,,1550228904
 _________________________________________
-POLYNOMIAL,struct,,1482246673
+POLYNOMIAL,struct,,831654622
 _________________________________________
-LINEAR,struct,,708348097
+LINEAR,struct,,491273700
 _________________________________________
-f,function,(integer,):void,1097324923
+f,function,(integer,):void,1077072774
 _________________________________________
-f,function,(integer,):void,351962798
-_________________________________________
-main,function,():void,115433442
+main,function,():void,684822005
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1815556070, Upper table: 1333041165
-name,kind,type,link
-_________________________________________
-evaluate,function,(float,):float
-_________________________________________
-evaluate2,function,(float,):float
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 1482246673, Upper table: 1333041165
+Table: POLYNOMIAL, Object id: 1550228904, Upper table: 1664598529
 name,kind,type,link
 _________________________________________
 evaluate,function,(float,):float
@@ -33,7 +22,16 @@ evaluate2,function,(float,):float
 _________________________________________
 
 ==============================================
-Table: LINEAR, Object id: 708348097, Upper table: 1333041165
+Table: POLYNOMIAL, Object id: 831654622, Upper table: 1664598529
+name,kind,type,link
+_________________________________________
+evaluate,function,(float,):float
+_________________________________________
+evaluate2,function,(float,):float
+_________________________________________
+
+==============================================
+Table: LINEAR, Object id: 491273700, Upper table: 1664598529
 name,kind,type,link
 _________________________________________
 a,variable,float
@@ -50,21 +48,14 @@ evaluate2,function,(float,):float
 _________________________________________
 
 ==============================================
-Table: f, Object id: 1097324923, Upper table: 1333041165
+Table: f, Object id: 1077072774, Upper table: 1664598529
 name,kind,type,link
 _________________________________________
 i,parameter,integer
 _________________________________________
 
 ==============================================
-Table: f, Object id: 351962798, Upper table: 1333041165
-name,kind,type,link
-_________________________________________
-i,parameter,integer
-_________________________________________
-
-==============================================
-Table: main, Object id: 115433442, Upper table: 1333041165
+Table: main, Object id: 684822005, Upper table: 1664598529
 name,kind,type,link
 _________________________________________
 counter,variable,integer

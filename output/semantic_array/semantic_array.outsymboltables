@@ -1,11 +1,11 @@
-Table: global, Object id: 949767857
+Table: global, Object id: 519492428
 name,kind,type,link
 _________________________________________
-main,function,():void,1070044969
+main,function,():void,1176968662
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1070044969, Upper table: 949767857
+Table: main, Object id: 1176968662, Upper table: 519492428
 name,kind,type,link
 _________________________________________
 i,variable,integer[2][3]

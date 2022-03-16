@@ -1,11 +1,11 @@
-Table: global, Object id: 335580595
+Table: global, Object id: 1642785848
 name,kind,type,link
 _________________________________________
-QUADRATIC,struct,,2024240125
+QUADRATIC,struct,,307400933
 _________________________________________
 
 ==============================================
-Table: QUADRATIC, Object id: 2024240125, Upper table: 335580595
+Table: QUADRATIC, Object id: 307400933, Upper table: 1642785848
 name,kind,type,link
 _________________________________________
 a,variable,float
@@ -14,13 +14,13 @@ b,variable,float
 _________________________________________
 c,variable,float
 _________________________________________
-build,function,(float,float,float,):QUADRATIC,1472216456
+build,function,(float,float,float,):QUADRATIC,1872973138
 _________________________________________
-evaluate,function,(float,):float,380274260
+evaluate,function,(float,):float,1465346452
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1472216456, Upper table: 2024240125
+Table: build, Object id: 1872973138, Upper table: 307400933
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -33,7 +33,7 @@ new_function,variable,QUADRATIC
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 380274260, Upper table: 2024240125
+Table: evaluate, Object id: 1465346452, Upper table: 307400933
 name,kind,type,link
 _________________________________________
 x,parameter,float
