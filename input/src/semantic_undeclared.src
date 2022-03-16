@@ -1,8 +1,39 @@
 /*
 11.1 Undeclared local variable
+
+11.2.1 Undeclared variable (if function is member function, check in the class for member used as variable)
+11.2.2 Undeclared variable (if function is member function, and its class inherits search in all super classes' tables for member used as variable)
+
 11.4 Undeclared free function
 11.5 Undeclared class
 */
+
+struct POLYNOMIAL {
+  private let a: float;
+	public func evaluate(x: float) -> float;
+};
+
+struct QUADRATIC inherits POLYNOMIAL {
+
+};
+
+impl POLYNOMIAL {
+  func evaluate(x: float) -> float
+  {
+    a = 1.0;
+    counter = 1;                                            // 11.2.1
+    return (0.0);
+  }
+}
+
+impl QUADRATIC {
+  func evaluate(x: float) -> float
+  {
+    a = 1.0;
+    counter = 1;                                            // 11.2.2
+    return (0.0);
+  }
+}
 
 func main() -> void
 {

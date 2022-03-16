@@ -59,6 +59,13 @@ public class SemanticCheckingVisitor implements Visitor {
          * check var exists
          * 
          * 11.1 Undeclared local variable
+         * 
+         * 11.2.1 Undeclared variable (if function is member function, check in the
+         * class for member used as variable)
+         * 11.2.2 Undeclared variable (if function is member function, and its class
+         * inherits search in all super classes' tables for member used as variable)
+         * 
+         * 11.2 Undeclared data member
          * 13.1 Use of array with wrong number of dimensions
          */
         else if (node.getName().equals(SemanticAction.VAR)) {
@@ -91,6 +98,10 @@ public class SemanticCheckingVisitor implements Visitor {
                     node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                     node.symbolTableEntry.type = varEntry.type;
                 }
+            }
+            // if var is under dot, check if dot type has var defined
+            else {
+
             }
             // whenever use a variable, need to use with correct array dimension
             if (node.symbolTableEntry != null && node.parent.getName().equals(SemanticAction.ASSIGN_STAT)) {
@@ -138,10 +149,12 @@ public class SemanticCheckingVisitor implements Visitor {
             }
         }
         /**
+         * 11.3 Undeclared member function
          * 11.4 Undeclared free function
          * 
          * 12.1 Function call with wrong number of parameters
          * 12.2 Function call with wrong type of parameters
+         * 
          * 13.3 Array parameter using wrong number of dimensions
          * 
          * | | | ├──fCall
@@ -157,7 +170,8 @@ public class SemanticCheckingVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            // if fCall is under dot, don't check free function declaretion
+            // if fCall is under dot, then it's a member belongs to the struct
+            // don't check free function declaretion
             if (!node.parent.getName().equals(SemanticAction.DOT)) {
                 SymbolTable table = node.symbolTable;
                 Node fCallId = node.children.get(0);
@@ -218,6 +232,11 @@ public class SemanticCheckingVisitor implements Visitor {
                         }
                     }
                 }
+            }
+            // if fCall is under dot, check if fCall is defined in dot type, also check
+            // function call parameter
+            else {
+
             }
         }
         /**

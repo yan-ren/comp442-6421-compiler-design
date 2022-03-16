@@ -1,20 +1,20 @@
-Table: global, Object id: 949767857
+Table: global, Object id: 294111720
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,1070044969
+POLYNOMIAL,struct,,310016558
 _________________________________________
-QUADRATIC,struct,,888557915
+QUADRATIC,struct,,335580595
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1070044969, Upper table: 949767857
+Table: POLYNOMIAL, Object id: 310016558, Upper table: 294111720
 name,kind,type,link
 _________________________________________
 evaluate,function,(float,):float
 _________________________________________
 
 ==============================================
-Table: QUADRATIC, Object id: 888557915, Upper table: 949767857
+Table: QUADRATIC, Object id: 335580595, Upper table: 294111720
 name,kind,type,link
 _________________________________________
 a,variable,float
@@ -23,13 +23,13 @@ b,variable,float
 _________________________________________
 c,variable,float
 _________________________________________
-build,function,(float,float,float,):QUADRATIC,1261764601
+build,function,(float,float,float,):QUADRATIC,2024240125
 _________________________________________
-evaluate,function,(float,):float,294111720
+evaluate,function,(float,):float,1472216456
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1261764601, Upper table: 888557915
+Table: build, Object id: 2024240125, Upper table: 335580595
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -42,7 +42,7 @@ new_function,variable,QUADRATIC
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 294111720, Upper table: 888557915
+Table: evaluate, Object id: 1472216456, Upper table: 335580595
 name,kind,type,link
 _________________________________________
 x,parameter,float

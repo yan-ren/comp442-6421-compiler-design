@@ -1,4 +1,73 @@
 prog
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   ├──private
+|   |   ├──varDecl
+|   |   |   ├──id
+|   |   |   ├──float
+|   |   |   └──arraySize
+|   |   ├──public
+|   |   └──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   └──float
+|   ├──structDecl
+|   |   ├──id
+|   |   └──inherlist
+|   |   |   └──id
+|   ├──implDef
+|   |   ├──id
+|   |   └──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──float
+|   |   |   └──funcBody
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──intnum
+|   |   |   |   └──returnStat
+|   |   |   |   |   └──floatnum
+|   ├──implDef
+|   |   ├──id
+|   |   └──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──float
+|   |   |   └──funcBody
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──intnum
+|   |   |   |   └──returnStat
+|   |   |   |   |   └──floatnum
 |   └──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id

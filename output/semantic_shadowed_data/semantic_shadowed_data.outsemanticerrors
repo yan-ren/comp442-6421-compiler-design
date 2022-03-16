@@ -1,5 +1,5 @@
+[warn][semantic] variable: b in struct C is shadowed by struct D
+[warn][semantic] variable: a in struct D is shadowed by struct E
 [warn][semantic] unimplemented struct, cannot find impl for strcut C
 [warn][semantic] unimplemented struct, cannot find impl for strcut D
 [warn][semantic] unimplemented struct, cannot find impl for strcut E
-[warn][semantic] variable: b in struct C is shadowed by struct D
-[warn][semantic] variable: a in struct D is shadowed by struct E

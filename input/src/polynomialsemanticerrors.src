@@ -147,19 +147,27 @@ func main() -> void
 --8.5  |X| shadowed inherited data member
 --8.6  |X| multiply declared function in class
 
-
-9.1  |X| Overloaded free function
-9.2  |X| Overloaded member function
-
+--9.1  |X| Overloaded free function
+--9.2  |X| Overloaded member function
 --9.3  |X| Overridden inherited member function
---10.1 |X| Type error in expression
 
+--10.1 |X| Type error in expression
 10.2 |X| Type error in assignment statement
 10.3 |X| Type error in return statement
 
 --11.1 |X| Undeclared local variable
 11.2 |X| Undeclared data member
 11.3 |X| Undeclared member function
+
+--11.2.1 Undeclared variable (if function is member function, check in the class for member used as variable)
+--11.2.2 Undeclared variable (if function is member function, and its class inherits search in all super classes' tables for member used as variable)
+
+11.2.3 Undeclared data member (search in class table)
+11.2.4 Undeclared data member (if class inherits from other classes, search in all super classes' tables)
+
+11.3.1 Undeclared member function (search in class table)
+11.3.2 Undeclared member function (if class ihherits from other classes, search in all super classes' tables)
+
 --11.4 |X| Undeclared free function
 --11.5 |X| Undeclared class
 

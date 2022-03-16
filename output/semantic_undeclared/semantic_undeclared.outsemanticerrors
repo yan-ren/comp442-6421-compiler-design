@@ -1,4 +1,6 @@
-[error][semantic] Undeclared class: a, line: 9
-[error][semantic] Undeclared free function: undefined, line: 11
-[error][semantic] Undeclared local variable: counter, line: 12
-[error][semantic] Undeclared local variable: d, line: 12
+[error][semantic] Undeclared local variable: counter, line: 24
+[error][semantic] Undeclared local variable: counter, line: 33
+[error][semantic] Undeclared class: a, line: 40
+[error][semantic] Undeclared free function: undefined, line: 42
+[error][semantic] Undeclared local variable: counter, line: 43
+[error][semantic] Undeclared local variable: d, line: 43

@@ -20,67 +20,6 @@ public class Util {
 
         if (root.getName().equals(SemanticAction.PROG)) {
             /**
-             * 1. associate impl function with struct
-             * 
-             * 6.2 undefined member function declaration, e.g impl doesn't implement the
-             * function declared in strct
-             */
-            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
-                if (entry.kind == Kind.struct) {
-                    SymbolTableEntry implEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.impl);
-                    if (implEntry != null) {
-                        SymbolTable structSymbolTable = entry.link;
-                        SymbolTable implSymbolTable = implEntry.link;
-                        for (SymbolTableEntry structEntry : structSymbolTable.getEntries()) {
-                            if (structEntry.kind == Kind.function) {
-                                SymbolTableEntry implFuncEntry = implSymbolTable.getEntryByNameKind(structEntry.name,
-                                        structEntry.kind);
-                                if (implFuncEntry != null) {
-                                    structEntry.link = implFuncEntry.link;
-                                    structEntry.link.upperTable = structSymbolTable;
-                                } else {
-                                    logger.write("[error][semantic] undefined member function declaration "
-                                            + structEntry.name + " in impl "
-                                            + implSymbolTable.getName() + "\n");
-                                }
-                            }
-                        }
-                    } else {
-                        logger.write("[warn][semantic] unimplemented struct, cannot find impl for strcut " + entry.name
-                                + "\n");
-                    }
-                }
-            }
-            /**
-             * check for each impl if a struct exists and func in impl is defined in struct
-             * 
-             * 6.1 undeclared member function definition, e.g. impl has function that is not
-             * declared in struct
-             */
-            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
-                if (entry.kind == Kind.impl) {
-                    SymbolTableEntry structEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.struct);
-                    if (structEntry != null) {
-                        SymbolTable implSymbolTable = entry.link;
-                        SymbolTable structSymbolTable = structEntry.link;
-                        for (SymbolTableEntry implEntry : implSymbolTable.getEntries()) {
-                            if (implEntry.kind == Kind.function) {
-                                SymbolTableEntry structFuncEntry = structSymbolTable.getEntryByNameKind(implEntry.name,
-                                        implEntry.kind);
-                                if (structFuncEntry == null) {
-                                    logger.write("[error][semantic] undeclared member function definition "
-                                            + implEntry.name + " in impl "
-                                            + implSymbolTable.getName() + "\n");
-
-                                }
-                            }
-                        }
-                    } else {
-                        logger.write("[warn][semantic] unknown impl " + entry.name + " cannot find struct for impl \n");
-                    }
-                }
-            }
-            /**
              * 14.1 Circular class dependency
              */
             boolean circularDependency = false;
@@ -146,13 +85,74 @@ public class Util {
                                     }
                                 } else {
                                     logger.write(
-                                            "[warn][semantic] struct " + structEntry.name + " inherits "
+                                            "[error][semantic] struct " + structEntry.name + " inherits "
                                                     + currentInherited
                                                     + " not found\n");
                                 }
                             }
                             inheritedLevel++;
                         }
+                    }
+                }
+            }
+            /**
+             * 1. associate impl function with struct
+             * 
+             * 6.2 undefined member function declaration, e.g impl doesn't implement the
+             * function declared in strct
+             */
+            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
+                if (entry.kind == Kind.struct) {
+                    SymbolTableEntry implEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.impl);
+                    if (implEntry != null) {
+                        SymbolTable structSymbolTable = entry.link;
+                        SymbolTable implSymbolTable = implEntry.link;
+                        for (SymbolTableEntry structEntry : structSymbolTable.getEntries()) {
+                            if (structEntry.kind == Kind.function) {
+                                SymbolTableEntry implFuncEntry = implSymbolTable.getEntryByNameKind(structEntry.name,
+                                        structEntry.kind);
+                                if (implFuncEntry != null) {
+                                    structEntry.link = implFuncEntry.link;
+                                    structEntry.link.upperTable = structSymbolTable;
+                                } else {
+                                    logger.write("[error][semantic] undefined member function declaration "
+                                            + structEntry.name + " in impl "
+                                            + implSymbolTable.getName() + "\n");
+                                }
+                            }
+                        }
+                    } else {
+                        logger.write("[warn][semantic] unimplemented struct, cannot find impl for strcut " + entry.name
+                                + "\n");
+                    }
+                }
+            }
+            /**
+             * check for each impl if a struct exists and func in impl is defined in struct
+             * 
+             * 6.1 undeclared member function definition, e.g. impl has function that is not
+             * declared in struct
+             */
+            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
+                if (entry.kind == Kind.impl) {
+                    SymbolTableEntry structEntry = root.symbolTable.getEntryByNameKind(entry.name, Kind.struct);
+                    if (structEntry != null) {
+                        SymbolTable implSymbolTable = entry.link;
+                        SymbolTable structSymbolTable = structEntry.link;
+                        for (SymbolTableEntry implEntry : implSymbolTable.getEntries()) {
+                            if (implEntry.kind == Kind.function) {
+                                SymbolTableEntry structFuncEntry = structSymbolTable.getEntryByNameKind(implEntry.name,
+                                        implEntry.kind);
+                                if (structFuncEntry == null) {
+                                    logger.write("[error][semantic] undeclared member function definition "
+                                            + implEntry.name + " in impl "
+                                            + implSymbolTable.getName() + "\n");
+
+                                }
+                            }
+                        }
+                    } else {
+                        logger.write("[warn][semantic] unknown impl " + entry.name + " cannot find struct for impl \n");
                     }
                 }
             }
