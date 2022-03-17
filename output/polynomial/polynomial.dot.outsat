@@ -358,7 +358,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 103->178;
 179[label="fparam"];
 105->179;
-180[label="intnum | 0"];
+180[label="floatnum"];
 107->180;
 181[label="fparam"];
 109->181;

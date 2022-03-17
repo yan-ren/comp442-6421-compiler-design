@@ -131,7 +131,7 @@
 [opencubr, {, 24]
 [return, return, 25]
 [openpar, (, 25]
-[intnum, 0, 25]
+[floatnum, 0.0, 25]
 [closepar, ), 25]
 [semi, ;, 25]
 [closecubr, }, 26]

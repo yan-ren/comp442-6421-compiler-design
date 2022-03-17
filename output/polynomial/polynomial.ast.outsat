@@ -105,7 +105,7 @@ prog
 |   |   |   |   └──float
 |   |   |   └──funcBody
 |   |   |   |   └──returnStat
-|   |   |   |   |   └──intnum
+|   |   |   |   |   └──floatnum
 |   ├──implDef
 |   |   ├──id
 |   |   ├──funcDef

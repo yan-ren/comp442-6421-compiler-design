@@ -22,7 +22,7 @@ struct QUADRATIC inherits POLYNOMIAL {
 impl POLYNOMIAL {
   func evaluate(x: float) -> float
   {
-    return (0);
+    return (0.0);
   }
 }
 

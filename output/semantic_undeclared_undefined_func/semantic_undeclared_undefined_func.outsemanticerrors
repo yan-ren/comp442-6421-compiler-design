@@ -1,2 +1,3 @@
 [error][semantic] undefined member function declaration evaluate2 in impl POLYNOMIAL
 [error][semantic] undeclared member function definition build2 in impl POLYNOMIAL
+[error][semantic] Type error in return statement, expect: float, actual: intnum, in function: evaluate, scope: POLYNOMIAL

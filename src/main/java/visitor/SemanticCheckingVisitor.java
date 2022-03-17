@@ -69,7 +69,7 @@ public class SemanticCheckingVisitor implements Visitor {
          * 13.1 Use of array with wrong number of dimensions
          */
         else if (node.getName().equals(SemanticAction.VAR)) {
-            // if var is under dot, don't check var
+
             if (!node.parent.getName().equals(SemanticAction.DOT)
                     || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
@@ -100,7 +100,7 @@ public class SemanticCheckingVisitor implements Visitor {
                     node.symbolTableEntry.type = varEntry.type;
                 }
             }
-            // if var is under dot, check if dot type has var defined
+            // if parent is dot and node is second child, then this node belongs to struct
             else if (node.parent.getName().equals(SemanticAction.DOT) && isSecondChild(node, node.parent)) {
                 SymbolTable table = node.symbolTable;
                 // parent's first child is the variable, find it's type
@@ -122,6 +122,13 @@ public class SemanticCheckingVisitor implements Visitor {
                                 "[error][semantic] Undeclared data member: "
                                         + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
                                         + node.children.get(0).getToken().getLocation() + "\n");
+                    } else {
+                        SymbolTableEntry memberVarEntry = table.getEntryByNameKind(varType,
+                                Kind.struct).link
+                                .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                                        Kind.variable);
+                        node.symbolTableEntry = new SymbolTableEntry(memberVarEntry.name, null, null);
+                        node.symbolTableEntry.type = memberVarEntry.type;
                     }
                 }
             }
@@ -192,8 +199,10 @@ public class SemanticCheckingVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            // if fCall is under dot, then it's a member belongs to the struct
+            // if fCall is under dot and is second child, then it's a member belongs to the
+            // struct
             // don't check free function declaretion
+            // fCall is first child of dot operator is still free function
             if (!node.parent.getName().equals(SemanticAction.DOT)
                     || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
@@ -216,6 +225,8 @@ public class SemanticCheckingVisitor implements Visitor {
                     // fCall is defined, check parameters
                     SymbolTableEntry funcDefEntry = table.getEntryByNameKind(fCallName,
                             Kind.function);
+                    node.symbolTableEntry.funcOutputType = funcDefEntry.funcOutputType;
+                    node.symbolTableEntry.type = funcDefEntry.funcOutputType;
                     // funcDef.funcInputType compares with fCall.aParams
                     if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
                         logger.write(
@@ -264,6 +275,7 @@ public class SemanticCheckingVisitor implements Visitor {
                     else {
                         node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
                         node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
+                        node.symbolTableEntry.funcOutputType = node.children.get(1).symbolTableEntry.funcOutputType;
                         Node fCallId = node.children.get(0);
                         SymbolTableEntry funcDefEntry = table.getEntryByNameKind(varType,
                                 Kind.struct).link
@@ -394,6 +406,60 @@ public class SemanticCheckingVisitor implements Visitor {
                             "[error][semantic] array index is not an integer, line: "
                                     + node.parent.children.get(0).getToken().getLocation() + "\n");
                 }
+            }
+        }
+        /**
+         * returnStat
+         * 
+         * ├──returnStat
+         * | └──var
+         * | | ├──id
+         * | | └──indiceList
+         * └──returnStat
+         * | └──addOp
+         * | | ├──multOp
+         * | | | ├──var
+         * | | | | ├──id
+         * | | | | └──indiceList
+         * | | | └──var
+         * | | | | ├──id
+         * | | | | └──indiceList
+         * 
+         */
+        else if (node.getName().equals(SemanticAction.RETURN_STAT)) {
+            for (Node child : node.children) {
+                child.accept(this);
+            }
+
+            String funcDelOutputTypeName = node.symbolTable.upperTable.getEntryByNameKind(node.symbolTable.getName(),
+                    Kind.function).funcOutputType.name;
+            System.out.println(funcDelOutputTypeName);
+
+            if (!isSameTypeOperand(node.children.get(0).symbolTableEntry.type.name, funcDelOutputTypeName)) {
+                logger.write(
+                        "[error][semantic] Type error in return statement, expect: "
+                                + funcDelOutputTypeName + ", actual: " + node.children.get(0).symbolTableEntry.type.name
+                                + ", in function: " + node.symbolTable.getName() + ", scope: "
+                                + node.symbolTable.upperTable.getName() + "\n");
+            }
+        } else if (node.getName().equals(SemanticAction.ASSIGN_STAT)) {
+            for (Node child : node.children) {
+                child.accept(this);
+            }
+
+            Node leftNode = node.children.get(0);
+            Node rightNode = node.children.get(1);
+            while (leftNode.getName().equals(SemanticAction.DOT)) {
+                leftNode = leftNode.children.get(1);
+            }
+
+            if (leftNode.symbolTableEntry != null && rightNode.symbolTableEntry != null
+                    && !isSameTypeOperand(leftNode.symbolTableEntry.type.name, rightNode.symbolTableEntry.type.name)) {
+                logger.write(
+                        "[error][semantic] Type error in assignment statement, expect: "
+                                + leftNode.symbolTableEntry.type.name + ", actual: "
+                                + rightNode.symbolTableEntry.type.name
+                                + ", line: " + leftNode.children.get(0).getToken().getLocation() + "\n");
             }
         }
         /**

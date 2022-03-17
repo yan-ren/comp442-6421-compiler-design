@@ -26,10 +26,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/bubblesort.src" });
                 });
-                assertEquals(false,
-                                FileUtils.readFileToString(new File("./output/bubblesort/bubblesort.outsemanticerrors"),
-                                                encoding)
-                                                .contains(semanticErrorTag),
+                assertEquals(0,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/bubblesort/bubblesort.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag),
                                 "bubblesort.outsemanticerrors should not contain semantic error");
                 assertEquals(0,
                                 StringUtils.countMatches(
@@ -46,11 +48,13 @@ public class SymbolTableSemanticCheckingTest {
                         Driver.main(new String[] { "./input/src/polynomial.src" });
                 });
 
-                assertEquals(false,
-                                FileUtils.readFileToString(new File("./output/polynomial/polynomial.outsemanticerrors"),
-                                                encoding)
-                                                .contains(semanticErrorTag),
-                                "polynomial.outsemanticerrors should not contain semantic errors");
+                assertEquals(0,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/polynomial/polynomial.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag),
+                                "polynomial.outsemanticerrors should not contain semantic error");
                 assertEquals(2,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -72,6 +76,18 @@ public class SymbolTableSemanticCheckingTest {
                 });
                 assertEquals(3,
                                 StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_circular_dep/semantic_circular_dep.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
+                assertEquals(3,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_circular_dep/semantic_circular_dep.outsemanticerrors"),
+                                                                encoding),
+                                                semanticWarningTag));
+                assertEquals(3,
+                                StringUtils.countMatches(
                                                 FileUtils.readFileToString(
                                                                 new File("./output/semantic_circular_dep/semantic_circular_dep.outsemanticerrors"),
                                                                 encoding),
@@ -87,6 +103,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_shadowed_data.src" });
                 });
+                assertEquals(5,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_shadowed_data/semantic_shadowed_data.outsemanticerrors"),
+                                                                encoding),
+                                                semanticWarningTag));
                 assertEquals(2,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(
@@ -107,6 +129,13 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_array.src" });
                 });
+
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_array/semantic_array.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
 
                 assertEquals(3,
                                 StringUtils.countMatches(
@@ -140,6 +169,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertThrows(Exception.class, () -> {
                         Driver.main(new String[] { "./input/src/semantic_type.src" });
                 });
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_type/semantic_type.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -147,6 +182,27 @@ public class SymbolTableSemanticCheckingTest {
                                                                 encoding),
                                                 "type error in expression: *, line"),
                                 "semantic_type.outsemanticerrors should contain 1 semantic error: [error][semantic] type error in expression: *");
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_type/semantic_type.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Type error in return statement, expect: integer, actual: float, in function: evaluate, scope: QUADRATIC"),
+                                "semantic_type.outsemanticerrors should contain 1 semantic error");
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_type/semantic_type.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Type error in assignment statement, expect: integer, actual: floatnum"),
+                                "semantic_type.outsemanticerrors should contain 1 semantic error");
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_type/semantic_type.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Type error in assignment statement, expect: float, actual: intnum"),
+                                "semantic_type.outsemanticerrors should contain 1 semantic error");
         }
 
         /**
@@ -160,6 +216,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_undeclared_undefined_func.src" });
                 });
+                assertEquals(3,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_undefined_func/semantic_undeclared_undefined_func.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -192,6 +254,18 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_multiple_declared.src" });
                 });
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_multiple_declared/semantic_multiple_declared.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_multiple_declared/semantic_multiple_declared.outsemanticerrors"),
+                                                                encoding),
+                                                semanticWarningTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -260,6 +334,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_undeclared.src" });
                 });
+                assertEquals(6,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared/semantic_undeclared.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -322,6 +402,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_fcall.src" });
                 });
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_fcall/semantic_fcall.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
                 assertEquals(2,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -352,7 +438,18 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_overloaded_func.src" });
                 });
-
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
+                assertEquals(3,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_overloaded_func/semantic_overloaded_func.outsemanticerrors"),
+                                                                encoding),
+                                                semanticWarningTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(
@@ -404,7 +501,12 @@ public class SymbolTableSemanticCheckingTest {
                 assertDoesNotThrow(() -> {
                         Driver.main(new String[] { "./input/src/semantic_undeclared_member.src" });
                 });
-
+                assertEquals(4,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_member/semantic_undeclared_member.outsemanticerrors"),
+                                                                encoding),
+                                                semanticErrorTag));
                 assertEquals(1,
                                 StringUtils.countMatches(
                                                 FileUtils.readFileToString(new File(

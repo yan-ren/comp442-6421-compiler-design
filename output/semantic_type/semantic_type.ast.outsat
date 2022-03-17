@@ -42,7 +42,7 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   ├──float
 |   |   |   |   |   └──arraySize
-|   |   |   └──float
+|   |   |   └──integer
 |   └──implDef
 |   |   ├──id
 |   |   ├──funcDef
@@ -53,7 +53,7 @@ prog
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   ├──float
 |   |   |   |   |   |   └──arraySize
-|   |   |   |   └──float
+|   |   |   |   └──integer
 |   |   |   └──funcBody
 |   |   |   |   ├──varDecl
 |   |   |   |   |   ├──id
@@ -122,6 +122,24 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──arraySize
+|   |   |   |   ├──varDecl
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──integer
+|   |   |   |   |   └──arraySize
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   |   |   |   ├──assignStat
+|   |   |   |   |   ├──dot
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──intnum
 |   |   |   |   ├──assignStat
 |   |   |   |   |   ├──dot
 |   |   |   |   |   |   ├──var
@@ -150,14 +168,7 @@ prog
 |   |   |   |   |   └──var
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──indiceList
-|   |   |   |   ├──assignStat
-|   |   |   |   |   ├──dot
-|   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──intnum
 |   |   |   |   └──returnStat
-|   |   |   |   |   └──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
