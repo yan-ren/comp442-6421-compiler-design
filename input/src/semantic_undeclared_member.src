@@ -1,0 +1,55 @@
+/*
+11.2.3 Undeclared data member (search in class table)
+11.2.4 Undeclared data member (if class inherits from other classes, search in all super classes' tables)
+
+11.3.1 Undeclared member function (search in class table)
+11.3.2 Undeclared member function (if class ihherits from other classes, search in all super classes' tables)
+
+12.1 Function call with wrong number of parameters
+*/
+
+struct A {
+	public let a: integer;
+    public func test(A: float, B: float) -> void;
+};
+
+struct C inherits A {
+	public let c: integer;
+  public func build(A: float, B: float) -> void;
+};
+
+impl A {
+  func test(A: float, B: float) -> void
+  {
+    let result: float;
+    result = 0.0;
+  }
+}
+
+impl C {
+	func test(A: float, B: float) -> void
+	{
+		let result: float;
+		result = 0.0;
+	}
+  func build(A: float, B: float) -> void
+  {
+    let result: float;
+    result = 0.0;
+  }
+}
+
+func main() -> void
+{
+  let c: C;
+	let counter: integer;
+  c.b = 1;                                          // 11.2.3, 11.2.4
+  c.a = 1;                                          // C inherits a from struct A
+  c.c = 1;                                          // C struct has variable c
+  c.f();                                            // 11.3.1, 11.3.2
+  c.build(1.0, 1.0);
+  c.build();                                        // 12.1
+  c.test(1.0, 1.0);                                 // C inherits test function from struct A
+
+	counter.a = 1;
+}

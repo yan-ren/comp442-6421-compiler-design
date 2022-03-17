@@ -1,66 +1,75 @@
-Table: global, Object id: 541698497
+Table: global, Object id: 1117871068
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,519492428
+A,struct,,1151704483
 _________________________________________
-POLYNOMIAL,struct,,1176968662
+C,struct,,669284403
 _________________________________________
-LINEAR,struct,,297490204
-_________________________________________
-f,function,(integer,):void,2085745483
-_________________________________________
-main,function,():void,1419064126
+main,function,():void,1869039062
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 519492428, Upper table: 541698497
+Table: A, Object id: 1151704483, Upper table: 1117871068
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float
+a,variable,integer
 _________________________________________
-evaluate2,function,(float,):float
+test,function,(float,float,):void,659590237
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1176968662, Upper table: 541698497
+Table: C, Object id: 669284403, Upper table: 1117871068
 name,kind,type,link
 _________________________________________
-evaluate,function,(float,):float
+c,variable,integer
 _________________________________________
-evaluate2,function,(float,):float
+build,function,(float,float,):void,1332757905
+_________________________________________
+a,variable,integer
+_________________________________________
+test,function,(float,float,):void,659590237
 _________________________________________
 
 ==============================================
-Table: LINEAR, Object id: 297490204, Upper table: 541698497
+Table: main, Object id: 1869039062, Upper table: 1117871068
 name,kind,type,link
 _________________________________________
-a,variable,float
-_________________________________________
-b,variable,float
-_________________________________________
-b,variable,integer
-_________________________________________
-build,function,(float,float,):LINEAR
-_________________________________________
-evaluate,function,(float,):float
-_________________________________________
-evaluate2,function,(float,):float
-_________________________________________
-
-==============================================
-Table: f, Object id: 2085745483, Upper table: 541698497
-name,kind,type,link
-_________________________________________
-i,parameter,integer
-_________________________________________
-
-==============================================
-Table: main, Object id: 1419064126, Upper table: 541698497
-name,kind,type,link
+c,variable,C
 _________________________________________
 counter,variable,integer
 _________________________________________
-counter,variable,float
+
+==============================================
+Table: test, Object id: 659590237, Upper table: 669284403
+name,kind,type,link
+_________________________________________
+A,parameter,float
+_________________________________________
+B,parameter,float
+_________________________________________
+result,variable,float
+_________________________________________
+
+==============================================
+Table: build, Object id: 1332757905, Upper table: 669284403
+name,kind,type,link
+_________________________________________
+A,parameter,float
+_________________________________________
+B,parameter,float
+_________________________________________
+result,variable,float
+_________________________________________
+
+==============================================
+Table: test, Object id: 659590237, Upper table: 669284403
+name,kind,type,link
+_________________________________________
+A,parameter,float
+_________________________________________
+B,parameter,float
+_________________________________________
+result,variable,float
 _________________________________________
 
 ==============================================

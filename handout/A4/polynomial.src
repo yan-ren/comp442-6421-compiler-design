@@ -19,14 +19,14 @@ struct QUADRATIC inherits POLYNOMIAL {
 };
 
 // ====== struct implementations ====== //
-impl POLYNOMIAL {   
+impl POLYNOMIAL {
   func evaluate(x: float) -> float
   {
     return (0);
   }
 }
-  
-impl QUADRATIC { 
+
+impl QUADRATIC {
   func evaluate(x: float) -> float
   {
     let result: float;
@@ -36,7 +36,7 @@ impl QUADRATIC {
     result = result * x + c;
     return (result);
   }
-  func build(A: float, B: float, C: float) -> QUADRATIC 
+  func build(A: float, B: float, C: float) -> QUADRATIC
   {
     let new_function: QUADRATIC ;
     new_function.a = A;
@@ -45,23 +45,23 @@ impl QUADRATIC {
     return (new_function);
   }
 }
-  
+
 impl LINEAR {
-  func build(A: float, B: float) -> LINEAR 
+  func build(A: float, B: float) -> LINEAR
   {
     let new_function: LINEAR;
     new_function.a = A;
     new_function.b = B;
     return (new_function);
   }
-  func evaluate(x: float) -> float 
+  func evaluate(x: float) -> float
   {
     let result: float;
     result = 0.0;
     result = a * x + b;
     return (result);
   }
-} 
+}
 
 // ====== main ====== //
 func main() -> void
@@ -72,7 +72,7 @@ func main() -> void
   f1 = f1.build(2, 3.5);
   f2 = f2.build(-2.0, 1.0, 0.0);
   counter = 1;
-	
+
   while(counter <= 10)
   {
     write(counter);
@@ -98,7 +98,7 @@ func main() -> void
 9.2  | | Overloaded member function
 9.3  | | Overridden inherited member function
 10.1 | | Type error in expression
-10.2 | | Type error in assignment statement 
+10.2 | | Type error in assignment statement
 10.3 | | Type error in return statement
 11.1 | | Undeclared local variable
 11.2 | | Undeclared data member

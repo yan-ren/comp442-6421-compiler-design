@@ -1,4 +1,4 @@
-[error][semantic] Function call with wrong number of parameters, expected: [{ name='integer', dimension='[]'}] actual: [{ name='integer', dimension='[]'}, { name='integer', dimension='[]'}, { name='integer', dimension='[]'}], line: 16
-[error][semantic] Function call with wrong number of parameters, expected: [{ name='integer', dimension='[]'}] actual: [{ name='float', dimension='[]'}, { name='integer', dimension='[]'}], line: 17
-[error][semantic] Function call with wrong type of parameters [{ name='integer', dimension='[]'}] actual: [{ name='float', dimension='[]'}] line: 19
+[error][semantic] Function call with wrong number of parameters, expected: [{ name='integer', dimension='[]'}] actual: [{ name='intnum', dimension='[]'}, { name='intnum', dimension='[]'}, { name='intnum', dimension='[]'}], line: 16
+[error][semantic] Function call with wrong number of parameters, expected: [{ name='integer', dimension='[]'}] actual: [{ name='floatnum', dimension='[]'}, { name='intnum', dimension='[]'}], line: 17
+[error][semantic] Function call with wrong type of parameters [{ name='integer', dimension='[]'}] actual: [{ name='floatnum', dimension='[]'}] line: 19
 [error][semantic] Function call with wrong type of parameters [{ name='integer', dimension='[2, 3]'}] actual: [{ name='integer', dimension='[1, 2, 3]'}] line: 21

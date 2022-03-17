@@ -385,4 +385,56 @@ public class SymbolTableSemanticCheckingTest {
                                                 "[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL"),
                                 "semantic_overloaded_func.outsemanticerrors should contain 1 semantic warn");
         }
+
+        /**
+         * 11.2.3 Undeclared data member (search in class table)
+         * 11.2.4 Undeclared data member (if class inherits from other classes, search
+         * in all super classes' tables)
+         * 
+         * 11.3.1 Undeclared member function (search in class table)
+         * 11.3.2 Undeclared member function (if class ihherits from other classes,
+         * search in all super classes' tables)
+         * 
+         * 12.1 Function call with wrong number of parameters
+         * 
+         * @throws Exception
+         */
+        @Test
+        void test13() throws Exception {
+                assertDoesNotThrow(() -> {
+                        Driver.main(new String[] { "./input/src/semantic_undeclared_member.src" });
+                });
+
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_member/semantic_undeclared_member.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Undeclared data member: b in C"),
+                                "semantic_undeclared_member.outsemanticerrors should contain 1 semantic error");
+
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_member/semantic_undeclared_member.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Undeclared member function: f in C"),
+                                "semantic_undeclared_member.outsemanticerrors should contain 1 semantic error");
+
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_member/semantic_undeclared_member.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] Function call with wrong number of parameters"),
+                                "semantic_undeclared_member.outsemanticerrors should contain 1 semantic error");
+
+                assertEquals(1,
+                                StringUtils.countMatches(
+                                                FileUtils.readFileToString(new File(
+                                                                "./output/semantic_undeclared_member/semantic_undeclared_member.outsemanticerrors"),
+                                                                encoding),
+                                                "[error][semantic] dot operator used on non-class type counter type"),
+                                "semantic_undeclared_member.outsemanticerrors should contain 1 semantic error");
+        }
 }

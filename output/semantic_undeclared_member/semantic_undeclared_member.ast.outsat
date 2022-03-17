@@ -1,0 +1,199 @@
+prog
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   ├──public
+|   |   ├──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize
+|   |   ├──public
+|   |   └──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   |   ├──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   └──void
+|   ├──structDecl
+|   |   ├──id
+|   |   ├──inherlist
+|   |   |   └──id
+|   |   ├──public
+|   |   ├──varDecl
+|   |   |   ├──id
+|   |   |   ├──integer
+|   |   |   └──arraySize
+|   |   ├──public
+|   |   └──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   |   ├──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   |   └──fparam
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   └──void
+|   ├──implDef
+|   |   ├──id
+|   |   └──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   ├──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──void
+|   |   |   └──funcBody
+|   |   |   |   ├──varDecl
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   |   └──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   ├──implDef
+|   |   ├──id
+|   |   ├──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   ├──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──void
+|   |   |   └──funcBody
+|   |   |   |   ├──varDecl
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   |   └──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   |   └──funcDef
+|   |   |   ├──funcHead
+|   |   |   |   ├──id
+|   |   |   |   ├──fparamList
+|   |   |   |   |   ├──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   |   └──fparam
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   ├──float
+|   |   |   |   |   |   └──arraySize
+|   |   |   |   └──void
+|   |   |   └──funcBody
+|   |   |   |   ├──varDecl
+|   |   |   |   |   ├──id
+|   |   |   |   |   ├──float
+|   |   |   |   |   └──arraySize
+|   |   |   |   └──assignStat
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──floatnum
+|   └──funcDef
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──id
+|   |   |   |   └──arraySize
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   ├──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   ├──dot
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──fCall
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──aParams
+|   |   |   ├──dot
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──fCall
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──aParams
+|   |   |   |   |   |   ├──floatnum
+|   |   |   |   |   |   └──floatnum
+|   |   |   ├──dot
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──fCall
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──aParams
+|   |   |   ├──dot
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──fCall
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──aParams
+|   |   |   |   |   |   ├──floatnum
+|   |   |   |   |   |   └──floatnum
+|   |   |   └──assignStat
+|   |   |   |   ├──dot
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum

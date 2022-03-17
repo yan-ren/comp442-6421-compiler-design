@@ -288,7 +288,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 90->143;
 144[label="id | counter"];
 91->144;
-145[label="integer | integer"];
+145[label="float | float"];
 91->145;
 146[label="arraySize"];
 91->146;
@@ -302,7 +302,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 93->150;
 151[label="var"];
 94->151;
-152[label="intnum | 1"];
+152[label="floatnum"];
 94->152;
 153[label="relExpr"];
 95->153;
@@ -708,7 +708,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 307->353;
 354[label="indiceList"];
 307->354;
-355[label="intnum | 2"];
+355[label="floatnum"];
 313->355;
 356[label="floatnum"];
 313->356;

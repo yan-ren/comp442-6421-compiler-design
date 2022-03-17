@@ -1,13 +1,13 @@
-Table: global, Object id: 949767857
+Table: global, Object id: 1390913202
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,1070044969
+POLYNOMIAL,struct,,698741991
 _________________________________________
-f,function,(integer,integer,):integer,888557915
+f,function,(integer,integer,):integer,127702987
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1070044969, Upper table: 949767857
+Table: POLYNOMIAL, Object id: 698741991, Upper table: 1390913202
 name,kind,type,link
 _________________________________________
 f,function,(integer,):void
@@ -16,7 +16,7 @@ evaluate,function,(integer,):integer
 _________________________________________
 
 ==============================================
-Table: f, Object id: 888557915, Upper table: 949767857
+Table: f, Object id: 127702987, Upper table: 1390913202
 name,kind,type,link
 _________________________________________
 i,parameter,integer

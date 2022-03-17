@@ -322,7 +322,7 @@ prog
 |   |   |   |   └──arraySize
 |   |   |   ├──varDecl
 |   |   |   |   ├──id
-|   |   |   |   ├──integer
+|   |   |   |   ├──float
 |   |   |   |   └──arraySize
 |   |   |   ├──assignStat
 |   |   |   |   ├──var
@@ -335,7 +335,7 @@ prog
 |   |   |   |   |   └──fCall
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──aParams
-|   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   ├──floatnum
 |   |   |   |   |   |   |   └──floatnum
 |   |   |   ├──assignStat
 |   |   |   |   ├──var
@@ -356,7 +356,7 @@ prog
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
+|   |   |   |   └──floatnum
 |   |   |   └──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var

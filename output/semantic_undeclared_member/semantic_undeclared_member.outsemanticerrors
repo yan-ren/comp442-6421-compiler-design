@@ -1,0 +1,4 @@
+[error][semantic] Undeclared data member: b in C, line: 46
+[error][semantic] Undeclared member function: f in C, line: 49
+[error][semantic] Function call with wrong number of parameters, expected: [{ name='float', dimension='[]'}, { name='float', dimension='[]'}] actual: [], line: 51
+[error][semantic] dot operator used on non-class type counter type: { name='integer', dimension='[]'} line: 54

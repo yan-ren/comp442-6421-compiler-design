@@ -70,7 +70,8 @@ public class SemanticCheckingVisitor implements Visitor {
          */
         else if (node.getName().equals(SemanticAction.VAR)) {
             // if var is under dot, don't check var
-            if (!node.parent.getName().equals(SemanticAction.DOT)) {
+            if (!node.parent.getName().equals(SemanticAction.DOT)
+                    || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
                 String varName = node.children.get(0).getToken().getLexeme();
                 // var found in table is either varialbe or parameter
@@ -100,8 +101,29 @@ public class SemanticCheckingVisitor implements Visitor {
                 }
             }
             // if var is under dot, check if dot type has var defined
-            else {
-
+            else if (node.parent.getName().equals(SemanticAction.DOT) && isSecondChild(node, node.parent)) {
+                SymbolTable table = node.symbolTable;
+                // parent's first child is the variable, find it's type
+                String varType = node.parent.children.get(0).symbolTableEntry.type.name;
+                // use the type to get entry for struct
+                while (table != null
+                        && table.getEntryByNameKind(varType,
+                                Kind.struct) == null) {
+                    table = table.upperTable;
+                }
+                if (table == null) {
+                    System.out.print("struct " + varType + " not found");
+                } else {
+                    if (table.getEntryByNameKind(varType,
+                            Kind.struct).link
+                            .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                                    Kind.variable) == null) {
+                        logger.write(
+                                "[error][semantic] Undeclared data member: "
+                                        + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
+                                        + node.children.get(0).getToken().getLocation() + "\n");
+                    }
+                }
             }
             // whenever use a variable, need to use with correct array dimension
             if (node.symbolTableEntry != null && node.parent.getName().equals(SemanticAction.ASSIGN_STAT)) {
@@ -172,7 +194,8 @@ public class SemanticCheckingVisitor implements Visitor {
             }
             // if fCall is under dot, then it's a member belongs to the struct
             // don't check free function declaretion
-            if (!node.parent.getName().equals(SemanticAction.DOT)) {
+            if (!node.parent.getName().equals(SemanticAction.DOT)
+                    || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
                 Node fCallId = node.children.get(0);
                 node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
@@ -201,29 +224,9 @@ public class SemanticCheckingVisitor implements Visitor {
                                         + node.symbolTableEntry.funcInputType.toString() + ", line: "
                                         + fCallId.getToken().getLocation() + "\n");
                     } else {
-                        boolean inputTypeError = false;
                         // !funcDefEntry.funcInputType.equals(node.symbolTableEntry.funcInputType)
                         // compare funcDefEntry.funcInputType with node.symbolTableEntry.funcInputType
-                        for (int i = 0; i < funcDefEntry.funcInputType.size(); i++) {
-                            SymbolTableEntryType fparam = funcDefEntry.funcInputType.get(i);
-                            SymbolTableEntryType aparam = node.symbolTableEntry.funcInputType.get(i);
-                            if (!fparam.name.equals(aparam.name)) {
-                                inputTypeError = true;
-                                continue;
-                            }
-                            if (fparam.dimension.size() != aparam.dimension.size()) {
-                                inputTypeError = true;
-                                continue;
-                            }
-                            for (int j = 0; j < fparam.dimension.size(); j++) {
-                                if (!fparam.dimension.get(j).equals(aparam.dimension.get(j))
-                                        && !fparam.dimension.get(j).equals("0")) {
-                                    inputTypeError = true;
-                                    continue;
-                                }
-                            }
-                        }
-                        if (inputTypeError) {
+                        if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
                             logger.write(
                                     "[error][semantic] Function call with wrong type of parameters "
                                             + funcDefEntry.funcInputType.toString() + " actual: "
@@ -235,8 +238,58 @@ public class SemanticCheckingVisitor implements Visitor {
             }
             // if fCall is under dot, check if fCall is defined in dot type, also check
             // function call parameter
-            else {
+            else if (node.parent.getName().equals(SemanticAction.DOT) && isSecondChild(node, node.parent)) {
+                SymbolTable table = node.symbolTable;
+                // parent's first child is the variable, find it's type
+                String varType = node.parent.children.get(0).symbolTableEntry.type.name;
+                // use the type to get entry for struct
+                while (table != null
+                        && table.getEntryByNameKind(varType,
+                                Kind.struct) == null) {
+                    table = table.upperTable;
+                }
+                if (table == null) {
+                    System.out.print("struct " + varType + " not found");
+                } else {
+                    if (table.getEntryByNameKind(varType,
+                            Kind.struct).link
+                            .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                                    Kind.function) == null) {
+                        logger.write(
+                                "[error][semantic] Undeclared member function: "
+                                        + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
+                                        + node.children.get(0).getToken().getLocation() + "\n");
+                    }
+                    // function member founded, check parameter
+                    else {
+                        node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
+                        node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
+                        Node fCallId = node.children.get(0);
+                        SymbolTableEntry funcDefEntry = table.getEntryByNameKind(varType,
+                                Kind.struct).link
+                                .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                                        Kind.function);
 
+                        // funcDef.funcInputType compares with fCall.aParams
+                        if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
+                            logger.write(
+                                    "[error][semantic] Function call with wrong number of parameters, expected: "
+                                            + funcDefEntry.funcInputType.toString() + " actual: "
+                                            + node.symbolTableEntry.funcInputType.toString() + ", line: "
+                                            + fCallId.getToken().getLocation() + "\n");
+                        } else {
+                            // !funcDefEntry.funcInputType.equals(node.symbolTableEntry.funcInputType)
+                            // compare funcDefEntry.funcInputType with node.symbolTableEntry.funcInputType
+                            if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
+                                logger.write(
+                                        "[error][semantic] Function call with wrong type of parameters "
+                                                + funcDefEntry.funcInputType.toString() + " actual: "
+                                                + node.symbolTableEntry.funcInputType.toString() + " line: "
+                                                + fCallId.getToken().getLocation() + "\n");
+                            }
+                        }
+                    }
+                }
             }
         }
         /**
@@ -254,9 +307,9 @@ public class SemanticCheckingVisitor implements Visitor {
                         node.symbolTableEntry.funcInputType.add(child.symbolTableEntry.type);
                     }
                 } else if (child.getToken().getType().equals(LA_TYPE.FLOATNUM)) {
-                    node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.FLOAT));
+                    node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.FLOATNUM));
                 } else if (child.getToken().getType().equals(LA_TYPE.INTNUM)) {
-                    node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.INTEGER));
+                    node.symbolTableEntry.funcInputType.add(new SymbolTableEntryType(LA_TYPE.INTNUM));
                 }
             }
         }
@@ -379,4 +432,56 @@ public class SemanticCheckingVisitor implements Visitor {
         return false;
     }
 
+    public boolean isFirstChild(Node child, Node parent) {
+        if (parent.children.size() == 0) {
+            return false;
+        }
+
+        if (child.parent == null) {
+            return false;
+        }
+
+        if (child.parent.children.get(0) == child) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isSecondChild(Node child, Node parent) {
+        if (parent.children.size() < 1) {
+            return false;
+        }
+
+        if (child.parent == null) {
+            return false;
+        }
+
+        if (child.parent.children.get(1) == child) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isFuncCallMatchFuncDef(SymbolTableEntry funcCallEntry, SymbolTableEntry funcDefEntry) {
+        for (int i = 0; i < funcDefEntry.funcInputType.size(); i++) {
+            SymbolTableEntryType fparam = funcDefEntry.funcInputType.get(i);
+            SymbolTableEntryType aparam = funcCallEntry.funcInputType.get(i);
+            if (!fparam.name.equals(aparam.name) && !isSameTypeOperand(fparam.name, aparam.name)) {
+                return false;
+            }
+            if (fparam.dimension.size() != aparam.dimension.size()) {
+                return false;
+            }
+            for (int j = 0; j < fparam.dimension.size(); j++) {
+                if (!fparam.dimension.get(j).equals(aparam.dimension.get(j))
+                        && !fparam.dimension.get(j).equals("0")) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
