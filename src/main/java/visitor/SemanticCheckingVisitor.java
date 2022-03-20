@@ -31,8 +31,16 @@ public class SemanticCheckingVisitor implements Visitor {
                 child.accept(this);
             }
 
-            String firstOperandTypeName = node.children.get(0).symbolTableEntry.type.name;
-            String secondOperandTypeName = node.children.get(1).symbolTableEntry.type.name;
+            // String firstOperandTypeName =
+            // node.children.get(0).symbolTableEntry.type.name;
+            // String secondOperandTypeName =
+            // node.children.get(1).symbolTableEntry.type.name;
+            String firstOperandTypeName = node.children.get(0).symbolTableEntry != null
+                    ? node.children.get(0).symbolTableEntry.type.name
+                    : "";
+            String secondOperandTypeName = node.children.get(1).symbolTableEntry != null
+                    ? node.children.get(1).symbolTableEntry.type.name
+                    : "";
             if (!isSameTypeOperand(firstOperandTypeName, secondOperandTypeName)) {
                 logger.write("[error][semantic] type error in expression: " + node.getToken().getLexeme() + ", line: "
                         + node.getToken().getLocation() + "\n");
@@ -433,7 +441,6 @@ public class SemanticCheckingVisitor implements Visitor {
 
             String funcDelOutputTypeName = node.symbolTable.upperTable.getEntryByNameKind(node.symbolTable.getName(),
                     Kind.function).funcOutputType.name;
-            System.out.println(funcDelOutputTypeName);
 
             if (!isSameTypeOperand(node.children.get(0).symbolTableEntry.type.name, funcDelOutputTypeName)) {
                 logger.write(

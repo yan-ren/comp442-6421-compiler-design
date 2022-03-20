@@ -1,0 +1,33 @@
+[error][semantic] multiple declaration for struct: POLYNOMIAL in scope: global, line 6
+[warn][semantic] Overloaded function for function: evaluate in scope: POLYNOMIAL, line 8
+[error][semantic] multiple declaration for variable: b in scope: LINEAR, line 13
+[error][semantic] multiple declaration for function: f in scope: global, line 99
+[warn][semantic] Overloaded function for function: f in scope: global, line 100
+[error][semantic] multiple declaration for variable: counter in scope: main, line 113
+[error][semantic] Circular class dependency C
+[error][semantic] Circular class dependency D
+[error][semantic] Circular class dependency E
+[error][semantic] undefined member function declaration evaluate2 in impl POLYNOMIAL
+[warn][semantic] unimplemented struct, cannot find impl for strcut C
+[warn][semantic] unimplemented struct, cannot find impl for strcut D
+[warn][semantic] unimplemented struct, cannot find impl for strcut E
+[error][semantic] undeclared member function definition build2 in impl QUADRATIC
+[error][semantic] type error in expression: *, line: 83
+[error][semantic] type error in expression: +, line: 83
+[error][semantic] Type error in assignment statement, expect: float, actual: intnum, line: 85
+[error][semantic] Type error in return statement, expect: QUADRATIC, actual: intnum, in function: build, scope: QUADRATIC
+[error][semantic] Undeclared class: a, line: 108
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}, { name='float', dimension='[]'}] actual: [{ name='intnum', dimension='[]'}, { name='floatnum', dimension='[]'}] line: 116
+[error][semantic] Undeclared data member: b in C, line: 118
+[error][semantic] Undeclared member function: f in C, line: 119
+[error][semantic] Type error in assignment statement, expect: integer, actual: C, line: 119
+[error][semantic] Undeclared free function: undefined, line: 120
+[error][semantic] Undeclared local variable: d, line: 121
+[error][semantic] Function call with wrong number of parameters, expected: [{ name='integer', dimension='[]'}, { name='integer', dimension='[]'}] actual: [{ name='intnum', dimension='[]'}, { name='intnum', dimension='[]'}, { name='intnum', dimension='[]'}], line: 122
+[error][semantic] Function call with wrong type of parameters [{ name='integer', dimension='[]'}, { name='integer', dimension='[]'}] actual: [{ name='floatnum', dimension='[]'}, { name='intnum', dimension='[]'}] line: 123
+[error][semantic] use of array with wrong number of dimensions i, line: 124
+[error][semantic] array index is not an integer, line: 125
+[error][semantic] Function call with wrong type of parameters [{ name='integer', dimension='[2, 3]'}] actual: [{ name='integer', dimension='[1, 2, 3]'}] line: 126
+[error][semantic] dot operator used on non-class type counter type: { name='integer', dimension='[]'} line: 127
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}] actual: [{ name='integer', dimension='[]'}] line: 131
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}] actual: [{ name='integer', dimension='[]'}] line: 132

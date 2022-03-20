@@ -148,4 +148,5 @@
 [float, float, 35]
 [semi, ;, 35]
 [inlinecmt, // 8.4\n, 35]
-[$, $, 36]
+[closecubr, }, 36]
+[$, $, 37]

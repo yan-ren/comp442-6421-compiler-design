@@ -24,6 +24,7 @@
 [arrow, ->, 10]
 [void, void, 10]
 [semi, ;, 10]
+[inlinecmt, // 8.6\n, 10]
 [public, public, 12]
 [func, func, 12]
 [id, evaluate, 12]

@@ -2,3 +2,4 @@
 [error][semantic] Type error in assignment statement, expect: integer, actual: floatnum, line: 29
 [error][semantic] Type error in assignment statement, expect: float, actual: intnum, line: 30
 [error][semantic] type error in expression: *, line: 32
+[error][semantic] type error in expression: +, line: 32

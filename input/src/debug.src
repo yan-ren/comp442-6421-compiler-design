@@ -1,18 +1,68 @@
-
-// ====== struct declarations ====== //
 struct POLYNOMIAL {
 	public func evaluate(x: float) -> float;
+	public func evaluate2(x: float) -> float;                     // 6.2
+};
+struct POLYNOMIAL {                                             // 8.1
+	public func evaluate(x: float) -> float;
+  public func evaluate(x: integer) -> integer;                  // 9.2
+};
+struct LINEAR inherits POLYNOMIAL {
+	private let a: float;
+	private let b: float;
+	private let b: integer;                                       // 8.3
+
+	public func build(A: float, B: float) -> LINEAR;
+	public func evaluate(x: float) -> float;                      // 9.3
 };
 
 struct QUADRATIC inherits POLYNOMIAL {
-	private let a: float;
-	private let b: float;
+	private let a: float;                                         // 8.5
+	private let b: float;                                         // 8.5
 	private let c: float;
-	public  func build(A: float, B: float, C: float) -> QUADRATIC;
-	public  func evaluate(x: float) -> float;
+
+	public func build(A: float, B: float, C: float) -> QUADRATIC;
+	public func evaluate(x: float) -> float;                      // 9.3
 };
 
-impl QUADRATIC { 
+struct C inherits E {
+	private let a: integer;
+};
+
+struct D inherits C {
+	private let b: integer;
+};
+
+struct E inherits D {                                                 // 14.1
+	private let c: integer;
+};
+
+
+// ====== struct implementations ====== //
+impl POLYNOMIAL {
+  func evaluate(x: float) -> float
+  {
+    return (0);
+  }
+}
+
+impl LINEAR {
+  func build(A: float, B: float) -> LINEAR
+  {
+    let new_function: LINEAR;
+    new_function.a = A;
+    new_function.b = B;
+    return (new_function);
+  }
+  func evaluate(x: float) -> float
+  {
+    let result: float;
+    result = 0.0;
+    result = a * x + b;
+    return (result);
+  }
+}
+
+impl QUADRATIC {
   func evaluate(x: float) -> float
   {
     let result: float;
@@ -22,38 +72,20 @@ impl QUADRATIC {
     result = result * x + c;
     return (result);
   }
-  func build(A: float, B: float, C: float) -> QUADRATIC 
+  func build(A: float, B: float, C: float) -> QUADRATIC
   {
     let new_function: QUADRATIC ;
+    new_function.a = A + B * 3;                                       // 10.1
+    new_function.b = B;
+    new_function.c = 1;                                               // 10.2
+    return (1);                                                       // 10.3
+  }
+  func build2(A: float, B: float, C: float) -> QUADRATIC               // 6.1
+  {
+    let new_function: QUADRATIC;
     new_function.a = A;
     new_function.b = B;
     new_function.c = C;
     return (new_function);
   }
 }
-
-/*
-func debug() -> void
-{
-	a.b[c][2].d = 1;
-	a.b.c = 2;
-}
-*/
-	//let v : integer[2][3];
-	//let v : integer[2][3];
-/*
-struct LINEAR {
-	private let a: float;
-	private let b: float[];
-	public  func build(A: float, B: float) -> LINEAR;
-	public  func evaluate(x: float) -> float;
-};
-*/
-/*
-struct LINEAR {
-	private let a: float;
-	private let b: float;
-	public  func build(A: float, B: float) -> LINEAR;
-	public  func evaluate(x: float) -> float;
-};
-*/

@@ -1,37 +1,37 @@
-Table: global, Object id: 1117871068
+Table: global, Object id: 1548010882
 name,kind,type,link
 _________________________________________
-A,struct,,1151704483
+A,struct,,1741786839
 _________________________________________
-C,struct,,669284403
+C,struct,,746115872
 _________________________________________
-main,function,():void,1869039062
+main,function,():void,20111564
 _________________________________________
 
 ==============================================
-Table: A, Object id: 1151704483, Upper table: 1117871068
+Table: A, Object id: 1741786839, Upper table: 1548010882
 name,kind,type,link
 _________________________________________
 a,variable,integer
 _________________________________________
-test,function,(float,float,):void,659590237
+test,function,(float,float,):void,2065718717
 _________________________________________
 
 ==============================================
-Table: C, Object id: 669284403, Upper table: 1117871068
+Table: C, Object id: 746115872, Upper table: 1548010882
 name,kind,type,link
 _________________________________________
 c,variable,integer
 _________________________________________
-build,function,(float,float,):void,1332757905
+build,function,(float,float,):void,275563320
 _________________________________________
 a,variable,integer
 _________________________________________
-test,function,(float,float,):void,659590237
+test,function,(float,float,):void,2065718717
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1869039062, Upper table: 1117871068
+Table: main, Object id: 20111564, Upper table: 1548010882
 name,kind,type,link
 _________________________________________
 c,variable,C
@@ -40,7 +40,7 @@ counter,variable,integer
 _________________________________________
 
 ==============================================
-Table: test, Object id: 659590237, Upper table: 669284403
+Table: test, Object id: 2065718717, Upper table: 746115872
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -51,7 +51,7 @@ result,variable,float
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1332757905, Upper table: 669284403
+Table: build, Object id: 275563320, Upper table: 746115872
 name,kind,type,link
 _________________________________________
 A,parameter,float
@@ -62,7 +62,7 @@ result,variable,float
 _________________________________________
 
 ==============================================
-Table: test, Object id: 659590237, Upper table: 669284403
+Table: test, Object id: 2065718717, Upper table: 746115872
 name,kind,type,link
 _________________________________________
 A,parameter,float

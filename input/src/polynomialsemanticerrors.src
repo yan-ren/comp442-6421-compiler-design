@@ -16,6 +16,10 @@ struct LINEAR inherits POLYNOMIAL {
 	public func evaluate(x: float) -> float;                      // 9.3
 };
 
+/*
+won't catch 9.3 Overridden inherited member function, because circular dependency exists
+*/
+
 struct QUADRATIC inherits POLYNOMIAL {
 	private let a: float;                                         // 8.5
 	private let b: float;                                         // 8.5
@@ -152,8 +156,8 @@ func main() -> void
 --9.3  |X| Overridden inherited member function
 
 --10.1 |X| Type error in expression
-10.2 |X| Type error in assignment statement
-10.3 |X| Type error in return statement
+--10.2 |X| Type error in assignment statement
+--10.3 |X| Type error in return statement
 
 --11.1 |X| Undeclared local variable
 --11.2 |X| Undeclared data member
@@ -180,5 +184,5 @@ func main() -> void
 
 --14.1 |X| Circular class dependency
 
--15.1 |X| "." operator used on non-class type
+--15.1 |X| "." operator used on non-class type
 */

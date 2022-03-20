@@ -1,2 +1,15 @@
-[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC
-[warn][semantic] unimplemented struct, cannot find impl for strcut POLYNOMIAL
+[error][semantic] multiple declaration for struct: POLYNOMIAL in scope: global, line 5
+[warn][semantic] Overloaded function for function: evaluate in scope: POLYNOMIAL, line 7
+[error][semantic] multiple declaration for variable: b in scope: LINEAR, line 12
+[error][semantic] Circular class dependency C
+[error][semantic] Circular class dependency D
+[error][semantic] Circular class dependency E
+[error][semantic] undefined member function declaration evaluate2 in impl POLYNOMIAL
+[warn][semantic] unimplemented struct, cannot find impl for strcut C
+[warn][semantic] unimplemented struct, cannot find impl for strcut D
+[warn][semantic] unimplemented struct, cannot find impl for strcut E
+[error][semantic] undeclared member function definition build2 in impl QUADRATIC
+[error][semantic] type error in expression: *, line: 78
+[error][semantic] type error in expression: +, line: 78
+[error][semantic] Type error in assignment statement, expect: float, actual: intnum, line: 80
+[error][semantic] Type error in return statement, expect: QUADRATIC, actual: intnum, in function: build, scope: QUADRATIC

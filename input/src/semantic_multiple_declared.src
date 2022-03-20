@@ -12,7 +12,7 @@ struct POLYNOMIAL {
 	public func evaluate2(x: float) -> float;                     
 };
 
-struct POLYNOMIAL {                                                 // 8.1
+struct POLYNOMIAL {                                               // 8.1
 	public func evaluate(x: float) -> float;
 	public func evaluate2(x: float) -> float;                     
 };
@@ -27,10 +27,10 @@ struct LINEAR inherits POLYNOMIAL {
 };
 
 func f(i: integer) -> void {}
-func f(i: integer) -> void {}                                       // 8.2
+func f(i: integer) -> void {}                                     // 8.2
 
 func main() -> void 
 {
   let counter: integer;
-  let counter: float;                                               // 8.4
+  let counter: float;                                             // 8.4
 }

@@ -7,7 +7,7 @@
 
 struct POLYNOMIAL {
   public func f(i: integer) -> void;
-  public func f(i: integer) -> void;
+  public func f(i: integer) -> void;                            // 8.6
 
   public func evaluate(x: float) -> float;
   public func evaluate(x: integer) -> integer;                  // 9.2
