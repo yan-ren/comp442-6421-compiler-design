@@ -31,10 +31,6 @@ public class SemanticCheckingVisitor implements Visitor {
                 child.accept(this);
             }
 
-            // String firstOperandTypeName =
-            // node.children.get(0).symbolTableEntry.type.name;
-            // String secondOperandTypeName =
-            // node.children.get(1).symbolTableEntry.type.name;
             String firstOperandTypeName = node.children.get(0).symbolTableEntry != null
                     ? node.children.get(0).symbolTableEntry.type.name
                     : "";
@@ -57,13 +53,6 @@ public class SemanticCheckingVisitor implements Visitor {
             }
         }
         /**
-         * intnum, floatnum
-         */
-        else if (node.getName().equals(LA_TYPE.INTNUM) || node.getName().equals(LA_TYPE.FLOATNUM)) {
-            node.symbolTableEntry = new SymbolTableEntry(node.getName(), null, null);
-            node.symbolTableEntry.type = new SymbolTableEntryType(node.getName());
-        }
-        /**
          * check var exists
          * 
          * 11.1 Undeclared local variable
@@ -82,15 +71,10 @@ public class SemanticCheckingVisitor implements Visitor {
                     || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
                 String varName = node.children.get(0).getToken().getLexeme();
-                // var found in table is either varialbe or parameter
-                while (table != null
-                        && (table.getEntryByNameKind(varName,
-                                Kind.variable) == null
-                                && table.getEntryByNameKind(varName,
-                                        Kind.parameter) == null)) {
-                    table = table.upperTable;
-                }
-                if (table == null) {
+                SymbolTableEntry varEntry = lookupInTableAndUpperTable(table, varName,
+                        new Kind[] { Kind.variable, Kind.parameter });
+
+                if (varEntry == null) {
                     logger.write(
                             "[error][semantic] Undeclared local variable: "
                                     + varName + ", line: "
@@ -98,12 +82,6 @@ public class SemanticCheckingVisitor implements Visitor {
                 } else {
                     // find var, write type into the var node
                     // var is either a variable or a parameter
-                    SymbolTableEntry varEntry = table.getEntryByNameKind(varName,
-                            Kind.variable);
-                    if (varEntry == null) {
-                        varEntry = table.getEntryByNameKind(varName,
-                                Kind.parameter);
-                    }
                     node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                     node.symbolTableEntry.type = varEntry.type;
                 }
@@ -113,28 +91,20 @@ public class SemanticCheckingVisitor implements Visitor {
                 SymbolTable table = node.symbolTable;
                 // parent's first child is the variable, find it's type
                 String varType = node.parent.children.get(0).symbolTableEntry.type.name;
-                // use the type to get entry for struct
-                while (table != null
-                        && table.getEntryByNameKind(varType,
-                                Kind.struct) == null) {
-                    table = table.upperTable;
-                }
-                if (table == null) {
+                // look for struct
+                SymbolTableEntry structEntry = lookupInTableAndUpperTable(table, varType, Kind.struct);
+                if (structEntry == null) {
                     System.out.print("struct " + varType + " not found");
                 } else {
-                    if (table.getEntryByNameKind(varType,
-                            Kind.struct).link
+                    SymbolTableEntry memberVarEntry = structEntry.link
                             .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
-                                    Kind.variable) == null) {
+                                    Kind.variable);
+                    if (memberVarEntry == null) {
                         logger.write(
                                 "[error][semantic] Undeclared data member: "
                                         + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
                                         + node.children.get(0).getToken().getLocation() + "\n");
                     } else {
-                        SymbolTableEntry memberVarEntry = table.getEntryByNameKind(varType,
-                                Kind.struct).link
-                                .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
-                                        Kind.variable);
                         node.symbolTableEntry = new SymbolTableEntry(memberVarEntry.name, null, null);
                         node.symbolTableEntry.type = memberVarEntry.type;
                     }
@@ -172,12 +142,9 @@ public class SemanticCheckingVisitor implements Visitor {
             Node varDeclType = node.children.get(1);
             if (varDeclType.getToken().getType().equals(LA_TYPE.ID)) {
                 SymbolTable table = node.symbolTable;
-                while (table != null
-                        && table.getEntryByNameKind(varDeclType.getToken().getLexeme(),
-                                Kind.struct) == null) {
-                    table = table.upperTable;
-                }
-                if (table == null) {
+                SymbolTableEntry varDeclEntry = lookupInTableAndUpperTable(table, varDeclType.getToken().getLexeme(),
+                        Kind.struct);
+                if (varDeclEntry == null) {
                     logger.write(
                             "[error][semantic] Undeclared class: "
                                     + varDeclType.getToken().getLexeme() + ", line: "
@@ -219,20 +186,15 @@ public class SemanticCheckingVisitor implements Visitor {
                 node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
 
                 String fCallName = fCallId.getToken().getLexeme();
-                while (table != null
-                        && table.getEntryByNameKind(fCallName,
-                                Kind.function) == null) {
-                    table = table.upperTable;
-                }
-                if (table == null) {
+                SymbolTableEntry funcDefEntry = lookupInTableAndUpperTable(table, fCallName, Kind.function);
+
+                if (funcDefEntry == null) {
                     logger.write(
                             "[error][semantic] Undeclared free function: "
                                     + node.children.get(0).getToken().getLexeme() + ", line: "
                                     + node.children.get(0).getToken().getLocation() + "\n");
                 } else {
                     // fCall is defined, check parameters
-                    SymbolTableEntry funcDefEntry = table.getEntryByNameKind(fCallName,
-                            Kind.function);
                     node.symbolTableEntry.funcOutputType = funcDefEntry.funcOutputType;
                     node.symbolTableEntry.type = funcDefEntry.funcOutputType;
                     // funcDef.funcInputType compares with fCall.aParams
@@ -243,8 +205,6 @@ public class SemanticCheckingVisitor implements Visitor {
                                         + node.symbolTableEntry.funcInputType.toString() + ", line: "
                                         + fCallId.getToken().getLocation() + "\n");
                     } else {
-                        // !funcDefEntry.funcInputType.equals(node.symbolTableEntry.funcInputType)
-                        // compare funcDefEntry.funcInputType with node.symbolTableEntry.funcInputType
                         if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
                             logger.write(
                                     "[error][semantic] Function call with wrong type of parameters "
@@ -262,18 +222,14 @@ public class SemanticCheckingVisitor implements Visitor {
                 // parent's first child is the variable, find it's type
                 String varType = node.parent.children.get(0).symbolTableEntry.type.name;
                 // use the type to get entry for struct
-                while (table != null
-                        && table.getEntryByNameKind(varType,
-                                Kind.struct) == null) {
-                    table = table.upperTable;
-                }
-                if (table == null) {
+                SymbolTableEntry structEntry = lookupInTableAndUpperTable(table, varType, Kind.struct);
+                if (structEntry == null) {
                     System.out.print("struct " + varType + " not found");
                 } else {
-                    if (table.getEntryByNameKind(varType,
-                            Kind.struct).link
+                    SymbolTableEntry funcDefEntry = structEntry.link
                             .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
-                                    Kind.function) == null) {
+                                    Kind.function);
+                    if (funcDefEntry == null) {
                         logger.write(
                                 "[error][semantic] Undeclared member function: "
                                         + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
@@ -285,10 +241,6 @@ public class SemanticCheckingVisitor implements Visitor {
                         node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
                         node.symbolTableEntry.funcOutputType = node.children.get(1).symbolTableEntry.funcOutputType;
                         Node fCallId = node.children.get(0);
-                        SymbolTableEntry funcDefEntry = table.getEntryByNameKind(varType,
-                                Kind.struct).link
-                                .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
-                                        Kind.function);
 
                         // funcDef.funcInputType compares with fCall.aParams
                         if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
@@ -298,8 +250,6 @@ public class SemanticCheckingVisitor implements Visitor {
                                             + node.symbolTableEntry.funcInputType.toString() + ", line: "
                                             + fCallId.getToken().getLocation() + "\n");
                         } else {
-                            // !funcDefEntry.funcInputType.equals(node.symbolTableEntry.funcInputType)
-                            // compare funcDefEntry.funcInputType with node.symbolTableEntry.funcInputType
                             if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
                                 logger.write(
                                         "[error][semantic] Function call with wrong type of parameters "
@@ -354,14 +304,10 @@ public class SemanticCheckingVisitor implements Visitor {
             // find dot var type
             SymbolTable table = node.symbolTable;
             // var found in table is either varialbe or parameter
-            while (table != null
-                    && (table.getEntryByNameKind(varName,
-                            Kind.variable) == null
-                            && table.getEntryByNameKind(varName,
-                                    Kind.parameter) == null)) {
-                table = table.upperTable;
-            }
-            if (table == null) {
+            SymbolTableEntry varEntry = lookupInTableAndUpperTable(table, varName,
+                    new Kind[] { Kind.variable, Kind.parameter });
+
+            if (varEntry == null) {
                 logger.write(
                         "[error][semantic] Undeclared local variable "
                                 + varName + " line: "
@@ -369,12 +315,6 @@ public class SemanticCheckingVisitor implements Visitor {
             } else {
                 // find var, write type into the dot node
                 // var is either a variable or a parameter
-                SymbolTableEntry varEntry = table.getEntryByNameKind(varName,
-                        Kind.variable);
-                if (varEntry == null) {
-                    varEntry = table.getEntryByNameKind(varName,
-                            Kind.parameter);
-                }
                 node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                 node.symbolTableEntry.type = varEntry.type;
                 // dot var type needs to be ID, which means struct
@@ -556,5 +496,39 @@ public class SemanticCheckingVisitor implements Visitor {
         }
 
         return true;
+    }
+
+    /**
+     * From input table look for entry with given name and kind in table and all
+     * it's parent table
+     * 
+     * @param table
+     * @param name
+     * @param kind
+     * @return
+     */
+    public SymbolTableEntry lookupInTableAndUpperTable(SymbolTable table, String name, Kind kind) {
+        while (table != null
+                && table.getEntryByNameKind(name,
+                        kind) == null) {
+            table = table.upperTable;
+        }
+        if (table != null) {
+            return table.getEntryByNameKind(name, kind);
+        }
+
+        return null;
+    }
+
+    public SymbolTableEntry lookupInTableAndUpperTable(SymbolTable table, String name, Kind[] kinds) {
+        SymbolTableEntry result = null;
+        for (Kind kind : kinds) {
+            result = lookupInTableAndUpperTable(table, name, kind);
+            if (result != null) {
+                return result;
+            }
+        }
+
+        return result;
     }
 }
