@@ -22,11 +22,11 @@ public class Util {
             /**
              * 14.1 Circular class dependency
              */
-            boolean circularDependency = false;
-            for (SymbolTableEntry entry : root.symbolTable.getEntries()) {
-                if (entry.kind == Kind.struct) {
+            for (SymbolTableEntry structEntry : root.symbolTable.getEntries()) {
+                boolean circularDependency = false;
+                if (structEntry.kind == Kind.struct) {
                     Queue<SymbolTableEntry> entryQueue = new LinkedList<>();
-                    entryQueue.add(entry);
+                    entryQueue.add(structEntry);
 
                     ArrayList<String> inherits = new ArrayList<>();
                     while (entryQueue.size() != 0) {
@@ -47,20 +47,13 @@ public class Util {
                         }
                     }
 
-                }
-            }
-            /**
-             * add inherited struct to the struct scope
-             * 
-             * 8.5 shadowed inherited data member
-             */
-            if (!circularDependency) {
-                int entryNum = root.symbolTable.getEntries().size();
-                for (int i = 0; i < entryNum; i++) {
-                    SymbolTableEntry structEntry = root.symbolTable.getEntries().get(i);
-                    if (structEntry.kind == Kind.struct) {
-
-                        Queue<SymbolTableEntry> entryQueue = new LinkedList<>();
+                    /**
+                     * add inherited struct to the struct scope
+                     * 
+                     * 8.5 shadowed inherited data member
+                     */
+                    if (!circularDependency) {
+                        entryQueue = new LinkedList<>();
                         entryQueue.add(structEntry);
                         int inheritedLevel = 1;
 
@@ -78,9 +71,10 @@ public class Util {
                                         if (structEntry.link.getEntryByNameKind(e.name, e.kind) == null) {
                                             structEntry.link.addEntry(e);
                                         } else if (inheritedLevel == 1) {
-                                            logger.write("[warn][semantic] " + e.kind + ": " + e.name + " in struct "
-                                                    + currentInheritedEntry.name +
-                                                    " is shadowed by struct " + structEntry.name + "\n");
+                                            logger.write(
+                                                    "[warn][semantic] " + e.kind + ": " + e.name + " in struct "
+                                                            + currentInheritedEntry.name +
+                                                            " is shadowed by struct " + structEntry.name + "\n");
                                         }
                                     }
                                 } else {
