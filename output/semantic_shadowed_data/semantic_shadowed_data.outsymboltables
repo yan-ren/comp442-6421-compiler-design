@@ -1,15 +1,15 @@
-Table: global, Object id: 1424482154
+Table: global, Object id: 1176968662
 name,kind,type,link
 _________________________________________
-C,struct,,1072506992
+C,struct,,297490204
 _________________________________________
-D,struct,,1997702454
+D,struct,,2085745483
 _________________________________________
-E,struct,,1479696465
+E,struct,,1419064126
 _________________________________________
 
 ==============================================
-Table: C, Object id: 1072506992, Upper table: 1424482154
+Table: C, Object id: 297490204, Upper table: 1176968662
 name,kind,type,link
 _________________________________________
 a,variable,integer
@@ -18,7 +18,7 @@ b,variable,integer
 _________________________________________
 
 ==============================================
-Table: D, Object id: 1997702454, Upper table: 1424482154
+Table: D, Object id: 2085745483, Upper table: 1176968662
 name,kind,type,link
 _________________________________________
 b,variable,integer
@@ -27,7 +27,7 @@ a,variable,integer
 _________________________________________
 
 ==============================================
-Table: E, Object id: 1479696465, Upper table: 1424482154
+Table: E, Object id: 1419064126, Upper table: 1176968662
 name,kind,type,link
 _________________________________________
 a,variable,integer

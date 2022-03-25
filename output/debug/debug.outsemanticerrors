@@ -1,10 +1,14 @@
 [error][semantic] multiple declaration for struct: POLYNOMIAL in scope: global, line 5
 [warn][semantic] Overloaded function for function: evaluate in scope: POLYNOMIAL, line 7
 [error][semantic] multiple declaration for variable: b in scope: LINEAR, line 12
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC
 [error][semantic] Circular class dependency C
 [error][semantic] Circular class dependency D
 [error][semantic] Circular class dependency E
 [error][semantic] undefined member function declaration evaluate2 in impl POLYNOMIAL
+[error][semantic] undefined member function declaration evaluate2 in impl LINEAR
+[error][semantic] undefined member function declaration evaluate2 in impl QUADRATIC
 [warn][semantic] unimplemented struct, cannot find impl for strcut C
 [warn][semantic] unimplemented struct, cannot find impl for strcut D
 [warn][semantic] unimplemented struct, cannot find impl for strcut E

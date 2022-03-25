@@ -6,6 +6,7 @@ import java.util.List;
 
 import ast.Node;
 import ast.SemanticAction;
+import lexicalanalyzer.Constants.LA_TYPE;
 import symboltable.Kind;
 import symboltable.SymbolTable;
 import symboltable.SymbolTableEntry;
@@ -408,6 +409,20 @@ public class SymbolTableCreationVisitor implements Visitor {
             // add entry to parent table
             if (node.symbolTable != null) {
                 node.symbolTable.addEntry(node.symbolTableEntry);
+            }
+        }
+        /**
+         * intnum, floatnum
+         */
+        else if (node.getName().equals(LA_TYPE.INTNUM) || node.getName().equals(LA_TYPE.FLOATNUM)) {
+            // create an entry for this node, but entry is not added to symbol table
+            // this entry is only used for semantic checking
+            node.symbolTableEntry = new SymbolTableEntry(node.getName(), null, null);
+            node.symbolTableEntry.type = new SymbolTableEntryType(node.getName());
+
+            for (Node child : node.children) {
+                child.symbolTable = node.symbolTable;
+                child.accept(this);
             }
         }
         /**
