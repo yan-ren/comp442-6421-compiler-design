@@ -1,28 +1,19 @@
-Table: global, Object id: 491273700
+Table: global, Object id: 1366342900
 name,kind,type,link
 _________________________________________
-POLYNOMIAL,struct,,1077072774
+POLYNOMIAL,struct,,672313607
 _________________________________________
-POLYNOMIAL,struct,,684822005
+POLYNOMIAL,struct,,234250762
 _________________________________________
-LINEAR,struct,,154449611
+LINEAR,struct,,1311844206
 _________________________________________
-f,function,(integer,):void,1439632660
+f,function,(integer,):void,443721024
 _________________________________________
-main,function,():void,62343880
+main,function,():void,668312960
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1077072774, Upper table: 491273700
-name,kind,type,link
-_________________________________________
-evaluate,function,(float,):float
-_________________________________________
-evaluate2,function,(float,):float
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 684822005, Upper table: 491273700
+Table: POLYNOMIAL, Object id: 672313607, Upper table: 1366342900
 name,kind,type,link
 _________________________________________
 evaluate,function,(float,):float
@@ -31,7 +22,16 @@ evaluate2,function,(float,):float
 _________________________________________
 
 ==============================================
-Table: LINEAR, Object id: 154449611, Upper table: 491273700
+Table: POLYNOMIAL, Object id: 234250762, Upper table: 1366342900
+name,kind,type,link
+_________________________________________
+evaluate,function,(float,):float
+_________________________________________
+evaluate2,function,(float,):float
+_________________________________________
+
+==============================================
+Table: LINEAR, Object id: 1311844206, Upper table: 1366342900
 name,kind,type,link
 _________________________________________
 a,variable,float
@@ -48,14 +48,14 @@ evaluate2,function,(float,):float
 _________________________________________
 
 ==============================================
-Table: f, Object id: 1439632660, Upper table: 491273700
+Table: f, Object id: 443721024, Upper table: 1366342900
 name,kind,type,link
 _________________________________________
 i,parameter,integer
 _________________________________________
 
 ==============================================
-Table: main, Object id: 62343880, Upper table: 491273700
+Table: main, Object id: 668312960, Upper table: 1366342900
 name,kind,type,link
 _________________________________________
 counter,variable,integer

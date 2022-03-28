@@ -7,6 +7,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import visitor.SemanticActionDriver;
+
 public class SymbolTableSemanticCheckingTest {
 
     String encoding = null;
@@ -16,14 +18,14 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test1() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/debug.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/debug.src" });
         });
     }
 
     @Test
     void test2() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/bubblesort.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/bubblesort.src" });
         });
         assertEquals(0,
                 StringUtils.countMatches(
@@ -44,7 +46,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test3() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/polynomial.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/polynomial.src" });
         });
 
         assertEquals(0,
@@ -71,7 +73,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test4() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_circular_dep.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_circular_dep.src" });
         });
         assertEquals(3,
                 StringUtils.countMatches(
@@ -100,7 +102,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test5() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_shadowed_data.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_shadowed_data.src" });
         });
         assertEquals(5,
                 StringUtils.countMatches(
@@ -126,7 +128,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test6() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_array.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_array.src" });
         });
 
         assertEquals(4,
@@ -166,7 +168,7 @@ public class SymbolTableSemanticCheckingTest {
          * checks
          */
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_type.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_type.src" });
         });
         assertEquals(5,
                 StringUtils.countMatches(
@@ -220,7 +222,8 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test8() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_undeclared_undefined_func.src" });
+            SemanticActionDriver
+                    .main(new String[] { "./input/semantic_analysis/semantic_undeclared_undefined_func.src" });
         });
         assertEquals(3,
                 StringUtils.countMatches(
@@ -258,7 +261,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test9() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_multiple_declared.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_multiple_declared.src" });
         });
         assertEquals(4,
                 StringUtils.countMatches(
@@ -338,7 +341,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test10() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_undeclared.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_undeclared.src" });
         });
         assertEquals(6,
                 StringUtils.countMatches(
@@ -406,7 +409,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test11() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_fcall.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_fcall.src" });
         });
         assertEquals(4,
                 StringUtils.countMatches(
@@ -442,7 +445,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test12() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_overloaded_func.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_overloaded_func.src" });
         });
         assertEquals(1,
                 StringUtils.countMatches(
@@ -507,7 +510,7 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test13() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/semantic_undeclared_member.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/semantic_undeclared_member.src" });
         });
         assertEquals(4,
                 StringUtils.countMatches(
@@ -551,7 +554,11 @@ public class SymbolTableSemanticCheckingTest {
     @Test
     void test14() throws Exception {
         assertDoesNotThrow(() -> {
-            Driver.main(new String[] { "./input/src/polynomialsemanticerrors.src" });
+            SemanticActionDriver.main(new String[] { "./input/semantic_analysis/polynomialsemanticerrors.src" });
+        });
+
+        assertDoesNotThrow(() -> {
+            SemanticActionDriver.main(new String[] { "./input/code_gen/code_gen_bubblesort.src" });
         });
     }
 }

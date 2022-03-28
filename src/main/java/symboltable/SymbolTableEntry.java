@@ -17,6 +17,10 @@ public class SymbolTableEntry {
     public List<SymbolTableEntryType> funcInputType;
     public SymbolTableEntryType funcOutputType;
 
+    // field used for code generation
+    public int size = 0;
+    public int offset = 0;
+
     public SymbolTableEntry(String name, Kind kind, SymbolTable link) {
         this.name = name;
         this.kind = kind;

@@ -13,16 +13,21 @@ import symboltable.SymbolTableEntry;
 import visitor.Visitor;
 
 public class Node {
+	// original node data fields
 	private String name;
 	private Token token;
-	// to generate dot file
-	private int index;
-
 	public Node parent;
 	public ArrayList<Node> children;
 
+	// field only used to generate AST dot file
+	private int index;
+
+	// symbol table fields
 	public SymbolTableEntry symbolTableEntry;
 	public SymbolTable symbolTable;
+
+	// code generation fields
+	public String tempVarName;
 
 	public Node(String name) {
 		this.name = name;

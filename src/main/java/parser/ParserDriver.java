@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import lexicalanalyzer.LexicalAnalyzer;
 
 /**
- * This driver only executes until AST generation part
+ * This driver executes until assignment 3, AST generation
  */
 public class ParserDriver {
     public static final String DEFAULT_OUTPUT = "./output/";

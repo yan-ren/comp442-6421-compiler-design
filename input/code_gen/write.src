@@ -1,0 +1,6 @@
+func main() -> void  
+{
+  let x: integer;
+  x = 1;                                
+  write(x);                                     
+}

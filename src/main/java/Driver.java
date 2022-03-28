@@ -12,11 +12,14 @@ import java.util.regex.Pattern;
 import ast.Node;
 import lexicalanalyzer.LexicalAnalyzer;
 import parser.Parser;
-import visitor.Util;
 import visitor.SemanticCheckingVisitor;
 import visitor.SymbolTableCreationVisitor;
+import visitor.Util;
 import visitor.Visitor;
 
+/*
+This driver runs the complete compiler, which includes lexical analyzer, parser, AST generation, semantic analysis, code generation
+*/
 public class Driver {
     public static final String DEFAULT_OUTPUT = "./output/";
 

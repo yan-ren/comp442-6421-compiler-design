@@ -7,6 +7,9 @@ public class SymbolTable {
     private ArrayList<SymbolTableEntry> entries;
     public SymbolTable upperTable;
 
+    // code generation
+    public int scopeSize = 0;
+
     public SymbolTable(String name, SymbolTable upperTable) {
         this.name = name;
         this.upperTable = upperTable;

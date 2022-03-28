@@ -51,9 +51,4 @@ public class ParserASTTest {
             ParserDriver.main(new String[] { "./input/src/polynomialsemanticerrors.src" });
         });
     }
-
-    // @Test
-    // void test6() throws Exception {
-    // ParserDriver.main(new String[] { "./input/skiperrors.src" });
-    // }
 }

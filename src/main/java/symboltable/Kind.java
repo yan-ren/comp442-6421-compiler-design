@@ -5,5 +5,7 @@ public enum Kind {
     struct,
     impl,
     parameter,
-    variable
+    variable,
+    tempvar,
+    litvar
 }
