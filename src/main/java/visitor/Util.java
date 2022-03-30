@@ -69,7 +69,7 @@ public class Util {
 
                                     for (SymbolTableEntry e : currentInheritedEntry.link.getEntries()) {
                                         if (structEntry.link.getEntryByNameKind(e.name, e.kind) == null) {
-                                            structEntry.link.addEntry(e);
+                                            structEntry.link.appendEntry(e);
                                         } else if (inheritedLevel == 1) {
                                             logger.write(
                                                     "[warn][semantic] " + e.kind + ": " + e.name + " in struct "

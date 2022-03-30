@@ -7,5 +7,7 @@ public enum Kind {
     parameter,
     variable,
     tempvar,
-    litvar
+    litvar,
+    jump,
+    return_stat
 }

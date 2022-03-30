@@ -71,17 +71,6 @@ public class SymbolTableCreationVisitor implements Visitor {
          * | | | | └──var
          * | | | | | ├──id
          * | | | | | └──indiceList
-         * | | | ├──assignStat
-         * | | | | ├──dot
-         * | | | | | ├──var
-         * | | | | | | ├──id
-         * | | | | | | └──indiceList
-         * | | | | | └──var
-         * | | | | | | ├──id
-         * | | | | | | └──indiceList
-         * | | | | └──var
-         * | | | | | ├──id
-         * | | | | | └──indiceList
          * | | | └──returnStat
          * | | | | └──var
          * | | | | | ├──id
@@ -90,7 +79,7 @@ public class SymbolTableCreationVisitor implements Visitor {
         else if (node.getName().equals(SemanticAction.FUNC_DEF)) {
             SymbolTable parentTable = node.symbolTable;
 
-            // make symbol table entry for the funcDel node
+            // make symbol table entry for the funcDel node by using funcHead
             Node funcHead = node.children.get(0);
             String funcName = funcHead.children.get(0).getToken().getLexeme();
             SymbolTable localSymbolTable = new SymbolTable(funcName, parentTable);
@@ -139,10 +128,10 @@ public class SymbolTableCreationVisitor implements Visitor {
                 }
             } else {
                 // add current entry to parent table
-                parentTable.addEntry(fEntry);
+                parentTable.appendEntry(fEntry);
             }
 
-            // pass to funcBody
+            // skip funcHead, pass to funcBody
             node.children.get(1).symbolTable = node.symbolTable;
             node.children.get(1).accept(this);
         }
@@ -188,7 +177,7 @@ public class SymbolTableCreationVisitor implements Visitor {
                                 + node.symbolTable.getName() + ", line "
                                 + node.children.get(0).getToken().getLocation() + "\n");
             }
-            parentTable.addEntry(node.symbolTableEntry);
+            parentTable.appendEntry(node.symbolTableEntry);
             node.symbolTable = localSymbolTable;
 
             for (Node child : node.children) {
@@ -206,6 +195,7 @@ public class SymbolTableCreationVisitor implements Visitor {
          * | | | | | └──arraySize
          * | | | └──float
          */
+        // since funcDef skip funcHead, this funcHead must from struct
         else if (node.getName().equals(SemanticAction.FUNC_HEAD)) {
             String funcName = node.children.get(0).getToken().getLexeme();
             List<Node> fparamList = node.children.get(1).children;
@@ -215,6 +205,11 @@ public class SymbolTableCreationVisitor implements Visitor {
 
             // pass visitor to fparamList
             for (Node child : fparamList) {
+                // funcHead in struct does not create new scope, it reuses the funcDef scope in
+                // impl
+                // do not pass symbol talbe, which is struct symbol table to child
+
+                // child.symbolTable = node.symbolTable;
                 child.accept(this);
             }
             // use fparamList to populate current entry
@@ -249,8 +244,13 @@ public class SymbolTableCreationVisitor implements Visitor {
                 }
             } else {
                 // add current entry to parent table
-                parentTable.addEntry(fEntry);
+                parentTable.appendEntry(fEntry);
             }
+
+            // for (Node child : node.children) {
+            // child.symbolTable = node.symbolTable;
+            // child.accept(this);
+            // }
         }
         /**
          * impl QUADRATIC {
@@ -344,7 +344,7 @@ public class SymbolTableCreationVisitor implements Visitor {
             node.symbolTableEntry = new SymbolTableEntry(implName, Kind.impl, localSymbolTable);
 
             // add current symbol table entry to parent table
-            node.symbolTable.addEntry(node.symbolTableEntry);
+            node.symbolTable.appendEntry(node.symbolTableEntry);
             node.symbolTable = localSymbolTable;
 
             for (Node child : node.children) {
@@ -382,7 +382,12 @@ public class SymbolTableCreationVisitor implements Visitor {
                                 + node.symbolTable.getName() + ", line " + node.children.get(0).getToken().getLocation()
                                 + "\n");
             }
-            node.symbolTable.addEntry(node.symbolTableEntry);
+            node.symbolTable.appendEntry(node.symbolTableEntry);
+
+            for (Node child : node.children) {
+                child.symbolTable = node.symbolTable;
+                child.accept(this);
+            }
         }
         /**
          * | ├──fparam
@@ -408,8 +413,13 @@ public class SymbolTableCreationVisitor implements Visitor {
             node.symbolTableEntry.type = type;
             // add entry to parent table
             if (node.symbolTable != null) {
-                node.symbolTable.addEntry(node.symbolTableEntry);
+                node.symbolTable.appendEntry(node.symbolTableEntry);
             }
+
+            // for (Node child : node.children) {
+            // child.symbolTable = node.symbolTable;
+            // child.accept(this);
+            // }
         }
         /**
          * intnum, floatnum

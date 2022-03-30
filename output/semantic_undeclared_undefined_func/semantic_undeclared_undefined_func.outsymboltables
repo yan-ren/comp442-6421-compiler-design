@@ -1,23 +1,23 @@
-Table: global, Object id: 527804008
-name,kind,type,link
+Table: global| scope size: 0| table id: 443721024| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-POLYNOMIAL,struct,,892965953
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 892965953, Upper table: 527804008
-name,kind,type,link
-_________________________________________
-evaluate,function,(float,):float,1266534280
-_________________________________________
-evaluate2,function,(float,):float
+POLYNOMIAL| struct    |                               | 668312960 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1266534280, Upper table: 892965953
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 668312960| Upper table: 443721024 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-x,parameter,float
+evaluate  | function  | (float,):float                | 428696898 | 0         | 0         | 
+_________________________________________
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 428696898| Upper table: 668312960 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

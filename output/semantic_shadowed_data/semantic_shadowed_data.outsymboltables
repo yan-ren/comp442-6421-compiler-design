@@ -1,38 +1,38 @@
-Table: global, Object id: 638169719
-name,kind,type,link
+Table: global| scope size: 0| table id: 2101153819| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-C,struct,,533810548
+C         | struct    |                               | 51152513  | 0         | 0         | 
 _________________________________________
-D,struct,,1446922577
+D         | struct    |                               | 1558103808| 0         | 0         | 
 _________________________________________
-E,struct,,1080476785
-_________________________________________
-
-==============================================
-Table: C, Object id: 533810548, Upper table: 638169719
-name,kind,type,link
-_________________________________________
-a,variable,integer
-_________________________________________
-b,variable,integer
+E         | struct    |                               | 1828873985| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: D, Object id: 1446922577, Upper table: 638169719
-name,kind,type,link
+Table: C  | scope size: 0| table id: 51152513| Upper table: 2101153819
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-b,variable,integer
+a         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-a,variable,integer
+b         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: E, Object id: 1080476785, Upper table: 638169719
-name,kind,type,link
+Table: D  | scope size: 0| table id: 1558103808| Upper table: 2101153819
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-a,variable,integer
+b         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-b,variable,integer
+a         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: E  | scope size: 0| table id: 1828873985| Upper table: 2101153819
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+a         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+b         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

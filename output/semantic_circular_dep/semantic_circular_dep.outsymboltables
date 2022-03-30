@@ -1,26 +1,26 @@
-Table: global, Object id: 154449611
-name,kind,type,link
+Table: global| scope size: 0| table id: 1080476785| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-C,struct,,1439632660
+C         | struct    |                               | 722951168 | 0         | 0         | 
 _________________________________________
-D,struct,,62343880
+D         | struct    |                               | 1052253947| 0         | 0         | 
 _________________________________________
-E,struct,,665698670
-_________________________________________
-
-==============================================
-Table: C, Object id: 1439632660, Upper table: 154449611
-name,kind,type,link
+E         | struct    |                               | 451460284 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: D, Object id: 62343880, Upper table: 154449611
-name,kind,type,link
+Table: C  | scope size: 0| table id: 722951168| Upper table: 1080476785
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
 
 ==============================================
-Table: E, Object id: 665698670, Upper table: 154449611
-name,kind,type,link
+Table: D  | scope size: 0| table id: 1052253947| Upper table: 1080476785
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+
+==============================================
+Table: E  | scope size: 0| table id: 451460284| Upper table: 1080476785
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
 
 ==============================================

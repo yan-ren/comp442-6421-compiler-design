@@ -1,16 +1,16 @@
-Table: global, Object id: 1052253947
-name,kind,type,link
+Table: global| scope size: 0| table id: 527804008| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-main,function,():void,451460284
+main      | function  | ():void                       | 892965953 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: main, Object id: 451460284, Upper table: 1052253947
-name,kind,type,link
+Table: main| scope size: 0| table id: 892965953| Upper table: 527804008 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-i,variable,integer[2][3]
+i         | variable  | integer[2][3]                 |           | 0         | 0         | 
 _________________________________________
-j,variable,float
+j         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

@@ -1,48 +1,48 @@
-Table: global, Object id: 706895319
-name,kind,type,link
+Table: global| scope size: 0| table id: 2129821055| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-bubbleSort,function,(integer[0],integer,):void,1642785848
+bubbleSort| function  | (integer[0],integer,):void    | 1225568095| 0         | 0         | 
 _________________________________________
-printArray,function,(integer[0],integer,):void,307400933
+printArray| function  | (integer[0],integer,):void    | 1664598529| 0         | 0         | 
 _________________________________________
-main,function,():void,1872973138
-_________________________________________
-
-==============================================
-Table: bubbleSort, Object id: 1642785848, Upper table: 706895319
-name,kind,type,link
-_________________________________________
-arr,parameter,integer[0]
-_________________________________________
-size,parameter,integer
-_________________________________________
-n,variable,integer
-_________________________________________
-i,variable,integer
-_________________________________________
-j,variable,integer
-_________________________________________
-temp,variable,integer
+main      | function  | ():void                       | 1550228904| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: printArray, Object id: 307400933, Upper table: 706895319
-name,kind,type,link
+Table: bubbleSort| scope size: 0| table id: 1225568095| Upper table: 2129821055
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-arr,parameter,integer[0]
+arr       | parameter | integer[0]                    |           | 0         | 0         | 
 _________________________________________
-size,parameter,integer
+size      | parameter | integer                       |           | 0         | 0         | 
 _________________________________________
-n,variable,integer
+n         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-i,variable,integer
+i         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+j         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+temp      | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1872973138, Upper table: 706895319
-name,kind,type,link
+Table: printArray| scope size: 0| table id: 1664598529| Upper table: 2129821055
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-arr,variable,integer[7]
+arr       | parameter | integer[0]                    |           | 0         | 0         | 
+_________________________________________
+size      | parameter | integer                       |           | 0         | 0         | 
+_________________________________________
+n         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+i         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: main| scope size: 0| table id: 1550228904| Upper table: 2129821055
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+arr       | variable  | integer[7]                    |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

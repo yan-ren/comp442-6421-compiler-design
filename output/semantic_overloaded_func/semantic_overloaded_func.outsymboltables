@@ -1,27 +1,27 @@
-Table: global, Object id: 1390913202
-name,kind,type,link
+Table: global| scope size: 0| table id: 1507118393| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-POLYNOMIAL,struct,,698741991
+POLYNOMIAL| struct    |                               | 949767857 | 0         | 0         | 
 _________________________________________
-f,function,(integer,integer,):integer,127702987
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 698741991, Upper table: 1390913202
-name,kind,type,link
-_________________________________________
-f,function,(integer,):void
-_________________________________________
-evaluate,function,(integer,):integer
+f         | function  | (integer,integer,):integer    | 1070044969| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: f, Object id: 127702987, Upper table: 1390913202
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 949767857| Upper table: 1507118393
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-i,parameter,integer
+f         | function  | (integer,):void               |           | 0         | 0         | 
 _________________________________________
-j,parameter,integer
+evaluate  | function  | (integer,):integer            |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: f  | scope size: 0| table id: 1070044969| Upper table: 1507118393
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+i         | parameter | integer                       |           | 0         | 0         | 
+_________________________________________
+j         | parameter | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

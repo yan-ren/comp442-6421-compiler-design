@@ -1,0 +1,74 @@
+prog
+|   └──funcDef
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──addOp
+|   |   |   |   |   ├──intnum
+|   |   |   |   |   └──multOp
+|   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   └──intnum
+|   |   |   ├──readStat
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   ├──ifStat
+|   |   |   |   ├──relExpr
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   ├──gt
+|   |   |   |   |   └──addOp
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   ├──statBlock
+|   |   |   |   |   └──writeStat
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum
+|   |   |   |   └──statBlock
+|   |   |   |   |   └──writeStat
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   └──whileStat
+|   |   |   |   ├──relExpr
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   ├──leq
+|   |   |   |   |   └──intnum
+|   |   |   |   └──statBlock
+|   |   |   |   |   └──writeStat
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList

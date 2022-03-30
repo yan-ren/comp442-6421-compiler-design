@@ -10,9 +10,8 @@ public class NodeTest {
         Node root = new Node("indiceList");
         root.addChild(new Node("arithExpr"));
         root.children.get(0).addChild(new Node("term"));
-        Node.printTree(root);
+        assertEquals(1, root.children.size());
         Node.postProcess(root);
-        Node.printTree(root);
         assertEquals(0, root.children.size());
         assertEquals("indiceList", root.getName());
     }

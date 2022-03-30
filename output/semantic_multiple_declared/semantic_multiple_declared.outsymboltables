@@ -1,66 +1,66 @@
-Table: global, Object id: 1366342900
-name,kind,type,link
+Table: global| scope size: 0| table id: 1360518503| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-POLYNOMIAL,struct,,672313607
+POLYNOMIAL| struct    |                               | 1541708640| 0         | 0         | 
 _________________________________________
-POLYNOMIAL,struct,,234250762
+POLYNOMIAL| struct    |                               | 691098155 | 0         | 0         | 
 _________________________________________
-LINEAR,struct,,1311844206
+LINEAR    | struct    |                               | 1987360300| 0         | 0         | 
 _________________________________________
-f,function,(integer,):void,443721024
+f         | function  | (integer,):void               | 434610528 | 0         | 0         | 
 _________________________________________
-main,function,():void,668312960
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 672313607, Upper table: 1366342900
-name,kind,type,link
-_________________________________________
-evaluate,function,(float,):float
-_________________________________________
-evaluate2,function,(float,):float
+main      | function  | ():void                       | 1713833639| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 234250762, Upper table: 1366342900
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 1541708640| Upper table: 1360518503
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-evaluate,function,(float,):float
+evaluate  | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
-evaluate2,function,(float,):float
-_________________________________________
-
-==============================================
-Table: LINEAR, Object id: 1311844206, Upper table: 1366342900
-name,kind,type,link
-_________________________________________
-a,variable,float
-_________________________________________
-b,variable,float
-_________________________________________
-b,variable,integer
-_________________________________________
-build,function,(float,float,):LINEAR
-_________________________________________
-evaluate,function,(float,):float
-_________________________________________
-evaluate2,function,(float,):float
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: f, Object id: 443721024, Upper table: 1366342900
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 691098155| Upper table: 1360518503
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-i,parameter,integer
+evaluate  | function  | (float,):float                |           | 0         | 0         | 
+_________________________________________
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: main, Object id: 668312960, Upper table: 1366342900
-name,kind,type,link
+Table: LINEAR| scope size: 0| table id: 1987360300| Upper table: 1360518503
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-counter,variable,integer
+a         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-counter,variable,float
+b         | variable  | float                         |           | 0         | 0         | 
+_________________________________________
+b         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+build     | function  | (float,float,):LINEAR         |           | 0         | 0         | 
+_________________________________________
+evaluate  | function  | (float,):float                |           | 0         | 0         | 
+_________________________________________
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: f  | scope size: 0| table id: 434610528| Upper table: 1360518503
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+i         | parameter | integer                       |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: main| scope size: 0| table id: 1713833639| Upper table: 1360518503
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+counter   | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+counter   | variable  | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

@@ -1,75 +1,75 @@
-Table: global, Object id: 1117871068
-name,kind,type,link
+Table: global| scope size: 0| table id: 1261764601| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,struct,,1151704483
+A         | struct    |                               | 294111720 | 0         | 0         | 
 _________________________________________
-C,struct,,669284403
+C         | struct    |                               | 310016558 | 0         | 0         | 
 _________________________________________
-main,function,():void,1869039062
-_________________________________________
-
-==============================================
-Table: A, Object id: 1151704483, Upper table: 1117871068
-name,kind,type,link
-_________________________________________
-a,variable,integer
-_________________________________________
-test,function,(float,float,):void,659590237
+main      | function  | ():void                       | 335580595 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: C, Object id: 669284403, Upper table: 1117871068
-name,kind,type,link
+Table: A  | scope size: 0| table id: 294111720| Upper table: 1261764601
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-c,variable,integer
+a         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-build,function,(float,float,):void,1332757905
-_________________________________________
-a,variable,integer
-_________________________________________
-test,function,(float,float,):void,659590237
+test      | function  | (float,float,):void           | 2024240125| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1869039062, Upper table: 1117871068
-name,kind,type,link
+Table: C  | scope size: 0| table id: 310016558| Upper table: 1261764601
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-c,variable,C
+c         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-counter,variable,integer
+build     | function  | (float,float,):void           | 1472216456| 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: test, Object id: 659590237, Upper table: 669284403
-name,kind,type,link
+a         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-A,parameter,float
-_________________________________________
-B,parameter,float
-_________________________________________
-result,variable,float
+test      | function  | (float,float,):void           | 2024240125| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1332757905, Upper table: 669284403
-name,kind,type,link
+Table: main| scope size: 0| table id: 335580595| Upper table: 1261764601
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,parameter,float
+c         | variable  | C                             |           | 0         | 0         | 
 _________________________________________
-B,parameter,float
-_________________________________________
-result,variable,float
+counter   | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: test, Object id: 659590237, Upper table: 669284403
-name,kind,type,link
+Table: test| scope size: 0| table id: 2024240125| Upper table: 310016558 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,parameter,float
+A         | parameter | float                         |           | 0         | 0         | 
 _________________________________________
-B,parameter,float
+B         | parameter | float                         |           | 0         | 0         | 
 _________________________________________
-result,variable,float
+result    | variable  | float                         |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: build| scope size: 0| table id: 1472216456| Upper table: 310016558 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+A         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+B         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+result    | variable  | float                         |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: test| scope size: 0| table id: 2024240125| Upper table: 310016558 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+A         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+B         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+result    | variable  | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

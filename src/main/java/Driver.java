@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 import ast.Node;
 import lexicalanalyzer.LexicalAnalyzer;
 import parser.Parser;
+import visitor.ComputeMemSizeVisitor;
+import visitor.FuncHeaderVisitor;
 import visitor.SemanticCheckingVisitor;
 import visitor.SymbolTableCreationVisitor;
 import visitor.Util;
@@ -44,6 +46,7 @@ public class Driver {
         BufferedWriter outdot = null;
         BufferedWriter outsemanticerrors = null;
         BufferedWriter outsymboltables = null;
+        BufferedWriter outcgsymboltables = null;
 
         if (!src.getName().endsWith(".src")) {
             throw new Exception("invalid input file: " + src.getName() + ", should end with .src");
@@ -70,6 +73,7 @@ public class Driver {
             outdot = new BufferedWriter(new FileWriter(directory + fileName + ".dot.outsat"));
             outsemanticerrors = new BufferedWriter(new FileWriter(directory + fileName + ".outsemanticerrors"));
             outsymboltables = new BufferedWriter(new FileWriter(directory + fileName + ".outsymboltables"));
+            outcgsymboltables = new BufferedWriter(new FileWriter(directory + fileName + ".cg.outsymboltables"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -86,6 +90,14 @@ public class Driver {
 
             Visitor semanticCheckingVisitor = new SemanticCheckingVisitor(outsemanticerrors);
             semanticCheckingVisitor.visit(astRoot);
+
+            Visitor computeMemSizeVisitor = new ComputeMemSizeVisitor();
+            computeMemSizeVisitor.visit(astRoot);
+            Visitor funcHeaderVisitor = new FuncHeaderVisitor();
+            funcHeaderVisitor.visit(astRoot);
+
+            Util.printSymbolTableToFile(astRoot, outcgsymboltables);
+
         } catch (Exception e) {
             throw e;
         } finally {
@@ -98,6 +110,7 @@ public class Driver {
             outdot.close();
             outsemanticerrors.close();
             outsymboltables.close();
+            outcgsymboltables.close();
         }
     }
 }

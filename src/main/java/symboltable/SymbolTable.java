@@ -32,8 +32,12 @@ public class SymbolTable {
         this.entries = entries;
     }
 
-    public void addEntry(SymbolTableEntry entry) {
+    public void appendEntry(SymbolTableEntry entry) {
         this.entries.add(entry);
+    }
+
+    public void addAtBeginning(SymbolTableEntry entry) {
+        this.entries.add(0, entry);
     }
 
     public SymbolTableEntry getEntryByNameKind(String name, Kind kind) {
@@ -63,40 +67,95 @@ public class SymbolTable {
 
     @Override
     public String toString() {
-        String result = "Table: " + this.name + ", Object id: " + this.hashCode();
+        // "Table: " + this.name + ", scope size: " + this.scopeSize + ", table id: " +
+        // this.hashCode();
+        String result = String.format("%1$-10s| %2$-10s| %3$-10s| ", "Table: " + this.name,
+                "scope size: " + this.scopeSize,
+                "table id: " + this.hashCode());
         if (this.upperTable != null) {
-            result += ", Upper table: " + this.upperTable.hashCode();
+            result += String.format("Upper table: %1$-10s", this.upperTable.hashCode());
         }
         result += "\n";
-        result += "name,kind,type,link";
-        result += "\n_________________________________________\n";
+        //
+        result += String.format("%1$-10s| %2$-10s| %3$-30s| %4$-10s| %5$-10s| %6$-10s", "name", "kind", "type", "link",
+                "size", "offset");
+        result += "\n___________________________________________________________________________________\n";
         for (SymbolTableEntry entry : this.entries) {
-            result += entry.name + "," + entry.kind + ",";
+            // result += entry.name + "," + entry.kind + ",";
+            result += String.format("%1$-10s| %2$-10s| ", entry.name, entry.kind);
             if (entry.type != null) {
-                result += entry.type.name;
+                String tmp = entry.type.name;
                 if (entry.type.dimension.size() != 0) {
-                    result += "[" + String.join("][", entry.type.dimension) + "]";
+                    // result += String.format("%1$-10s| ", "[" + String.join("][",
+                    // entry.type.dimension) + "]");
+                    tmp += "[" + String.join("][", entry.type.dimension) + "]";
                 }
-            }
-            if (entry.kind == Kind.function) {
-                result += "(";
+                result += String.format("%1$-30s| ", tmp);
+            } else if (entry.kind == Kind.function) {
+                String tmp = "(";
+                // result += "(";
                 for (SymbolTableEntryType input : entry.funcInputType) {
-                    result += input.name;
+                    // result += input.name;
+                    tmp += input.name;
                     if (input.dimension.size() != 0) {
-                        result += "[" + String.join("][", input.dimension) + "]";
+                        tmp += "[" + String.join("][", input.dimension) + "]";
                     }
-                    result += ",";
+                    tmp += ",";
                 }
-                result += "):";
-                result += entry.funcOutputType.name;
+                tmp += "):";
+                tmp += entry.funcOutputType.name;
                 if (entry.funcOutputType.dimension.size() != 0) {
-                    result += "[" + String.join("][", entry.funcOutputType.dimension) + "]";
+                    tmp += "[" + String.join("][", entry.funcOutputType.dimension) + "]";
                 }
+
+                result += String.format("%1$-30s| ", tmp);
+            } else {
+                result += String.format("%1$-30s| ", "");
             }
+
             if (entry.link != null) {
-                result += "," + entry.link.hashCode();
+                result += String.format("%1$-10s| ", entry.link.hashCode());
+            } else {
+                result += String.format("%1$-10s| ", "");
             }
-            result += "\n_________________________________________\n";
+
+            result += String.format("%1$-10s| ", entry.size);
+            result += String.format("%1$-10s| ", entry.offset);
+            result += "\n___________________________________________________________________________________\n";
+        }
+
+        return result;
+    }
+
+    /**
+     * From input table look for entry with given name and kind in table and all
+     * it's parent table
+     * 
+     * @param table
+     * @param name
+     * @param kind
+     * @return
+     */
+    public static SymbolTableEntry lookupEntryInTableAndUpperTable(SymbolTable table, String name, Kind kind) {
+        while (table != null
+                && table.getEntryByNameKind(name,
+                        kind) == null) {
+            table = table.upperTable;
+        }
+        if (table != null) {
+            return table.getEntryByNameKind(name, kind);
+        }
+
+        return null;
+    }
+
+    public static SymbolTableEntry lookupEntryInTableAndUpperTable(SymbolTable table, String name, Kind[] kinds) {
+        SymbolTableEntry result = null;
+        for (Kind kind : kinds) {
+            result = lookupEntryInTableAndUpperTable(table, name, kind);
+            if (result != null) {
+                return result;
+            }
         }
 
         return result;

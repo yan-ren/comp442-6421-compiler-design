@@ -1,32 +1,32 @@
-Table: global, Object id: 1513608173
-name,kind,type,link
+Table: global| scope size: 0| table id: 1845623216| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-f,function,(integer,):void,652176954
+f         | function  | (integer,):void               | 731829978 | 0         | 0         | 
 _________________________________________
-f3,function,(integer[2][3],):integer,1245065720
+f3        | function  | (integer[2][3],):integer      | 1818339587| 0         | 0         | 
 _________________________________________
-main,function,():void,1800976873
-_________________________________________
-
-==============================================
-Table: f, Object id: 652176954, Upper table: 1513608173
-name,kind,type,link
-_________________________________________
-i,parameter,integer
+main      | function  | ():void                       | 1703696921| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: f3, Object id: 1245065720, Upper table: 1513608173
-name,kind,type,link
+Table: f  | scope size: 0| table id: 731829978| Upper table: 1845623216
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-p1,parameter,integer[2][3]
+i         | parameter | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: main, Object id: 1800976873, Upper table: 1513608173
-name,kind,type,link
+Table: f3 | scope size: 0| table id: 1818339587| Upper table: 1845623216
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-j,variable,integer[1][2][3]
+p1        | parameter | integer[2][3]                 |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: main| scope size: 0| table id: 1703696921| Upper table: 1845623216
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+j         | variable  | integer[1][2][3]              |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

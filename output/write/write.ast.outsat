@@ -1,0 +1,20 @@
+prog
+|   └──funcDef
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   └──intnum
+|   |   |   └──writeStat
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList

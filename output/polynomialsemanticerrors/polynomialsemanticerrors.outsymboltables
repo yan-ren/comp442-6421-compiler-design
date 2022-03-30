@@ -1,189 +1,189 @@
-Table: global, Object id: 1298146757
-name,kind,type,link
+Table: global| scope size: 0| table id: 114818087| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-POLYNOMIAL,struct,,2133344792
+POLYNOMIAL| struct    |                               | 1168924571| 0         | 0         | 
 _________________________________________
-POLYNOMIAL,struct,,1081769770
+POLYNOMIAL| struct    |                               | 324404955 | 0         | 0         | 
 _________________________________________
-LINEAR,struct,,1319483139
+LINEAR    | struct    |                               | 1368173251| 0         | 0         | 
 _________________________________________
-QUADRATIC,struct,,44559647
+QUADRATIC | struct    |                               | 1745043985| 0         | 0         | 
 _________________________________________
-C,struct,,1067599825
+C         | struct    |                               | 1333041165| 0         | 0         | 
 _________________________________________
-D,struct,,749927456
+D         | struct    |                               | 1815556070| 0         | 0         | 
 _________________________________________
-E,struct,,1330400026
+E         | struct    |                               | 1482246673| 0         | 0         | 
 _________________________________________
-f,function,(integer,integer,):integer,1916700921
+f         | function  | (integer,integer,):integer    | 708348097 | 0         | 0         | 
 _________________________________________
-f3,function,(integer[2][3],):integer,1594873248
+f3        | function  | (integer[2][3],):integer      | 1097324923| 0         | 0         | 
 _________________________________________
-main,function,():void,1692885405
-_________________________________________
-
-==============================================
-Table: POLYNOMIAL, Object id: 2133344792, Upper table: 1298146757
-name,kind,type,link
-_________________________________________
-evaluate,function,(float,):float,1230955136
-_________________________________________
-evaluate2,function,(float,):float
+main      | function  | ():void                       | 351962798 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: POLYNOMIAL, Object id: 1081769770, Upper table: 1298146757
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 1168924571| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-evaluate,function,(integer,):integer,1230955136
+evaluate  | function  | (float,):float                | 115433442 | 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: LINEAR, Object id: 1319483139, Upper table: 1298146757
-name,kind,type,link
-_________________________________________
-a,variable,float
-_________________________________________
-b,variable,float
-_________________________________________
-b,variable,integer
-_________________________________________
-build,function,(float,float,):LINEAR,1336001042
-_________________________________________
-evaluate,function,(float,):float,1856158867
-_________________________________________
-evaluate2,function,(float,):float
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: QUADRATIC, Object id: 44559647, Upper table: 1298146757
-name,kind,type,link
+Table: POLYNOMIAL| scope size: 0| table id: 324404955| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-a,variable,float
-_________________________________________
-b,variable,float
-_________________________________________
-c,variable,float
-_________________________________________
-build,function,(float,float,float,):QUADRATIC,823575379
-_________________________________________
-evaluate,function,(float,):float,258112787
-_________________________________________
-evaluate2,function,(float,):float
+evaluate  | function  | (integer,):integer            | 115433442 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: C, Object id: 1067599825, Upper table: 1298146757
-name,kind,type,link
+Table: LINEAR| scope size: 0| table id: 1368173251| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-a,variable,integer
+a         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: D, Object id: 749927456, Upper table: 1298146757
-name,kind,type,link
+b         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-b,variable,integer
+b         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: E, Object id: 1330400026, Upper table: 1298146757
-name,kind,type,link
+build     | function  | (float,float,):LINEAR         | 1760670079| 0         | 0         | 
 _________________________________________
-c,variable,integer
+evaluate  | function  | (float,):float                | 388104475 | 0         | 0         | 
+_________________________________________
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: f, Object id: 1916700921, Upper table: 1298146757
-name,kind,type,link
+Table: QUADRATIC| scope size: 0| table id: 1745043985| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-i,parameter,integer
+a         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-j,parameter,integer
+b         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: f3, Object id: 1594873248, Upper table: 1298146757
-name,kind,type,link
+c         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-p1,parameter,integer[2][3]
+build     | function  | (float,float,float,):QUADRATIC| 1470966439| 0         | 0         | 
 _________________________________________
-
-==============================================
-Table: main, Object id: 1692885405, Upper table: 1298146757
-name,kind,type,link
+evaluate  | function  | (float,):float                | 1530880511| 0         | 0         | 
 _________________________________________
-a,variable,a
-_________________________________________
-c,variable,C
-_________________________________________
-f1,variable,LINEAR
-_________________________________________
-f2,variable,QUADRATIC
-_________________________________________
-counter,variable,integer
-_________________________________________
-counter,variable,float
-_________________________________________
-i,variable,integer[2][3]
-_________________________________________
-j,variable,integer[1][2][3]
+evaluate2 | function  | (float,):float                |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1230955136, Upper table: 1081769770
-name,kind,type,link
+Table: C  | scope size: 0| table id: 1333041165| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-x,parameter,float
-_________________________________________
-
-==============================================
-Table: evaluate, Object id: 1230955136, Upper table: 1081769770
-name,kind,type,link
-_________________________________________
-x,parameter,float
+a         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1336001042, Upper table: 1319483139
-name,kind,type,link
+Table: D  | scope size: 0| table id: 1815556070| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,parameter,float
-_________________________________________
-B,parameter,float
-_________________________________________
-new_function,variable,LINEAR
+b         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1856158867, Upper table: 1319483139
-name,kind,type,link
+Table: E  | scope size: 0| table id: 1482246673| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-x,parameter,float
-_________________________________________
-result,variable,float
+c         | variable  | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: build, Object id: 823575379, Upper table: 44559647
-name,kind,type,link
+Table: f  | scope size: 0| table id: 708348097| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,parameter,float
+i         | parameter | integer                       |           | 0         | 0         | 
 _________________________________________
-B,parameter,float
-_________________________________________
-C,parameter,float
-_________________________________________
-new_function,variable,QUADRATIC
+j         | parameter | integer                       |           | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 258112787, Upper table: 44559647
-name,kind,type,link
+Table: f3 | scope size: 0| table id: 1097324923| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-x,parameter,float
+p1        | parameter | integer[2][3]                 |           | 0         | 0         | 
 _________________________________________
-result,variable,float
+
+==============================================
+Table: main| scope size: 0| table id: 351962798| Upper table: 114818087 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+a         | variable  | a                             |           | 0         | 0         | 
+_________________________________________
+c         | variable  | C                             |           | 0         | 0         | 
+_________________________________________
+f1        | variable  | LINEAR                        |           | 0         | 0         | 
+_________________________________________
+f2        | variable  | QUADRATIC                     |           | 0         | 0         | 
+_________________________________________
+counter   | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+counter   | variable  | float                         |           | 0         | 0         | 
+_________________________________________
+i         | variable  | integer[2][3]                 |           | 0         | 0         | 
+_________________________________________
+j         | variable  | integer[1][2][3]              |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 115433442| Upper table: 324404955 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 115433442| Upper table: 324404955 
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: build| scope size: 0| table id: 1760670079| Upper table: 1368173251
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+A         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+B         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+new_function| variable  | LINEAR                        |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 388104475| Upper table: 1368173251
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+result    | variable  | float                         |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: build| scope size: 0| table id: 1470966439| Upper table: 1745043985
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+A         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+B         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+C         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+new_function| variable  | QUADRATIC                     |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 1530880511| Upper table: 1745043985
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+result    | variable  | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

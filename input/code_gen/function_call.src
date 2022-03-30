@@ -1,0 +1,23 @@
+/*
+This is the example program used in slides CodeGenerationII page 36
+*/
+
+func f(p1: integer, p2: integer, p3: integer) -> integer   // 2.1, 2.2
+{
+    let retval: integer;
+    retval = p1+p2*p3;
+    write(retval);
+    return (retval);
+}
+
+func main() -> void
+{
+  let a: integer;                                  // 1.1
+  let b: integer;                                  // 1.1
+  let c: integer;                                  // 1.1
+  a = 1;                                   // 3.1, 5.1
+  b = 2;
+  c = 3;
+  a = f(a, b, c)*b+c;
+  write(a);
+}

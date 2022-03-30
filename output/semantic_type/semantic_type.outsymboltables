@@ -1,46 +1,46 @@
-Table: global, Object id: 2101153819
-name,kind,type,link
+Table: global| scope size: 0| table id: 1661210650| 
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-QUADRATIC,struct,,51152513
-_________________________________________
-
-==============================================
-Table: QUADRATIC, Object id: 51152513, Upper table: 2101153819
-name,kind,type,link
-_________________________________________
-a,variable,float
-_________________________________________
-b,variable,float
-_________________________________________
-c,variable,float
-_________________________________________
-build,function,(float,float,float,):QUADRATIC,1558103808
-_________________________________________
-evaluate,function,(float,):integer,1828873985
+QUADRATIC | struct    |                               | 1366342900| 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: build, Object id: 1558103808, Upper table: 51152513
-name,kind,type,link
+Table: QUADRATIC| scope size: 0| table id: 1366342900| Upper table: 1661210650
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-A,parameter,float
+a         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-B,parameter,float
+b         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-C,parameter,float
+c         | variable  | float                         |           | 0         | 0         | 
 _________________________________________
-new_function,variable,QUADRATIC
+build     | function  | (float,float,float,):QUADRATIC| 672313607 | 0         | 0         | 
 _________________________________________
-a,variable,integer
+evaluate  | function  | (float,):integer              | 234250762 | 0         | 0         | 
 _________________________________________
 
 ==============================================
-Table: evaluate, Object id: 1828873985, Upper table: 51152513
-name,kind,type,link
+Table: build| scope size: 0| table id: 672313607| Upper table: 1366342900
+name      | kind      | type                          | link      | size      | offset    
 _________________________________________
-x,parameter,float
+A         | parameter | float                         |           | 0         | 0         | 
 _________________________________________
-result,variable,float
+B         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+C         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+new_function| variable  | QUADRATIC                     |           | 0         | 0         | 
+_________________________________________
+a         | variable  | integer                       |           | 0         | 0         | 
+_________________________________________
+
+==============================================
+Table: evaluate| scope size: 0| table id: 234250762| Upper table: 1366342900
+name      | kind      | type                          | link      | size      | offset    
+_________________________________________
+x         | parameter | float                         |           | 0         | 0         | 
+_________________________________________
+result    | variable  | float                         |           | 0         | 0         | 
 _________________________________________
 
 ==============================================

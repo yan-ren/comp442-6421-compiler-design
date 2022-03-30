@@ -71,7 +71,7 @@ public class SemanticCheckingVisitor implements Visitor {
                     || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
                 String varName = node.children.get(0).getToken().getLexeme();
-                SymbolTableEntry varEntry = lookupInTableAndUpperTable(table, varName,
+                SymbolTableEntry varEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, varName,
                         new Kind[] { Kind.variable, Kind.parameter });
 
                 if (varEntry == null) {
@@ -92,9 +92,9 @@ public class SemanticCheckingVisitor implements Visitor {
                 // parent's first child is the variable, find it's type
                 String varType = node.parent.children.get(0).symbolTableEntry.type.name;
                 // look for struct
-                SymbolTableEntry structEntry = lookupInTableAndUpperTable(table, varType, Kind.struct);
+                SymbolTableEntry structEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, varType, Kind.struct);
                 if (structEntry == null) {
-                    System.out.print("struct " + varType + " not found");
+                    System.out.println("[debug][semanticcheckingvisitor] struct " + varType + " not found");
                 } else {
                     SymbolTableEntry memberVarEntry = structEntry.link
                             .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
@@ -142,7 +142,8 @@ public class SemanticCheckingVisitor implements Visitor {
             Node varDeclType = node.children.get(1);
             if (varDeclType.getToken().getType().equals(LA_TYPE.ID)) {
                 SymbolTable table = node.symbolTable;
-                SymbolTableEntry varDeclEntry = lookupInTableAndUpperTable(table, varDeclType.getToken().getLexeme(),
+                SymbolTableEntry varDeclEntry = SymbolTable.lookupEntryInTableAndUpperTable(table,
+                        varDeclType.getToken().getLexeme(),
                         Kind.struct);
                 if (varDeclEntry == null) {
                     logger.write(
@@ -186,7 +187,8 @@ public class SemanticCheckingVisitor implements Visitor {
                 node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
 
                 String fCallName = fCallId.getToken().getLexeme();
-                SymbolTableEntry funcDefEntry = lookupInTableAndUpperTable(table, fCallName, Kind.function);
+                SymbolTableEntry funcDefEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, fCallName,
+                        Kind.function);
 
                 if (funcDefEntry == null) {
                     logger.write(
@@ -194,9 +196,11 @@ public class SemanticCheckingVisitor implements Visitor {
                                     + node.children.get(0).getToken().getLexeme() + ", line: "
                                     + node.children.get(0).getToken().getLocation() + "\n");
                 } else {
-                    // fCall is defined, check parameters
+                    // fCall is defined, check parameters, put returned type to type, used for
+                    // operand checking, e.g. a = f(2)*3
                     node.symbolTableEntry.funcOutputType = funcDefEntry.funcOutputType;
                     node.symbolTableEntry.type = funcDefEntry.funcOutputType;
+
                     // funcDef.funcInputType compares with fCall.aParams
                     if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
                         logger.write(
@@ -222,9 +226,9 @@ public class SemanticCheckingVisitor implements Visitor {
                 // parent's first child is the variable, find it's type
                 String varType = node.parent.children.get(0).symbolTableEntry.type.name;
                 // use the type to get entry for struct
-                SymbolTableEntry structEntry = lookupInTableAndUpperTable(table, varType, Kind.struct);
+                SymbolTableEntry structEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, varType, Kind.struct);
                 if (structEntry == null) {
-                    System.out.print("struct " + varType + " not found");
+                    System.out.println("struct " + varType + " not found");
                 } else {
                     SymbolTableEntry funcDefEntry = structEntry.link
                             .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
@@ -304,7 +308,7 @@ public class SemanticCheckingVisitor implements Visitor {
             // find dot var type
             SymbolTable table = node.symbolTable;
             // var found in table is either varialbe or parameter
-            SymbolTableEntry varEntry = lookupInTableAndUpperTable(table, varName,
+            SymbolTableEntry varEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, varName,
                     new Kind[] { Kind.variable, Kind.parameter });
 
             if (varEntry == null) {
@@ -496,39 +500,5 @@ public class SemanticCheckingVisitor implements Visitor {
         }
 
         return true;
-    }
-
-    /**
-     * From input table look for entry with given name and kind in table and all
-     * it's parent table
-     * 
-     * @param table
-     * @param name
-     * @param kind
-     * @return
-     */
-    public SymbolTableEntry lookupInTableAndUpperTable(SymbolTable table, String name, Kind kind) {
-        while (table != null
-                && table.getEntryByNameKind(name,
-                        kind) == null) {
-            table = table.upperTable;
-        }
-        if (table != null) {
-            return table.getEntryByNameKind(name, kind);
-        }
-
-        return null;
-    }
-
-    public SymbolTableEntry lookupInTableAndUpperTable(SymbolTable table, String name, Kind[] kinds) {
-        SymbolTableEntry result = null;
-        for (Kind kind : kinds) {
-            result = lookupInTableAndUpperTable(table, name, kind);
-            if (result != null) {
-                return result;
-            }
-        }
-
-        return result;
     }
 }
