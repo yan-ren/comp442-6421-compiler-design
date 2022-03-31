@@ -12,27 +12,48 @@ import symboltable.SymbolTable;
 /*
 stack based code generation visitor
 */
+/**
+ * tempVar is created for following nodes
+ * 
+ * addOp
+ * mulOp
+ * intnum
+ * floatnum
+ * relExpr
+ */
 public class CodeGenVisitor implements Visitor {
 
     private Stack<String> registerPool = new Stack<>();
     StringBuilder execCodeBuilder = new StringBuilder();
     StringBuilder dataCodeBuilder = new StringBuilder();
     BufferedWriter out;
-    //
+    // register
     private final String ZERO_REG = "r0";
     private final String STACK_REG = "r14";
     private final String JUMP_REG = "r15";
-    //
-    private final String ADD_I = "addi";
+    // data access instructions
     private final String STORE_WORD = "sw";
     private final String LOAD_WORD = "lw";
+    private final String LOAD_BYTE = "lb";
+    // arithmetic instruction
     private final String ADD = "add";
+    private final String ADD_I = "addi";
     private final String SUB = "sub";
     private final String MUL = "mul";
     private final String DIV = "div";
-    private final String LOAD_BYTE = "lb";
-    private final String JUMP_AND_LINK = "jl";
+    private final String EQUAL = "ceq";
+    private final String NOT_EQUAL = "cne";
+    private final String LESS = "clt";
+    private final String LESS_OR_EQUAL = "cle";
+    private final String GREATER = "cgt";
+    private final String GREATER_OR_EQUAL = "cge";
+    //
     private final String PUT_C = "putc";
+    // control instructions
+    private final String BRANCH_IF_ZERO = "bz";
+    private final String BRANCH_IF_NON_ZERO = "bnz";
+    private final String JUMP = "j";
+    private final String JUMP_AND_LINK = "jl";
 
     private final String COM_LOAD_INT = "% load intnum: ";
 
@@ -48,6 +69,14 @@ public class CodeGenVisitor implements Visitor {
     public void init() {
         writeDataCode("newline", "db", buildOperation(null, "13", null, "10", null, null),
                 "% The bytes 13 and 10 are return and linefeed, respectively");
+        writeDataCode("align", null, null, null);
+    }
+
+    private int tagNum = 0;
+
+    public String getNewTag() {
+        tagNum++;
+        return "tag" + tagNum;
     }
 
     @Override
@@ -98,6 +127,7 @@ public class CodeGenVisitor implements Visitor {
          */
         else if (node.getName().equals(SemanticAction.ADD_OP)) {
             passVisitorToChildren(node);
+
             if (node.getToken().getType().equals(LA_TYPE.PLUS) || node.getToken().getType().equals(LA_TYPE.MINUS)) {
                 String r1 = this.registerPool.pop();
                 String r2 = this.registerPool.pop();
@@ -117,6 +147,43 @@ public class CodeGenVisitor implements Visitor {
                     writeExecCode("", SUB, buildOperation(null, r3, null, r1, null, r2), null);
                 }
                 writeExecCode("", STORE_WORD, buildOperation(offset3, STACK_REG, null, r3, null, null), null);
+
+                registerPool.push(r3);
+                registerPool.push(r2);
+                registerPool.push(r1);
+            }
+            /**
+             * lw r1,offset(r14)
+             * lw r2,offset(r14)
+             * bnz r1,tag1
+             * bnz r2,tag1
+             * addi r3,r0,0
+             * j tag2
+             * tag1 addi r3,r0,1
+             * tag2 sw offset(r14),r3
+             */
+            else if (node.getToken().getType().equals(LA_TYPE.OR)) {
+                String r1 = this.registerPool.pop();
+                String r2 = this.registerPool.pop();
+                String r3 = this.registerPool.pop();
+                String offset1 = SymbolTable.getOffsetByName(node.symbolTable,
+                        node.children.get(0).symbolTableEntry.name);
+                String offset2 = SymbolTable.getOffsetByName(node.symbolTable,
+                        node.children.get(1).symbolTableEntry.name);
+                String offset3 = node.symbolTableEntry.getOffsetAsString();
+                String tag1 = getNewTag();
+                String tag2 = getNewTag();
+
+                writeExecCode("", LOAD_WORD, buildOperation(null, r1, offset1, STACK_REG, null, null),
+                        "% and operation " + node.children.get(0).symbolTableEntry.name + " and "
+                                + node.children.get(1).symbolTableEntry.name);
+                writeExecCode("", LOAD_WORD, buildOperation(null, r2, offset2, STACK_REG, null, null), null);
+                writeExecCode("", BRANCH_IF_NON_ZERO, buildOperation(null, r1, null, tag1, null, null), null);
+                writeExecCode("", BRANCH_IF_NON_ZERO, buildOperation(null, r2, null, tag1, null, null), null);
+                writeExecCode("", ADD_I, buildOperation(null, r3, null, ZERO_REG, null, "0"), null);
+                writeExecCode("", JUMP, buildOperation(null, tag2, null, null, null, null), null);
+                writeExecCode(tag1, ADD_I, buildOperation(null, r3, null, ZERO_REG, null, "1"), null);
+                writeExecCode(tag2, STORE_WORD, buildOperation(offset3, STACK_REG, null, r3, null, null), null);
 
                 registerPool.push(r3);
                 registerPool.push(r2);
@@ -148,6 +215,43 @@ public class CodeGenVisitor implements Visitor {
                     writeExecCode("", DIV, buildOperation(null, r3, null, r1, null, r2), null);
                 }
                 writeExecCode("", STORE_WORD, buildOperation(offset3, STACK_REG, null, r3, null, null), null);
+
+                registerPool.push(r3);
+                registerPool.push(r2);
+                registerPool.push(r1);
+            }
+            /**
+             * lw r1,offset(r14)
+             * lw r2,offset(r14)
+             * bz r1,tag1
+             * bz r2,tag1
+             * addi r3,r0,1
+             * j tag2
+             * tag1 addi r3,r0,0
+             * tag2 sw offset(r14),r0
+             */
+            else if (node.getToken().getType().equals(LA_TYPE.AND)) {
+                String r1 = this.registerPool.pop();
+                String r2 = this.registerPool.pop();
+                String r3 = this.registerPool.pop();
+                String offset1 = SymbolTable.getOffsetByName(node.symbolTable,
+                        node.children.get(0).symbolTableEntry.name);
+                String offset2 = SymbolTable.getOffsetByName(node.symbolTable,
+                        node.children.get(1).symbolTableEntry.name);
+                String offset3 = node.symbolTableEntry.getOffsetAsString();
+                String tag1 = getNewTag();
+                String tag2 = getNewTag();
+
+                writeExecCode("", LOAD_WORD, buildOperation(null, r1, offset1, STACK_REG, null, null),
+                        "% and operation " + node.children.get(0).symbolTableEntry.name + " and "
+                                + node.children.get(1).symbolTableEntry.name);
+                writeExecCode("", LOAD_WORD, buildOperation(null, r2, offset2, STACK_REG, null, null), null);
+                writeExecCode("", BRANCH_IF_ZERO, buildOperation(null, r1, null, tag1, null, null), null);
+                writeExecCode("", BRANCH_IF_ZERO, buildOperation(null, r2, null, tag1, null, null), null);
+                writeExecCode("", ADD_I, buildOperation(null, r3, null, ZERO_REG, null, "1"), null);
+                writeExecCode("", JUMP, buildOperation(null, tag2, null, null, null, null), null);
+                writeExecCode(tag1, ADD_I, buildOperation(null, r3, null, ZERO_REG, null, "0"), null);
+                writeExecCode(tag2, STORE_WORD, buildOperation(offset3, STACK_REG, null, r3, null, null), null);
 
                 registerPool.push(r3);
                 registerPool.push(r2);
@@ -185,8 +289,127 @@ public class CodeGenVisitor implements Visitor {
             writeExecCode("", LOAD_WORD, buildOperation(null, "r1", valueOffset, STACK_REG, null, null),
                     "% print integer");
             writeExecCode("", JUMP_AND_LINK, buildOperation(null, JUMP_REG, null, "putint", null, null), "");
-            nextLine();
-        } else {
+            printNewLine();
+        }
+        /**
+         * read(a)
+         * 
+         * jl r15,getint
+         * sw offset(r14),r1
+         */
+        else if (node.getName().equals(SemanticAction.READ_STAT)) {
+            passVisitorToChildren(node);
+            String varOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                    node.children.get(0).symbolTableEntry.name);
+            writeExecCode("", JUMP_AND_LINK, buildOperation(null, JUMP_REG, null, "getint", null, null),
+                    "% read integer");
+            writeExecCode("", STORE_WORD, buildOperation(varOffset, STACK_REG, null, "r1", null, null),
+                    "");
+            // printNewLine();
+        }
+        /**
+         * relExpr
+         * a == b
+         * 
+         * lw r1,offset(r14)
+         * lw r2,offset(r14)
+         * ceq r3,r1,r2
+         * sw offset(r14),r3
+         */
+        else if (node.getName().equals(SemanticAction.REL_EXPR)) {
+            passVisitorToChildren(node);
+            String r1 = this.registerPool.pop();
+            String r2 = this.registerPool.pop();
+            String r3 = this.registerPool.pop();
+
+            String leftOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                    node.children.get(0).symbolTableEntry.name);
+            String rightOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                    node.children.get(2).symbolTableEntry.name);
+            String resultOffset = node.symbolTableEntry.getOffsetAsString();
+            Node operator = node.children.get(1);
+
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r1, leftOffset, STACK_REG, null, null),
+                    "% relExpr " + node.children.get(0).symbolTableEntry.name + " "
+                            + node.children.get(1).getToken().getType() + " "
+                            + node.children.get(2).symbolTableEntry.name);
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r2, rightOffset, STACK_REG, null, null), null);
+            switch (operator.getToken().getType()) {
+                case LA_TYPE.EQ:
+                    writeExecCode(null, EQUAL, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                case LA_TYPE.NOTEQ:
+                    writeExecCode(null, NOT_EQUAL, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                case LA_TYPE.LT:
+                    writeExecCode(null, LESS, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                case LA_TYPE.LEQ:
+                    writeExecCode(null, LESS_OR_EQUAL, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                case LA_TYPE.GT:
+                    writeExecCode(null, GREATER, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                case LA_TYPE.GEQ:
+                    writeExecCode(null, GREATER_OR_EQUAL, buildOperation(null, r3, null, r1, null, r2), null);
+                    break;
+                default:
+                    writeExecCode(null, null, null, "% unknown operator " + operator.getToken().getType());
+                    break;
+            }
+            writeExecCode(null, STORE_WORD, buildOperation(resultOffset, STACK_REG, null, r3, null, null), null);
+
+            this.registerPool.push(r1);
+            this.registerPool.push(r2);
+            this.registerPool.push(r3);
+        }
+        /**
+         * ifStat
+         */
+        else if (node.getName().equals(SemanticAction.IF_STAT)) {
+            writeExecCode(null, null, null, "% if statement");
+            // visit relExpr
+            visit(node.children.get(0));
+
+            String r1 = this.registerPool.pop();
+            String offset = SymbolTable.getOffsetByName(node.symbolTable, node.children.get(0).symbolTableEntry.name);
+            String tag1 = getNewTag();
+            String tag2 = getNewTag();
+
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r1, offset, STACK_REG, null, null), null);
+            writeExecCode(null, BRANCH_IF_ZERO, buildOperation(null, r1, null, tag1, null, null), null);
+            // code for statBlock
+            visit(node.children.get(1));
+            writeExecCode(null, JUMP, tag2, null);
+            // code for statBlock
+            writeExecCode(tag1, null, null, null);
+            visit(node.children.get(2));
+            writeExecCode(tag2, null, null, null);
+            this.registerPool.push(r1);
+        }
+        /**
+         * whileStat
+         */
+        else if (node.getName().equals(SemanticAction.WHILE_STAT)) {
+            String tag1 = getNewTag();
+            String tag2 = getNewTag();
+            String offset = SymbolTable.getOffsetByName(node.symbolTable, node.children.get(0).symbolTableEntry.name);
+
+            writeExecCode(tag1, null, null, "% while statement");
+            // visit relExpr
+            visit(node.children.get(0));
+            String r1 = this.registerPool.pop();
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r1, offset, STACK_REG, null, null), null);
+            writeExecCode(null, BRANCH_IF_ZERO, buildOperation(null, r1, null, tag2, null, null), null);
+            // visit statBlock
+            visit(node.children.get(1));
+            writeExecCode(null, JUMP, tag1, null);
+            writeExecCode(tag2, null, null, null);
+        }
+        /**
+         * default
+         */
+        else {
             passVisitorToChildren(node);
         }
     }
@@ -265,11 +488,11 @@ public class CodeGenVisitor implements Visitor {
         out.write(dataCodeBuilder.toString());
     }
 
-    public void nextLine() {
+    public void printNewLine() {
         String r1 = this.registerPool.pop();
         String r2 = this.registerPool.pop();
 
-        writeExecCode("", ADD_I, buildOperation(null, r1, null, ZERO_REG, null, "0"), "");
+        writeExecCode("", ADD_I, buildOperation(null, r1, null, ZERO_REG, null, "0"), "% print a newline");
         writeExecCode("", LOAD_BYTE, buildOperation(null, r2, "newline", r1, null, null), "");
         writeExecCode("", PUT_C, r2, "");
         writeExecCode("", ADD_I, buildOperation(null, r1, null, r1, null, "1"), "");

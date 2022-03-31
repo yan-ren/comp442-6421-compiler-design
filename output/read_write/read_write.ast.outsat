@@ -22,11 +22,10 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
+|   |   |   ├──readStat
+|   |   |   |   └──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
 |   |   |   ├──assignStat
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id

@@ -82,8 +82,9 @@ public class SemanticCheckingVisitor implements Visitor {
                 } else {
                     // find var, write type into the var node
                     // var is either a variable or a parameter
-                    node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
-                    node.symbolTableEntry.type = varEntry.type;
+                    // node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
+                    // node.symbolTableEntry.type = varEntry.type;
+                    node.symbolTableEntry = varEntry;
                 }
             }
             // if parent is dot and node is second child, then this node belongs to struct
@@ -105,8 +106,10 @@ public class SemanticCheckingVisitor implements Visitor {
                                         + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
                                         + node.children.get(0).getToken().getLocation() + "\n");
                     } else {
-                        node.symbolTableEntry = new SymbolTableEntry(memberVarEntry.name, null, null);
-                        node.symbolTableEntry.type = memberVarEntry.type;
+                        // node.symbolTableEntry = new SymbolTableEntry(memberVarEntry.name, null,
+                        // null);
+                        // node.symbolTableEntry.type = memberVarEntry.type;
+                        node.symbolTableEntry = memberVarEntry;
                     }
                 }
             }

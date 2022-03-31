@@ -1,13 +1,13 @@
-Table: global| scope size: 0| table id: 417557780| 
+Table: global| scope size: 0| table id: 706895319| 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
-f         | function  | (integer,integer,integer,):integer| 1350751778| 0         | 0         | 
+f         | function  | (integer,integer,integer,):integer| 1642785848| 0         | 0         | 
 ___________________________________________________________________________________
-main      | function  | ():void                       | 332699949 | 0         | 0         | 
+main      | function  | ():void                       | 307400933 | 0         | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: f  | scope size: 0| table id: 1350751778| Upper table: 417557780 
+Table: f  | scope size: 0| table id: 1642785848| Upper table: 706895319 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 p1        | parameter | integer                       |           | 0         | 0         | 
@@ -20,7 +20,7 @@ retval    | variable  | integer                       |           | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: main| scope size: 0| table id: 332699949| Upper table: 417557780 
+Table: main| scope size: 0| table id: 307400933| Upper table: 706895319 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 a         | variable  | integer                       |           | 0         | 0         | 

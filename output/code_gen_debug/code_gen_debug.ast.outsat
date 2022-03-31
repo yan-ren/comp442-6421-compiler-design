@@ -22,23 +22,24 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──addOp
+|   |   |   └──whileStat
+|   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   └──writeStat
-|   |   |   |   └──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
+|   |   |   |   |   ├──leq
+|   |   |   |   |   └──intnum
+|   |   |   |   └──statBlock
+|   |   |   |   |   ├──writeStat
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──assignStat
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum

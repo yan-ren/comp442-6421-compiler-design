@@ -90,6 +90,14 @@ public class ComputeMemSizeVisitor implements Visitor {
             if (node.symbolTable != null) {
                 node.symbolTable.appendEntry(node.symbolTableEntry);
             }
+        } else if (node.getName().equals(SemanticAction.REL_EXPR)) {
+            for (Node child : node.children) {
+                child.accept(this);
+            }
+
+            node.symbolTableEntry = new SymbolTableEntry(getNewTempVarName(), Kind.tempvar, null);
+            node.symbolTableEntry.size = WORD_SIZE;
+            node.symbolTable.appendEntry(node.symbolTableEntry);
         }
         /**
          * Default case

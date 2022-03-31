@@ -68,7 +68,16 @@ prog
 |   |   |   |   |   ├──leq
 |   |   |   |   |   └──intnum
 |   |   |   |   └──statBlock
-|   |   |   |   |   └──writeStat
+|   |   |   |   |   ├──writeStat
 |   |   |   |   |   |   └──var
 |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──assignStat
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum

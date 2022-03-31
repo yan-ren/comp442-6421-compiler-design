@@ -84,7 +84,8 @@ public class Driver {
         try {
             LexicalAnalyzer la = new LexicalAnalyzer(in, outlextokens, outlexerrors);
             Parser parser = new Parser(la, outderivation, outsyntaxerrors, outast, outdot);
-            System.out.println("[debug] parser success: " + parser.parse());
+            // System.out.println("[debug] parser success: " + parser.parse());
+            parser.parse();
             Visitor symbolTableCreationVisitor = new SymbolTableCreationVisitor(outsemanticerrors);
             Node astRoot = parser.getASTRoot();
             symbolTableCreationVisitor.visit(astRoot);

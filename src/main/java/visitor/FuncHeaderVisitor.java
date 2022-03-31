@@ -5,6 +5,10 @@ import java.io.IOException;
 import ast.Node;
 import ast.SemanticAction;
 
+/**
+ * This visitor is used after ComputeMemSizeVisitor to add scope size for
+ * funcHead
+ */
 public class FuncHeaderVisitor implements Visitor {
 
     @Override
