@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import ast.Node;
 import lexicalanalyzer.LexicalAnalyzer;
 import parser.Parser;
+import visitor.CodeGenVisitor;
 import visitor.ComputeMemSizeVisitor;
 import visitor.FuncHeaderVisitor;
 import visitor.SemanticCheckingVisitor;
@@ -47,6 +48,7 @@ public class Driver {
         BufferedWriter outsemanticerrors = null;
         BufferedWriter outsymboltables = null;
         BufferedWriter outcgsymboltables = null;
+        BufferedWriter outmoon = null;
 
         if (!src.getName().endsWith(".src")) {
             throw new Exception("invalid input file: " + src.getName() + ", should end with .src");
@@ -74,6 +76,7 @@ public class Driver {
             outsemanticerrors = new BufferedWriter(new FileWriter(directory + fileName + ".outsemanticerrors"));
             outsymboltables = new BufferedWriter(new FileWriter(directory + fileName + ".outsymboltables"));
             outcgsymboltables = new BufferedWriter(new FileWriter(directory + fileName + ".cg.outsymboltables"));
+            outmoon = new BufferedWriter(new FileWriter(directory + fileName + ".m"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -97,6 +100,8 @@ public class Driver {
             funcHeaderVisitor.visit(astRoot);
 
             Util.printSymbolTableToFile(astRoot, outcgsymboltables);
+            Visitor codeGenVisitor = new CodeGenVisitor(outmoon);
+            codeGenVisitor.visit(astRoot);
 
         } catch (Exception e) {
             throw e;
@@ -111,6 +116,7 @@ public class Driver {
             outsemanticerrors.close();
             outsymboltables.close();
             outcgsymboltables.close();
+            outmoon.close();
         }
     }
 }

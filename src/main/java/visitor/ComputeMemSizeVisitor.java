@@ -6,7 +6,6 @@ import ast.Node;
 import ast.SemanticAction;
 import lexicalanalyzer.Constants.LA_TYPE;
 import symboltable.Kind;
-import symboltable.SymbolTable;
 import symboltable.SymbolTableEntry;
 
 public class ComputeMemSizeVisitor implements Visitor {
@@ -19,7 +18,7 @@ public class ComputeMemSizeVisitor implements Visitor {
 
     public String getNewTempVarName() {
         tempVarNum++;
-        return "t" + tempVarNum;
+        return "t" + tempVarNum + "_" + this.hashCode();
     }
 
     @Override
@@ -69,8 +68,7 @@ public class ComputeMemSizeVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            node.tempVarName = getNewTempVarName();
-            node.symbolTableEntry.name = node.tempVarName;
+            node.symbolTableEntry.name = getNewTempVarName();
             node.symbolTableEntry.kind = Kind.tempvar;
             node.symbolTableEntry.size = getTypeSize(node.symbolTableEntry.type.name);
             // this node requires a temp var in symbol table
@@ -84,16 +82,14 @@ public class ComputeMemSizeVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            /*
-             * node.tempVarName = getNewTempVarName();
-             * node.symbolTableEntry = new SymbolTableEntry(node.tempVarName, Kind.litvar,
-             * null);
-             * node.symbolTableEntry.size = getTypeSize(node.getName());
-             * // this node requires a temp var in symbol table
-             * if (node.symbolTable != null) {
-             * node.symbolTable.appendEntry(node.symbolTableEntry);
-             * }
-             */
+
+            node.symbolTableEntry = new SymbolTableEntry(getNewTempVarName(), Kind.litvar,
+                    null);
+            node.symbolTableEntry.size = getTypeSize(node.getName());
+            // this node requires a temp var in symbol table
+            if (node.symbolTable != null) {
+                node.symbolTable.appendEntry(node.symbolTableEntry);
+            }
         }
         /**
          * Default case

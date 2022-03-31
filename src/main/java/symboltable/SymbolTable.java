@@ -40,6 +40,15 @@ public class SymbolTable {
         this.entries.add(0, entry);
     }
 
+    public SymbolTableEntry getEntryByName(String name) {
+        for (SymbolTableEntry entry : this.entries) {
+            if (entry.name.equals(name)) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
     public SymbolTableEntry getEntryByNameKind(String name, Kind kind) {
         for (SymbolTableEntry entry : this.entries) {
             if (entry.name.equals(name) && entry.kind == kind) {
@@ -159,5 +168,17 @@ public class SymbolTable {
         }
 
         return result;
+    }
+
+    public static String getOffsetByName(SymbolTable table, String name) {
+        while (table != null
+                && table.getEntryByName(name) == null) {
+            table = table.upperTable;
+        }
+        if (table != null) {
+            return String.valueOf(table.getEntryByName(name).offset);
+        }
+
+        return null;
     }
 }

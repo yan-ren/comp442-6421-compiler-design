@@ -1,0 +1,10 @@
+func main() -> void
+{
+  let a: integer;
+  let b: integer;
+  let c: integer;
+  a = 1;
+  b = 10;
+  c = a+b;
+  write(c);
+}

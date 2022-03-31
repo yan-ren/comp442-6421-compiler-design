@@ -50,7 +50,7 @@ digraph AST { node [shape=record];node [fontname=Sans];charset="UTF-8" splines=t
 10->24;
 25[label="var"];
 11->25;
-26[label="intnum | 2"];
+26[label="intnum | 10"];
 11->26;
 27[label="var"];
 12->27;

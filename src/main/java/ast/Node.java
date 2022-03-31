@@ -26,9 +26,6 @@ public class Node {
 	public SymbolTableEntry symbolTableEntry;
 	public SymbolTable symbolTable;
 
-	// code generation fields
-	public String tempVarName;
-
 	public Node(String name) {
 		this.name = name;
 		this.children = new ArrayList<>();

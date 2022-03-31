@@ -36,4 +36,8 @@ public class SymbolTableEntry {
 
         return funcInputType.equals(funcInputType2);
     }
+
+    public String getOffsetAsString() {
+        return String.valueOf(this.offset);
+    }
 }
