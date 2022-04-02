@@ -18,7 +18,8 @@ public class ComputeMemSizeVisitor implements Visitor {
 
     public String getNewTempVarName() {
         tempVarNum++;
-        return "t" + tempVarNum + "_" + this.hashCode();
+        return "t" + tempVarNum + "_" + this.hashCode(); // append object id to avoid temp variable has name conflict
+                                                         // with user defined variable
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ComputeMemSizeVisitor implements Visitor {
             }
             node.symbolTableEntry.name = getNewTempVarName();
             node.symbolTableEntry.kind = Kind.tempvar;
-            node.symbolTableEntry.size = getTypeSize(node.symbolTableEntry.type.name);
+            node.symbolTableEntry.size = Util.getTypeSize(node.symbolTableEntry.type.name);
             // this node requires a temp var in symbol table
             node.symbolTable.appendEntry(node.symbolTableEntry);
         } else if (node.getName().equals(SemanticAction.FPARAM)) {
@@ -85,7 +86,7 @@ public class ComputeMemSizeVisitor implements Visitor {
 
             node.symbolTableEntry = new SymbolTableEntry(getNewTempVarName(), Kind.litvar,
                     null);
-            node.symbolTableEntry.size = getTypeSize(node.getName());
+            node.symbolTableEntry.size = Util.getTypeSize(node.getName());
             // this node requires a temp var in symbol table
             if (node.symbolTable != null) {
                 node.symbolTable.appendEntry(node.symbolTableEntry);
@@ -122,23 +123,13 @@ public class ComputeMemSizeVisitor implements Visitor {
     }
 
     // TODO: get struct type size
-    private int getTypeSize(String typeName) {
-        if (typeName.equals(LA_TYPE.INTEGER) || typeName.equals(LA_TYPE.INTNUM)) {
-            return INT_SIZE;
-        } else if (typeName.equals(LA_TYPE.FLOAT) || typeName.equals(LA_TYPE.FLOATNUM)) {
-            return FLOAT_SIZE;
-        }
-
-        return 0;
-    }
-
-    // TODO: get struct type size
     private int getNodeSize(Node node) {
         int totalDim = 1;
+        // for array size dimension, e.g. a[7], or a[] -> a[0]
         for (String dim : node.symbolTableEntry.type.dimension) {
             totalDim += Integer.parseInt(dim);
         }
 
-        return totalDim * getTypeSize(node.symbolTableEntry.type.name);
+        return totalDim * Util.getTypeSize(node.symbolTableEntry.type.name);
     }
 }

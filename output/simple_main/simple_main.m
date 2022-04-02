@@ -1,5 +1,6 @@
+            align                           
                                             % begin of main function
-            entry                           % start program
+ main       entry                           % start program
             addi       r14,r0,topaddr       
             addi       r1,r0,1              % load intnum: 1
             sw         -20(r14),r1          
@@ -26,7 +27,7 @@
             lw         r2,-40(r14)          
             add        r3,r1,r2             
             sw         -44(r14),r3          
-            lw         r1,-8(r14)           % relExpr x gt t7_749927456
+            lw         r1,-8(r14)           % relExpr x gt t7_965586344
             lw         r2,-44(r14)          
             cgt        r3,r1,r2             
             sw         -48(r14),r3          
@@ -70,7 +71,7 @@
  tag3                                       % while statement
             addi       r3,r0,10             % load intnum: 10
             sw         -72(r14),r3          
-            lw         r3,-16(r14)          % relExpr z leq t14_749927456
+            lw         r3,-16(r14)          % relExpr z leq t14_965586344
             lw         r2,-72(r14)          
             cle        r1,r3,r2             
             sw         -76(r14),r1          

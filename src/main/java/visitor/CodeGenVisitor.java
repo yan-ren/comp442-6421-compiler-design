@@ -2,7 +2,10 @@ package visitor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Stack;
+
+import org.apache.commons.lang3.ObjectUtils.Null;
 
 import ast.Node;
 import ast.SemanticAction;
@@ -39,6 +42,7 @@ public class CodeGenVisitor implements Visitor {
     private final String ADD = "add";
     private final String ADD_I = "addi";
     private final String SUB = "sub";
+    private final String SUB_I = "subi";
     private final String MUL = "mul";
     private final String DIV = "div";
     private final String EQUAL = "ceq";
@@ -54,8 +58,14 @@ public class CodeGenVisitor implements Visitor {
     private final String BRANCH_IF_NON_ZERO = "bnz";
     private final String JUMP = "j";
     private final String JUMP_AND_LINK = "jl";
+    private final String JUMP_TO_REGISTER = "jr";
+    //
+    private final String RESERVE = "res";
 
     private final String COM_LOAD_INT = "% load intnum: ";
+    // fields for symbol table offset
+    private final String RETURN_OFFSET = "0";
+    private final String JUMP_OFFSET = "-4";
 
     public CodeGenVisitor(BufferedWriter out) {
         this.out = out;
@@ -92,9 +102,16 @@ public class CodeGenVisitor implements Visitor {
              * addi r14,r0,topaddr
              */
             if (node.symbolTableEntry.name.equals("main")) {
+                writeExecCode(null, "align", null, null);
                 writeExecCode(null, null, null, "% begin of main function");
-                writeExecCode("", "entry", "", "% start program");
+                writeExecCode("main", "entry", "", "% start program");
                 writeExecCode("", ADD_I, buildOperation(null, STACK_REG, null, ZERO_REG, null, "topaddr"), "");
+            } else {
+                writeExecCode(null, null, null, "% begin of function definition: " + node.symbolTableEntry.name);
+                writeExecCode(node.symbolTableEntry.name, null, null, null);
+                // put r15 on stack frame
+                writeExecCode(null, STORE_WORD, buildOperation(JUMP_OFFSET, STACK_REG, null, JUMP_REG, null, null),
+                        null);
             }
             // process funcBody
             passVisitorToChildren(node.children.get(1));
@@ -268,7 +285,8 @@ public class CodeGenVisitor implements Visitor {
             passVisitorToChildren(node);
 
             String r1 = this.registerPool.pop();
-            String rightOffset = node.children.get(1).symbolTableEntry.getOffsetAsString();
+            String rightOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                    node.children.get(1).symbolTableEntry.name);
             String leftOffset = SymbolTable.getOffsetByName(node.symbolTable,
                     node.children.get(0).symbolTableEntry.name);
 
@@ -407,11 +425,85 @@ public class CodeGenVisitor implements Visitor {
             writeExecCode(tag2, null, null, null);
         }
         /**
+         * For basic type int/float, don't need to defined tag, but array and object
+         * needs tag to allocate memory
+         */
+        else if (node.getName().equals(SemanticAction.VAR_DECL)) {
+            // array can only be 1D
+            if (node.children.get(2).children.size() == 1) {
+                String size = String.valueOf(Util.getTypeSize(node.children.get(1).getName())
+                        * Integer.parseInt(node.children.get(2).children.get(0).getToken().getLexeme()));
+                writeDataCode(varResName(node), RESERVE, size, "");
+            }
+        }
+        /**
+         * pass parameters
+         * 
+         * increment stack reg
+         * jump to function
+         * decrement stack reg
+         * get return value from f and store
+         */
+        else if (node.getName().equals(SemanticAction.FCALL)) {
+            passVisitorToChildren(node);
+            String fCallName = node.symbolTableEntry.link.getName();
+            writeExecCode(null, null, null, "% function call to " + fCallName);
+            String r1 = this.registerPool.pop();
+            List<Node> aParams = node.children.get(1).children;
+            String currentScopeSize = String.valueOf(node.symbolTable.scopeSize);
+            for (int i = 0; i < aParams.size(); i++) {
+                String aParamOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                        aParams.get(i).symbolTableEntry.name);
+                String fParamOffset = SymbolTable.getParamOffsetByIndex(node.symbolTableEntry.link, i + 1);
+                fParamOffset = combineOffset(fParamOffset, currentScopeSize);
+                writeExecCode(null, LOAD_WORD, buildOperation(null, r1, aParamOffset, STACK_REG, null, null),
+                        "% pass " + aParams.get(i).symbolTableEntry.name + " into parameter");
+                writeExecCode(null, STORE_WORD, buildOperation(fParamOffset, STACK_REG, null, r1, null, null), null);
+            }
+            writeExecCode(null, SUB_I, buildOperation(null, STACK_REG, null, STACK_REG, null, currentScopeSize),
+                    "% increment stack frame");
+            writeExecCode(null, JUMP_AND_LINK, buildOperation(null, JUMP_REG, null, fCallName, null, null),
+                    "% jump to funciton: " + fCallName);
+            writeExecCode(null, ADD_I, buildOperation(null, STACK_REG, null, STACK_REG, null, currentScopeSize),
+                    "% decrement stack frame");
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r1, "-" + currentScopeSize, STACK_REG, null, null),
+                    "% get return value from " + fCallName);
+            String fCallTempVarOffset = SymbolTable.getOffsetByName(node.symbolTable, node.symbolTableEntry.name);
+            writeExecCode(null, STORE_WORD, buildOperation(fCallTempVarOffset, STACK_REG, null, r1, null, null), null);
+            this.registerPool.push(r1);
+        }
+        /**
+         * returnStat, e.g return(retval)
+         * 
+         * lw r1,offset(r14)
+         * sw 0(r14),r1
+         * lw r15,-4(r14)
+         * jr r15
+         */
+        else if (node.getName().equals(SemanticAction.RETURN_STAT)) {
+            passVisitorToChildren(node);
+            String returnValueOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                    node.children.get(0).symbolTableEntry.name);
+            String r1 = this.registerPool.pop();
+            writeExecCode(null, null, null, "% return");
+            writeExecCode(null, LOAD_WORD, buildOperation(null, r1, returnValueOffset, STACK_REG, null, null),
+                    "% load returned value from mem");
+            writeExecCode(null, STORE_WORD, buildOperation(RETURN_OFFSET, STACK_REG, null, r1, null, null), null);
+            writeExecCode(null, LOAD_WORD, buildOperation(null, JUMP_REG, JUMP_OFFSET, STACK_REG, null, null),
+                    "% retrieve r15 from stack");
+            writeExecCode(null, JUMP_TO_REGISTER, JUMP_REG, "% jump back to calling function");
+            this.registerPool.push(r1);
+        }
+        /**
          * default
          */
         else {
             passVisitorToChildren(node);
         }
+    }
+
+    private String varResName(Node node) {
+        return node.symbolTable.getName() + "_" + node.symbolTableEntry.name;
     }
 
     private void passVisitorToChildren(Node node) throws IOException {
@@ -501,5 +593,26 @@ public class CodeGenVisitor implements Visitor {
 
         this.registerPool.push(r2);
         this.registerPool.push(r1);
+    }
+
+    /**
+     * Only return negative offset
+     * 
+     * @param offset1
+     * @param offset2
+     * @return
+     */
+    public String combineOffset(String offset1, String offset2) {
+        int o1 = Integer.parseInt(offset1);
+        int o2 = Integer.parseInt(offset2);
+
+        if (o1 > 0) {
+            o1 = o1 * -1;
+        }
+        if (o2 > 0) {
+            o2 = o2 * -1;
+        }
+
+        return String.valueOf(o1 + o2);
     }
 }

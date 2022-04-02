@@ -84,6 +84,8 @@ public class SemanticCheckingVisitor implements Visitor {
                     // var is either a variable or a parameter
                     // node.symbolTableEntry = new SymbolTableEntry(varEntry.name, null, null);
                     // node.symbolTableEntry.type = varEntry.type;
+
+                    // link var symbol table entry to varDecl symbol table entry
                     node.symbolTableEntry = varEntry;
                 }
             }
@@ -185,11 +187,13 @@ public class SemanticCheckingVisitor implements Visitor {
             if (!node.parent.getName().equals(SemanticAction.DOT)
                     || (node.parent.getName().equals(SemanticAction.DOT) && isFirstChild(node, node.parent))) {
                 SymbolTable table = node.symbolTable;
-                Node fCallId = node.children.get(0);
-                node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
+                Node fCallIdNode = node.children.get(0);
+                String fCallName = fCallIdNode.getToken().getLexeme();
+                // create temp entry for fCall
+                node.symbolTableEntry = new SymbolTableEntry(fCallName, null, null);
+                // link aParams
                 node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
-
-                String fCallName = fCallId.getToken().getLexeme();
+                // look for funcDefEntry
                 SymbolTableEntry funcDefEntry = SymbolTable.lookupEntryInTableAndUpperTable(table, fCallName,
                         Kind.function);
 
@@ -203,6 +207,7 @@ public class SemanticCheckingVisitor implements Visitor {
                     // operand checking, e.g. a = f(2)*3
                     node.symbolTableEntry.funcOutputType = funcDefEntry.funcOutputType;
                     node.symbolTableEntry.type = funcDefEntry.funcOutputType;
+                    node.symbolTableEntry.link = funcDefEntry.link;
 
                     // funcDef.funcInputType compares with fCall.aParams
                     if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
@@ -210,14 +215,14 @@ public class SemanticCheckingVisitor implements Visitor {
                                 "[error][semantic] Function call with wrong number of parameters, expected: "
                                         + funcDefEntry.funcInputType.toString() + " actual: "
                                         + node.symbolTableEntry.funcInputType.toString() + ", line: "
-                                        + fCallId.getToken().getLocation() + "\n");
+                                        + fCallIdNode.getToken().getLocation() + "\n");
                     } else {
                         if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
                             logger.write(
                                     "[error][semantic] Function call with wrong type of parameters "
                                             + funcDefEntry.funcInputType.toString() + " actual: "
                                             + node.symbolTableEntry.funcInputType.toString() + " line: "
-                                            + fCallId.getToken().getLocation() + "\n");
+                                            + fCallIdNode.getToken().getLocation() + "\n");
                         }
                     }
                 }
@@ -233,21 +238,23 @@ public class SemanticCheckingVisitor implements Visitor {
                 if (structEntry == null) {
                     System.out.println("struct " + varType + " not found");
                 } else {
+                    Node fCallIdNode = node.children.get(0);
+                    String fCallName = fCallIdNode.getToken().getLexeme();
                     SymbolTableEntry funcDefEntry = structEntry.link
-                            .getEntryByNameKind(node.children.get(0).getToken().getLexeme(),
+                            .getEntryByNameKind(fCallName,
                                     Kind.function);
                     if (funcDefEntry == null) {
                         logger.write(
                                 "[error][semantic] Undeclared member function: "
-                                        + node.children.get(0).getToken().getLexeme() + " in " + varType + ", line: "
-                                        + node.children.get(0).getToken().getLocation() + "\n");
+                                        + fCallName + " in " + varType + ", line: "
+                                        + fCallIdNode.getToken().getLocation() + "\n");
                     }
                     // function member founded, check parameter
                     else {
-                        node.symbolTableEntry = new SymbolTableEntry(SemanticAction.FCALL, null, null);
+                        node.symbolTableEntry = new SymbolTableEntry(fCallName, null, null);
                         node.symbolTableEntry.funcInputType = node.children.get(1).symbolTableEntry.funcInputType;
-                        node.symbolTableEntry.funcOutputType = node.children.get(1).symbolTableEntry.funcOutputType;
-                        Node fCallId = node.children.get(0);
+                        node.symbolTableEntry.funcOutputType = funcDefEntry.funcOutputType;
+                        node.symbolTableEntry.link = funcDefEntry.link;
 
                         // funcDef.funcInputType compares with fCall.aParams
                         if (funcDefEntry.funcInputType.size() != node.symbolTableEntry.funcInputType.size()) {
@@ -255,14 +262,14 @@ public class SemanticCheckingVisitor implements Visitor {
                                     "[error][semantic] Function call with wrong number of parameters, expected: "
                                             + funcDefEntry.funcInputType.toString() + " actual: "
                                             + node.symbolTableEntry.funcInputType.toString() + ", line: "
-                                            + fCallId.getToken().getLocation() + "\n");
+                                            + fCallIdNode.getToken().getLocation() + "\n");
                         } else {
                             if (!isFuncCallMatchFuncDef(node.symbolTableEntry, funcDefEntry)) {
                                 logger.write(
                                         "[error][semantic] Function call with wrong type of parameters "
                                                 + funcDefEntry.funcInputType.toString() + " actual: "
                                                 + node.symbolTableEntry.funcInputType.toString() + " line: "
-                                                + fCallId.getToken().getLocation() + "\n");
+                                                + fCallIdNode.getToken().getLocation() + "\n");
                             }
                         }
                     }
