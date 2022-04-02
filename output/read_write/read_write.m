@@ -1,5 +1,6 @@
+            align                           
                                             % begin of main function
-            entry                           % start program
+ main       entry                           % start program
             addi       r14,r0,topaddr       
             addi       r1,r0,1              % load intnum: 1
             sw         -20(r14),r1          

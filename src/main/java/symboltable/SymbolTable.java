@@ -170,15 +170,37 @@ public class SymbolTable {
         return result;
     }
 
+    /**
+     * Look for entry from current table and calculate offset
+     * 
+     * @param table
+     * @param name
+     * @return
+     */
     public static String getOffsetByName(SymbolTable table, String name) {
-        while (table != null
-                && table.getEntryByName(name) == null) {
-            table = table.upperTable;
+        if (table.getEntryByName(name) == null) {
+            return null;
         }
-        if (table != null) {
-            return String.valueOf(table.getEntryByName(name).offset);
-        }
+        return String.valueOf(table.getEntryByName(name).offset);
+    }
 
+    /**
+     * Return the offset from current table for i th parameter
+     * 
+     * @param link
+     * @param i
+     * @return
+     */
+    public static String getParamOffsetByIndex(SymbolTable table, int i) {
+        int count = 0;
+        for (SymbolTableEntry entry : table.entries) {
+            if (entry.kind == Kind.parameter) {
+                count++;
+            }
+            if (count == i) {
+                return String.valueOf(entry.offset);
+            }
+        }
         return null;
     }
 }

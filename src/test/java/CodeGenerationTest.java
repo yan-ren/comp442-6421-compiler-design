@@ -48,6 +48,16 @@ public class CodeGenerationTest {
         assertDoesNotThrow(() -> {
             Driver.main(new String[] { "./input/code_gen/function_call.src" });
         });
+        // expect print 7
+        // expect print 17
+        executeProgram("./output/function_call/function_call.m", UTIL, "", true);
+    }
+
+    @Test
+    void test_basic_array() throws Exception {
+        assertDoesNotThrow(() -> {
+            Driver.main(new String[] { "./input/code_gen/basic_array.src" });
+        });
     }
 
     @Test

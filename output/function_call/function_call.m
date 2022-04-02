@@ -1,3 +1,6 @@
+                                            % begin of function definition: f
+ f                                          
+            sw         -4(r14),r15          
             lw         r1,-12(r14)          % mulOp operation
             lw         r2,-16(r14)          
             mul        r3,r1,r2             
@@ -16,8 +19,14 @@
             addi       r1,r1,1              
             lb         r2,newline(r1)       
             putc       r2                   
+                                            % return
+            lw         r1,-20(r14)          % load returned value from mem
+            sw         0(r14),r1            
+            lw         r15,-4(r14)          % retrieve r15 from stack
+            jr         r15                  % jump back to calling function
+            align                           
                                             % begin of main function
-            entry                           % start program
+ main       entry                           % start program
             addi       r14,r0,topaddr       
             addi       r1,r0,1              % load intnum: 1
             sw         -20(r14),r1          
@@ -31,6 +40,18 @@
             sw         -28(r14),r1          
             lw         r1,-28(r14)          % assign c
             sw         -16(r14),r1          
+                                            % function call to f
+            lw         r1,-8(r14)           % pass a into parameter
+            sw         -52(r14),r1          
+            lw         r1,-12(r14)          % pass b into parameter
+            sw         -56(r14),r1          
+            lw         r1,-16(r14)          % pass c into parameter
+            sw         -60(r14),r1          
+            subi       r14,r14,44           % increment stack frame
+            jl         r15,f                % jump to funciton: f
+            addi       r14,r14,44           % decrement stack frame
+            lw         r1,-44(r14)          % get return value from f
+            sw         -32(r14),r1          
             lw         r1,-32(r14)          % mulOp operation
             lw         r2,-12(r14)          
             mul        r3,r1,r2             

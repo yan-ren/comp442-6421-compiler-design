@@ -10,6 +10,7 @@ import java.util.Queue;
 
 import ast.Node;
 import ast.SemanticAction;
+import lexicalanalyzer.Constants.LA_TYPE;
 import symboltable.Kind;
 import symboltable.SymbolTable;
 import symboltable.SymbolTableEntry;
@@ -178,5 +179,16 @@ public class Util {
                 }
             }
         }
+    }
+
+    // TODO: get struct type size
+    public static int getTypeSize(String typeName) {
+        if (typeName.equals(LA_TYPE.INTEGER) || typeName.equals(LA_TYPE.INTNUM)) {
+            return ComputeMemSizeVisitor.INT_SIZE;
+        } else if (typeName.equals(LA_TYPE.FLOAT) || typeName.equals(LA_TYPE.FLOATNUM)) {
+            return ComputeMemSizeVisitor.FLOAT_SIZE;
+        }
+
+        return 0;
     }
 }

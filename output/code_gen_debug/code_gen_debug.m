@@ -1,5 +1,6 @@
+            align                           
                                             % begin of main function
-            entry                           % start program
+ main       entry                           % start program
             addi       r14,r0,topaddr       
             addi       r1,r0,0              % load intnum: 0
             sw         -20(r14),r1          
@@ -8,7 +9,7 @@
  tag1                                       % while statement
             addi       r1,r0,10             % load intnum: 10
             sw         -24(r14),r1          
-            lw         r1,-16(r14)          % relExpr z leq t2_749927456
+            lw         r1,-16(r14)          % relExpr z leq t2_313082880
             lw         r2,-24(r14)          
             cle        r3,r1,r2             
             sw         -28(r14),r3          

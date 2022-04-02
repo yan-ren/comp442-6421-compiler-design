@@ -1,15 +1,15 @@
-Table: global| scope size: 0| table id: 1976752685| 
+Table: global| scope size: 0| table id: 1394940518| 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
-bubbleSort| function  | (integer[0],integer,):void    | 1115170891| 0         | 0         | 
+bubbleSort| function  | (integer[0],integer,):void    | 1750286943| 0         | 0         | 
 ___________________________________________________________________________________
-printArray| function  | (integer[0],integer,):void    | 156710276 | 0         | 0         | 
+printArray| function  | (integer[0],integer,):void    | 892083096 | 0         | 0         | 
 ___________________________________________________________________________________
-main      | function  | ():void                       | 53940034  | 0         | 0         | 
+main      | function  | ():void                       | 554868511 | 0         | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: bubbleSort| scope size: 0| table id: 1115170891| Upper table: 1976752685
+Table: bubbleSort| scope size: 0| table id: 1750286943| Upper table: 1394940518
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 arr       | parameter | integer[0]                    |           | 0         | 0         | 
@@ -26,7 +26,7 @@ temp      | variable  | integer                       |           | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: printArray| scope size: 0| table id: 156710276| Upper table: 1976752685
+Table: printArray| scope size: 0| table id: 892083096| Upper table: 1394940518
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 arr       | parameter | integer[0]                    |           | 0         | 0         | 
@@ -39,7 +39,7 @@ i         | variable  | integer                       |           | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: main| scope size: 0| table id: 53940034| Upper table: 1976752685
+Table: main| scope size: 0| table id: 554868511| Upper table: 1394940518
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 arr       | variable  | integer[7]                    |           | 0         | 0         | 
