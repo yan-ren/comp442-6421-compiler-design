@@ -1,0 +1,35 @@
+// ====== struct declarations ====== //
+
+
+struct LINEAR {
+	public let a: integer;
+	public let b: integer;
+	public  func build(A: integer, B: integer) -> LINEAR;
+	public  func evaluate(x: integer) -> integer;
+};
+
+impl LINEAR {
+  func build(A: integer, B: integer) -> LINEAR                        // 2.1, 2.2
+  {
+    let new_function: LINEAR;                                     // 1.3
+    new_function.a = A;                                           // 3.1, 5.3
+    new_function.b = B;                                           // 3.1, 5.3
+    return (new_function);                                        // 2.3
+  }
+  func evaluate(x: integer) -> integer                                // 2.1, 2.2
+  {
+    let result: integer;                                            // 1.1
+    result = 0.0;                                                 // 3.1
+    result = a * x + b;                                           // 3.1, 5.1
+    return (result);                                              // 2.3
+  }
+} 
+
+// ====== main ====== //
+func main() -> void                                               // 2.1, 2.2
+{
+  let l1: LINEAR;                                                 // 1.3
+  l1.a = 1;
+  l1.b = l1.a;
+  write(l1.a+l1.b);
+}

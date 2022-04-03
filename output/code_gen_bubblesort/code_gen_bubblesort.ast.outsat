@@ -52,7 +52,7 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   └──whileStat
+|   |   |   ├──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
 |   |   |   |   |   |   ├──id
@@ -98,43 +98,6 @@ prog
 |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
 |   |   |   |   |   |   |   |   ├──statBlock
-|   |   |   |   |   |   |   |   |   ├──assignStat
-|   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   ├──assignStat
-|   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   └──addOp
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   |   |   |   |   └──assignStat
-|   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   └──addOp
-|   |   |   |   |   |   |   |   |   |   |   |   |   ├──var
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   |   |   |   |   |   └──var
-|   |   |   |   |   |   |   |   |   |   |   ├──id
-|   |   |   |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   |   └──statBlock
 |   |   |   |   |   |   |   └──assignStat
 |   |   |   |   |   |   |   |   ├──var
@@ -154,6 +117,8 @@ prog
 |   |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   └──intnum
+|   |   |   └──returnStat
+|   |   |   |   └──intnum
 |   ├──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id
@@ -189,7 +154,7 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   └──whileStat
+|   |   |   ├──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
 |   |   |   |   |   |   ├──id
@@ -215,6 +180,8 @@ prog
 |   |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   └──intnum
+|   |   |   └──returnStat
+|   |   |   |   └──intnum
 |   └──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id
