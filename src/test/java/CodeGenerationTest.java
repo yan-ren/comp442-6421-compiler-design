@@ -92,7 +92,7 @@ public class CodeGenerationTest {
         });
 
         // expect sorted array
-        // executeProgram("./output/object/object.m", UTIL, "", true);
+        executeProgram("./output/object/object.m", UTIL, "", false);
     }
 
     /**

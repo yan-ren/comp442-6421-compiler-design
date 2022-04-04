@@ -18,7 +18,7 @@
             lw         r2,-40(r14)          
             sub        r3,r1,r2             
             sw         -44(r14),r3          
-            lw         r1,-20(r14)          % relExpr i lt t4_1916700921
+            lw         r1,-20(r14)          % relExpr i lt t4_1419064126
             lw         r2,-44(r14)          
             clt        r3,r1,r2             
             sw         -48(r14),r3          
@@ -39,7 +39,7 @@
             lw         r2,-60(r14)          
             sub        r1,r3,r2             
             sw         -64(r14),r1          
-            lw         r3,-24(r14)          % relExpr j lt t9_1916700921
+            lw         r3,-24(r14)          % relExpr j lt t9_1419064126
             lw         r2,-64(r14)          
             clt        r1,r3,r2             
             sw         -68(r14),r1          
@@ -228,7 +228,7 @@
                                             % function call to printArray
             lw         r3,-8(r14)           % pass arr into parameter
             sw         -132(r14),r3         
-            lw         r3,-100(r14)         % pass t43_1916700921 into parameter
+            lw         r3,-100(r14)         % pass t43_1419064126 into parameter
             sw         -136(r14),r3         
             subi       r14,r14,124          % increment stack frame
             jl         r15,printArray       % jump to funciton: printArray
@@ -240,7 +240,7 @@
                                             % function call to bubbleSort
             lw         r3,-8(r14)           % pass arr into parameter
             sw         -132(r14),r3         
-            lw         r3,-108(r14)         % pass t45_1916700921 into parameter
+            lw         r3,-108(r14)         % pass t45_1419064126 into parameter
             sw         -136(r14),r3         
             subi       r14,r14,124          % increment stack frame
             jl         r15,bubbleSort       % jump to funciton: bubbleSort
@@ -252,7 +252,7 @@
                                             % function call to printArray
             lw         r3,-8(r14)           % pass arr into parameter
             sw         -132(r14),r3         
-            lw         r3,-116(r14)         % pass t47_1916700921 into parameter
+            lw         r3,-116(r14)         % pass t47_1419064126 into parameter
             sw         -136(r14),r3         
             subi       r14,r14,124          % increment stack frame
             jl         r15,printArray       % jump to funciton: printArray

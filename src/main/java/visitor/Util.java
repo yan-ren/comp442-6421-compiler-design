@@ -191,4 +191,32 @@ public class Util {
 
         return 0;
     }
+
+    // TODO: get struct type size
+    public static int getNodeSize(Node node) {
+        int totalDim = 1;
+        // for array size dimension, e.g. a[7], or a[] -> a[0]
+        for (String dim : node.symbolTableEntry.type.dimension) {
+            totalDim += Integer.parseInt(dim);
+        }
+
+        return totalDim * Util.getTypeSize(node.symbolTableEntry.type.name);
+    }
+
+    public static boolean isPrimaryType(String typeName) {
+        if (typeName.equals(LA_TYPE.INTEGER) || typeName.equals(LA_TYPE.INTNUM) || typeName.equals(LA_TYPE.FLOAT)
+                || typeName.equals(LA_TYPE.FLOATNUM)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isDotNode(Node node) {
+        if (node.getName().equals(SemanticAction.DOT)) {
+            return true;
+        }
+
+        return false;
+    }
 }

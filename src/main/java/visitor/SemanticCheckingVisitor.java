@@ -37,7 +37,8 @@ public class SemanticCheckingVisitor implements Visitor {
             String secondOperandTypeName = node.children.get(1).symbolTableEntry != null
                     ? node.children.get(1).symbolTableEntry.type.name
                     : "";
-            if (!isSameTypeOperand(firstOperandTypeName, secondOperandTypeName)) {
+            if (!Util.isDotNode(node.children.get(0)) && !Util.isDotNode(node.children.get(1))
+                    && !isSameTypeOperand(firstOperandTypeName, secondOperandTypeName)) {
                 logger.write("[error][semantic] type error in expression: " + node.getToken().getLexeme() + ", line: "
                         + node.getToken().getLocation() + "\n");
             } else {

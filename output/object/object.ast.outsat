@@ -168,13 +168,15 @@ prog
 |   |   |   |   |   └──var
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──indiceList
-|   |   |   |   └──dot
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   └──addOp
+|   |   |   |   |   ├──dot
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   └──intnum
 |   |   |   ├──writeStat
 |   |   |   |   └──dot
 |   |   |   |   |   ├──var
@@ -183,14 +185,6 @@ prog
 |   |   |   |   |   └──var
 |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   └──indiceList
-|   |   |   ├──dot
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──fCall
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──aParams
-|   |   |   |   |   |   └──intnum
 |   |   |   └──writeStat
 |   |   |   |   └──addOp
 |   |   |   |   |   ├──dot

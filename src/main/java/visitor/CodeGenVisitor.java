@@ -8,7 +8,9 @@ import java.util.Stack;
 import ast.Node;
 import ast.SemanticAction;
 import lexicalanalyzer.Constants.LA_TYPE;
+import symboltable.Kind;
 import symboltable.SymbolTable;
+import symboltable.SymbolTableEntry;
 
 /*
 stack based code generation visitor
@@ -285,6 +287,144 @@ public class CodeGenVisitor implements Visitor {
                     registerPool.push(r1);
                 }
                 /**
+                 * l1.b+l1.a
+                 * 
+                 * first
+                 * addi r1,r0,first_offset
+                 * lw r2,l1(r1)
+                 * 
+                 * second
+                 * addi r3,r0,second_offset
+                 * lw r4,l1(r3)
+                 * 
+                 * add
+                 * add r5,r2,r4
+                 * sw addOp_offset(r14),r5
+                 */
+                else if (Util.isDotNode(firstNode) && Util.isDotNode(secondNode)) {
+                    String r1 = this.registerPool.pop();
+                    String r2 = this.registerPool.pop();
+                    String r3 = this.registerPool.pop();
+                    String r4 = this.registerPool.pop();
+                    String r5 = this.registerPool.pop();
+
+                    String firstOffset = SymbolTable.getFieldSize(node.symbolTable,
+                            firstNode.symbolTableEntry.type.name,
+                            firstNode.children.get(1).children.get(0).getToken().getLexeme());
+                    String secondOffset = SymbolTable.getFieldSize(node.symbolTable,
+                            secondNode.symbolTableEntry.type.name,
+                            secondNode.children.get(1).children.get(0).getToken().getLexeme());
+                    // first
+                    writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, firstOffset),
+                            "% load " + firstNodeName);
+                    writeExecCode(null, LOAD_WORD, buildOperation(null, r2, firstNodeName, r1, null, null), null);
+                    // second
+                    writeExecCode(null, ADD_I, buildOperation(null, r3, null, ZERO_REG, null, secondOffset),
+                            "% load value for " + secondNodeName);
+                    writeExecCode(null, LOAD_WORD, buildOperation(null, r4, secondNodeName, r3, null, null), null);
+
+                    if (node.getToken().getType().equals(LA_TYPE.PLUS)) {
+                        writeExecCode(null, ADD, buildOperation(null, r5, null, r2, null, r4), null);
+                    } else {
+                        writeExecCode(null, SUB, buildOperation(null, r5, null, r2, null, r4), null);
+                    }
+                    writeExecCode(null, STORE_WORD, buildOperation(addOpOffset, STACK_REG, null, r5, null, null), null);
+
+                    registerPool.push(r5);
+                    registerPool.push(r4);
+                    registerPool.push(r3);
+                    registerPool.push(r2);
+                    registerPool.push(r1);
+                }
+                /**
+                 * l1.b+1
+                 * 
+                 * first
+                 * addi r1,r0,first_offset
+                 * lw r2,l1(r1)
+                 * 
+                 * second
+                 * lw r3,b_offset(r14)
+                 * 
+                 * add
+                 * add r4,r2,r3
+                 * sw addOp_offset(r14),r4
+                 */
+                else if (Util.isDotNode(firstNode)) {
+                    String r1 = this.registerPool.pop();
+                    String r2 = this.registerPool.pop();
+                    String r3 = this.registerPool.pop();
+                    String r4 = this.registerPool.pop();
+
+                    String firstOffset = SymbolTable.getFieldSize(node.symbolTable,
+                            firstNode.symbolTableEntry.type.name,
+                            firstNode.children.get(1).children.get(0).getToken().getLexeme());
+                    String secondOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                            node.children.get(1).symbolTableEntry.name);
+                    // first
+                    writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, firstOffset),
+                            "% load " + firstNodeName);
+                    writeExecCode(null, LOAD_WORD, buildOperation(null, r2, firstNodeName, r1, null, null), null);
+                    // second
+                    writeExecCode("", LOAD_WORD, buildOperation(null, r3, secondOffset, STACK_REG, null, null), null);
+
+                    if (node.getToken().getType().equals(LA_TYPE.PLUS)) {
+                        writeExecCode(null, ADD, buildOperation(null, r4, null, r2, null, r3), null);
+                    } else {
+                        writeExecCode(null, SUB, buildOperation(null, r4, null, r2, null, r3), null);
+                    }
+                    writeExecCode(null, STORE_WORD, buildOperation(addOpOffset, STACK_REG, null, r4, null, null), null);
+
+                    registerPool.push(r4);
+                    registerPool.push(r3);
+                    registerPool.push(r2);
+                    registerPool.push(r1);
+                }
+                /**
+                 * 1+l1.b
+                 * 
+                 * second
+                 * addi r1,r0,second_offset
+                 * lw r2,l1(r1)
+                 * 
+                 * first
+                 * lw r3,b_offset(r14)
+                 * 
+                 * add
+                 * add r4,r2,r3
+                 * sw addOp_offset(r14),r4
+                 */
+                else if (Util.isDotNode(secondNode)) {
+                    String r1 = this.registerPool.pop();
+                    String r2 = this.registerPool.pop();
+                    String r3 = this.registerPool.pop();
+                    String r4 = this.registerPool.pop();
+
+                    String secondOffset = SymbolTable.getFieldSize(node.symbolTable,
+                            firstNode.symbolTableEntry.type.name,
+                            firstNode.children.get(1).children.get(0).getToken().getLexeme());
+                    String firstOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                            node.children.get(1).symbolTableEntry.name);
+                    // second
+                    writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, secondOffset),
+                            "% load " + secondNodeName);
+                    writeExecCode(null, LOAD_WORD, buildOperation(null, r2, secondNodeName, r1, null, null), null);
+                    // first
+                    writeExecCode("", LOAD_WORD, buildOperation(null, r3, firstOffset, STACK_REG, null, null), null);
+
+                    if (node.getToken().getType().equals(LA_TYPE.PLUS)) {
+                        writeExecCode(null, ADD, buildOperation(null, r4, null, r2, null, r3), null);
+                    } else {
+                        writeExecCode(null, SUB, buildOperation(null, r4, null, r2, null, r3), null);
+                    }
+                    writeExecCode(null, STORE_WORD, buildOperation(addOpOffset, STACK_REG, null, r4, null, null), null);
+
+                    registerPool.push(r4);
+                    registerPool.push(r3);
+                    registerPool.push(r2);
+                    registerPool.push(r1);
+                }
+                /**
                  * addOp: a+b
                  * 
                  * lw r1,a_offset(r14)
@@ -528,6 +668,97 @@ public class CodeGenVisitor implements Visitor {
                 this.registerPool.push(r1);
             }
             /**
+             * l1.b = l1.a
+             * 
+             * right
+             * addi r1,r0,right_offset
+             * lw r2,l1(r1)
+             * 
+             * left
+             * addi r3,r0,left_offset
+             * sw l1(r3),r2
+             */
+            else if (Util.isDotNode(leftNode) && Util.isDotNode(rightNode)) {
+                String r1 = this.registerPool.pop();
+                String r2 = this.registerPool.pop();
+                String r3 = this.registerPool.pop();
+                String rightOffset = SymbolTable.getFieldSize(node.symbolTable,
+                        rightNode.symbolTableEntry.type.name,
+                        rightNode.children.get(1).children.get(0).getToken().getLexeme());
+                String leftOffset = SymbolTable.getFieldSize(node.symbolTable,
+                        leftNode.symbolTableEntry.type.name,
+                        leftNode.children.get(1).children.get(0).getToken().getLexeme());
+                // right
+                writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, rightOffset),
+                        "% load value for " + leftNodeName);
+                writeExecCode(null, LOAD_WORD, buildOperation(null, r2, rightNodeName, r1, null, null), null);
+                // left
+                writeExecCode(null, ADD_I, buildOperation(null, r3, null, ZERO_REG, null, leftOffset), null);
+                writeExecCode(null, STORE_WORD, buildOperation(leftNodeName, r3, null, r2, null, null),
+                        "% assign " + leftNodeName);
+                this.registerPool.push(r3);
+                this.registerPool.push(r2);
+                this.registerPool.push(r1);
+            }
+            /**
+             * l1.b = x
+             * 
+             * right
+             * lw r1, b_offset(r14)
+             * 
+             * left
+             * addi r2,r0,left_offset
+             * sw l1(r2),r1
+             */
+            else if (Util.isDotNode(leftNode)) {
+                String r1 = this.registerPool.pop();
+                String r2 = this.registerPool.pop();
+                String rightOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                        rightNodeName);
+                String leftOffset = SymbolTable.getFieldSize(node.symbolTable,
+                        leftNode.symbolTableEntry.type.name,
+                        leftNode.children.get(1).children.get(0).getToken().getLexeme());
+                // right
+                writeExecCode("", LOAD_WORD, buildOperation(null, r1, rightOffset, STACK_REG, null, null),
+                        "% load value for " + leftNodeName);
+                // left
+                writeExecCode(null, ADD_I, buildOperation(null, r2, null, ZERO_REG, null, leftOffset), null);
+                writeExecCode(null, STORE_WORD, buildOperation(leftNodeName, r2, null, r1, null, null),
+                        "% assign " + leftNodeName);
+                this.registerPool.push(r2);
+                this.registerPool.push(r1);
+            }
+            /**
+             * x = l1.a
+             * 
+             * right
+             * addi r1,r0,right_offset
+             * lw r2,l1(r1)
+             * 
+             * left
+             * sw a_offset(r14), r2
+             */
+            else if (Util.isDotNode(rightNode)) {
+                String r1 = this.registerPool.pop();
+                String r2 = this.registerPool.pop();
+
+                String rightOffset = SymbolTable.getFieldSize(node.symbolTable,
+                        rightNode.symbolTableEntry.type.name,
+                        rightNode.children.get(1).children.get(0).getToken().getLexeme());
+                String leftOffset = SymbolTable.getOffsetByName(node.symbolTable,
+                        leftNodeName);
+                // right
+                writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, rightOffset),
+                        "% load value for " + leftNodeName);
+                writeExecCode(null, LOAD_WORD, buildOperation(null, r2, rightNodeName, r1, null, null), null);
+                // left
+                writeExecCode("", STORE_WORD, buildOperation(leftOffset, STACK_REG, null, r2, null, null),
+                        "% assign " + leftNodeName);
+
+                this.registerPool.push(r2);
+                this.registerPool.push(r1);
+            }
+            /**
              * a = b a = 1
              * 
              * lw r1, b_offset(r14)
@@ -572,6 +803,27 @@ public class CodeGenVisitor implements Visitor {
                 writeExecCode("", JUMP_AND_LINK, buildOperation(null, JUMP_REG, null, "putint", null, null), "");
 
                 this.registerPool.push(r2);
+                this.registerPool.push(r1);
+            }
+            /**
+             * write(l1.a)
+             * 
+             * addi r1,r0,right_offset
+             * lw r1,l1(r1)
+             * 
+             */
+            else if (Util.isDotNode(node.children.get(0))) {
+                String dotName = node.children.get(0).symbolTableEntry.name;
+                String objectTypeName = node.children.get(0).symbolTableEntry.type.name;
+                String objectFieldName = node.children.get(0).children.get(1).children.get(0).getToken().getLexeme();
+                String size = SymbolTable.getFieldSize(node.symbolTable, objectTypeName, objectFieldName);
+                String r1 = this.registerPool.pop();
+
+                writeExecCode(null, ADD_I, buildOperation(null, r1, null, ZERO_REG, null, size),
+                        "% print object: " + dotName + " field: " + objectFieldName);
+                writeExecCode("", LOAD_WORD, buildOperation(null, "r1", dotName, r1, null, null), null);
+                writeExecCode("", JUMP_AND_LINK, buildOperation(null, JUMP_REG, null, "putint", null, null), "");
+
                 this.registerPool.push(r1);
             } else {
                 String valueOffset = SymbolTable.getOffsetByName(node.symbolTable,
@@ -787,11 +1039,17 @@ public class CodeGenVisitor implements Visitor {
          * needs tag to allocate memory
          */
         else if (node.getName().equals(SemanticAction.VAR_DECL)) {
-            // array can only be 1D
-            if (node.children.get(2).children.size() == 1) {
+            // array can only be 1D and has to be integer
+            if (node.children.get(1).getToken().getLexeme().equals(LA_TYPE.INTEGER)
+                    && node.children.get(2).children.size() == 1) {
                 String size = String.valueOf(Util.getTypeSize(node.children.get(1).getName())
                         * Integer.parseInt(node.children.get(2).children.get(0).getToken().getLexeme()));
                 writeDataCode(node.symbolTableEntry.name, RESERVE, size, "");
+            } else if (!Util.isPrimaryType(node.children.get(1).getToken().getLexeme())) {
+                SymbolTableEntry structEntry = SymbolTable.lookupEntryInTableAndUpperTable(node.symbolTable,
+                        node.symbolTableEntry.type.name,
+                        Kind.struct);
+                writeDataCode(node.symbolTableEntry.name, RESERVE, String.valueOf(structEntry.link.scopeSize), "");
             }
         }
         /**
