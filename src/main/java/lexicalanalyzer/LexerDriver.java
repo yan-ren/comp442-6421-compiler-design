@@ -18,12 +18,12 @@ import parser.Parser;
  */
 public class LexerDriver {
 
-	public static final String DEFAULT_INPUT = "./input-lexer";
-	public static final String DEFAULT_OUTPUT = "./output-lexer/";
+	public static final String DEFAULT_INPUT = "./input/lexer";
+	public static final String DEFAULT_OUTPUT = "./output/lexer/";
 
 	public static void main(String[] args) throws Exception {
 		String fileDir = DEFAULT_INPUT;
-		if (args.length != 0) {
+		if (args != null && args.length != 0) {
 			fileDir = args[0];
 		}
 		Files.createDirectories(Paths.get(DEFAULT_OUTPUT));

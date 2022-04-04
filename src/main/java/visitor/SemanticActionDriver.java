@@ -19,7 +19,7 @@ import parser.Parser;
 This driver runs the compiler until Assigement 4, which includes lexical analyzer, parser, AST generation, semantic analysis
 */
 public class SemanticActionDriver {
-    public static final String DEFAULT_OUTPUT = "./output/";
+    public static final String DEFAULT_OUTPUT = "./output/semantic/";
 
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {

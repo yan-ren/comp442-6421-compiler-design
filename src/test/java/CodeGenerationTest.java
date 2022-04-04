@@ -21,7 +21,7 @@ public class CodeGenerationTest {
             Driver.main(new String[] { "./input/code_gen/code_gen_debug.src" });
         });
 
-        executeProgram("./output/code_gen_debug/code_gen_debug.m", UTIL, "18", true);
+        executeProgram("./output/code_gen/code_gen_debug/code_gen_debug.m", UTIL, "18", true);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CodeGenerationTest {
             Driver.main(new String[] { "./input/code_gen/read_write.src" });
         });
         // pass 1 to console input, expect print 2
-        executeProgram("./output/read_write/read_write.m", UTIL, "1", true);
+        executeProgram("./output/code_gen/read_write/read_write.m", UTIL, "1", true);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class CodeGenerationTest {
         });
         // pass 1 to console input, expect print 2
         // then loop print 0 to 10 inclusice
-        executeProgram("./output/simple_main/simple_main.m", UTIL, "1", true);
+        executeProgram("./output/code_gen/simple_main/simple_main.m", UTIL, "1", true);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CodeGenerationTest {
         });
         // expect print 7
         // expect print 17
-        executeProgram("./output/function_call/function_call.m", UTIL, "", true);
+        executeProgram("./output/code_gen/function_call/function_call.m", UTIL, "", true);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class CodeGenerationTest {
         // expect print 44
         // expect print 46
         // expect print 1
-        executeProgram("./output/basic_array_1/basic_array_1.m", UTIL, "", true);
+        executeProgram("./output/code_gen/basic_array_1/basic_array_1.m", UTIL, "", true);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class CodeGenerationTest {
         });
         // expect print 56
         // expect print 100
-        executeProgram("./output/basic_array_2/basic_array_2.m", UTIL, "", true);
+        executeProgram("./output/code_gen/basic_array_2/basic_array_2.m", UTIL, "", true);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class CodeGenerationTest {
         });
 
         // expect sorted array
-        executeProgram("./output/code_gen_bubblesort/code_gen_bubblesort.m", UTIL, "", true);
+        executeProgram("./output/code_gen/code_gen_bubblesort/code_gen_bubblesort.m", UTIL, "", true);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class CodeGenerationTest {
         });
 
         // expect sorted array
-        executeProgram("./output/object/object.m", UTIL, "", false);
+        executeProgram("./output/code_gen/object/object.m", UTIL, "", false);
     }
 
     /**
