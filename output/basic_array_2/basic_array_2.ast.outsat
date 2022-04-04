@@ -1,0 +1,59 @@
+prog
+|   └──funcDef
+|   |   ├──funcHead
+|   |   |   ├──id
+|   |   |   ├──fparamList
+|   |   |   └──void
+|   |   └──funcBody
+|   |   |   ├──varDecl
+|   |   |   |   ├──id
+|   |   |   |   ├──integer
+|   |   |   |   └──arraySize
+|   |   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──intnum
+|   |   |   |   |   |   |   └──intnum
+|   |   |   ├──writeStat
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
+|   |   |   |   └──addOp
+|   |   |   |   |   ├──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   └──var
+|   |   |   |   |   |   ├──id
+|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum
+|   |   |   └──writeStat
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum

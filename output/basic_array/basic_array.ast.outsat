@@ -27,33 +27,11 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   └──intnum
-|   |   |   |   └──addOp
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   └──intnum
-|   |   |   ├──writeStat
 |   |   |   |   └──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   |   |   └──intnum
-|   |   |   |   └──addOp
-|   |   |   |   |   ├──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
-|   |   |   |   |   |   |   └──intnum
-|   |   |   |   |   └──var
-|   |   |   |   |   |   ├──id
-|   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──intnum
 |   |   |   |   |   |   |   └──intnum
 |   |   |   └──writeStat
 |   |   |   |   └──var

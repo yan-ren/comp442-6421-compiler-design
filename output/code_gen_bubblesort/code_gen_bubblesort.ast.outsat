@@ -47,12 +47,7 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
-|   |   |   └──whileStat
+|   |   |   ├──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
 |   |   |   |   |   |   ├──id
@@ -64,6 +59,11 @@ prog
 |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   └──intnum
 |   |   |   |   └──statBlock
+|   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
 |   |   |   |   |   ├──whileStat
 |   |   |   |   |   |   ├──relExpr
 |   |   |   |   |   |   |   ├──var
@@ -154,6 +154,8 @@ prog
 |   |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   └──intnum
+|   |   |   └──returnStat
+|   |   |   |   └──intnum
 |   ├──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id
@@ -189,7 +191,7 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   └──whileStat
+|   |   |   ├──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
 |   |   |   |   |   |   ├──id
@@ -215,6 +217,8 @@ prog
 |   |   |   |   |   |   |   |   ├──id
 |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   └──intnum
+|   |   |   └──returnStat
+|   |   |   |   └──intnum
 |   └──funcDef
 |   |   ├──funcHead
 |   |   |   ├──id

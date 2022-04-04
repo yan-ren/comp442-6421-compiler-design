@@ -131,6 +131,10 @@ public class Node {
 	public static void postProcess(Node root) {
 		removeNodes(root);
 		reverseChildren(root);
+		adjustPlusMinusSign(root);
+	}
+
+	private static void adjustPlusMinusSign(Node root) {
 	}
 
 	private static void removeNodes(Node current) {

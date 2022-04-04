@@ -1,0 +1,2 @@
+[error][semantic] Type error in return statement, expect: void, actual: intnum, in function: bubbleSort, scope: global
+[error][semantic] Type error in return statement, expect: void, actual: intnum, in function: printArray, scope: global
