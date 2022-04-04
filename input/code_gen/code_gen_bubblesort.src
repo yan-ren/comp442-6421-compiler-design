@@ -32,22 +32,17 @@ func bubbleSort(arr: integer[], size: integer) -> void   // 2.1, 2.2
   let temp: integer;                                     // 1.1
   n = size;                                              // 3.1
   i = 0;                                                 // 3.1
-  j = 0;                                                 // 3.1
   temp = 0;                                              // 3.1
-/*
-  write(n);
-  write(size);
-  write(i);
-  write(temp);
-*/
+
   while (i < n-1){                                       // 3.3, 5.1
-    while (j < n-i-1){                                   // 3.3
+    j = 0;
+    while (j < n-i+1){                                   // 3.3
       if (arr[j] > arr[j+1])                             // 3.2, 4.1, 5.1, 5.2
         then {
           // swap temp and arr[i]
-//          temp = arr[j];                                 // 3.1, 4.1, 5.2
-//          arr[j] = arr[j+1];                             // 3.1, 4.1, 5.2
-//          arr[j+1] = temp;                               // 3.1, 4.1, 5.2
+          temp = arr[j];                                 // 3.1, 4.1, 5.2
+          arr[j] = arr[j+1];                             // 3.1, 4.1, 5.2
+          arr[j+1] = temp;                               // 3.1, 4.1, 5.2
         } else ;
         j = j+1;                                       // 3.1, 5.1
     };
@@ -63,11 +58,6 @@ func printArray(arr: integer[], size: integer) -> void   // 2.1, 2.2
   let i: integer;                                        // 1.1
   n = size;                                              // 3.1
   i = 0;                                                 // 3.1
-/*
-  write(size);
-  write(n);
-  write(i);
-*/
 
   while (i<n){                                           // 3.3, 5.1
     write(arr[i]);                                       // 3.4, 4.1, 5.2

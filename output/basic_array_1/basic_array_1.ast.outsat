@@ -75,6 +75,22 @@ prog
 |   |   |   |   ├──var
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   └──intnum
+|   |   |   ├──writeStat
+|   |   |   |   └──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
+|   |   |   ├──assignStat
+|   |   |   |   ├──var
+|   |   |   |   |   ├──id
+|   |   |   |   |   └──indiceList
 |   |   |   |   |   |   └──addOp
 |   |   |   |   |   |   |   ├──var
 |   |   |   |   |   |   |   |   ├──id

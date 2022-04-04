@@ -60,6 +60,7 @@ public class CodeGenerationTest {
         });
         // expect print 46
         // expect print 44
+        // expect print 46
         // expect print 1
         executeProgram("./output/basic_array_1/basic_array_1.m", UTIL, "", true);
     }
@@ -80,7 +81,18 @@ public class CodeGenerationTest {
             Driver.main(new String[] { "./input/code_gen/code_gen_bubblesort.src" });
         });
 
-        executeProgram("./output/code_gen_bubblesort/code_gen_bubblesort.m", UTIL, "", false);
+        // expect sorted array
+        executeProgram("./output/code_gen_bubblesort/code_gen_bubblesort.m", UTIL, "", true);
+    }
+
+    @Test
+    void test_object() throws Exception {
+        assertDoesNotThrow(() -> {
+            Driver.main(new String[] { "./input/code_gen/object.src" });
+        });
+
+        // expect sorted array
+        // executeProgram("./output/object/object.m", UTIL, "", true);
     }
 
     /**

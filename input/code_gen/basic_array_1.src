@@ -11,6 +11,8 @@ func main() -> void
   write(arr[4]);
   j = arr[0];
   write(j);
+  j = arr[i+1];
+  write(j);
   arr[i+1] = i;
   write(arr[2]);
 }

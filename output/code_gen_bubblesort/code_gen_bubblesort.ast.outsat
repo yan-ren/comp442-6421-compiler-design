@@ -47,11 +47,6 @@ prog
 |   |   |   |   |   ├──id
 |   |   |   |   |   └──indiceList
 |   |   |   |   └──intnum
-|   |   |   ├──assignStat
-|   |   |   |   ├──var
-|   |   |   |   |   ├──id
-|   |   |   |   |   └──indiceList
-|   |   |   |   └──intnum
 |   |   |   ├──whileStat
 |   |   |   |   ├──relExpr
 |   |   |   |   |   ├──var
@@ -64,6 +59,11 @@ prog
 |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   └──intnum
 |   |   |   |   └──statBlock
+|   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   └──intnum
 |   |   |   |   |   ├──whileStat
 |   |   |   |   |   |   ├──relExpr
 |   |   |   |   |   |   |   ├──var
@@ -98,6 +98,43 @@ prog
 |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
 |   |   |   |   |   |   |   |   ├──statBlock
+|   |   |   |   |   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   ├──assignStat
+|   |   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   |   |   |   └──assignStat
+|   |   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   └──addOp
+|   |   |   |   |   |   |   |   |   |   |   |   |   ├──var
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   └──indiceList
+|   |   |   |   |   |   |   |   |   |   |   |   |   └──intnum
+|   |   |   |   |   |   |   |   |   |   └──var
+|   |   |   |   |   |   |   |   |   |   |   ├──id
+|   |   |   |   |   |   |   |   |   |   |   └──indiceList
 |   |   |   |   |   |   |   |   └──statBlock
 |   |   |   |   |   |   |   └──assignStat
 |   |   |   |   |   |   |   |   ├──var

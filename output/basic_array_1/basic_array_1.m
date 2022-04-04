@@ -76,13 +76,31 @@
             lw         r2,-100(r14)         
             add        r3,r1,r2             
             sw         -104(r14),r3         
+            lw         r1,-104(r14)         % load value for j
+            muli       r2,r1,4              
+            lw         r3,arr(r2)           
+            sw         -44(r14),r3          % assign j
+            lw         r1,-44(r14)          % print var: j
+            jl         r15,putint           
+            addi       r1,r0,0              % print a newline
+            lb         r2,newline(r1)       
+            putc       r2                   
+            addi       r1,r1,1              
+            lb         r2,newline(r1)       
+            putc       r2                   
+            addi       r1,r0,1              % load intnum: 1
+            sw         -108(r14),r1         
+            lw         r1,-40(r14)          % addOp operation
+            lw         r2,-108(r14)         
+            add        r3,r1,r2             
+            sw         -112(r14),r3         
             lw         r1,-40(r14)          % load value for arr
-            lw         r2,-104(r14)         
+            lw         r2,-112(r14)         
             muli       r3,r2,4              
             sw         arr(r3),r1           % assign arr
             addi       r1,r0,2              % load intnum: 2
-            sw         -108(r14),r1         
-            lw         r1,-108(r14)         
+            sw         -116(r14),r1         
+            lw         r1,-116(r14)         
             muli       r2,r1,4              
             lw         r1,arr(r2)           % print integer array: arr
             jl         r15,putint           
