@@ -64,7 +64,7 @@ public class ComputeMemSizeVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            node.symbolTableEntry.size = getNodeSize(node);
+            node.symbolTableEntry.size = Util.getNodeSize(node);
         } else if (node.getName().equals(SemanticAction.MULT_OP) || node.getName().equals(SemanticAction.ADD_OP)) {
             for (Node child : node.children) {
                 child.accept(this);
@@ -78,7 +78,7 @@ public class ComputeMemSizeVisitor implements Visitor {
             for (Node child : node.children) {
                 child.accept(this);
             }
-            node.symbolTableEntry.size = getNodeSize(node);
+            node.symbolTableEntry.size = Util.getNodeSize(node);
         } else if (node.getName().equals(LA_TYPE.INTNUM) || node.getName().equals(LA_TYPE.FLOATNUM)) {
             for (Node child : node.children) {
                 child.accept(this);
@@ -120,16 +120,5 @@ public class ComputeMemSizeVisitor implements Visitor {
         }
 
         node.symbolTable.scopeSize = scopeSize;
-    }
-
-    // TODO: get struct type size
-    private int getNodeSize(Node node) {
-        int totalDim = 1;
-        // for array size dimension, e.g. a[7], or a[] -> a[0]
-        for (String dim : node.symbolTableEntry.type.dimension) {
-            totalDim += Integer.parseInt(dim);
-        }
-
-        return totalDim * Util.getTypeSize(node.symbolTableEntry.type.name);
     }
 }

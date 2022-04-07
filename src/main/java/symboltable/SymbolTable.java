@@ -171,17 +171,22 @@ public class SymbolTable {
     }
 
     /**
-     * Look for entry from current table and calculate offset
+     * Look for entry from current table or upper table, then calculate offset
      * 
      * @param table
      * @param name
      * @return
      */
     public static String getOffsetByName(SymbolTable table, String name) {
-        if (table.getEntryByName(name) == null) {
-            return null;
+        while (table != null
+                && table.getEntryByName(name) == null) {
+            table = table.upperTable;
         }
-        return String.valueOf(table.getEntryByName(name).offset);
+        if (table != null) {
+            return String.valueOf(table.getEntryByName(name).offset);
+        }
+
+        return null;
     }
 
     /**
@@ -201,6 +206,15 @@ public class SymbolTable {
                 return String.valueOf(entry.offset);
             }
         }
+        return null;
+    }
+
+    public static String getFieldSize(SymbolTable symbolTable, String structName, String fieldName) {
+        SymbolTableEntry strctEntry = SymbolTable.lookupEntryInTableAndUpperTable(symbolTable, structName, Kind.struct);
+        if (strctEntry != null) {
+            return String.valueOf(-strctEntry.link.getEntryByName(fieldName).offset);
+        }
+
         return null;
     }
 }

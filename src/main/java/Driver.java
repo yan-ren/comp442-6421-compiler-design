@@ -24,7 +24,7 @@ import visitor.Visitor;
 This driver runs the complete compiler, which includes lexical analyzer, parser, AST generation, semantic analysis, code generation
 */
 public class Driver {
-    public static final String DEFAULT_OUTPUT = "./output/";
+    public static final String DEFAULT_OUTPUT = "./output/code_gen/";
 
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {

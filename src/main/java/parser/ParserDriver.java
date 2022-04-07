@@ -17,7 +17,7 @@ import lexicalanalyzer.LexicalAnalyzer;
  * This driver executes until assignment 3, AST generation
  */
 public class ParserDriver {
-    public static final String DEFAULT_OUTPUT = "./output/";
+    public static final String DEFAULT_OUTPUT = "./output/parser/";
 
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {

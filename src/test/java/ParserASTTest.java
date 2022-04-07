@@ -4,52 +4,33 @@ import org.junit.jupiter.api.Test;
 
 import parser.ParserDriver;
 
-// public class ParserASTTest {
+public class ParserASTTest {
 
-// String encoding = null;
-// String semanticError = "[error][semantic]";
-// String semanticWarning = "[warn][semantic]";
+    @Test
+    void test_bubblesort() throws Exception {
+        assertDoesNotThrow(() -> {
+            ParserDriver.main(new String[] { "./input/parser/bubblesort.src" });
+        });
+    }
 
-// @Test
-// void test1() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/debug.src" });
-// });
-// }
+    @Test
+    void test_polynomial() throws Exception {
+        assertDoesNotThrow(() -> {
+            ParserDriver.main(new String[] { "./input/parser/polynomial.src" });
+        });
+    }
 
-// @Test
-// void test2() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/bubblesort.src" });
-// });
-// }
+    @Test
+    void test_parser_test_idnest() throws Exception {
+        assertDoesNotThrow(() -> {
+            ParserDriver.main(new String[] { "./input/parser/parser_test_idnest.src" });
+        });
+    }
 
-// @Test
-// void test3() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/polynomial.src" });
-// });
-// }
-
-// @Test
-// void test4() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/parser_test_idnest.src" });
-// });
-// }
-
-// @Test
-// void test5() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/parser_test_supplement.src" });
-// });
-// }
-
-// @Test
-// void test6() throws Exception {
-// assertDoesNotThrow(() -> {
-// ParserDriver.main(new String[] { "./input/src/polynomialsemanticerrors.src"
-// });
-// });
-// }
-// }
+    @Test
+    void test_parser_test_supplement() throws Exception {
+        assertDoesNotThrow(() -> {
+            ParserDriver.main(new String[] { "./input/parser/parser_test_supplement.src" });
+        });
+    }
+}
