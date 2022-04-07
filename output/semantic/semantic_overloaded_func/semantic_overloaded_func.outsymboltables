@@ -1,13 +1,13 @@
-Table: global| scope size: 0| table id: 156710276| 
+Table: global| scope size: 0| table id: 554868511| 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
-POLYNOMIAL| struct    |                               | 53940034  | 0         | 0         | 
+POLYNOMIAL| struct    |                               | 1520387953| 0         | 0         | 
 ___________________________________________________________________________________
-f         | function  | (integer,integer,):integer    | 1616359099| 0         | 0         | 
+f         | function  | (integer,integer,):integer    | 674019271 | 0         | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: POLYNOMIAL| scope size: 0| table id: 53940034| Upper table: 156710276 
+Table: POLYNOMIAL| scope size: 0| table id: 1520387953| Upper table: 554868511 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 f         | function  | (integer,):void               |           | 0         | 0         | 
@@ -16,7 +16,7 @@ evaluate  | function  | (integer,):integer            |           | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: f  | scope size: 0| table id: 1616359099| Upper table: 156710276 
+Table: f  | scope size: 0| table id: 674019271| Upper table: 554868511 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 i         | parameter | integer                       |           | 0         | 0         | 

@@ -19,8 +19,8 @@ impl LINEAR {
   func evaluate(x: integer) -> integer                            // 2.1, 2.2
   {
     let result: integer;                                          // 1.1
-    result = 0;                                                   // 3.1
-    result = b + a * x;                                           // 3.1, 5.1
+    result = 2;                                                   // 3.1
+    result = 1 + result * x;                                           // 3.1, 5.1
     write(result);
     return (result);                                              // 2.3
   }
@@ -39,6 +39,6 @@ func main() -> void                                               // 2.1, 2.2
   l1.b = l1.a+1;
   write(l1.b);
 
-//  l1.evaluate(3);
+  l1.evaluate(3);
   write(l1.a+l1.b);
 }
