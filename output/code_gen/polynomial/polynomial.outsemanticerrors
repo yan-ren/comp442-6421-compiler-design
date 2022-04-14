@@ -1,0 +1,6 @@
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct LINEAR
+[warn][semantic] function: evaluate in struct POLYNOMIAL is shadowed by struct QUADRATIC
+[error][semantic] Type error in return statement, expect: float, actual: intnum, in function: evaluate, scope: POLYNOMIAL
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}, { name='float', dimension='[]'}] actual: [{ name='intnum', dimension='[]'}, { name='floatnum', dimension='[]'}] line: 97
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}] actual: [{ name='integer', dimension='[]'}] line: 104
+[error][semantic] Function call with wrong type of parameters [{ name='float', dimension='[]'}] actual: [{ name='integer', dimension='[]'}] line: 105

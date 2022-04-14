@@ -9,7 +9,7 @@
  tag1                                       % while statement
             addi       r1,r0,10             % load intnum: 10
             sw         -24(r14),r1          
-            lw         r1,-16(r14)          % relExpr z leq t2_1465346452
+            lw         r1,-16(r14)          % relExpr z leq t2_684822005
             lw         r2,-24(r14)          
             cle        r3,r1,r2             
             sw         -28(r14),r3          

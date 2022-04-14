@@ -33,4 +33,11 @@ public class ParserASTTest {
             ParserDriver.main(new String[] { "./input/parser/parser_test_supplement.src" });
         });
     }
+
+    @Test
+    void test_skiperrors() throws Exception {
+        assertDoesNotThrow(() -> {
+            ParserDriver.main(new String[] { "./input/parser/skiperrors.src" });
+        });
+    }
 }

@@ -1,0 +1,14 @@
+START
+START => PROG
+START => sa2 REPTPROG0 sa24
+START => sa2 STRUCTORIMPLORFUNC REPTPROG0 sa24
+START => sa2 FUNCDEF REPTPROG0 sa24
+START => sa2 FUNCHEAD FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar FPARAMS closepar arrow RETURNTYPE sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow RETURNTYPE sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 FUNCBODY sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 VARDECLORSTAT REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 VARDECL REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 let id sa1 colon TYPE sa2 REPTVARDECL4 sa3 sa26 semi REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24
+START => sa2 func id sa1 openpar sa2 sa28 closepar arrow void sa1 sa29 opencubr sa2 let id sa1 colon TYPE sa2 sa3 sa26 semi REPTFUNCBODY1 sa30 closecubr sa31 REPTPROG0 sa24

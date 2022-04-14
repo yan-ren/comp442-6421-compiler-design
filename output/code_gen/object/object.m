@@ -88,7 +88,7 @@
             addi       r1,r0,3              % load intnum: 3
             sw         -20(r14),r1          
                                             % function call to evaluate
-            lw         r1,-20(r14)          % pass t8_2101153819 into parameter
+            lw         r1,-20(r14)          % pass t8_234250762 into parameter
             sw         -36(r14),r1          
             subi       r14,r14,28           % increment stack frame
             jl         r15,evaluate         % jump to funciton: evaluate
@@ -101,7 +101,7 @@
             lw         r4,l1(r3)            
             add        r5,r2,r4             
             sw         -28(r14),r5          
-            lw         r1,-28(r14)          % print var: t10_2101153819
+            lw         r1,-28(r14)          % print var: t10_234250762
             jl         r15,putint           
             addi       r1,r0,0              % print a newline
             lb         r2,newline(r1)       

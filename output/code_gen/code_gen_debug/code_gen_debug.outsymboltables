@@ -1,11 +1,11 @@
-Table: global| scope size: 0| table id: 307400933| 
+Table: global| scope size: 0| table id: 491273700| 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
-main      | function  | ():void                       | 1872973138| 0         | 0         | 
+main      | function  | ():void                       | 1077072774| 0         | 0         | 
 ___________________________________________________________________________________
 
 ==============================================
-Table: main| scope size: 0| table id: 1872973138| Upper table: 307400933 
+Table: main| scope size: 0| table id: 1077072774| Upper table: 491273700 
 name      | kind      | type                          | link      | size      | offset    
 ___________________________________________________________________________________
 x         | variable  | integer                       |           | 0         | 0         | 

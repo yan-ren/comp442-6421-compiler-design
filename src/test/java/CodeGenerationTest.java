@@ -92,7 +92,17 @@ public class CodeGenerationTest {
         });
 
         // expect sorted array
-        executeProgram("./output/code_gen/object/object.m", UTIL, "", false);
+        executeProgram("./output/code_gen/object/object.m", UTIL, "", true);
+    }
+
+    @Test
+    void test_polynomial() throws Exception {
+        assertDoesNotThrow(() -> {
+            Driver.main(new String[] { "./input/code_gen/polynomial.src" });
+        });
+
+        // expect sorted array
+        executeProgram("./output/code_gen/polynomial/polynomial.m", UTIL, "", false);
     }
 
     /**

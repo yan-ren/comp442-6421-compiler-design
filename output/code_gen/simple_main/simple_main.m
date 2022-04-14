@@ -27,7 +27,7 @@
             lw         r2,-40(r14)          
             add        r3,r1,r2             
             sw         -44(r14),r3          
-            lw         r1,-8(r14)           % relExpr x gt t7_1419064126
+            lw         r1,-8(r14)           % relExpr x gt t7_1664598529
             lw         r2,-44(r14)          
             cgt        r3,r1,r2             
             sw         -48(r14),r3          
@@ -39,7 +39,7 @@
             lw         r2,-52(r14)          
             add        r1,r3,r2             
             sw         -56(r14),r1          
-            lw         r1,-56(r14)          % print var: t10_1419064126
+            lw         r1,-56(r14)          % print var: t10_1664598529
             jl         r15,putint           
             addi       r3,r0,0              % print a newline
             lb         r2,newline(r3)       
@@ -55,7 +55,7 @@
             lw         r2,-60(r14)          
             add        r1,r3,r2             
             sw         -64(r14),r1          
-            lw         r1,-64(r14)          % print var: t12_1419064126
+            lw         r1,-64(r14)          % print var: t12_1664598529
             jl         r15,putint           
             addi       r3,r0,0              % print a newline
             lb         r2,newline(r3)       
@@ -71,7 +71,7 @@
  tag3                                       % while statement
             addi       r3,r0,10             % load intnum: 10
             sw         -72(r14),r3          
-            lw         r3,-16(r14)          % relExpr z leq t14_1419064126
+            lw         r3,-16(r14)          % relExpr z leq t14_1664598529
             lw         r2,-72(r14)          
             cle        r1,r3,r2             
             sw         -76(r14),r1          
